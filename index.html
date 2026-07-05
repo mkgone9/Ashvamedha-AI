@@ -3,7 +3,231 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Manoj Kumar | Ashvamedha Finance</title>
+<title>Manoj Kumar | Ashvamedha Finance — Unlisted Shares, SIP, Insurance Advisory Hyderabad</title>
+<meta name="description" content="Ashvamedha Finance — Hyderabad's trusted advisor for unlisted & pre-IPO shares, SIP & mutual fund planning, and insurance advisory. Serving Telugu-speaking investors. Based in Banjara Hills.">
+<meta name="keywords" content="unlisted shares hyderabad, pre-IPO shares india, SIP calculator, mutual fund advisor hyderabad, insurance advisor banjara hills, NSE unlisted shares, investment advisor telugu, financial advisor hyderabad">
+<meta name="author" content="Manoj Kumar, Ashvamedha Finance">
+<meta name="robots" content="index, follow">
+<meta property="og:title" content="Ashvamedha Finance | Unlisted Shares & Investment Advisory Hyderabad">
+<meta property="og:description" content="Invest in pre-IPO unlisted shares, plan your SIP, and get honest insurance advice — in Telugu. Based in Banjara Hills, Hyderabad.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://www.ashvamedhaai.com">
+<meta property="og:image" content="https://www.ashvamedhaai.com/og-image.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Ashvamedha Finance | Unlisted Shares & SIP Advisory">
+<meta name="twitter:description" content="Pre-IPO shares, mutual funds, insurance — honest financial guidance in Telugu. Hyderabad.">
+<link rel="canonical" href="https://www.ashvamedhaai.com">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FinancialService",
+  "name": "Ashvamedha Finance",
+  "description": "Unlisted shares, pre-IPO investment, SIP planning, and insurance advisory for Telugu-speaking investors in Hyderabad",
+  "url": "https://www.ashvamedhaai.com",
+  "telephone": "+918790109022",
+  "email": "ashvamedhaa.in@gmail.com",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "Road No. 5, Green Valley, Banjara Hills",
+    "addressLocality": "Hyderabad",
+    "addressRegion": "Telangana",
+    "addressCountry": "IN"
+  },
+  "founder": {
+    "@type": "Person",
+    "name": "Manoj Kumar"
+  },
+  "sameAs": [
+    "https://www.instagram.com/ashvamedhafinance"
+  ]
+}
+
+// ── CALCULATOR TAB SWITCH ──
+function switchCalc(id, btn) {
+  document.querySelectorAll('.calc-tab').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.calc-panel').forEach(p => p.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById('calc-' + id).classList.add('active');
+  // init chart for the active panel
+  if (id === 'sip') { updateSIP(); }
+  else if (id === 'stepup') { updateStepUp(); }
+  else if (id === 'lumpsum') { updateLumpsum(); }
+  else if (id === 'retirement') { updateRetirement(); }
+  else if (id === 'house') { updateHouse(); }
+}
+
+// ── DONUT CHART ──
+function drawDonut(canvasId, invested, returns) {
+  const canvas = document.getElementById(canvasId);
+  if (!canvas) return;
+  const ctx = canvas.getContext('2d');
+  const total = invested + returns;
+  const cx = 110, cy = 110, r = 90, lw = 28;
+  ctx.clearRect(0, 0, 220, 220);
+  const draw = (start, end, color) => {
+    ctx.beginPath(); ctx.arc(cx, cy, r, start, end);
+    ctx.lineWidth = lw; ctx.strokeStyle = color; ctx.stroke();
+  };
+  const gap = 0.03;
+  const investedAngle = (invested / total) * (2 * Math.PI - gap * 2);
+  const returnsAngle = (returns / total) * (2 * Math.PI - gap * 2);
+  ctx.lineCap = 'round';
+  draw(-Math.PI / 2 + gap, -Math.PI / 2 + gap + investedAngle, '#2B3AAE');
+  draw(-Math.PI / 2 + gap + investedAngle + gap, -Math.PI / 2 + 2 * Math.PI - gap, '#c9a84c');
+}
+
+function fmtCr(val) {
+  if (val >= 10000000) return '₹' + (val / 10000000).toFixed(1) + ' Cr';
+  if (val >= 100000) return '₹' + (val / 100000).toFixed(1) + 'L';
+  if (val >= 1000) return '₹' + (val / 1000).toFixed(1) + 'K';
+  return '₹' + Math.round(val).toLocaleString('en-IN');
+}
+
+// ── SIP ──
+function updateSIP() {
+  const sliders = document.querySelectorAll('#calc-sip input[type=range]');
+  const amt = +sliders[0].value, rate = +sliders[1].value, yrs = +sliders[2].value;
+  document.getElementById('sip-amt-display').textContent = '₹' + amt.toLocaleString('en-IN');
+  document.getElementById('sip-rate-display').textContent = rate + '%';
+  document.getElementById('sip-yr-display').textContent = yrs + ' Year' + (yrs > 1 ? 's' : '');
+  const r = rate / 100 / 12, n = yrs * 12;
+  const fv = amt * ((Math.pow(1 + r, n) - 1) / r);
+  const invested = amt * n;
+  const returns = fv - invested;
+  document.getElementById('sip-total').textContent = fmtCr(fv);
+  document.getElementById('sip-invested').textContent = fmtCr(invested);
+  document.getElementById('sip-returns').textContent = fmtCr(returns);
+  drawDonut('sip-chart', invested, returns);
+}
+
+// ── STEP-UP SIP ──
+function updateStepUp() {
+  const sliders = document.querySelectorAll('#calc-stepup input[type=range]');
+  const startAmt = +sliders[0].value, stepUp = +sliders[1].value / 100;
+  const rate = +sliders[2].value, yrs = +sliders[3].value;
+  document.getElementById('su-amt-display').textContent = '₹' + startAmt.toLocaleString('en-IN');
+  document.getElementById('su-step-display').textContent = (stepUp * 100) + '%';
+  document.getElementById('su-rate-display').textContent = rate + '%';
+  document.getElementById('su-yr-display').textContent = yrs + ' Year' + (yrs > 1 ? 's' : '');
+  const r = rate / 100 / 12;
+  let fv = 0, invested = 0, monthlyAmt = startAmt;
+  for (let y = 0; y < yrs; y++) {
+    for (let m = 0; m < 12; m++) {
+      const remaining = (yrs - y) * 12 - m;
+      fv += monthlyAmt * Math.pow(1 + r, remaining);
+      invested += monthlyAmt;
+    }
+    monthlyAmt *= (1 + stepUp);
+  }
+  const returns = fv - invested;
+  document.getElementById('su-total').textContent = fmtCr(fv);
+  document.getElementById('su-invested').textContent = fmtCr(invested);
+  document.getElementById('su-returns').textContent = fmtCr(returns);
+  drawDonut('su-chart', invested, returns);
+}
+
+// ── LUMPSUM ──
+function updateLumpsum() {
+  const sliders = document.querySelectorAll('#calc-lumpsum input[type=range]');
+  const amt = +sliders[0].value, rate = +sliders[1].value, yrs = +sliders[2].value;
+  document.getElementById('ls-amt-display').textContent = '₹' + amt.toLocaleString('en-IN');
+  document.getElementById('ls-rate-display').textContent = rate + '%';
+  document.getElementById('ls-yr-display').textContent = yrs + ' Year' + (yrs > 1 ? 's' : '');
+  const fv = amt * Math.pow(1 + rate / 100, yrs);
+  const returns = fv - amt;
+  document.getElementById('ls-total').textContent = fmtCr(fv);
+  document.getElementById('ls-invested').textContent = fmtCr(amt);
+  document.getElementById('ls-returns').textContent = fmtCr(returns);
+  drawDonut('ls-chart', amt, returns);
+}
+
+// ── RETIREMENT ──
+function updateRetirement() {
+  const sliders = document.querySelectorAll('#calc-retirement input[type=range]');
+  const curAge = +sliders[0].value, retAge = +sliders[1].value;
+  const curExp = +sliders[2].value, inf = +sliders[3].value / 100;
+  const roi = +sliders[4].value / 100, savings = +sliders[5].value;
+  document.getElementById('ret-age-display').textContent = curAge + ' Years';
+  document.getElementById('ret-retire-display').textContent = retAge + ' Years';
+  document.getElementById('ret-exp-display').textContent = '₹' + curExp.toLocaleString('en-IN');
+  document.getElementById('ret-inf-display').textContent = (inf * 100) + '%';
+  document.getElementById('ret-roi-display').textContent = (roi * 100) + '%';
+  document.getElementById('ret-sav-display').textContent = '₹' + savings.toLocaleString('en-IN');
+  const yrs = Math.max(retAge - curAge, 1);
+  document.getElementById('ret-years').textContent = yrs;
+  const futureExp = curExp * Math.pow(1 + inf, yrs);
+  const lifeExp = 20; // assume 20 years post-retirement
+  const corpusNeeded = futureExp * 12 * lifeExp;
+  const adjustedCorpus = Math.max(corpusNeeded - savings * Math.pow(1 + roi, yrs), 0);
+  const r = roi / 12, n = yrs * 12;
+  const sip = r > 0 ? adjustedCorpus * r / (Math.pow(1 + r, n) - 1) : adjustedCorpus / n;
+  document.getElementById('ret-corpus').textContent = fmtCr(corpusNeeded);
+  document.getElementById('ret-sip').textContent = fmtCr(sip);
+  document.getElementById('ret-future-exp').textContent = fmtCr(futureExp);
+}
+
+// ── HOUSE ──
+function updateHouse() {
+  const sliders = document.querySelectorAll('#calc-house input[type=range]');
+  const price = +sliders[0].value, downPct = +sliders[1].value / 100;
+  const annRate = +sliders[2].value / 100, yrs = +sliders[3].value;
+  document.getElementById('h-price-display').textContent = '₹' + price.toLocaleString('en-IN');
+  document.getElementById('h-down-display').textContent = (downPct * 100) + '%';
+  document.getElementById('h-rate-display').textContent = (annRate * 100).toFixed(1) + '%';
+  document.getElementById('h-tenure-display').textContent = yrs + ' Years';
+  const down = price * downPct;
+  const loan = price - down;
+  const r = annRate / 12, n = yrs * 12;
+  const emi = r > 0 ? loan * r * Math.pow(1 + r, n) / (Math.pow(1 + r, n) - 1) : loan / n;
+  const totalPay = emi * n + down;
+  const interest = emi * n - loan;
+  document.getElementById('h-emi').textContent = fmtCr(emi);
+  document.getElementById('h-downamt').textContent = fmtCr(down);
+  document.getElementById('h-loan').textContent = fmtCr(loan);
+  document.getElementById('h-interest').textContent = fmtCr(interest);
+  document.getElementById('h-total').textContent = fmtCr(totalPay);
+}
+
+// ── PORTFOLIO FILE UPLOAD ──
+function handleFileSelect(input) {
+  if (input.files[0]) {
+    document.getElementById('pf-filename').textContent = '✅ ' + input.files[0].name;
+    document.getElementById('pf-filename').style.display = 'block';
+  }
+}
+
+// ── PORTFOLIO SUBMIT ──
+function submitPortfolio() {
+  const name = document.getElementById('pf-name').value.trim();
+  const phone = document.getElementById('pf-phone').value.trim();
+  const email = document.getElementById('pf-email').value.trim();
+  const type = document.getElementById('pf-type').value;
+  const file = document.getElementById('pf-file').files[0];
+  if (!name || !phone || !email) {
+    alert('Please fill in your name, phone and email.');
+    return;
+  }
+  // Build WhatsApp message with all details
+  const msg = encodeURIComponent(
+    '🔔 *New Portfolio Analysis Request*\n\n' +
+    '👤 Name: ' + name + '\n' +
+    '📱 Phone: ' + phone + '\n' +
+    '📧 Email: ' + email + '\n' +
+    '📊 Type: ' + (type || 'Not specified') + '\n' +
+    '📎 File: ' + (file ? file.name : 'None uploaded') + '\n\n' +
+    'Please review and send portfolio analysis report.'
+  );
+  // Open WhatsApp with the lead details
+  window.open('https://wa.me/918790109022?text=' + msg, '_blank');
+  // Show success message
+  document.getElementById('pf-form').style.display = 'none';
+  document.getElementById('pf-success').style.display = 'block';
+}
+
+// Init calculators on load
+setTimeout(() => { updateSIP(); updateLumpsum(); updateRetirement(); updateHouse(); updateStepUp(); }, 400);
+
+</script>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,600;0,700;1,400&family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
 :root{--navy:#0a1628;--navy-mid:#112240;--navy-light:#1d3461;--gold:#c9a84c;--gold-light:#e8c878;--cream:#faf7f2;--white:#fff;--muted:#8899aa;}
@@ -250,6 +474,39 @@ footer{background:#060e1a;padding:56px 5% 28px;border-top:1px solid rgba(255,255
   .t-card{min-width:280px;max-width:280px;}
   .top-card-highlights{grid-template-columns:repeat(2,1fr);}
 }
+
+/* ── CALCULATOR STYLES ── */
+.calc-tab{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);color:rgba(255,255,255,.65);padding:10px 20px;border-radius:100px;font-size:13px;font-weight:500;cursor:pointer;font-family:'Outfit',sans-serif;transition:.25s;}
+.calc-tab:hover{background:rgba(201,168,76,.1);border-color:rgba(201,168,76,.3);color:var(--gold);}
+.calc-tab.active{background:rgba(201,168,76,.15);border-color:var(--gold);color:var(--gold);font-weight:700;}
+.calc-panel{display:none;}
+.calc-panel.active{display:block;}
+.calc-box{display:grid;grid-template-columns:1fr 1fr;gap:48px;max-width:1060px;margin:0 auto;align-items:start;}
+.calc-left{background:var(--navy-mid);border:1px solid rgba(255,255,255,.07);border-radius:18px;padding:40px;}
+.calc-title{font-family:'Cormorant Garamond',serif;font-size:28px;font-weight:600;margin-bottom:8px;}
+.calc-desc{font-size:13px;color:rgba(255,255,255,.55);line-height:1.65;margin-bottom:30px;}
+.calc-field{margin-bottom:26px;}
+.calc-label-row{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;}
+.calc-label-row label{font-size:13px;font-weight:500;color:rgba(255,255,255,.75);}
+.calc-val-display{font-size:14px;font-weight:700;color:var(--gold);background:rgba(201,168,76,.1);padding:4px 12px;border-radius:20px;}
+.calc-slider{width:100%;-webkit-appearance:none;height:4px;background:rgba(255,255,255,.12);border-radius:2px;outline:none;cursor:pointer;}
+.calc-slider::-webkit-slider-thumb{-webkit-appearance:none;width:20px;height:20px;background:linear-gradient(135deg,var(--gold),var(--gold-light));border-radius:50%;cursor:pointer;box-shadow:0 2px 8px rgba(201,168,76,.4);}
+.calc-slider::-moz-range-thumb{width:20px;height:20px;background:linear-gradient(135deg,var(--gold),var(--gold-light));border-radius:50%;cursor:pointer;border:none;}
+.calc-range-labels{display:flex;justify-content:space-between;font-size:10px;color:var(--muted);margin-top:6px;}
+.calc-cta-btn{display:inline-flex;align-items:center;gap:8px;background:linear-gradient(135deg,var(--gold),var(--gold-light));color:var(--navy);padding:14px 24px;border-radius:8px;font-size:13px;font-weight:700;text-decoration:none;transition:.3s;margin-top:8px;width:100%;justify-content:center;box-sizing:border-box;}
+.calc-cta-btn:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(201,168,76,.3);}
+.calc-right{position:sticky;top:100px;}
+.calc-result-card{background:var(--navy-mid);border:1px solid rgba(255,255,255,.07);border-radius:18px;padding:36px;display:flex;flex-direction:column;gap:24px;align-items:center;}
+.calc-donut-wrap{position:relative;width:220px;height:220px;flex-shrink:0;}
+.calc-donut-center{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);text-align:center;}
+.calc-total-label{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.1em;margin-bottom:4px;}
+.calc-total-val{font-size:26px;font-weight:800;color:var(--white);}
+.calc-result-items{width:100%;display:flex;flex-direction:column;gap:14px;}
+.calc-result-item{display:flex;align-items:center;gap:14px;}
+.calc-result-dot{width:12px;height:12px;border-radius:3px;flex-shrink:0;}
+.calc-result-label{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;margin-bottom:3px;}
+.calc-result-val{font-size:18px;font-weight:700;color:var(--white);}
+@media(max-width:860px){.calc-box{grid-template-columns:1fr;}.calc-right{position:static;}}
 </style>
 </head>
 <body>
@@ -263,6 +520,8 @@ footer{background:#060e1a;padding:56px 5% 28px;border-top:1px solid rgba(255,255
     <li><a onclick="showPage('home')" data-page="home" class="active">Home</a></li>
     <li><a onclick="showPage('services')" data-page="services">Our Services</a></li>
     <li><a onclick="showPage('unlisted')" data-page="unlisted" class="nav-highlight">Unlisted Shares</a></li>
+    <li><a onclick="showPage('calculators')" data-page="calculators">Calculators</a></li>
+    <li><a onclick="showPage('portfolio')" data-page="portfolio">Portfolio Analyzer</a></li>
     <li><a onclick="showPage('about')" data-page="about">About Us</a></li>
     <li><a onclick="showPage('contact')" data-page="contact">Contact</a></li>
   </ul>
@@ -1213,6 +1472,398 @@ footer{background:#060e1a;padding:56px 5% 28px;border-top:1px solid rgba(255,255
   </section>
 </div>
 
+
+<!-- ══════════ CALCULATORS PAGE ══════════ -->
+<div class="page" id="page-calculators">
+<section style="background:var(--navy);padding:120px 5% 80px;min-height:100vh;">
+  <div style="text-align:center;max-width:700px;margin:0 auto 60px;">
+    <div class="sec-label" style="justify-content:center">Free Tools</div>
+    <h1 style="font-family:'Cormorant Garamond',serif;font-size:clamp(36px,4.5vw,58px);font-weight:300;line-height:1.1;margin-bottom:14px;">Financial <em style="font-style:italic;color:var(--gold)">Calculators</em></h1>
+    <p style="color:rgba(255,255,255,.52);font-size:15px;line-height:1.75;">Plan your wealth journey with precision. All calculators are free — no sign-up needed.</p>
+  </div>
+
+  <!-- CALCULATOR TABS -->
+  <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-bottom:50px;">
+    <button class="calc-tab active" onclick="switchCalc('sip',this)">📈 SIP Calculator</button>
+    <button class="calc-tab" onclick="switchCalc('stepup',this)">🚀 Step-Up SIP</button>
+    <button class="calc-tab" onclick="switchCalc('lumpsum',this)">💰 Lumpsum</button>
+    <button class="calc-tab" onclick="switchCalc('retirement',this)">🏖️ Retirement</button>
+    <button class="calc-tab" onclick="switchCalc('house',this)">🏠 Home Buying</button>
+  </div>
+
+  <!-- ─ SIP CALCULATOR ─ -->
+  <div class="calc-panel active" id="calc-sip">
+    <div class="calc-box">
+      <div class="calc-left">
+        <h2 class="calc-title">SIP Calculator</h2>
+        <p class="calc-desc">Calculate how much your monthly SIP investment will grow over time with the power of compounding.</p>
+        <div class="calc-field">
+          <div class="calc-label-row"><label>Monthly SIP Amount</label><span class="calc-val-display" id="sip-amt-display">₹5,000</span></div>
+          <input type="range" min="500" max="200000" step="500" value="5000" class="calc-slider" oninput="updateSIP()">
+          <div class="calc-range-labels"><span>₹500</span><span>₹2,00,000</span></div>
+        </div>
+        <div class="calc-field">
+          <div class="calc-label-row"><label>Expected Annual Return</label><span class="calc-val-display" id="sip-rate-display">12%</span></div>
+          <input type="range" min="1" max="30" step="0.5" value="12" class="calc-slider" oninput="updateSIP()">
+          <div class="calc-range-labels"><span>1%</span><span>30%</span></div>
+        </div>
+        <div class="calc-field">
+          <div class="calc-label-row"><label>Investment Duration</label><span class="calc-val-display" id="sip-yr-display">10 Years</span></div>
+          <input type="range" min="1" max="40" step="1" value="10" class="calc-slider" oninput="updateSIP()">
+          <div class="calc-range-labels"><span>1 Yr</span><span>40 Yrs</span></div>
+        </div>
+        <a href="https://wa.link/rwwzd4" target="_blank" class="calc-cta-btn">Start Your SIP — Talk to Manoj →</a>
+      </div>
+      <div class="calc-right">
+        <div class="calc-result-card">
+          <div class="calc-donut-wrap">
+            <canvas id="sip-chart" width="220" height="220"></canvas>
+            <div class="calc-donut-center">
+              <div class="calc-total-label">Total Value</div>
+              <div class="calc-total-val" id="sip-total">₹23.2L</div>
+            </div>
+          </div>
+          <div class="calc-result-items">
+            <div class="calc-result-item">
+              <div class="calc-result-dot" style="background:#2B3AAE"></div>
+              <div><div class="calc-result-label">Invested Amount</div><div class="calc-result-val" id="sip-invested">₹6.0L</div></div>
+            </div>
+            <div class="calc-result-item">
+              <div class="calc-result-dot" style="background:var(--gold)"></div>
+              <div><div class="calc-result-label">Estimated Returns</div><div class="calc-result-val" id="sip-returns">₹17.2L</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ─ STEP-UP SIP ─ -->
+  <div class="calc-panel" id="calc-stepup">
+    <div class="calc-box">
+      <div class="calc-left">
+        <h2 class="calc-title">Step-Up SIP Calculator</h2>
+        <p class="calc-desc">Increase your SIP every year as your salary grows — and watch your wealth compound dramatically faster.</p>
+        <div class="calc-field">
+          <div class="calc-label-row"><label>Starting Monthly SIP</label><span class="calc-val-display" id="su-amt-display">₹5,000</span></div>
+          <input type="range" min="500" max="100000" step="500" value="5000" class="calc-slider" oninput="updateStepUp()">
+          <div class="calc-range-labels"><span>₹500</span><span>₹1,00,000</span></div>
+        </div>
+        <div class="calc-field">
+          <div class="calc-label-row"><label>Annual Step-Up %</label><span class="calc-val-display" id="su-step-display">10%</span></div>
+          <input type="range" min="1" max="50" step="1" value="10" class="calc-slider" oninput="updateStepUp()">
+          <div class="calc-range-labels"><span>1%</span><span>50%</span></div>
+        </div>
+        <div class="calc-field">
+          <div class="calc-label-row"><label>Expected Annual Return</label><span class="calc-val-display" id="su-rate-display">12%</span></div>
+          <input type="range" min="1" max="30" step="0.5" value="12" class="calc-slider" oninput="updateStepUp()">
+          <div class="calc-range-labels"><span>1%</span><span>30%</span></div>
+        </div>
+        <div class="calc-field">
+          <div class="calc-label-row"><label>Investment Duration</label><span class="calc-val-display" id="su-yr-display">10 Years</span></div>
+          <input type="range" min="1" max="40" step="1" value="10" class="calc-slider" oninput="updateStepUp()">
+          <div class="calc-range-labels"><span>1 Yr</span><span>40 Yrs</span></div>
+        </div>
+        <a href="https://wa.link/rwwzd4" target="_blank" class="calc-cta-btn">Start Step-Up SIP — Talk to Manoj →</a>
+      </div>
+      <div class="calc-right">
+        <div class="calc-result-card">
+          <div class="calc-donut-wrap">
+            <canvas id="su-chart" width="220" height="220"></canvas>
+            <div class="calc-donut-center">
+              <div class="calc-total-label">Total Value</div>
+              <div class="calc-total-val" id="su-total">₹23.2L</div>
+            </div>
+          </div>
+          <div class="calc-result-items">
+            <div class="calc-result-item"><div class="calc-result-dot" style="background:#2B3AAE"></div><div><div class="calc-result-label">Invested Amount</div><div class="calc-result-val" id="su-invested">₹6.0L</div></div></div>
+            <div class="calc-result-item"><div class="calc-result-dot" style="background:var(--gold)"></div><div><div class="calc-result-label">Estimated Returns</div><div class="calc-result-val" id="su-returns">₹17.2L</div></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ─ LUMPSUM ─ -->
+  <div class="calc-panel" id="calc-lumpsum">
+    <div class="calc-box">
+      <div class="calc-left">
+        <h2 class="calc-title">Lumpsum Calculator</h2>
+        <p class="calc-desc">Have a one-time amount to invest? See how it grows over time using the power of compounding.</p>
+        <div class="calc-field">
+          <div class="calc-label-row"><label>One-Time Investment Amount</label><span class="calc-val-display" id="ls-amt-display">₹1,00,000</span></div>
+          <input type="range" min="10000" max="10000000" step="10000" value="100000" class="calc-slider" oninput="updateLumpsum()">
+          <div class="calc-range-labels"><span>₹10,000</span><span>₹1 Cr</span></div>
+        </div>
+        <div class="calc-field">
+          <div class="calc-label-row"><label>Expected Annual Return</label><span class="calc-val-display" id="ls-rate-display">12%</span></div>
+          <input type="range" min="1" max="30" step="0.5" value="12" class="calc-slider" oninput="updateLumpsum()">
+          <div class="calc-range-labels"><span>1%</span><span>30%</span></div>
+        </div>
+        <div class="calc-field">
+          <div class="calc-label-row"><label>Investment Duration</label><span class="calc-val-display" id="ls-yr-display">10 Years</span></div>
+          <input type="range" min="1" max="40" step="1" value="10" class="calc-slider" oninput="updateLumpsum()">
+          <div class="calc-range-labels"><span>1 Yr</span><span>40 Yrs</span></div>
+        </div>
+        <a href="https://wa.link/rwwzd4" target="_blank" class="calc-cta-btn">Invest Your Lumpsum — Talk to Manoj →</a>
+      </div>
+      <div class="calc-right">
+        <div class="calc-result-card">
+          <div class="calc-donut-wrap">
+            <canvas id="ls-chart" width="220" height="220"></canvas>
+            <div class="calc-donut-center"><div class="calc-total-label">Total Value</div><div class="calc-total-val" id="ls-total">₹3.1L</div></div>
+          </div>
+          <div class="calc-result-items">
+            <div class="calc-result-item"><div class="calc-result-dot" style="background:#2B3AAE"></div><div><div class="calc-result-label">Invested Amount</div><div class="calc-result-val" id="ls-invested">₹1.0L</div></div></div>
+            <div class="calc-result-item"><div class="calc-result-dot" style="background:var(--gold)"></div><div><div class="calc-result-label">Estimated Returns</div><div class="calc-result-val" id="ls-returns">₹2.1L</div></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ─ RETIREMENT ─ -->
+  <div class="calc-panel" id="calc-retirement">
+    <div class="calc-box">
+      <div class="calc-left">
+        <h2 class="calc-title">Retirement Calculator</h2>
+        <p class="calc-desc">Find out exactly how much you need to invest today to live comfortably after retirement.</p>
+        <div class="calc-field">
+          <div class="calc-label-row"><label>Current Age</label><span class="calc-val-display" id="ret-age-display">30 Years</span></div>
+          <input type="range" min="18" max="60" step="1" value="30" class="calc-slider" oninput="updateRetirement()">
+          <div class="calc-range-labels"><span>18</span><span>60</span></div>
+        </div>
+        <div class="calc-field">
+          <div class="calc-label-row"><label>Retirement Age</label><span class="calc-val-display" id="ret-retire-display">60 Years</span></div>
+          <input type="range" min="40" max="70" step="1" value="60" class="calc-slider" oninput="updateRetirement()">
+          <div class="calc-range-labels"><span>40</span><span>70</span></div>
+        </div>
+        <div class="calc-field">
+          <div class="calc-label-row"><label>Monthly Expenses Today</label><span class="calc-val-display" id="ret-exp-display">₹50,000</span></div>
+          <input type="range" min="10000" max="500000" step="5000" value="50000" class="calc-slider" oninput="updateRetirement()">
+          <div class="calc-range-labels"><span>₹10K</span><span>₹5 Lakh</span></div>
+        </div>
+        <div class="calc-field">
+          <div class="calc-label-row"><label>Inflation Rate</label><span class="calc-val-display" id="ret-inf-display">6%</span></div>
+          <input type="range" min="3" max="12" step="0.5" value="6" class="calc-slider" oninput="updateRetirement()">
+          <div class="calc-range-labels"><span>3%</span><span>12%</span></div>
+        </div>
+        <div class="calc-field">
+          <div class="calc-label-row"><label>Expected Return on Investment</label><span class="calc-val-display" id="ret-roi-display">12%</span></div>
+          <input type="range" min="5" max="20" step="0.5" value="12" class="calc-slider" oninput="updateRetirement()">
+          <div class="calc-range-labels"><span>5%</span><span>20%</span></div>
+        </div>
+        <div class="calc-field">
+          <div class="calc-label-row"><label>Current Savings</label><span class="calc-val-display" id="ret-sav-display">₹2,00,000</span></div>
+          <input type="range" min="0" max="5000000" step="50000" value="200000" class="calc-slider" oninput="updateRetirement()">
+          <div class="calc-range-labels"><span>₹0</span><span>₹50 Lakh</span></div>
+        </div>
+        <a href="https://wa.link/rwwzd4" target="_blank" class="calc-cta-btn">Plan Your Retirement — Talk to Manoj →</a>
+      </div>
+      <div class="calc-right">
+        <div class="calc-result-card" style="gap:18px;">
+          <div style="text-align:center;padding:20px;background:rgba(201,168,76,.08);border:1px solid rgba(201,168,76,.2);border-radius:12px;">
+            <div style="font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.12em;margin-bottom:6px;">Corpus Needed at Retirement</div>
+            <div class="calc-total-val" id="ret-corpus" style="font-size:32px;">₹4.8 Cr</div>
+          </div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
+            <div style="background:rgba(255,255,255,.04);border-radius:10px;padding:16px;text-align:center;border:1px solid rgba(255,255,255,.07);">
+              <div style="font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.1em;margin-bottom:6px;">Monthly SIP Needed</div>
+              <div style="font-size:20px;font-weight:800;color:var(--gold);" id="ret-sip">₹12,450</div>
+            </div>
+            <div style="background:rgba(255,255,255,.04);border-radius:10px;padding:16px;text-align:center;border:1px solid rgba(255,255,255,.07);">
+              <div style="font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.1em;margin-bottom:6px;">Years to Retire</div>
+              <div style="font-size:20px;font-weight:800;color:var(--gold);" id="ret-years">30</div>
+            </div>
+          </div>
+          <div style="background:rgba(255,255,255,.04);border-radius:10px;padding:16px;border:1px solid rgba(255,255,255,.07);">
+            <div style="font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.1em;margin-bottom:6px;">Monthly Expenses at Retirement (Inflation adjusted)</div>
+            <div style="font-size:20px;font-weight:800;color:#fff;" id="ret-future-exp">₹2,87,175</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ─ HOUSE BUYING ─ -->
+  <div class="calc-panel" id="calc-house">
+    <div class="calc-box">
+      <div class="calc-left">
+        <h2 class="calc-title">Home Buying Calculator</h2>
+        <p class="calc-desc">Planning to buy a home? Find out how much you need to save and what your EMI will look like.</p>
+        <div class="calc-field">
+          <div class="calc-label-row"><label>Home Value (Target Price)</label><span class="calc-val-display" id="h-price-display">₹50,00,000</span></div>
+          <input type="range" min="1000000" max="100000000" step="500000" value="5000000" class="calc-slider" oninput="updateHouse()">
+          <div class="calc-range-labels"><span>₹10 Lakh</span><span>₹10 Cr</span></div>
+        </div>
+        <div class="calc-field">
+          <div class="calc-label-row"><label>Down Payment %</label><span class="calc-val-display" id="h-down-display">20%</span></div>
+          <input type="range" min="5" max="50" step="1" value="20" class="calc-slider" oninput="updateHouse()">
+          <div class="calc-range-labels"><span>5%</span><span>50%</span></div>
+        </div>
+        <div class="calc-field">
+          <div class="calc-label-row"><label>Loan Interest Rate</label><span class="calc-val-display" id="h-rate-display">8.5%</span></div>
+          <input type="range" min="6" max="15" step="0.1" value="8.5" class="calc-slider" oninput="updateHouse()">
+          <div class="calc-range-labels"><span>6%</span><span>15%</span></div>
+        </div>
+        <div class="calc-field">
+          <div class="calc-label-row"><label>Loan Tenure</label><span class="calc-val-display" id="h-tenure-display">20 Years</span></div>
+          <input type="range" min="5" max="30" step="1" value="20" class="calc-slider" oninput="updateHouse()">
+          <div class="calc-range-labels"><span>5 Yrs</span><span>30 Yrs</span></div>
+        </div>
+        <a href="https://wa.link/rwwzd4" target="_blank" class="calc-cta-btn">Plan Your Home Purchase — Talk to Manoj →</a>
+      </div>
+      <div class="calc-right">
+        <div class="calc-result-card" style="gap:16px;">
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
+            <div style="background:rgba(201,168,76,.08);border:1px solid rgba(201,168,76,.2);border-radius:12px;padding:18px;text-align:center;">
+              <div style="font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.1em;margin-bottom:6px;">Monthly EMI</div>
+              <div style="font-size:24px;font-weight:800;color:var(--gold);" id="h-emi">₹34,695</div>
+            </div>
+            <div style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07);border-radius:12px;padding:18px;text-align:center;">
+              <div style="font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.1em;margin-bottom:6px;">Down Payment</div>
+              <div style="font-size:24px;font-weight:800;color:#fff;" id="h-downamt">₹10,00,000</div>
+            </div>
+          </div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
+            <div style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07);border-radius:12px;padding:18px;text-align:center;">
+              <div style="font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.1em;margin-bottom:6px;">Loan Amount</div>
+              <div style="font-size:20px;font-weight:800;color:#fff;" id="h-loan">₹40,00,000</div>
+            </div>
+            <div style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07);border-radius:12px;padding:18px;text-align:center;">
+              <div style="font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.1em;margin-bottom:6px;">Total Interest</div>
+              <div style="font-size:20px;font-weight:800;color:#e05c2a;" id="h-interest">₹43,27,200</div>
+            </div>
+          </div>
+          <div style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07);border-radius:10px;padding:16px;text-align:center;">
+            <div style="font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.1em;margin-bottom:6px;">Total Amount Payable</div>
+            <div style="font-size:22px;font-weight:800;color:#fff;" id="h-total">₹83,27,200</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</section>
+</div><!-- /page-calculators -->
+
+<!-- ══════════ PORTFOLIO ANALYZER PAGE ══════════ -->
+<div class="page" id="page-portfolio">
+<section style="background:var(--navy);padding:120px 5% 80px;min-height:100vh;">
+  <div style="text-align:center;max-width:680px;margin:0 auto 60px;">
+    <div class="sec-label" style="justify-content:center">Free Service</div>
+    <h1 style="font-family:'Cormorant Garamond',serif;font-size:clamp(36px,4.5vw,58px);font-weight:300;line-height:1.1;margin-bottom:14px;">Portfolio <em style="font-style:italic;color:var(--gold)">Analyzer</em></h1>
+    <p style="color:rgba(255,255,255,.58);font-size:15px;line-height:1.75;margin-bottom:14px;">Share your current investment portfolio and get a <strong style="color:var(--white)">free personalised analysis</strong> from Manoj — within 48 hours.</p>
+    <div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap;margin-top:20px;">
+      <div style="display:flex;align-items:center;gap:8px;font-size:13px;color:rgba(255,255,255,.6);"><span style="color:var(--gold)">✓</span> No spam, ever</div>
+      <div style="display:flex;align-items:center;gap:8px;font-size:13px;color:rgba(255,255,255,.6);"><span style="color:var(--gold)">✓</span> Completely free</div>
+      <div style="display:flex;align-items:center;gap:8px;font-size:13px;color:rgba(255,255,255,.6);"><span style="color:var(--gold)">✓</span> Report in 48 hours</div>
+      <div style="display:flex;align-items:center;gap:8px;font-size:13px;color:rgba(255,255,255,.6);"><span style="color:var(--gold)">✓</span> Telugu or English</div>
+    </div>
+  </div>
+
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:60px;max-width:1060px;margin:0 auto;align-items:start;">
+
+    <!-- LEFT: FORM -->
+    <div style="background:var(--navy-mid);border:1px solid rgba(201,168,76,.2);border-radius:18px;padding:40px;">
+      <h3 style="font-family:'Cormorant Garamond',serif;font-size:26px;margin-bottom:8px;">Submit Your Portfolio</h3>
+      <p style="font-size:13px;color:rgba(255,255,255,.5);margin-bottom:30px;line-height:1.6;">Upload your portfolio file (Excel, PDF, or screenshot) along with your basic details. Manoj will personally review it and send you a detailed report via WhatsApp.</p>
+
+      <div id="pf-form">
+        <div style="margin-bottom:18px;">
+          <label style="display:block;font-size:11px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.12em;margin-bottom:8px;">Full Name *</label>
+          <input type="text" id="pf-name" placeholder="Your full name" style="width:100%;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.12);border-radius:8px;padding:13px 16px;color:#fff;font-family:'Outfit',sans-serif;font-size:14px;outline:none;transition:.2s;" onfocus="this.style.borderColor='var(--gold)'" onblur="this.style.borderColor='rgba(255,255,255,.12)'">
+        </div>
+        <div style="margin-bottom:18px;">
+          <label style="display:block;font-size:11px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.12em;margin-bottom:8px;">Phone Number *</label>
+          <input type="tel" id="pf-phone" placeholder="+91 98765 43210" style="width:100%;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.12);border-radius:8px;padding:13px 16px;color:#fff;font-family:'Outfit',sans-serif;font-size:14px;outline:none;transition:.2s;" onfocus="this.style.borderColor='var(--gold)'" onblur="this.style.borderColor='rgba(255,255,255,.12)'">
+        </div>
+        <div style="margin-bottom:18px;">
+          <label style="display:block;font-size:11px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.12em;margin-bottom:8px;">Email Address *</label>
+          <input type="email" id="pf-email" placeholder="your@email.com" style="width:100%;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.12);border-radius:8px;padding:13px 16px;color:#fff;font-family:'Outfit',sans-serif;font-size:14px;outline:none;transition:.2s;" onfocus="this.style.borderColor='var(--gold)'" onblur="this.style.borderColor='rgba(255,255,255,.12)'">
+        </div>
+        <div style="margin-bottom:18px;">
+          <label style="display:block;font-size:11px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.12em;margin-bottom:8px;">What do you want analyzed?</label>
+          <select id="pf-type" style="width:100%;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.12);border-radius:8px;padding:13px 16px;color:#fff;font-family:'Outfit',sans-serif;font-size:14px;outline:none;transition:.2s;" onfocus="this.style.borderColor='var(--gold)'" onblur="this.style.borderColor='rgba(255,255,255,.12)'">
+            <option value="" style="background:#112240">Select portfolio type</option>
+            <option value="Mutual Funds Portfolio" style="background:#112240">Mutual Funds Portfolio</option>
+            <option value="Insurance Policies Review" style="background:#112240">Insurance Policies Review</option>
+            <option value="Stock Portfolio" style="background:#112240">Stock Portfolio</option>
+            <option value="Complete Financial Review" style="background:#112240">Complete Financial Review (MF + Insurance + Stocks)</option>
+            <option value="Unlisted Shares Portfolio" style="background:#112240">Unlisted Shares Portfolio</option>
+          </select>
+        </div>
+        <div style="margin-bottom:24px;">
+          <label style="display:block;font-size:11px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.12em;margin-bottom:8px;">Upload Portfolio File (Excel / PDF / Screenshot)</label>
+          <div id="pf-dropzone" onclick="document.getElementById('pf-file').click()" style="border:2px dashed rgba(201,168,76,.3);border-radius:10px;padding:28px;text-align:center;cursor:pointer;transition:.2s;background:rgba(201,168,76,.03);" onmouseover="this.style.borderColor='var(--gold)'" onmouseout="this.style.borderColor='rgba(201,168,76,.3)'">
+            <div style="font-size:32px;margin-bottom:8px;">📎</div>
+            <div style="font-size:13px;color:rgba(255,255,255,.6);margin-bottom:4px;">Click to upload or drag & drop</div>
+            <div style="font-size:11px;color:var(--muted);">Excel (.xlsx), PDF, PNG, JPG — Max 10MB</div>
+            <div id="pf-filename" style="margin-top:10px;font-size:12px;color:var(--gold);display:none;"></div>
+          </div>
+          <input type="file" id="pf-file" accept=".xlsx,.xls,.pdf,.png,.jpg,.jpeg" style="display:none" onchange="handleFileSelect(this)">
+        </div>
+        <button onclick="submitPortfolio()" style="width:100%;background:linear-gradient(135deg,var(--gold),var(--gold-light));color:var(--navy);border:none;padding:16px;border-radius:10px;font-size:14px;font-weight:700;cursor:pointer;font-family:'Outfit',sans-serif;letter-spacing:.05em;transition:.3s;">
+          📊 Send for Analysis — Free
+        </button>
+        <p style="font-size:11px;color:var(--muted);text-align:center;margin-top:14px;line-height:1.6;">By submitting, you agree to be contacted by Manoj Kumar via WhatsApp for your portfolio analysis. Your data is never shared with third parties.</p>
+      </div>
+
+      <!-- SUCCESS MESSAGE -->
+      <div id="pf-success" style="display:none;text-align:center;padding:30px 0;">
+        <div style="font-size:48px;margin-bottom:16px;">✅</div>
+        <h3 style="font-family:'Cormorant Garamond',serif;font-size:24px;margin-bottom:12px;color:var(--gold);">Submitted Successfully!</h3>
+        <p style="font-size:14px;color:rgba(255,255,255,.65);line-height:1.75;margin-bottom:24px;">Manoj will review your portfolio and reach out on WhatsApp within 48 hours with your personalised report.</p>
+        <a href="https://wa.link/rwwzd4" target="_blank" style="display:inline-flex;align-items:center;gap:8px;background:#25d366;color:#fff;padding:14px 28px;border-radius:8px;font-size:13px;font-weight:700;text-decoration:none;">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          Chat on WhatsApp
+        </a>
+      </div>
+    </div>
+
+    <!-- RIGHT: HOW IT WORKS -->
+    <div>
+      <h3 style="font-family:'Cormorant Garamond',serif;font-size:26px;margin-bottom:30px;">How It <em style="color:var(--gold);font-style:italic">Works</em></h3>
+      <div style="display:flex;flex-direction:column;gap:0;">
+        <div style="display:flex;gap:20px;padding-bottom:32px;position:relative;">
+          <div style="position:absolute;left:20px;top:44px;bottom:0;width:2px;background:rgba(201,168,76,.2);"></div>
+          <div style="width:40px;height:40px;background:linear-gradient(135deg,var(--gold),var(--gold-light));border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;color:var(--navy);font-size:15px;flex-shrink:0;">1</div>
+          <div><div style="font-size:15px;font-weight:600;margin-bottom:6px;">Submit Your Portfolio</div><div style="font-size:13px;color:rgba(255,255,255,.55);line-height:1.65;">Fill in your name, phone, email and upload your portfolio — any format works (Excel, PDF, or even a screenshot of your holdings).</div></div>
+        </div>
+        <div style="display:flex;gap:20px;padding-bottom:32px;position:relative;">
+          <div style="position:absolute;left:20px;top:44px;bottom:0;width:2px;background:rgba(201,168,76,.2);"></div>
+          <div style="width:40px;height:40px;background:linear-gradient(135deg,var(--gold),var(--gold-light));border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;color:var(--navy);font-size:15px;flex-shrink:0;">2</div>
+          <div><div style="font-size:15px;font-weight:600;margin-bottom:6px;">Manoj Reviews It</div><div style="font-size:13px;color:rgba(255,255,255,.55);line-height:1.65;">Manoj personally analyzes your portfolio — checking fund quality, overlap, insurance adequacy, tax efficiency, and overall allocation.</div></div>
+        </div>
+        <div style="display:flex;gap:20px;padding-bottom:32px;position:relative;">
+          <div style="position:absolute;left:20px;top:44px;bottom:0;width:2px;background:rgba(201,168,76,.2);"></div>
+          <div style="width:40px;height:40px;background:linear-gradient(135deg,var(--gold),var(--gold-light));border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;color:var(--navy);font-size:15px;flex-shrink:0;">3</div>
+          <div><div style="font-size:15px;font-weight:600;margin-bottom:6px;">Get Your Report in 48hrs</div><div style="font-size:13px;color:rgba(255,255,255,.55);line-height:1.65;">You receive a clear, actionable report via WhatsApp — in Telugu or English — with specific recommendations for your situation.</div></div>
+        </div>
+        <div style="display:flex;gap:20px;">
+          <div style="width:40px;height:40px;background:linear-gradient(135deg,var(--gold),var(--gold-light));border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;color:var(--navy);font-size:15px;flex-shrink:0;">4</div>
+          <div><div style="font-size:15px;font-weight:600;margin-bottom:6px;">Optional Follow-Up</div><div style="font-size:13px;color:rgba(255,255,255,.55);line-height:1.65;">If you want to act on the recommendations, book a deeper consultation. No pressure — the analysis is completely free regardless.</div></div>
+        </div>
+      </div>
+
+      <div style="margin-top:36px;background:rgba(201,168,76,.07);border:1px solid rgba(201,168,76,.2);border-radius:14px;padding:24px;">
+        <div style="font-size:12px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--gold);margin-bottom:10px;">What We Analyze</div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;">
+          <div style="display:flex;align-items:center;gap:8px;font-size:12px;color:rgba(255,255,255,.65);"><span style="color:var(--gold)">✓</span> Fund quality & overlap</div>
+          <div style="display:flex;align-items:center;gap:8px;font-size:12px;color:rgba(255,255,255,.65);"><span style="color:var(--gold)">✓</span> Asset allocation</div>
+          <div style="display:flex;align-items:center;gap:8px;font-size:12px;color:rgba(255,255,255,.65);"><span style="color:var(--gold)">✓</span> Insurance gaps</div>
+          <div style="display:flex;align-items:center;gap:8px;font-size:12px;color:rgba(255,255,255,.65);"><span style="color:var(--gold)">✓</span> Tax efficiency</div>
+          <div style="display:flex;align-items:center;gap:8px;font-size:12px;color:rgba(255,255,255,.65);"><span style="color:var(--gold)">✓</span> Redundant policies</div>
+          <div style="display:flex;align-items:center;gap:8px;font-size:12px;color:rgba(255,255,255,.65);"><span style="color:var(--gold)">✓</span> Risk vs return</div>
+          <div style="display:flex;align-items:center;gap:8px;font-size:12px;color:rgba(255,255,255,.65);"><span style="color:var(--gold)">✓</span> Goal alignment</div>
+          <div style="display:flex;align-items:center;gap:8px;font-size:12px;color:rgba(255,255,255,.65);"><span style="color:var(--gold)">✓</span> Actionable fixes</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+</div><!-- /page-portfolio -->
+
 <!-- LEGAL DISCLAIMER -->
 <div style="background:#060e1a;border-top:1px solid rgba(255,255,255,.08);padding:40px 5%;">
   <div style="max-width:1060px;margin:0 auto;">
@@ -1242,6 +1893,8 @@ footer{background:#060e1a;padding:56px 5% 28px;border-top:1px solid rgba(255,255
         <li><span onclick="showPage('home')">Home</span></li>
         <li><span onclick="showPage('services')">Our Services</span></li>
         <li><span onclick="showPage('unlisted')">Unlisted Shares</span></li>
+        <li><span onclick="showPage('calculators')">Calculators</span></li>
+        <li><span onclick="showPage('portfolio')">Portfolio Analyzer</span></li>
         <li><span onclick="showPage('about')">About Us</span></li>
         <li><span onclick="showPage('contact')">Contact</span></li>
       </ul>
@@ -1250,6 +1903,7 @@ footer{background:#060e1a;padding:56px 5% 28px;border-top:1px solid rgba(255,255
       <div class="foot-h">Contact</div>
       <ul class="foot-links">
         <li><a href="https://wa.link/rwwzd4" target="_blank">WhatsApp Us</a></li>
+        <li><a href="https://www.instagram.com/ashvamedhafinance" target="_blank">@ashvamedhafinance</a></li>
         <li><a href="tel:8790109022">+91 87901 09022</a></li>
         <li><a href="tel:9392756977">+91 93927 56977</a></li>
         <li><a href="mailto:ashvamedhaa.in@gmail.com">ashvamedhaa.in@gmail.com</a></li>
@@ -1332,6 +1986,192 @@ function goTo(id,idx) {
   if(dotsEl) dotsEl.querySelectorAll('.cdot').forEach((d,i)=>d.classList.toggle('active',i===idx));
 }
 setTimeout(()=>{ initCarousel('homeCarousel'); initCarousel('aboutCarousel'); },200);
+
+// ── CALCULATOR TAB SWITCH ──
+function switchCalc(id, btn) {
+  document.querySelectorAll('.calc-tab').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.calc-panel').forEach(p => p.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById('calc-' + id).classList.add('active');
+  // init chart for the active panel
+  if (id === 'sip') { updateSIP(); }
+  else if (id === 'stepup') { updateStepUp(); }
+  else if (id === 'lumpsum') { updateLumpsum(); }
+  else if (id === 'retirement') { updateRetirement(); }
+  else if (id === 'house') { updateHouse(); }
+}
+
+// ── DONUT CHART ──
+function drawDonut(canvasId, invested, returns) {
+  const canvas = document.getElementById(canvasId);
+  if (!canvas) return;
+  const ctx = canvas.getContext('2d');
+  const total = invested + returns;
+  const cx = 110, cy = 110, r = 90, lw = 28;
+  ctx.clearRect(0, 0, 220, 220);
+  const draw = (start, end, color) => {
+    ctx.beginPath(); ctx.arc(cx, cy, r, start, end);
+    ctx.lineWidth = lw; ctx.strokeStyle = color; ctx.stroke();
+  };
+  const gap = 0.03;
+  const investedAngle = (invested / total) * (2 * Math.PI - gap * 2);
+  const returnsAngle = (returns / total) * (2 * Math.PI - gap * 2);
+  ctx.lineCap = 'round';
+  draw(-Math.PI / 2 + gap, -Math.PI / 2 + gap + investedAngle, '#2B3AAE');
+  draw(-Math.PI / 2 + gap + investedAngle + gap, -Math.PI / 2 + 2 * Math.PI - gap, '#c9a84c');
+}
+
+function fmtCr(val) {
+  if (val >= 10000000) return '₹' + (val / 10000000).toFixed(1) + ' Cr';
+  if (val >= 100000) return '₹' + (val / 100000).toFixed(1) + 'L';
+  if (val >= 1000) return '₹' + (val / 1000).toFixed(1) + 'K';
+  return '₹' + Math.round(val).toLocaleString('en-IN');
+}
+
+// ── SIP ──
+function updateSIP() {
+  const sliders = document.querySelectorAll('#calc-sip input[type=range]');
+  const amt = +sliders[0].value, rate = +sliders[1].value, yrs = +sliders[2].value;
+  document.getElementById('sip-amt-display').textContent = '₹' + amt.toLocaleString('en-IN');
+  document.getElementById('sip-rate-display').textContent = rate + '%';
+  document.getElementById('sip-yr-display').textContent = yrs + ' Year' + (yrs > 1 ? 's' : '');
+  const r = rate / 100 / 12, n = yrs * 12;
+  const fv = amt * ((Math.pow(1 + r, n) - 1) / r);
+  const invested = amt * n;
+  const returns = fv - invested;
+  document.getElementById('sip-total').textContent = fmtCr(fv);
+  document.getElementById('sip-invested').textContent = fmtCr(invested);
+  document.getElementById('sip-returns').textContent = fmtCr(returns);
+  drawDonut('sip-chart', invested, returns);
+}
+
+// ── STEP-UP SIP ──
+function updateStepUp() {
+  const sliders = document.querySelectorAll('#calc-stepup input[type=range]');
+  const startAmt = +sliders[0].value, stepUp = +sliders[1].value / 100;
+  const rate = +sliders[2].value, yrs = +sliders[3].value;
+  document.getElementById('su-amt-display').textContent = '₹' + startAmt.toLocaleString('en-IN');
+  document.getElementById('su-step-display').textContent = (stepUp * 100) + '%';
+  document.getElementById('su-rate-display').textContent = rate + '%';
+  document.getElementById('su-yr-display').textContent = yrs + ' Year' + (yrs > 1 ? 's' : '');
+  const r = rate / 100 / 12;
+  let fv = 0, invested = 0, monthlyAmt = startAmt;
+  for (let y = 0; y < yrs; y++) {
+    for (let m = 0; m < 12; m++) {
+      const remaining = (yrs - y) * 12 - m;
+      fv += monthlyAmt * Math.pow(1 + r, remaining);
+      invested += monthlyAmt;
+    }
+    monthlyAmt *= (1 + stepUp);
+  }
+  const returns = fv - invested;
+  document.getElementById('su-total').textContent = fmtCr(fv);
+  document.getElementById('su-invested').textContent = fmtCr(invested);
+  document.getElementById('su-returns').textContent = fmtCr(returns);
+  drawDonut('su-chart', invested, returns);
+}
+
+// ── LUMPSUM ──
+function updateLumpsum() {
+  const sliders = document.querySelectorAll('#calc-lumpsum input[type=range]');
+  const amt = +sliders[0].value, rate = +sliders[1].value, yrs = +sliders[2].value;
+  document.getElementById('ls-amt-display').textContent = '₹' + amt.toLocaleString('en-IN');
+  document.getElementById('ls-rate-display').textContent = rate + '%';
+  document.getElementById('ls-yr-display').textContent = yrs + ' Year' + (yrs > 1 ? 's' : '');
+  const fv = amt * Math.pow(1 + rate / 100, yrs);
+  const returns = fv - amt;
+  document.getElementById('ls-total').textContent = fmtCr(fv);
+  document.getElementById('ls-invested').textContent = fmtCr(amt);
+  document.getElementById('ls-returns').textContent = fmtCr(returns);
+  drawDonut('ls-chart', amt, returns);
+}
+
+// ── RETIREMENT ──
+function updateRetirement() {
+  const sliders = document.querySelectorAll('#calc-retirement input[type=range]');
+  const curAge = +sliders[0].value, retAge = +sliders[1].value;
+  const curExp = +sliders[2].value, inf = +sliders[3].value / 100;
+  const roi = +sliders[4].value / 100, savings = +sliders[5].value;
+  document.getElementById('ret-age-display').textContent = curAge + ' Years';
+  document.getElementById('ret-retire-display').textContent = retAge + ' Years';
+  document.getElementById('ret-exp-display').textContent = '₹' + curExp.toLocaleString('en-IN');
+  document.getElementById('ret-inf-display').textContent = (inf * 100) + '%';
+  document.getElementById('ret-roi-display').textContent = (roi * 100) + '%';
+  document.getElementById('ret-sav-display').textContent = '₹' + savings.toLocaleString('en-IN');
+  const yrs = Math.max(retAge - curAge, 1);
+  document.getElementById('ret-years').textContent = yrs;
+  const futureExp = curExp * Math.pow(1 + inf, yrs);
+  const lifeExp = 20; // assume 20 years post-retirement
+  const corpusNeeded = futureExp * 12 * lifeExp;
+  const adjustedCorpus = Math.max(corpusNeeded - savings * Math.pow(1 + roi, yrs), 0);
+  const r = roi / 12, n = yrs * 12;
+  const sip = r > 0 ? adjustedCorpus * r / (Math.pow(1 + r, n) - 1) : adjustedCorpus / n;
+  document.getElementById('ret-corpus').textContent = fmtCr(corpusNeeded);
+  document.getElementById('ret-sip').textContent = fmtCr(sip);
+  document.getElementById('ret-future-exp').textContent = fmtCr(futureExp);
+}
+
+// ── HOUSE ──
+function updateHouse() {
+  const sliders = document.querySelectorAll('#calc-house input[type=range]');
+  const price = +sliders[0].value, downPct = +sliders[1].value / 100;
+  const annRate = +sliders[2].value / 100, yrs = +sliders[3].value;
+  document.getElementById('h-price-display').textContent = '₹' + price.toLocaleString('en-IN');
+  document.getElementById('h-down-display').textContent = (downPct * 100) + '%';
+  document.getElementById('h-rate-display').textContent = (annRate * 100).toFixed(1) + '%';
+  document.getElementById('h-tenure-display').textContent = yrs + ' Years';
+  const down = price * downPct;
+  const loan = price - down;
+  const r = annRate / 12, n = yrs * 12;
+  const emi = r > 0 ? loan * r * Math.pow(1 + r, n) / (Math.pow(1 + r, n) - 1) : loan / n;
+  const totalPay = emi * n + down;
+  const interest = emi * n - loan;
+  document.getElementById('h-emi').textContent = fmtCr(emi);
+  document.getElementById('h-downamt').textContent = fmtCr(down);
+  document.getElementById('h-loan').textContent = fmtCr(loan);
+  document.getElementById('h-interest').textContent = fmtCr(interest);
+  document.getElementById('h-total').textContent = fmtCr(totalPay);
+}
+
+// ── PORTFOLIO FILE UPLOAD ──
+function handleFileSelect(input) {
+  if (input.files[0]) {
+    document.getElementById('pf-filename').textContent = '✅ ' + input.files[0].name;
+    document.getElementById('pf-filename').style.display = 'block';
+  }
+}
+
+// ── PORTFOLIO SUBMIT ──
+function submitPortfolio() {
+  const name = document.getElementById('pf-name').value.trim();
+  const phone = document.getElementById('pf-phone').value.trim();
+  const email = document.getElementById('pf-email').value.trim();
+  const type = document.getElementById('pf-type').value;
+  const file = document.getElementById('pf-file').files[0];
+  if (!name || !phone || !email) {
+    alert('Please fill in your name, phone and email.');
+    return;
+  }
+  // Build WhatsApp message with all details
+  const msg = encodeURIComponent(
+    '🔔 *New Portfolio Analysis Request*\n\n' +
+    '👤 Name: ' + name + '\n' +
+    '📱 Phone: ' + phone + '\n' +
+    '📧 Email: ' + email + '\n' +
+    '📊 Type: ' + (type || 'Not specified') + '\n' +
+    '📎 File: ' + (file ? file.name : 'None uploaded') + '\n\n' +
+    'Please review and send portfolio analysis report.'
+  );
+  // Open WhatsApp with the lead details
+  window.open('https://wa.me/918790109022?text=' + msg, '_blank');
+  // Show success message
+  document.getElementById('pf-form').style.display = 'none';
+  document.getElementById('pf-success').style.display = 'block';
+}
+
+// Init calculators on load
+setTimeout(() => { updateSIP(); updateLumpsum(); updateRetirement(); updateHouse(); updateStepUp(); }, 400);
+
 </script>
 </body>
 </html>
