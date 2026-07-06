@@ -1,13 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Portfolio Analyzer — Free Review | Ashvamedha Finance Hyderabad</title>
-<meta name="description" content="Get a free portfolio review from Manoj Kumar, Ashvamedha Finance Hyderabad.">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Free Portfolio Analyzer — Get Expert Review | Ashvamedha Finance Hyderabad</title>
+<meta name="description" content="Upload your portfolio and get a free personalised review from Manoj Kumar, Ashvamedha Finance, Banjara Hills Hyderabad.">
 <meta name="robots" content="index,follow">
+<meta property="og:title" content="Free Portfolio Analyzer — Get Expert Review | Ashvamedha Finance Hyderabad">
+<meta property="og:description" content="Upload your portfolio and get a free personalised review from Manoj Kumar, Ashvamedha Finance, Banjara Hills Hyderabad.">
+<meta property="og:type" content="website">
 <link rel="canonical" href="https://www.ashvamedhaai.com/portfolio">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,600;0,700;1,400&family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
+
 :root{--navy:#0a1628;--navy-mid:#112240;--navy-light:#1d3461;--gold:#c9a84c;--gold-light:#e8c878;--cream:#faf7f2;--white:#fff;--muted:#8899aa;}
 *{margin:0;padding:0;box-sizing:border-box;}
 html{scroll-behavior:smooth;}
@@ -286,7 +291,8 @@ footer{background:#060e1a;padding:56px 5% 28px;border-top:1px solid rgba(255,255
 .calc-result-val{font-size:18px;font-weight:700;color:var(--white);}
 @media(max-width:860px){.calc-box{grid-template-columns:1fr;}.calc-right{position:static;}}
 
-.nav-links.open{display:flex!important;flex-direction:column;position:absolute;top:60px;left:0;right:0;background:rgba(10,22,40,.98);padding:20px;z-index:999;}
+/* ensure page content visible */
+.page{ display:block!important; }
 </style>
 </head>
 <body>
@@ -304,7 +310,7 @@ footer{background:#060e1a;padding:56px 5% 28px;border-top:1px solid rgba(255,255
     <li><a href="/about" data-page="about">About Us</a></li>
     <li><a href="/contact" data-page="contact">Contact</a></li>
   </ul>
-  <button class="hamburger" onclick="document.getElementById('navlinks').classList.toggle('open')"><span></span><span></span><span></span></button>
+  <button class="hamburger" onclick="toggleNav()"><span></span><span></span><span></span></button>
 </nav>
 <section style="background:var(--navy);padding:120px 5% 80px;min-height:100vh;">
   <div style="text-align:center;max-width:680px;margin:0 auto 60px;">
@@ -474,10 +480,260 @@ footer{background:#060e1a;padding:56px 5% 28px;border-top:1px solid rgba(255,255
   </div>
 </footer>
 <script>
-document.querySelectorAll('.nav-links a[data-page]').forEach(function(a){
-  var page = window.location.pathname.replace(/\/$/,'').replace(/^\/+/,'') || 'home';
-  if(a.getAttribute('data-page')===page) a.classList.add('active');
+function showPage(name) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.getElementById('page-' + name).classList.add('active');
+  document.querySelectorAll('[data-page]').forEach(a => a.classList.remove('active'));
+  document.querySelectorAll('[data-page="' + name + '"]').forEach(a => a.classList.add('active'));
+  window.scrollTo({top:0,behavior:'smooth'});
+  document.getElementById('navlinks').style.cssText = '';
+  setTimeout(triggerReveals, 120);
+}
+function triggerReveals() {
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach((e,i) => { if(e.isIntersecting) setTimeout(()=>e.target.classList.add('visible'),i*60); });
+  },{threshold:0.08});
+  document.querySelectorAll('.reveal:not(.visible)').forEach(el => obs.observe(el));
+}
+triggerReveals();
+window.addEventListener('scroll', () => {
+  document.getElementById('nav').style.background = window.scrollY>60?'rgba(6,14,26,.97)':'rgba(10,22,40,.93)';
 });
+function toggleNav() {
+  const ul = document.getElementById('navlinks');
+  const open = ul.style.display === 'flex';
+  ul.style.cssText = open ? '' : 'display:flex;flex-direction:column;position:fixed;top:68px;left:0;right:0;background:rgba(6,14,26,.98);padding:20px 5%;gap:16px;border-bottom:1px solid rgba(201,168,76,.15);z-index:899;';
+}
+function openModal(id) {
+  document.getElementById('modal-' + id).classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeModal(id) {
+  document.getElementById('modal-' + id).classList.remove('open');
+  document.body.style.overflow = '';
+}
+document.addEventListener('keydown', e => {
+  if(e.key === 'Escape') {
+    document.querySelectorAll('.modal-overlay.open').forEach(m => { m.classList.remove('open'); document.body.style.overflow=''; });
+  }
+});
+const cState = {};
+function initCarousel(id) {
+  const track = document.getElementById(id);
+  if (!track) return;
+  const cards = track.querySelectorAll('.t-card');
+  const dotsEl = document.getElementById(id.replace('Carousel','Dots'));
+  cState[id] = {index:0,total:cards.length};
+  if (dotsEl) {
+    dotsEl.innerHTML = '';
+    cards.forEach((_,i) => {
+      const d = document.createElement('div');
+      d.className = 'cdot' + (i===0?' active':'');
+      d.onclick = () => goTo(id,i);
+      dotsEl.appendChild(d);
+    });
+  }
+}
+function moveCarousel(id,dir) {
+  const s=cState[id]; if(!s) return;
+  goTo(id,(s.index+dir+s.total)%s.total);
+}
+function goTo(id,idx) {
+  const track=document.getElementById(id); if(!track) return;
+  const card=track.querySelector('.t-card');
+  const cardW=card?card.offsetWidth+24:384;
+  cState[id].index=idx;
+  track.style.transform=`translateX(-${idx*cardW}px)`;
+  const dotsEl=document.getElementById(id.replace('Carousel','Dots'));
+  if(dotsEl) dotsEl.querySelectorAll('.cdot').forEach((d,i)=>d.classList.toggle('active',i===idx));
+}
+setTimeout(()=>{ initCarousel('homeCarousel'); initCarousel('aboutCarousel'); },200);
+
+// ── CALCULATOR TAB SWITCH ──
+function switchCalc(id, btn) {
+  document.querySelectorAll('.calc-tab').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.calc-panel').forEach(p => p.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById('calc-' + id).classList.add('active');
+  // init chart for the active panel
+  if (id === 'sip') { updateSIP(); }
+  else if (id === 'stepup') { updateStepUp(); }
+  else if (id === 'lumpsum') { updateLumpsum(); }
+  else if (id === 'retirement') { updateRetirement(); }
+  else if (id === 'house') { updateHouse(); }
+}
+
+// ── DONUT CHART ──
+function drawDonut(canvasId, invested, returns) {
+  const canvas = document.getElementById(canvasId);
+  if (!canvas) return;
+  const ctx = canvas.getContext('2d');
+  const total = invested + returns;
+  const cx = 110, cy = 110, r = 90, lw = 28;
+  ctx.clearRect(0, 0, 220, 220);
+  const draw = (start, end, color) => {
+    ctx.beginPath(); ctx.arc(cx, cy, r, start, end);
+    ctx.lineWidth = lw; ctx.strokeStyle = color; ctx.stroke();
+  };
+  const gap = 0.03;
+  const investedAngle = (invested / total) * (2 * Math.PI - gap * 2);
+  const returnsAngle = (returns / total) * (2 * Math.PI - gap * 2);
+  ctx.lineCap = 'round';
+  draw(-Math.PI / 2 + gap, -Math.PI / 2 + gap + investedAngle, '#2B3AAE');
+  draw(-Math.PI / 2 + gap + investedAngle + gap, -Math.PI / 2 + 2 * Math.PI - gap, '#c9a84c');
+}
+
+function fmtCr(val) {
+  if (val >= 10000000) return '₹' + (val / 10000000).toFixed(1) + ' Cr';
+  if (val >= 100000) return '₹' + (val / 100000).toFixed(1) + 'L';
+  if (val >= 1000) return '₹' + (val / 1000).toFixed(1) + 'K';
+  return '₹' + Math.round(val).toLocaleString('en-IN');
+}
+
+// ── SIP ──
+function updateSIP() {
+  const sliders = document.querySelectorAll('#calc-sip input[type=range]');
+  const amt = +sliders[0].value, rate = +sliders[1].value, yrs = +sliders[2].value;
+  document.getElementById('sip-amt-display').textContent = '₹' + amt.toLocaleString('en-IN');
+  document.getElementById('sip-rate-display').textContent = rate + '%';
+  document.getElementById('sip-yr-display').textContent = yrs + ' Year' + (yrs > 1 ? 's' : '');
+  const r = rate / 100 / 12, n = yrs * 12;
+  const fv = amt * ((Math.pow(1 + r, n) - 1) / r);
+  const invested = amt * n;
+  const returns = fv - invested;
+  document.getElementById('sip-total').textContent = fmtCr(fv);
+  document.getElementById('sip-invested').textContent = fmtCr(invested);
+  document.getElementById('sip-returns').textContent = fmtCr(returns);
+  drawDonut('sip-chart', invested, returns);
+}
+
+// ── STEP-UP SIP ──
+function updateStepUp() {
+  const sliders = document.querySelectorAll('#calc-stepup input[type=range]');
+  const startAmt = +sliders[0].value, stepUp = +sliders[1].value / 100;
+  const rate = +sliders[2].value, yrs = +sliders[3].value;
+  document.getElementById('su-amt-display').textContent = '₹' + startAmt.toLocaleString('en-IN');
+  document.getElementById('su-step-display').textContent = (stepUp * 100) + '%';
+  document.getElementById('su-rate-display').textContent = rate + '%';
+  document.getElementById('su-yr-display').textContent = yrs + ' Year' + (yrs > 1 ? 's' : '');
+  const r = rate / 100 / 12;
+  let fv = 0, invested = 0, monthlyAmt = startAmt;
+  for (let y = 0; y < yrs; y++) {
+    for (let m = 0; m < 12; m++) {
+      const remaining = (yrs - y) * 12 - m;
+      fv += monthlyAmt * Math.pow(1 + r, remaining);
+      invested += monthlyAmt;
+    }
+    monthlyAmt *= (1 + stepUp);
+  }
+  const returns = fv - invested;
+  document.getElementById('su-total').textContent = fmtCr(fv);
+  document.getElementById('su-invested').textContent = fmtCr(invested);
+  document.getElementById('su-returns').textContent = fmtCr(returns);
+  drawDonut('su-chart', invested, returns);
+}
+
+// ── LUMPSUM ──
+function updateLumpsum() {
+  const sliders = document.querySelectorAll('#calc-lumpsum input[type=range]');
+  const amt = +sliders[0].value, rate = +sliders[1].value, yrs = +sliders[2].value;
+  document.getElementById('ls-amt-display').textContent = '₹' + amt.toLocaleString('en-IN');
+  document.getElementById('ls-rate-display').textContent = rate + '%';
+  document.getElementById('ls-yr-display').textContent = yrs + ' Year' + (yrs > 1 ? 's' : '');
+  const fv = amt * Math.pow(1 + rate / 100, yrs);
+  const returns = fv - amt;
+  document.getElementById('ls-total').textContent = fmtCr(fv);
+  document.getElementById('ls-invested').textContent = fmtCr(amt);
+  document.getElementById('ls-returns').textContent = fmtCr(returns);
+  drawDonut('ls-chart', amt, returns);
+}
+
+// ── RETIREMENT ──
+function updateRetirement() {
+  const sliders = document.querySelectorAll('#calc-retirement input[type=range]');
+  const curAge = +sliders[0].value, retAge = +sliders[1].value;
+  const curExp = +sliders[2].value, inf = +sliders[3].value / 100;
+  const roi = +sliders[4].value / 100, savings = +sliders[5].value;
+  document.getElementById('ret-age-display').textContent = curAge + ' Years';
+  document.getElementById('ret-retire-display').textContent = retAge + ' Years';
+  document.getElementById('ret-exp-display').textContent = '₹' + curExp.toLocaleString('en-IN');
+  document.getElementById('ret-inf-display').textContent = (inf * 100) + '%';
+  document.getElementById('ret-roi-display').textContent = (roi * 100) + '%';
+  document.getElementById('ret-sav-display').textContent = '₹' + savings.toLocaleString('en-IN');
+  const yrs = Math.max(retAge - curAge, 1);
+  document.getElementById('ret-years').textContent = yrs;
+  const futureExp = curExp * Math.pow(1 + inf, yrs);
+  const lifeExp = 20; // assume 20 years post-retirement
+  const corpusNeeded = futureExp * 12 * lifeExp;
+  const adjustedCorpus = Math.max(corpusNeeded - savings * Math.pow(1 + roi, yrs), 0);
+  const r = roi / 12, n = yrs * 12;
+  const sip = r > 0 ? adjustedCorpus * r / (Math.pow(1 + r, n) - 1) : adjustedCorpus / n;
+  document.getElementById('ret-corpus').textContent = fmtCr(corpusNeeded);
+  document.getElementById('ret-sip').textContent = fmtCr(sip);
+  document.getElementById('ret-future-exp').textContent = fmtCr(futureExp);
+}
+
+// ── HOUSE ──
+function updateHouse() {
+  const sliders = document.querySelectorAll('#calc-house input[type=range]');
+  const price = +sliders[0].value, downPct = +sliders[1].value / 100;
+  const annRate = +sliders[2].value / 100, yrs = +sliders[3].value;
+  document.getElementById('h-price-display').textContent = '₹' + price.toLocaleString('en-IN');
+  document.getElementById('h-down-display').textContent = (downPct * 100) + '%';
+  document.getElementById('h-rate-display').textContent = (annRate * 100).toFixed(1) + '%';
+  document.getElementById('h-tenure-display').textContent = yrs + ' Years';
+  const down = price * downPct;
+  const loan = price - down;
+  const r = annRate / 12, n = yrs * 12;
+  const emi = r > 0 ? loan * r * Math.pow(1 + r, n) / (Math.pow(1 + r, n) - 1) : loan / n;
+  const totalPay = emi * n + down;
+  const interest = emi * n - loan;
+  document.getElementById('h-emi').textContent = fmtCr(emi);
+  document.getElementById('h-downamt').textContent = fmtCr(down);
+  document.getElementById('h-loan').textContent = fmtCr(loan);
+  document.getElementById('h-interest').textContent = fmtCr(interest);
+  document.getElementById('h-total').textContent = fmtCr(totalPay);
+}
+
+// ── PORTFOLIO FILE UPLOAD ──
+function handleFileSelect(input) {
+  if (input.files[0]) {
+    document.getElementById('pf-filename').textContent = '✅ ' + input.files[0].name;
+    document.getElementById('pf-filename').style.display = 'block';
+  }
+}
+
+// ── PORTFOLIO SUBMIT ──
+function submitPortfolio() {
+  const name = document.getElementById('pf-name').value.trim();
+  const phone = document.getElementById('pf-phone').value.trim();
+  const email = document.getElementById('pf-email').value.trim();
+  const type = document.getElementById('pf-type').value;
+  const file = document.getElementById('pf-file').files[0];
+  if (!name || !phone || !email) {
+    alert('Please fill in your name, phone and email.');
+    return;
+  }
+  // Build WhatsApp message with all details
+  const msg = encodeURIComponent(
+    '🔔 *New Portfolio Analysis Request*\n\n' +
+    '👤 Name: ' + name + '\n' +
+    '📱 Phone: ' + phone + '\n' +
+    '📧 Email: ' + email + '\n' +
+    '📊 Type: ' + (type || 'Not specified') + '\n' +
+    '📎 File: ' + (file ? file.name : 'None uploaded') + '\n\n' +
+    'Please review and send portfolio analysis report.'
+  );
+  // Open WhatsApp with the lead details
+  window.open('https://wa.me/918790109022?text=' + msg, '_blank');
+  // Show success message
+  document.getElementById('pf-form').style.display = 'none';
+  document.getElementById('pf-success').style.display = 'block';
+}
+
+// Init calculators on load
+setTimeout(() => { updateSIP(); updateLumpsum(); updateRetirement(); updateHouse(); updateStepUp(); }, 400);
+
 </script>
 </body>
 </html>
