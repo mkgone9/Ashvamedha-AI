@@ -2,12 +2,9 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Our Services — Ashvamedha Finance | Hyderabad</title>
-<meta name="description" content="Investment planning, unlisted shares, insurance advisory and wealth management services by Ashvamedha Finance, Hyderabad.">
+<title>Our Services — Investment, Insurance & Unlisted Shares | Ashvamedha Finance</title>
+<meta name="description" content="Investment planning, insurance advisory, unlisted shares and wealth management services by Ashvamedha Finance, Banjara Hills, Hyderabad.">
 <meta name="robots" content="index,follow">
-<meta property="og:title" content="Our Services — Ashvamedha Finance | Hyderabad">
-<meta property="og:description" content="Investment planning, unlisted shares, insurance advisory and wealth management services by Ashvamedha Finance, Hyderabad.">
-<meta property="og:type" content="website">
 <link rel="canonical" href="https://www.ashvamedhaai.com/services">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,600;0,700;1,400&family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
@@ -288,6 +285,8 @@ footer{background:#060e1a;padding:56px 5% 28px;border-top:1px solid rgba(255,255
 .calc-result-label{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;margin-bottom:3px;}
 .calc-result-val{font-size:18px;font-weight:700;color:var(--white);}
 @media(max-width:860px){.calc-box{grid-template-columns:1fr;}.calc-right{position:static;}}
+
+.nav-links.open{display:flex!important;flex-direction:column;position:absolute;top:60px;left:0;right:0;background:rgba(10,22,40,.98);padding:20px;z-index:999;}
 </style>
 </head>
 <body>
@@ -297,7 +296,7 @@ footer{background:#060e1a;padding:56px 5% 28px;border-top:1px solid rgba(255,255
     <div class="nav-brand"><b>MANOJ KUMAR</b><span>Ashvamedha Finance</span></div>
   </div>
   <ul class="nav-links" id="navlinks">
-    <li><a href="/" data-page="home">Home</a></li>
+    <li><a href="/" data-page="home" class="active">Home</a></li>
     <li><a href="/services" data-page="services" class="active">Our Services</a></li>
     <li><a href="/unlisted" data-page="unlisted" class="nav-highlight">Unlisted Shares</a></li>
     <li><a href="/calculators" data-page="calculators">Calculators</a></li>
@@ -305,9 +304,8 @@ footer{background:#060e1a;padding:56px 5% 28px;border-top:1px solid rgba(255,255
     <li><a href="/about" data-page="about">About Us</a></li>
     <li><a href="/contact" data-page="contact">Contact</a></li>
   </ul>
-  <button class="hamburger" onclick="toggleNav()"><span></span><span></span><span></span></button>
+  <button class="hamburger" onclick="document.getElementById('navlinks').classList.toggle('open')"><span></span><span></span><span></span></button>
 </nav>
-<div style="padding-top:0">
 <section class="services-sec" style="padding-top:120px;">
     <div class="services-hdr reveal">
       <div class="sec-label" style="justify-content:center">What I Offer</div>
@@ -317,7 +315,7 @@ footer{background:#060e1a;padding:56px 5% 28px;border-top:1px solid rgba(255,255
     <div class="srv-grid">
       <div class="srv-card reveal"><div class="srv-ico">📈</div><h3 class="srv-title">Investment & Wealth Management</h3><p class="srv-desc">Strategic guidance on mutual funds, equities, and long-term wealth creation — goal-based, practical, and tailored to your income.</p><ul class="srv-list"><li>Mutual Funds & SIP Planning</li><li>Portfolio Review & Rebalancing</li><li>Stock Selection & Analysis</li><li>Retirement & Goal-Based Planning</li></ul><a href="https://wa.link/rwwzd4" target="_blank" class="srv-cta">Schedule Consultation →</a></div>
       <div class="srv-card reveal"><div class="srv-ico">🛡️</div><h3 class="srv-title">Insurance Advisory</h3><p class="srv-desc">Helping families choose protection that actually works — without being oversold products they don't need. Honest advice in Telugu.</p><ul class="srv-list"><li>Term Life Insurance Planning</li><li>Health Insurance Selection</li><li>Children's Future & Education Plans</li><li>Pension & Retirement Solutions</li></ul><a href="https://wa.link/rwwzd4" target="_blank" class="srv-cta">Talk on WhatsApp →</a></div>
-      <div class="srv-card reveal"><div class="srv-ico">💹</div><h3 class="srv-title">Unlisted Shares</h3><p class="srv-desc">Capitalizing on hidden gems in the dynamic unlisted share market. Access high-growth companies before they go public through our secure platform.</p><ul class="srv-list"><li>Pre-IPO Share Sourcing</li><li>Unlisted Equity Transactions</li><li>Company Research & Due Diligence</li><li>Portfolio Entry & Exit Strategy</li></ul><span class="srv-cta" onclick="showPage('unlisted')">Explore Opportunities →</span></div>
+      <div class="srv-card reveal"><div class="srv-ico">💹</div><h3 class="srv-title">Unlisted Shares</h3><p class="srv-desc">Capitalizing on hidden gems in the dynamic unlisted share market. Access high-growth companies before they go public through our secure platform.</p><ul class="srv-list"><li>Pre-IPO Share Sourcing</li><li>Unlisted Equity Transactions</li><li>Company Research & Due Diligence</li><li>Portfolio Entry & Exit Strategy</li></ul><span class="srv-cta" href="/unlisted">Explore Opportunities →</span></div>
     </div>
   </section>
   <section class="wa-sec">
@@ -328,8 +326,6 @@ footer{background:#060e1a;padding:56px 5% 28px;border-top:1px solid rgba(255,255
 </div>
 
 <!-- ══════ CONTACT ══════ -->
-</div>
-
 <footer>
   <div class="foot-grid">
     <div>
@@ -369,19 +365,10 @@ footer{background:#060e1a;padding:56px 5% 28px;border-top:1px solid rgba(255,255
   </div>
 </footer>
 <script>
-function toggleNav(){
-  var n=document.getElementById('navlinks');
-  n.style.display=n.style.display==='flex'?'none':'flex';
-}
-// Highlight active nav link based on current URL
-(function(){
-  var path=window.location.pathname.replace(/\/$/,'').replace(/^\/+/,'') || 'home';
-  var links=document.querySelectorAll('.nav-links a[data-page]');
-  links.forEach(function(a){
-    if(a.getAttribute('data-page')===path) a.classList.add('active');
-    else a.classList.remove('active');
-  });
-})();
+document.querySelectorAll('.nav-links a[data-page]').forEach(function(a){
+  var page = window.location.pathname.replace(/\/$/,'').replace(/^\/+/,'') || 'home';
+  if(a.getAttribute('data-page')===page) a.classList.add('active');
+});
 </script>
 </body>
 </html>
