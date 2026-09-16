@@ -1,0 +1,67 @@
+name: Sync Blog Index and Sitemap
+on:
+  push:
+    paths:
+      - 'blog/**'
+permissions:
+  contents: write
+jobs:
+  sync:
+    if: "!contains(github.event.head_commit.message, '[skip ci]')"
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Sync index and sitemap
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          import re
+          from xml.sax.saxutils import escape
+
+          root = Path('.')
+          blog = root / 'blog.html'
+          sitemap = root / 'sitemap.xml'
+          files = sorted(p for p in (root/'blog').glob('*.html') if p.name != '.gitkeep')
+          text = blog.read_text(encoding='utf-8')
+          existing = set(re.findall(r'href=[\"\'](/blog/[^\"\']+)[\"\']', text))
+          missing = [p for p in files if '/blog/' + p.stem not in existing and '/blog/' + p.name not in existing]
+
+          if missing:
+              cards=[]
+              for p in missing:
+                  cards.append(f'''<a href="/blog/{p.stem}" style="background:#112240;border:1px solid rgba(201,168,76,.12);border-radius:12px;padding:22px;text-decoration:none;display:block;transition:border-color .2s;">
+            <div style="font-size:14px;font-weight:600;color:#fff;margin-bottom:8px;line-height:1.4;">{p.stem.replace('-', ' ').title()}</div>
+            <div style="font-size:12px;color:rgba(255,255,255,.5);margin-bottom:10px;line-height:1.5;">New Ashvamedha Finance guide.</div>
+            <div style="font-size:11px;color:#c9a84c;font-weight:600;">Read guide →</div>
+          </a>''')
+              section='''\n<!-- AUTO_SYNCED_ARTICLES_START -->\n<section style="margin-bottom:60px;">\n  <div style="display:flex;align-items:center;gap:12px;margin-bottom:24px;padding-bottom:14px;border-bottom:1px solid rgba(201,168,76,.2);">\n    <h2 style="font-family:'Cormorant Garamond',serif;font-size:28px;font-weight:700;color:#fff;">🆕 Recently Added</h2>\n    <span style="font-size:12px;color:rgba(255,255,255,.4);">Latest guides</span>\n  </div>\n  <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:16px;">\n'''+ '\n'.join(cards) + '''\n  </div>\n</section>\n<!-- AUTO_SYNCED_ARTICLES_END -->\n'''
+              if '<!-- AUTO_SYNCED_ARTICLES_START -->' in text:
+                  text=re.sub(r'<!-- AUTO_SYNCED_ARTICLES_START -->.*?<!-- AUTO_SYNCED_ARTICLES_END -->', section.strip(), text, flags=re.S)
+              else:
+                  pos=text.find('<footer')
+                  if pos==-1:
+                      pos=text.rfind('</div>')
+                  text=text[:pos]+section+'\n'+text[pos:]
+              blog.write_text(text,encoding='utf-8')
+
+          sm=sitemap.read_text(encoding='utf-8')
+          locs=set(re.findall(r'<loc>(.*?)</loc>', sm))
+          additions=[]
+          for p in files:
+              url=f'https://www.ashvamedhaai.com/blog/{p.stem}'
+              if url not in locs:
+                  additions.append(f'''<url>\n<loc>{escape(url)}</loc>\n<lastmod>2026-09-16</lastmod>\n<changefreq>monthly</changefreq>\n<priority>0.8</priority>\n</url>''')
+          if additions:
+              sm=sm.replace('</urlset>', '\n'+'\n'.join(additions)+'\n</urlset>')
+              sitemap.write_text(sm,encoding='utf-8')
+          PY
+      - name: Commit synchronized files
+        run: |
+          git config user.name 'Ashvamedha SEO Sync'
+          git config user.email 'actions@users.noreply.github.com'
+          git add blog.html sitemap.xml
+          git diff --cached --quiet && exit 0
+          git commit -m 'Sync blog index and sitemap [skip ci]'
+          git push
