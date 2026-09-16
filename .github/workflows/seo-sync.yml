@@ -27,6 +27,47 @@ jobs:
           sitemap = root / 'sitemap.xml'
           files = sorted(p for p in (root/'blog').glob('*.html') if p.name != '.gitkeep')
           text = blog.read_text(encoding='utf-8')
+
+          # Remove cards for articles that were intentionally deleted.
+          deleted_stems = {
+              '1-crore-home-loan-emi-2026',
+              '20-vs-25-vs-30-year-home-loan-2026',
+              '50-lakh-home-loan-emi-2026',
+              '75-lakh-home-loan-emi-2026',
+              'fixed-vs-floating-home-loan-2026',
+              'home-loan-affordability-calculator-2026',
+              'home-loan-balance-transfer-2026',
+              'home-loan-documents-required-india-2026',
+              'home-loan-eligibility-calculator-2026',
+              'home-loan-eligibility-india-2026',
+              'home-loan-emi-calculator-india-2026',
+              'home-loan-existing-emi-2026',
+              'home-loan-for-salaried-employees-2026',
+              'home-loan-for-self-employed-2026',
+              'home-loan-hyderabad-2026',
+              'home-loan-in-india-2026',
+              'home-loan-interest-rates-india-2026',
+              'home-loan-low-cibil-2026',
+              'home-loan-prepayment-2026',
+              'home-loan-prepayment-vs-sip-2026',
+              'home-loan-process-india-2026',
+              'home-loan-vs-investing-2026',
+              'how-much-down-payment-home-loan-2026',
+              'rent-vs-buy-home-india-2026',
+          }
+          for stem in deleted_stems:
+              text = re.sub(r'<a href=[\"\']/blog/' + re.escape(stem) + r'[\"\'][\s\S]*?</a>', '', text, flags=re.I)
+          blog.write_text(text, encoding='utf-8')
+
+          # Remove deleted article URLs from the sitemap as well.
+          sm = sitemap.read_text(encoding='utf-8')
+          for stem in deleted_stems:
+              sm = re.sub(r'\s*<url>\s*<loc>https://www\.ashvamedhaai\.com/blog/' + re.escape(stem) + r'</loc>[\s\S]*?</url>', '', sm, flags=re.I)
+          sitemap.write_text(sm, encoding='utf-8')
+
+          # Add index cards for genuinely new blog files.
+          files = sorted(p for p in (root/'blog').glob('*.html') if p.name != '.gitkeep')
+          text = blog.read_text(encoding='utf-8')
           existing = set(re.findall(r'href=[\"\'](/blog/[^\"\']+)[\"\']', text))
           missing = [p for p in files if '/blog/' + p.stem not in existing and '/blog/' + p.name not in existing]
 
@@ -36,8 +77,8 @@ jobs:
                   article = p.read_text(encoding='utf-8', errors='ignore')
                   tm = re.search(r'<title>(.*?)</title>', article, re.I|re.S)
                   dm = re.search(r'<meta[^>]+name=[\"\']description[\"\'][^>]+content=[\"\'](.*?)[\"\']', article, re.I|re.S)
-                  title = unescape(re.sub(r'\\s+', ' ', tm.group(1)).strip()) if tm else p.stem.replace('-', ' ').title()
-                  desc = unescape(re.sub(r'\\s+', ' ', dm.group(1)).strip()) if dm else 'Investment and wealth-planning guide from Ashvamedha Finance.'
+                  title = unescape(re.sub(r'\s+', ' ', tm.group(1)).strip()) if tm else p.stem.replace('-', ' ').title()
+                  desc = unescape(re.sub(r'\s+', ' ', dm.group(1)).strip()) if dm else 'Investment and wealth-planning guide from Ashvamedha Finance.'
                   if len(desc) > 150: desc = desc[:147].rsplit(' ',1)[0] + '...'
                   cards.append(f'''<a href="/blog/{p.stem}" style="background:#112240;border:1px solid rgba(201,168,76,.12);border-radius:12px;padding:22px;text-decoration:none;display:block;transition:border-color .2s;">
             <div style="font-size:14px;font-weight:600;color:#fff;margin-bottom:8px;line-height:1.4;">{title}</div>
