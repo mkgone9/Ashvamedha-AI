@@ -326,6 +326,17 @@ footer{background:#060e1a;padding:56px 5% 28px;border-top:1px solid rgba(255,255
 @media(max-width:860px){.calc-box{grid-template-columns:1fr;}.calc-right{position:static;}}
 
 .page{display:block!important;}
+
+@media print {
+  nav, footer, .calc-tab, .top-nav, header { display:none !important; }
+  .calc-panel { display:none !important; }
+  .calc-panel.active { display:block !important; }
+  .calc-cta-btn, .pdf-btn { display:none !important; }
+  body { background:#fff !important; color:#000 !important; }
+  .calc-left, .calc-right, .calc-result-card { background:#fff !important; border:1px solid #ccc !important; color:#000 !important; }
+  .calc-title, .calc-total-val, .calc-result-val { color:#000 !important; }
+  .calc-val-display { color:#000 !important; background:#f0f0f0 !important; }
+}
 </style>
 </head>
 <body>
@@ -359,6 +370,12 @@ footer{background:#060e1a;padding:56px 5% 28px;border-top:1px solid rgba(255,255
     <button class="calc-tab" onclick="switchCalc('lumpsum',this)">💰 Lumpsum</button>
     <button class="calc-tab" onclick="switchCalc('retirement',this)">🏖️ Retirement</button>
     <button class="calc-tab" onclick="switchCalc('house',this)">🏠 Home Buying</button>
+    <button class="calc-tab" onclick="switchCalc('fire',this)">🔥 FIRE Number</button>
+    <button class="calc-tab" onclick="switchCalc('runway',this)">🎯 Goal Planner</button>
+    <button class="calc-tab" onclick="switchCalc('homeloan',this)">🏦 Loan vs Cash (Home)</button>
+    <button class="calc-tab" onclick="switchCalc('carloan',this)">🚗 Loan vs Cash (Car)</button>
+    <button class="calc-tab" onclick="switchCalc('rentbuy',this)">🏡 Rent vs Buy</button>
+    <button class="calc-tab" onclick="switchCalc('fdmf',this)">🏦 FD vs Mutual Fund</button>
   </div>
 
   <!-- ─ SIP CALCULATOR ─ -->
@@ -383,6 +400,7 @@ footer{background:#060e1a;padding:56px 5% 28px;border-top:1px solid rgba(255,255
           <div class="calc-range-labels"><span>1 Yr</span><span>40 Yrs</span></div>
         </div>
         <a href="https://wa.link/rwwzd4" target="_blank" class="calc-cta-btn">Start Your SIP — Talk to Manoj →</a>
+        <button onclick="downloadCalcPDF()" class="pdf-btn" style="display:block;width:100%;margin-top:10px;background:transparent;border:1px solid rgba(201,168,76,.4);color:var(--gold);padding:12px;border-radius:12px;font-size:13px;font-weight:600;cursor:pointer;font-family:'Outfit',sans-serif;">📄 Download This Result as PDF</button>
       </div>
       <div class="calc-right">
         <div class="calc-result-card">
@@ -406,6 +424,41 @@ footer{background:#060e1a;padding:56px 5% 28px;border-top:1px solid rgba(255,255
         </div>
       </div>
     </div>
+
+        <div class="calc-swp-addon" style="margin-top:28px;padding-top:28px;border-top:1px dashed rgba(201,168,76,.25);">
+          <div style="display:flex;align-items:center;gap:10px;margin-bottom:18px;">
+            <span style="font-size:20px;">💸</span>
+            <div>
+              <div style="font-size:15px;font-weight:700;color:#fff;">Now Withdraw From This Corpus (SWP)</div>
+              <div style="font-size:11px;color:rgba(255,255,255,.5);">See how long your money lasts — no need to visit another page</div>
+            </div>
+          </div>
+          <div class="calc-field">
+            <div class="calc-label-row"><label>Starting Corpus</label><span class="calc-val-display" id="sip-swp-corpus-display">₹0</span></div>
+            <input type="range" min="100000" max="100000000" step="50000" value="1000000" class="calc-slider" id="sip-swp-corpus-slider" oninput="updateSipSWP()">
+            <div class="calc-range-labels"><span>₹1 Lakh</span><span>₹10 Cr</span></div>
+          </div>
+          <div class="calc-field">
+            <div class="calc-label-row"><label>Monthly Withdrawal</label><span class="calc-val-display" id="sip-swp-wd-display">₹10,000</span></div>
+            <input type="range" min="1000" max="1000000" step="1000" value="10000" class="calc-slider" id="sip-swp-wd-slider" oninput="updateSipSWP()">
+            <div class="calc-range-labels"><span>₹1,000</span><span>₹10 Lakh</span></div>
+          </div>
+          <div class="calc-field">
+            <div class="calc-label-row"><label>Expected Return During Withdrawal</label><span class="calc-val-display" id="sip-swp-roi-display">8%</span></div>
+            <input type="range" min="2" max="18" step="0.5" value="8" class="calc-slider" id="sip-swp-roi-slider" oninput="updateSipSWP()">
+            <div class="calc-range-labels"><span>2%</span><span>18%</span></div>
+          </div>
+          <div class="calc-field">
+            <div class="calc-label-row"><label>Annual Step-Up on Withdrawal (Inflation)</label><span class="calc-val-display" id="sip-swp-step-display">5%</span></div>
+            <input type="range" min="0" max="12" step="0.5" value="5" class="calc-slider" id="sip-swp-step-slider" oninput="updateSipSWP()">
+            <div class="calc-range-labels"><span>0%</span><span>12%</span></div>
+          </div>
+          <div style="background:#0a1628;border-radius:12px;padding:18px;margin-top:16px;text-align:center;">
+            <div style="font-size:11px;color:rgba(255,255,255,.5);margin-bottom:6px;">Your Money Lasts</div>
+            <div id="sip-swp-result" style="font-family:'Cormorant Garamond',serif;font-size:26px;color:var(--gold);font-weight:700;">— years</div>
+            <div id="sip-swp-subresult" style="font-size:11px;color:rgba(255,255,255,.5);margin-top:6px;">Move the sliders above to plan your withdrawal</div>
+          </div>
+        </div>
   </div>
 
   <!-- ─ STEP-UP SIP ─ -->
@@ -435,6 +488,7 @@ footer{background:#060e1a;padding:56px 5% 28px;border-top:1px solid rgba(255,255
           <div class="calc-range-labels"><span>1 Yr</span><span>40 Yrs</span></div>
         </div>
         <a href="https://wa.link/rwwzd4" target="_blank" class="calc-cta-btn">Start Step-Up SIP — Talk to Manoj →</a>
+        <button onclick="downloadCalcPDF()" class="pdf-btn" style="display:block;width:100%;margin-top:10px;background:transparent;border:1px solid rgba(201,168,76,.4);color:var(--gold);padding:12px;border-radius:12px;font-size:13px;font-weight:600;cursor:pointer;font-family:'Outfit',sans-serif;">📄 Download This Result as PDF</button>
       </div>
       <div class="calc-right">
         <div class="calc-result-card">
@@ -476,6 +530,7 @@ footer{background:#060e1a;padding:56px 5% 28px;border-top:1px solid rgba(255,255
           <div class="calc-range-labels"><span>1 Yr</span><span>40 Yrs</span></div>
         </div>
         <a href="https://wa.link/rwwzd4" target="_blank" class="calc-cta-btn">Invest Your Lumpsum — Talk to Manoj →</a>
+        <button onclick="downloadCalcPDF()" class="pdf-btn" style="display:block;width:100%;margin-top:10px;background:transparent;border:1px solid rgba(201,168,76,.4);color:var(--gold);padding:12px;border-radius:12px;font-size:13px;font-weight:600;cursor:pointer;font-family:'Outfit',sans-serif;">📄 Download This Result as PDF</button>
       </div>
       <div class="calc-right">
         <div class="calc-result-card">
@@ -490,6 +545,41 @@ footer{background:#060e1a;padding:56px 5% 28px;border-top:1px solid rgba(255,255
         </div>
       </div>
     </div>
+
+        <div class="calc-swp-addon" style="margin-top:28px;padding-top:28px;border-top:1px dashed rgba(201,168,76,.25);">
+          <div style="display:flex;align-items:center;gap:10px;margin-bottom:18px;">
+            <span style="font-size:20px;">💸</span>
+            <div>
+              <div style="font-size:15px;font-weight:700;color:#fff;">Now Withdraw From This Corpus (SWP)</div>
+              <div style="font-size:11px;color:rgba(255,255,255,.5);">See how long your money lasts — no need to visit another page</div>
+            </div>
+          </div>
+          <div class="calc-field">
+            <div class="calc-label-row"><label>Starting Corpus</label><span class="calc-val-display" id="lump-swp-corpus-display">₹0</span></div>
+            <input type="range" min="100000" max="100000000" step="50000" value="1000000" class="calc-slider" id="lump-swp-corpus-slider" oninput="updateLumpSWP()">
+            <div class="calc-range-labels"><span>₹1 Lakh</span><span>₹10 Cr</span></div>
+          </div>
+          <div class="calc-field">
+            <div class="calc-label-row"><label>Monthly Withdrawal</label><span class="calc-val-display" id="lump-swp-wd-display">₹10,000</span></div>
+            <input type="range" min="1000" max="1000000" step="1000" value="10000" class="calc-slider" id="lump-swp-wd-slider" oninput="updateLumpSWP()">
+            <div class="calc-range-labels"><span>₹1,000</span><span>₹10 Lakh</span></div>
+          </div>
+          <div class="calc-field">
+            <div class="calc-label-row"><label>Expected Return During Withdrawal</label><span class="calc-val-display" id="lump-swp-roi-display">8%</span></div>
+            <input type="range" min="2" max="18" step="0.5" value="8" class="calc-slider" id="lump-swp-roi-slider" oninput="updateLumpSWP()">
+            <div class="calc-range-labels"><span>2%</span><span>18%</span></div>
+          </div>
+          <div class="calc-field">
+            <div class="calc-label-row"><label>Annual Step-Up on Withdrawal (Inflation)</label><span class="calc-val-display" id="lump-swp-step-display">5%</span></div>
+            <input type="range" min="0" max="12" step="0.5" value="5" class="calc-slider" id="lump-swp-step-slider" oninput="updateLumpSWP()">
+            <div class="calc-range-labels"><span>0%</span><span>12%</span></div>
+          </div>
+          <div style="background:#0a1628;border-radius:12px;padding:18px;margin-top:16px;text-align:center;">
+            <div style="font-size:11px;color:rgba(255,255,255,.5);margin-bottom:6px;">Your Money Lasts</div>
+            <div id="lump-swp-result" style="font-family:'Cormorant Garamond',serif;font-size:26px;color:var(--gold);font-weight:700;">— years</div>
+            <div id="lump-swp-subresult" style="font-size:11px;color:rgba(255,255,255,.5);margin-top:6px;">Move the sliders above to plan your withdrawal</div>
+          </div>
+        </div>
   </div>
 
   <!-- ─ RETIREMENT ─ -->
@@ -529,6 +619,7 @@ footer{background:#060e1a;padding:56px 5% 28px;border-top:1px solid rgba(255,255
           <div class="calc-range-labels"><span>₹0</span><span>₹50 Lakh</span></div>
         </div>
         <a href="https://wa.link/rwwzd4" target="_blank" class="calc-cta-btn">Plan Your Retirement — Talk to Manoj →</a>
+        <button onclick="downloadCalcPDF()" class="pdf-btn" style="display:block;width:100%;margin-top:10px;background:transparent;border:1px solid rgba(201,168,76,.4);color:var(--gold);padding:12px;border-radius:12px;font-size:13px;font-weight:600;cursor:pointer;font-family:'Outfit',sans-serif;">📄 Download This Result as PDF</button>
       </div>
       <div class="calc-right">
         <div class="calc-result-card" style="gap:18px;">
@@ -582,6 +673,7 @@ footer{background:#060e1a;padding:56px 5% 28px;border-top:1px solid rgba(255,255
           <div class="calc-range-labels"><span>5 Yrs</span><span>30 Yrs</span></div>
         </div>
         <a href="https://wa.link/rwwzd4" target="_blank" class="calc-cta-btn">Plan Your Home Purchase — Talk to Manoj →</a>
+        <button onclick="downloadCalcPDF()" class="pdf-btn" style="display:block;width:100%;margin-top:10px;background:transparent;border:1px solid rgba(201,168,76,.4);color:var(--gold);padding:12px;border-radius:12px;font-size:13px;font-weight:600;cursor:pointer;font-family:'Outfit',sans-serif;">📄 Download This Result as PDF</button>
       </div>
       <div class="calc-right">
         <div class="calc-result-card" style="gap:16px;">
@@ -609,6 +701,393 @@ footer{background:#060e1a;padding:56px 5% 28px;border-top:1px solid rgba(255,255
             <div style="font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.1em;margin-bottom:6px;">Total Amount Payable</div>
             <div style="font-size:22px;font-weight:800;color:#fff;" id="h-total">₹83,27,200</div>
           </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ─ FIRE NUMBER ─ -->
+  <div class="calc-panel" id="calc-fire">
+    <div class="calc-box">
+      <div class="calc-left">
+        <h2 class="calc-title">FIRE Number Calculator</h2>
+        <p class="calc-desc">Find out exactly how much you need to become financially independent — and how many years of investing it takes to get there.</p>
+        <div class="calc-field">
+          <div class="calc-label-row"><label>Current Monthly Expenses</label><span class="calc-val-display" id="fire-exp-display">₹50,000</span></div>
+          <input type="range" min="10000" max="1000000" step="5000" value="50000" class="calc-slider" oninput="updateFIRE()" id="fire-exp">
+          <div class="calc-range-labels"><span>₹10K</span><span>₹10 Lakh</span></div>
+        </div>
+        <div class="calc-field">
+          <div class="calc-label-row"><label>Safe Withdrawal Rate</label><span class="calc-val-display" id="fire-swr-display">4%</span></div>
+          <input type="range" min="2.5" max="6" step="0.25" value="4" class="calc-slider" oninput="updateFIRE()" id="fire-swr">
+          <div class="calc-range-labels"><span>2.5% (Conservative)</span><span>6% (Aggressive)</span></div>
+        </div>
+        <div class="calc-field">
+          <div class="calc-label-row"><label>Current Investments</label><span class="calc-val-display" id="fire-current-display">₹5,00,000</span></div>
+          <input type="range" min="0" max="50000000" step="100000" value="500000" class="calc-slider" oninput="updateFIRE()" id="fire-current">
+          <div class="calc-range-labels"><span>₹0</span><span>₹5 Cr</span></div>
+        </div>
+        <div class="calc-field">
+          <div class="calc-label-row"><label>Monthly Investment</label><span class="calc-val-display" id="fire-monthly-display">₹25,000</span></div>
+          <input type="range" min="1000" max="500000" step="1000" value="25000" class="calc-slider" oninput="updateFIRE()" id="fire-monthly">
+          <div class="calc-range-labels"><span>₹1,000</span><span>₹5 Lakh</span></div>
+        </div>
+        <div class="calc-field">
+          <div class="calc-label-row"><label>Expected Annual Return</label><span class="calc-val-display" id="fire-roi-display">12%</span></div>
+          <input type="range" min="5" max="20" step="0.5" value="12" class="calc-slider" oninput="updateFIRE()" id="fire-roi">
+          <div class="calc-range-labels"><span>5%</span><span>20%</span></div>
+        </div>
+        <a href="https://wa.link/rwwzd4" target="_blank" class="calc-cta-btn">Make Your FIRE Plan Real — Talk to Manoj →</a>
+        <button onclick="downloadCalcPDF()" class="pdf-btn" style="display:block;width:100%;margin-top:10px;background:transparent;border:1px solid rgba(201,168,76,.4);color:var(--gold);padding:12px;border-radius:12px;font-size:13px;font-weight:600;cursor:pointer;font-family:'Outfit',sans-serif;">📄 Download This Result as PDF</button>
+      </div>
+      <div class="calc-right">
+        <div class="calc-result-card" style="gap:16px;">
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
+            <div style="background:#0a1628;border-radius:12px;padding:16px;text-align:center;">
+              <div style="font-size:11px;color:rgba(255,255,255,.5);margin-bottom:6px;">Your FIRE Number</div>
+              <div id="fire-number" style="font-family:'Cormorant Garamond',serif;font-size:24px;color:#fff;">₹0</div>
+            </div>
+            <div style="background:#0a1628;border-radius:12px;padding:16px;text-align:center;">
+              <div style="font-size:11px;color:rgba(255,255,255,.5);margin-bottom:6px;">Years to Reach It</div>
+              <div id="fire-years" style="font-family:'Cormorant Garamond',serif;font-size:24px;color:var(--gold);">0</div>
+            </div>
+          </div>
+          <div style="background:rgba(201,168,76,.08);border:1px solid rgba(201,168,76,.25);border-radius:12px;padding:16px;">
+            <div style="font-size:12px;color:rgba(255,255,255,.7);line-height:1.6;">Based on the 25x-annual-expenses rule (inverse of your safe withdrawal rate). This is a starting estimate — your actual retirement expenses, healthcare costs, and inflation over time may require adjusting this number upward.</div>
+          </div>
+          <div id="fire-lean-fat" style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;">
+            <div style="text-align:center;padding:10px;background:#0a1628;border-radius:8px;">
+              <div style="font-size:10px;color:rgba(255,255,255,.5);">Lean FIRE</div>
+              <div id="fire-lean" style="font-size:13px;color:#fff;font-weight:600;">₹0</div>
+            </div>
+            <div style="text-align:center;padding:10px;background:rgba(201,168,76,.1);border-radius:8px;">
+              <div style="font-size:10px;color:rgba(255,255,255,.5);">Regular FIRE</div>
+              <div id="fire-regular" style="font-size:13px;color:var(--gold);font-weight:700;">₹0</div>
+            </div>
+            <div style="text-align:center;padding:10px;background:#0a1628;border-radius:8px;">
+              <div style="font-size:10px;color:rgba(255,255,255,.5);">Fat FIRE</div>
+              <div id="fire-fat" style="font-size:13px;color:#fff;font-weight:600;">₹0</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ─ GOAL PLANNER ─ -->
+  <div class="calc-panel" id="calc-runway">
+    <div class="calc-box">
+      <div class="calc-left">
+        <h2 class="calc-title">Financial Goal Planner</h2>
+        <p class="calc-desc">Enter your income and expenses to see your real savings rate — then find out how many years it takes to hit a specific target amount.</p>
+        <div class="calc-field">
+          <div class="calc-label-row"><label>Monthly Take-Home Income</label><span class="calc-val-display" id="rw-income-display">₹80,000</span></div>
+          <input type="range" min="15000" max="2000000" step="5000" value="80000" class="calc-slider" oninput="updateRunway()" id="rw-income">
+          <div class="calc-range-labels"><span>₹15K</span><span>₹20 Lakh</span></div>
+        </div>
+        <div class="calc-field">
+          <div class="calc-label-row"><label>Monthly Expenses</label><span class="calc-val-display" id="rw-expense-display">₹50,000</span></div>
+          <input type="range" min="5000" max="2000000" step="5000" value="50000" class="calc-slider" oninput="updateRunway()" id="rw-expense">
+          <div class="calc-range-labels"><span>₹5K</span><span>₹20 Lakh</span></div>
+        </div>
+        <div class="calc-field">
+          <div class="calc-label-row"><label>Target Amount You Want to Reach</label><span class="calc-val-display" id="rw-target-display">₹50,00,000</span></div>
+          <input type="range" min="100000" max="100000000" step="100000" value="5000000" class="calc-slider" oninput="updateRunway()" id="rw-target">
+          <div class="calc-range-labels"><span>₹1 Lakh</span><span>₹10 Cr</span></div>
+        </div>
+        <div class="calc-field">
+          <div class="calc-label-row"><label>Current Savings Already Invested</label><span class="calc-val-display" id="rw-current-display">₹1,00,000</span></div>
+          <input type="range" min="0" max="20000000" step="50000" value="100000" class="calc-slider" oninput="updateRunway()" id="rw-current">
+          <div class="calc-range-labels"><span>₹0</span><span>₹2 Cr</span></div>
+        </div>
+        <div class="calc-field">
+          <div class="calc-label-row"><label>Expected Annual Return</label><span class="calc-val-display" id="rw-roi-display">12%</span></div>
+          <input type="range" min="4" max="20" step="0.5" value="12" class="calc-slider" oninput="updateRunway()" id="rw-roi">
+          <div class="calc-range-labels"><span>4%</span><span>20%</span></div>
+        </div>
+        <a href="https://wa.link/rwwzd4" target="_blank" class="calc-cta-btn">Build Your Real Plan — Talk to Manoj →</a>
+        <button onclick="downloadCalcPDF()" class="pdf-btn" style="display:block;width:100%;margin-top:10px;background:transparent;border:1px solid rgba(201,168,76,.4);color:var(--gold);padding:12px;border-radius:12px;font-size:13px;font-weight:600;cursor:pointer;font-family:'Outfit',sans-serif;">📄 Download This Result as PDF</button>
+      </div>
+      <div class="calc-right">
+        <div class="calc-result-card" style="gap:16px;">
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
+            <div style="background:#0a1628;border-radius:12px;padding:16px;text-align:center;">
+              <div style="font-size:11px;color:rgba(255,255,255,.5);margin-bottom:6px;">Monthly Savings</div>
+              <div id="rw-savings" style="font-family:'Cormorant Garamond',serif;font-size:22px;color:#fff;">₹0</div>
+            </div>
+            <div style="background:#0a1628;border-radius:12px;padding:16px;text-align:center;">
+              <div style="font-size:11px;color:rgba(255,255,255,.5);margin-bottom:6px;">Savings Rate</div>
+              <div id="rw-rate" style="font-family:'Cormorant Garamond',serif;font-size:22px;color:var(--gold);">0%</div>
+            </div>
+          </div>
+          <div id="rw-warning" style="display:none;background:rgba(220,80,80,.1);border:1px solid rgba(220,80,80,.3);border-radius:12px;padding:14px;font-size:12px;color:#e08080;line-height:1.6;"></div>
+          <div style="background:rgba(201,168,76,.08);border:1px solid rgba(201,168,76,.25);border-radius:12px;padding:20px;text-align:center;">
+            <div style="font-size:11px;color:rgba(255,255,255,.5);margin-bottom:8px;">Years to Reach Your Target</div>
+            <div id="rw-years" style="font-family:'Cormorant Garamond',serif;font-size:32px;color:var(--gold);font-weight:700;">—</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ─ HOME LOAN VS CASH — WHICH ACTUALLY WINS ─ -->
+  <div class="calc-panel" id="calc-homeloan">
+    <div class="calc-box">
+      <div class="calc-left">
+        <h2 class="calc-title">Home Loan vs Cash — Which Actually Wins</h2>
+        <p class="calc-desc">If you have the cash to buy outright, is it actually better to take a loan and invest the money instead? Real math, including how inflation quietly reduces your real EMI burden over time.</p>
+        <div class="calc-field">
+          <div class="calc-label-row"><label>Home Price</label><span class="calc-val-display" id="homeloan-price-display">₹0</span></div>
+          <input type="range" min="1000000" max="100000000" step="500000" value="8000000" class="calc-slider" oninput="updateHomeloanCompare()" id="homeloan-price">
+          <div class="calc-range-labels"><span>₹10 Lakh</span><span>₹10 Cr</span></div>
+        </div>
+        <div class="calc-field">
+          <div class="calc-label-row"><label>Down Payment %</label><span class="calc-val-display" id="homeloan-down-display">20%</span></div>
+          <input type="range" min="0" max="80" step="5" value="20" class="calc-slider" oninput="updateHomeloanCompare()" id="homeloan-down">
+          <div class="calc-range-labels"><span>0%</span><span>80%</span></div>
+        </div>
+        <div class="calc-field">
+          <div class="calc-label-row"><label>Loan Interest Rate</label><span class="calc-val-display" id="homeloan-rate-display">8.5%</span></div>
+          <input type="range" min="6" max="15" step="0.1" value="8.5" class="calc-slider" oninput="updateHomeloanCompare()" id="homeloan-rate">
+          <div class="calc-range-labels"><span>6%</span><span>15%</span></div>
+        </div>
+        <div class="calc-field">
+          <div class="calc-label-row"><label>Loan Tenure</label><span class="calc-val-display" id="homeloan-tenure-display">20 Years</span></div>
+          <input type="range" min="5" max="30" step="1" value="20" class="calc-slider" oninput="updateHomeloanCompare()" id="homeloan-tenure">
+          <div class="calc-range-labels"><span>5 Yrs</span><span>30 Yrs</span></div>
+        </div>
+        <div class="calc-field">
+          <div class="calc-label-row"><label>Expected Investment Return</label><span class="calc-val-display" id="homeloan-roi-display">12%</span></div>
+          <input type="range" min="4" max="20" step="0.5" value="12" class="calc-slider" oninput="updateHomeloanCompare()" id="homeloan-roi">
+          <div class="calc-range-labels"><span>4%</span><span>20%</span></div>
+        </div>
+        <div class="calc-field">
+          <div class="calc-label-row"><label>Expected Inflation</label><span class="calc-val-display" id="homeloan-inf-display">6%</span></div>
+          <input type="range" min="2" max="10" step="0.5" value="6" class="calc-slider" oninput="updateHomeloanCompare()" id="homeloan-inf">
+          <div class="calc-range-labels"><span>2%</span><span>10%</span></div>
+        </div>
+        <a href="https://wa.link/rwwzd4" target="_blank" class="calc-cta-btn">Get the Real Answer for You — Talk to Manoj →</a>
+        <button onclick="downloadCalcPDF()" class="pdf-btn" style="display:block;width:100%;margin-top:10px;background:transparent;border:1px solid rgba(201,168,76,.4);color:var(--gold);padding:12px;border-radius:12px;font-size:13px;font-weight:600;cursor:pointer;font-family:'Outfit',sans-serif;">📄 Download This Result as PDF</button>
+      </div>
+      <div class="calc-right">
+        <div class="calc-result-card" style="gap:14px;">
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
+            <div style="background:#0a1628;border-radius:12px;padding:16px;text-align:center;">
+              <div style="font-size:11px;color:rgba(255,255,255,.5);margin-bottom:6px;">Pay Cash, SIP the EMI</div>
+              <div id="homeloan-cash-result" style="font-family:'Cormorant Garamond',serif;font-size:20px;color:#fff;">₹0</div>
+            </div>
+            <div style="background:#0a1628;border-radius:12px;padding:16px;text-align:center;">
+              <div style="font-size:11px;color:rgba(255,255,255,.5);margin-bottom:6px;">Take Loan, Invest Lumpsum</div>
+              <div id="homeloan-loan-result" style="font-family:'Cormorant Garamond',serif;font-size:20px;color:#fff;">₹0</div>
+            </div>
+          </div>
+          <div id="homeloan-verdict" style="background:rgba(201,168,76,.1);border:1px solid rgba(201,168,76,.3);border-radius:12px;padding:16px;text-align:center;font-size:13px;color:#fff;font-weight:600;"></div>
+          <div style="border-top:1px dashed rgba(255,255,255,.15);padding-top:14px;">
+            <div style="font-size:11px;color:rgba(255,255,255,.5);margin-bottom:10px;">How Inflation Actually Affects Your EMI Burden</div>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
+              <div style="text-align:center;">
+                <div style="font-size:10px;color:rgba(255,255,255,.45);">Total EMI Paid (Nominal)</div>
+                <div id="homeloan-nominal-emi" style="font-size:14px;color:#fff;font-weight:600;">₹0</div>
+              </div>
+              <div style="text-align:center;">
+                <div style="font-size:10px;color:rgba(255,255,255,.45);">Real Cost (Today's Money)</div>
+                <div id="homeloan-real-emi" style="font-size:14px;color:#3f8f5f;font-weight:600;">₹0</div>
+              </div>
+            </div>
+            <div id="homeloan-inflation-note" style="font-size:11px;color:rgba(255,255,255,.5);margin-top:10px;text-align:center;"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ─ CAR LOAN VS CASH — WHICH ACTUALLY WINS ─ -->
+  <div class="calc-panel" id="calc-carloan">
+    <div class="calc-box">
+      <div class="calc-left">
+        <h2 class="calc-title">Car Loan vs Cash — Which Actually Wins</h2>
+        <p class="calc-desc">If you have the cash to buy outright, is it actually better to take a loan and invest the money instead? Real math, including how inflation quietly reduces your real EMI burden over time.</p>
+        <div class="calc-field">
+          <div class="calc-label-row"><label>Car Price</label><span class="calc-val-display" id="carloan-price-display">₹0</span></div>
+          <input type="range" min="300000" max="10000000" step="50000" value="1000000" class="calc-slider" oninput="updateCarloanCompare()" id="carloan-price">
+          <div class="calc-range-labels"><span>₹3 Lakh</span><span>₹1 Cr</span></div>
+        </div>
+        <div class="calc-field">
+          <div class="calc-label-row"><label>Down Payment %</label><span class="calc-val-display" id="carloan-down-display">20%</span></div>
+          <input type="range" min="0" max="80" step="5" value="20" class="calc-slider" oninput="updateCarloanCompare()" id="carloan-down">
+          <div class="calc-range-labels"><span>0%</span><span>80%</span></div>
+        </div>
+        <div class="calc-field">
+          <div class="calc-label-row"><label>Loan Interest Rate</label><span class="calc-val-display" id="carloan-rate-display">9.5%</span></div>
+          <input type="range" min="8" max="16" step="0.1" value="9.5" class="calc-slider" oninput="updateCarloanCompare()" id="carloan-rate">
+          <div class="calc-range-labels"><span>8%</span><span>16%</span></div>
+        </div>
+        <div class="calc-field">
+          <div class="calc-label-row"><label>Loan Tenure</label><span class="calc-val-display" id="carloan-tenure-display">5 Years</span></div>
+          <input type="range" min="1" max="8" step="1" value="5" class="calc-slider" oninput="updateCarloanCompare()" id="carloan-tenure">
+          <div class="calc-range-labels"><span>1 Yrs</span><span>8 Yrs</span></div>
+        </div>
+        <div class="calc-field">
+          <div class="calc-label-row"><label>Expected Investment Return</label><span class="calc-val-display" id="carloan-roi-display">12%</span></div>
+          <input type="range" min="4" max="20" step="0.5" value="12" class="calc-slider" oninput="updateCarloanCompare()" id="carloan-roi">
+          <div class="calc-range-labels"><span>4%</span><span>20%</span></div>
+        </div>
+        <div class="calc-field">
+          <div class="calc-label-row"><label>Expected Inflation</label><span class="calc-val-display" id="carloan-inf-display">6%</span></div>
+          <input type="range" min="2" max="10" step="0.5" value="6" class="calc-slider" oninput="updateCarloanCompare()" id="carloan-inf">
+          <div class="calc-range-labels"><span>2%</span><span>10%</span></div>
+        </div>
+        <a href="https://wa.link/rwwzd4" target="_blank" class="calc-cta-btn">Get the Real Answer for You — Talk to Manoj →</a>
+        <button onclick="downloadCalcPDF()" class="pdf-btn" style="display:block;width:100%;margin-top:10px;background:transparent;border:1px solid rgba(201,168,76,.4);color:var(--gold);padding:12px;border-radius:12px;font-size:13px;font-weight:600;cursor:pointer;font-family:'Outfit',sans-serif;">📄 Download This Result as PDF</button>
+      </div>
+      <div class="calc-right">
+        <div class="calc-result-card" style="gap:14px;">
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
+            <div style="background:#0a1628;border-radius:12px;padding:16px;text-align:center;">
+              <div style="font-size:11px;color:rgba(255,255,255,.5);margin-bottom:6px;">Pay Cash, SIP the EMI</div>
+              <div id="carloan-cash-result" style="font-family:'Cormorant Garamond',serif;font-size:20px;color:#fff;">₹0</div>
+            </div>
+            <div style="background:#0a1628;border-radius:12px;padding:16px;text-align:center;">
+              <div style="font-size:11px;color:rgba(255,255,255,.5);margin-bottom:6px;">Take Loan, Invest Lumpsum</div>
+              <div id="carloan-loan-result" style="font-family:'Cormorant Garamond',serif;font-size:20px;color:#fff;">₹0</div>
+            </div>
+          </div>
+          <div id="carloan-verdict" style="background:rgba(201,168,76,.1);border:1px solid rgba(201,168,76,.3);border-radius:12px;padding:16px;text-align:center;font-size:13px;color:#fff;font-weight:600;"></div>
+          <div style="border-top:1px dashed rgba(255,255,255,.15);padding-top:14px;">
+            <div style="font-size:11px;color:rgba(255,255,255,.5);margin-bottom:10px;">How Inflation Actually Affects Your EMI Burden</div>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
+              <div style="text-align:center;">
+                <div style="font-size:10px;color:rgba(255,255,255,.45);">Total EMI Paid (Nominal)</div>
+                <div id="carloan-nominal-emi" style="font-size:14px;color:#fff;font-weight:600;">₹0</div>
+              </div>
+              <div style="text-align:center;">
+                <div style="font-size:10px;color:rgba(255,255,255,.45);">Real Cost (Today's Money)</div>
+                <div id="carloan-real-emi" style="font-size:14px;color:#3f8f5f;font-weight:600;">₹0</div>
+              </div>
+            </div>
+            <div id="carloan-inflation-note" style="font-size:11px;color:rgba(255,255,255,.5);margin-top:10px;text-align:center;"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ─ RENT VS BUY ─ -->
+  <div class="calc-panel" id="calc-rentbuy">
+    <div class="calc-box">
+      <div class="calc-left">
+        <h2 class="calc-title">Rent vs Buy Calculator</h2>
+        <p class="calc-desc">Renting and investing the difference vs buying and building equity — see which actually builds more wealth over your specific timeline.</p>
+        <div class="calc-field">
+          <div class="calc-label-row"><label>Home Price if Buying</label><span class="calc-val-display" id="rb-price-display">₹80,00,000</span></div>
+          <input type="range" min="1000000" max="100000000" step="500000" value="8000000" class="calc-slider" oninput="updateRentBuy()" id="rb-price">
+          <div class="calc-range-labels"><span>₹10 Lakh</span><span>₹10 Cr</span></div>
+        </div>
+        <div class="calc-field">
+          <div class="calc-label-row"><label>Current Monthly Rent for Equivalent Home</label><span class="calc-val-display" id="rb-rent-display">₹25,000</span></div>
+          <input type="range" min="3000" max="500000" step="1000" value="25000" class="calc-slider" oninput="updateRentBuy()" id="rb-rent">
+          <div class="calc-range-labels"><span>₹3,000</span><span>₹5 Lakh</span></div>
+        </div>
+        <div class="calc-field">
+          <div class="calc-label-row"><label>Loan Interest Rate (if Buying)</label><span class="calc-val-display" id="rb-rate-display">8.5%</span></div>
+          <input type="range" min="6" max="14" step="0.1" value="8.5" class="calc-slider" oninput="updateRentBuy()" id="rb-rate">
+          <div class="calc-range-labels"><span>6%</span><span>14%</span></div>
+        </div>
+        <div class="calc-field">
+          <div class="calc-label-row"><label>Time Horizon</label><span class="calc-val-display" id="rb-years-display">15 Years</span></div>
+          <input type="range" min="3" max="30" step="1" value="15" class="calc-slider" oninput="updateRentBuy()" id="rb-years">
+          <div class="calc-range-labels"><span>3 Yrs</span><span>30 Yrs</span></div>
+        </div>
+        <div class="calc-field">
+          <div class="calc-label-row"><label>Expected Home Appreciation</label><span class="calc-val-display" id="rb-appr-display">6%</span></div>
+          <input type="range" min="0" max="15" step="0.5" value="6" class="calc-slider" oninput="updateRentBuy()" id="rb-appr">
+          <div class="calc-range-labels"><span>0%</span><span>15%</span></div>
+        </div>
+        <div class="calc-field">
+          <div class="calc-label-row"><label>Expected Investment Return (if Renting)</label><span class="calc-val-display" id="rb-roi-display">12%</span></div>
+          <input type="range" min="4" max="20" step="0.5" value="12" class="calc-slider" oninput="updateRentBuy()" id="rb-roi">
+          <div class="calc-range-labels"><span>4%</span><span>20%</span></div>
+        </div>
+        <div class="calc-field">
+          <div class="calc-label-row"><label>Annual Rent Increase</label><span class="calc-val-display" id="rb-rentinc-display">5%</span></div>
+          <input type="range" min="0" max="12" step="0.5" value="5" class="calc-slider" oninput="updateRentBuy()" id="rb-rentinc">
+          <div class="calc-range-labels"><span>0%</span><span>12%</span></div>
+        </div>
+        <a href="https://wa.link/rwwzd4" target="_blank" class="calc-cta-btn">Talk Through Your Decision — Talk to Manoj →</a>
+        <button onclick="downloadCalcPDF()" class="pdf-btn" style="display:block;width:100%;margin-top:10px;background:transparent;border:1px solid rgba(201,168,76,.4);color:var(--gold);padding:12px;border-radius:12px;font-size:13px;font-weight:600;cursor:pointer;font-family:'Outfit',sans-serif;">📄 Download This Result as PDF</button>
+      </div>
+      <div class="calc-right">
+        <div class="calc-result-card" style="gap:14px;">
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
+            <div style="background:#0a1628;border-radius:12px;padding:16px;text-align:center;">
+              <div style="font-size:11px;color:rgba(255,255,255,.5);margin-bottom:6px;">Net Worth if Renting</div>
+              <div id="rb-rent-result" style="font-family:'Cormorant Garamond',serif;font-size:20px;color:#fff;">₹0</div>
+            </div>
+            <div style="background:#0a1628;border-radius:12px;padding:16px;text-align:center;">
+              <div style="font-size:11px;color:rgba(255,255,255,.5);margin-bottom:6px;">Net Worth if Buying</div>
+              <div id="rb-buy-result" style="font-family:'Cormorant Garamond',serif;font-size:20px;color:#fff;">₹0</div>
+            </div>
+          </div>
+          <div id="rb-verdict" style="background:rgba(201,168,76,.1);border:1px solid rgba(201,168,76,.3);border-radius:12px;padding:16px;text-align:center;font-size:13px;color:#fff;font-weight:600;"></div>
+          <p style="font-size:11px;color:rgba(255,255,255,.45);line-height:1.6;margin:0;">Buying scenario assumes a 20% down payment invested nowhere (it's in the home), remaining as loan, and home equity plus appreciation as your net worth. Renting scenario assumes the down payment plus the monthly EMI-minus-rent difference gets invested. Excludes property tax, maintenance, and brokerage — real decisions should factor these in too.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ─ FD VS MUTUAL FUND ─ -->
+  <div class="calc-panel" id="calc-fdmf">
+    <div class="calc-box">
+      <div class="calc-left">
+        <h2 class="calc-title">FD vs Mutual Fund Calculator</h2>
+        <p class="calc-desc">Guaranteed but taxed heavily, or market-linked with more favorable tax treatment — see the real after-tax numbers side by side.</p>
+        <div class="calc-field">
+          <div class="calc-label-row"><label>Amount to Invest</label><span class="calc-val-display" id="fdmf-amt-display">₹5,00,000</span></div>
+          <input type="range" min="10000" max="50000000" step="10000" value="500000" class="calc-slider" oninput="updateFDMF()" id="fdmf-amt">
+          <div class="calc-range-labels"><span>₹10,000</span><span>₹5 Cr</span></div>
+        </div>
+        <div class="calc-field">
+          <div class="calc-label-row"><label>FD Interest Rate</label><span class="calc-val-display" id="fdmf-fdrate-display">7%</span></div>
+          <input type="range" min="4" max="10" step="0.1" value="7" class="calc-slider" oninput="updateFDMF()" id="fdmf-fdrate">
+          <div class="calc-range-labels"><span>4%</span><span>10%</span></div>
+        </div>
+        <div class="calc-field">
+          <div class="calc-label-row"><label>Expected Mutual Fund Return</label><span class="calc-val-display" id="fdmf-mfrate-display">12%</span></div>
+          <input type="range" min="4" max="20" step="0.5" value="12" class="calc-slider" oninput="updateFDMF()" id="fdmf-mfrate">
+          <div class="calc-range-labels"><span>4%</span><span>20%</span></div>
+        </div>
+        <div class="calc-field">
+          <div class="calc-label-row"><label>Investment Duration</label><span class="calc-val-display" id="fdmf-years-display">5 Years</span></div>
+          <input type="range" min="1" max="30" step="1" value="5" class="calc-slider" oninput="updateFDMF()" id="fdmf-years">
+          <div class="calc-range-labels"><span>1 Yr</span><span>30 Yrs</span></div>
+        </div>
+        <div class="calc-field">
+          <div class="calc-label-row"><label>Your Income Tax Slab</label><span class="calc-val-display" id="fdmf-slab-display">30%</span></div>
+          <input type="range" min="0" max="30" step="5" value="30" class="calc-slider" oninput="updateFDMF()" id="fdmf-slab">
+          <div class="calc-range-labels"><span>0%</span><span>30%</span></div>
+        </div>
+        <a href="https://wa.link/rwwzd4" target="_blank" class="calc-cta-btn">Plan Your Allocation — Talk to Manoj →</a>
+        <button onclick="downloadCalcPDF()" class="pdf-btn" style="display:block;width:100%;margin-top:10px;background:transparent;border:1px solid rgba(201,168,76,.4);color:var(--gold);padding:12px;border-radius:12px;font-size:13px;font-weight:600;cursor:pointer;font-family:'Outfit',sans-serif;">📄 Download This Result as PDF</button>
+      </div>
+      <div class="calc-right">
+        <div class="calc-result-card" style="gap:14px;">
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
+            <div style="background:#0a1628;border-radius:12px;padding:16px;text-align:center;">
+              <div style="font-size:11px;color:rgba(255,255,255,.5);margin-bottom:6px;">FD — After Tax</div>
+              <div id="fdmf-fd-result" style="font-family:'Cormorant Garamond',serif;font-size:20px;color:#fff;">₹0</div>
+            </div>
+            <div style="background:#0a1628;border-radius:12px;padding:16px;text-align:center;">
+              <div style="font-size:11px;color:rgba(255,255,255,.5);margin-bottom:6px;">Mutual Fund — After Tax</div>
+              <div id="fdmf-mf-result" style="font-family:'Cormorant Garamond',serif;font-size:20px;color:#fff;">₹0</div>
+            </div>
+          </div>
+          <div id="fdmf-verdict" style="background:rgba(201,168,76,.1);border:1px solid rgba(201,168,76,.3);border-radius:12px;padding:16px;text-align:center;font-size:13px;color:#fff;font-weight:600;"></div>
+          <p style="font-size:11px;color:rgba(255,255,255,.45);line-height:1.6;margin:0;">FD interest is taxed annually at your slab rate every year. Mutual fund LTCG (24+ month holding) is taxed at 12.5% only on gains above ₹1.25 lakh, and only when you actually sell — a real, meaningful structural difference, not just a return-rate comparison. Mutual funds carry market risk that FDs don't.</p>
         </div>
       </div>
     </div>
@@ -755,6 +1234,11 @@ function goTo(id,idx) {
 setTimeout(()=>{ initCarousel('homeCarousel'); initCarousel('aboutCarousel'); },200);
 
 // ── CALCULATOR TAB SWITCH ──
+
+function downloadCalcPDF() {
+  window.print();
+}
+
 function switchCalc(id, btn) {
   document.querySelectorAll('.calc-tab').forEach(t => t.classList.remove('active'));
   document.querySelectorAll('.calc-panel').forEach(p => p.classList.remove('active'));
@@ -766,7 +1250,395 @@ function switchCalc(id, btn) {
   else if (id === 'lumpsum') { updateLumpsum(); }
   else if (id === 'retirement') { updateRetirement(); }
   else if (id === 'house') { updateHouse(); }
+  else if (id === 'fire') { updateFIRE(); }
+  else if (id === 'runway') { updateRunway(); }
+  else if (id === 'homeloan') { updateHomeloanCompare(); }
+  else if (id === 'carloan') { updateCarloanCompare(); }
+  else if (id === 'rentbuy') { updateRentBuy(); }
+  else if (id === 'fdmf') { updateFDMF(); }
 }
+
+function updateSipSWP() {
+  var corpus = parseFloat(document.getElementById('sip-swp-corpus-slider').value);
+  var wd = parseFloat(document.getElementById('sip-swp-wd-slider').value);
+  var roi = parseFloat(document.getElementById('sip-swp-roi-slider').value);
+  var step = parseFloat(document.getElementById('sip-swp-step-slider').value);
+
+  document.getElementById('sip-swp-corpus-display').textContent = fmtCr(corpus);
+  document.getElementById('sip-swp-wd-display').textContent = fmtCr(wd);
+  document.getElementById('sip-swp-roi-display').textContent = roi.toFixed(1) + '%';
+  document.getElementById('sip-swp-step-display').textContent = step.toFixed(1) + '%';
+
+  var r = roi/12/100;
+  var balance = corpus;
+  var withdrawal = wd;
+  var months = 0;
+  var maxMonths = 720; // 60 years cap
+  while (balance > 0 && months < maxMonths) {
+    balance = balance*(1+r) - withdrawal;
+    months++;
+    if (step > 0 && months % 12 === 0) {
+      withdrawal *= (1 + step/100);
+    }
+  }
+
+  var resultEl = document.getElementById('sip-swp-result');
+  var subEl = document.getElementById('sip-swp-subresult');
+  if (months >= maxMonths) {
+    resultEl.textContent = '60+ years';
+    subEl.textContent = 'Your corpus outlasts a 60-year withdrawal period at this rate — genuinely sustainable';
+  } else {
+    var years = Math.floor(months/12);
+    var remMonths = months % 12;
+    resultEl.textContent = years + ' yrs' + (remMonths > 0 ? ' ' + remMonths + ' mo' : '');
+    subEl.textContent = 'Corpus depletes after this period at your chosen withdrawal rate';
+  }
+}
+
+function feedSipSWP(corpusValue) {
+  var slider = document.getElementById('sip-swp-corpus-slider');
+  if (slider) {
+    slider.value = Math.min(Math.max(corpusValue, slider.min), slider.max);
+    updateSipSWP();
+  }
+}
+
+function updateLumpSWP() {
+  var corpus = parseFloat(document.getElementById('lump-swp-corpus-slider').value);
+  var wd = parseFloat(document.getElementById('lump-swp-wd-slider').value);
+  var roi = parseFloat(document.getElementById('lump-swp-roi-slider').value);
+  var step = parseFloat(document.getElementById('lump-swp-step-slider').value);
+
+  document.getElementById('lump-swp-corpus-display').textContent = fmtCr(corpus);
+  document.getElementById('lump-swp-wd-display').textContent = fmtCr(wd);
+  document.getElementById('lump-swp-roi-display').textContent = roi.toFixed(1) + '%';
+  document.getElementById('lump-swp-step-display').textContent = step.toFixed(1) + '%';
+
+  var r = roi/12/100;
+  var balance = corpus;
+  var withdrawal = wd;
+  var months = 0;
+  var maxMonths = 720; // 60 years cap
+  while (balance > 0 && months < maxMonths) {
+    balance = balance*(1+r) - withdrawal;
+    months++;
+    if (step > 0 && months % 12 === 0) {
+      withdrawal *= (1 + step/100);
+    }
+  }
+
+  var resultEl = document.getElementById('lump-swp-result');
+  var subEl = document.getElementById('lump-swp-subresult');
+  if (months >= maxMonths) {
+    resultEl.textContent = '60+ years';
+    subEl.textContent = 'Your corpus outlasts a 60-year withdrawal period at this rate — genuinely sustainable';
+  } else {
+    var years = Math.floor(months/12);
+    var remMonths = months % 12;
+    resultEl.textContent = years + ' yrs' + (remMonths > 0 ? ' ' + remMonths + ' mo' : '');
+    subEl.textContent = 'Corpus depletes after this period at your chosen withdrawal rate';
+  }
+}
+
+function feedLumpSWP(corpusValue) {
+  var slider = document.getElementById('lump-swp-corpus-slider');
+  if (slider) {
+    slider.value = Math.min(Math.max(corpusValue, slider.min), slider.max);
+    updateLumpSWP();
+  }
+}
+
+function updateFIRE() {
+  var exp = parseFloat(document.getElementById('fire-exp').value);
+  var swr = parseFloat(document.getElementById('fire-swr').value);
+  var current = parseFloat(document.getElementById('fire-current').value);
+  var monthly = parseFloat(document.getElementById('fire-monthly').value);
+  var roi = parseFloat(document.getElementById('fire-roi').value);
+
+  document.getElementById('fire-exp-display').textContent = fmtCr(exp);
+  document.getElementById('fire-swr-display').textContent = swr.toFixed(2) + '%';
+  document.getElementById('fire-current-display').textContent = fmtCr(current);
+  document.getElementById('fire-monthly-display').textContent = fmtCr(monthly);
+  document.getElementById('fire-roi-display').textContent = roi.toFixed(1) + '%';
+
+  var annualExpense = exp * 12;
+  var fireNumber = annualExpense / (swr/100);
+  var leanNumber = fireNumber * 0.7;
+  var fatNumber = fireNumber * 1.5;
+
+  document.getElementById('fire-number').textContent = fmtCr(fireNumber);
+  document.getElementById('fire-lean').textContent = fmtCr(leanNumber);
+  document.getElementById('fire-regular').textContent = fmtCr(fireNumber);
+  document.getElementById('fire-fat').textContent = fmtCr(fatNumber);
+
+  // Years to reach fireNumber via current + monthly SIP growing at roi
+  var r = roi/12/100;
+  var balance = current;
+  var months = 0;
+  var maxMonths = 720;
+  while (balance < fireNumber && months < maxMonths) {
+    balance = balance*(1+r) + monthly;
+    months++;
+  }
+  var yearsText = months >= maxMonths ? '60+' : (months/12).toFixed(1);
+  document.getElementById('fire-years').textContent = yearsText;
+}
+
+function updateRunway() {
+  var income = parseFloat(document.getElementById('rw-income').value);
+  var expense = parseFloat(document.getElementById('rw-expense').value);
+  var target = parseFloat(document.getElementById('rw-target').value);
+  var current = parseFloat(document.getElementById('rw-current').value);
+  var roi = parseFloat(document.getElementById('rw-roi').value);
+
+  document.getElementById('rw-income-display').textContent = fmtCr(income);
+  document.getElementById('rw-expense-display').textContent = fmtCr(expense);
+  document.getElementById('rw-target-display').textContent = fmtCr(target);
+  document.getElementById('rw-current-display').textContent = fmtCr(current);
+  document.getElementById('rw-roi-display').textContent = roi.toFixed(1) + '%';
+
+  var savings = income - expense;
+  var rate = income > 0 ? (savings/income*100) : 0;
+  document.getElementById('rw-savings').textContent = fmtCr(Math.max(savings,0)) + '/mo';
+  document.getElementById('rw-rate').textContent = rate.toFixed(1) + '%';
+
+  var warningEl = document.getElementById('rw-warning');
+  var yearsEl = document.getElementById('rw-years');
+
+  if (savings <= 0) {
+    warningEl.style.display = 'block';
+    warningEl.textContent = 'Your expenses meet or exceed your income — there\'s no surplus to invest toward this goal yet. Reducing expenses or increasing income is the real first step.';
+    yearsEl.textContent = '—';
+    return;
+  } else {
+    warningEl.style.display = 'none';
+  }
+
+  var r = roi/12/100;
+  var balance = current;
+  var months = 0;
+  var maxMonths = 720;
+  while (balance < target && months < maxMonths) {
+    balance = balance*(1+r) + savings;
+    months++;
+  }
+  yearsEl.textContent = months >= maxMonths ? '60+ years' : (months/12).toFixed(1) + ' years';
+}
+
+function calcEMI_homeloan(p, annualRate, years) {
+  var r = annualRate/12/100;
+  var n = years*12;
+  return r === 0 ? p/n : p*r*Math.pow(1+r,n)/(Math.pow(1+r,n)-1);
+}
+
+function updateHomeloanCompare() {
+  var price = parseFloat(document.getElementById('homeloan-price').value);
+  var downPct = parseFloat(document.getElementById('homeloan-down').value);
+  var rate = parseFloat(document.getElementById('homeloan-rate').value);
+  var tenure = parseFloat(document.getElementById('homeloan-tenure').value);
+  var roi = parseFloat(document.getElementById('homeloan-roi').value);
+  var inflation = parseFloat(document.getElementById('homeloan-inf').value);
+
+  document.getElementById('homeloan-price-display').textContent = fmtCr(price);
+  document.getElementById('homeloan-down-display').textContent = downPct + '%';
+  document.getElementById('homeloan-rate-display').textContent = rate.toFixed(1) + '%';
+  document.getElementById('homeloan-tenure-display').textContent = tenure + ' Years';
+  document.getElementById('homeloan-roi-display').textContent = roi.toFixed(1) + '%';
+  document.getElementById('homeloan-inf-display').textContent = inflation.toFixed(1) + '%';
+
+  var down = price * downPct/100;
+  var loanAmt = price - down;
+  var emi = calcEMI_homeloan(loanAmt, rate, tenure);
+
+  // Option A: Cash purchase, SIP the EMI-equivalent monthly
+  var rMonthly = roi/12/100;
+  var nMonths = tenure*12;
+  var optionA = rMonthly === 0 ? emi*nMonths : emi*(((Math.pow(1+rMonthly,nMonths)-1)/rMonthly))*(1+rMonthly);
+
+  // Option B: Loan, invest the loan-equivalent amount as lumpsum today
+  var optionB = loanAmt * Math.pow(1+roi/100, tenure);
+
+  document.getElementById('homeloan-cash-result').textContent = fmtCr(optionA);
+  document.getElementById('homeloan-loan-result').textContent = fmtCr(optionB);
+
+  var verdictEl = document.getElementById('homeloan-verdict');
+  var diff = optionB - optionA;
+  if (Math.abs(diff) < price*0.01) {
+    verdictEl.textContent = 'Both options land close to each other at these numbers — the decision may come down to your comfort with debt, not pure math.';
+  } else if (diff > 0) {
+    verdictEl.textContent = 'Taking the loan and investing the lumpsum projects to end up ahead by ' + fmtCr(diff) + ' — but this assumes your investment return holds steady, which is never guaranteed the way the loan math is.';
+  } else {
+    verdictEl.textContent = 'Paying cash and SIP-ing the EMI-equivalent projects to end up ahead by ' + fmtCr(-diff) + ' at these numbers.';
+  }
+
+  // Inflation effect on EMI real burden
+  var totalNominal = emi * nMonths;
+  var realTotal = 0;
+  for (var m = 1; m <= nMonths; m++) {
+    realTotal += emi / Math.pow(1+inflation/100, m/12);
+  }
+  document.getElementById('homeloan-nominal-emi').textContent = fmtCr(totalNominal);
+  document.getElementById('homeloan-real-emi').textContent = fmtCr(realTotal);
+  var savingsPct = totalNominal > 0 ? ((1 - realTotal/totalNominal)*100).toFixed(0) : 0;
+  var noteEl = document.getElementById('homeloan-inflation-note');
+  if (savingsPct > 15) {
+    noteEl.textContent = 'Inflation genuinely matters here — your EMI feels ' + savingsPct + '% lighter in today\'s-money terms by the time you finish paying it, since you\'re repaying with progressively cheaper future rupees.';
+  } else {
+    noteEl.textContent = 'At this tenure and inflation rate, the effect is real but modest (' + savingsPct + '%) — not the deciding factor here.';
+  }
+}
+
+function calcEMI_carloan(p, annualRate, years) {
+  var r = annualRate/12/100;
+  var n = years*12;
+  return r === 0 ? p/n : p*r*Math.pow(1+r,n)/(Math.pow(1+r,n)-1);
+}
+
+function updateCarloanCompare() {
+  var price = parseFloat(document.getElementById('carloan-price').value);
+  var downPct = parseFloat(document.getElementById('carloan-down').value);
+  var rate = parseFloat(document.getElementById('carloan-rate').value);
+  var tenure = parseFloat(document.getElementById('carloan-tenure').value);
+  var roi = parseFloat(document.getElementById('carloan-roi').value);
+  var inflation = parseFloat(document.getElementById('carloan-inf').value);
+
+  document.getElementById('carloan-price-display').textContent = fmtCr(price);
+  document.getElementById('carloan-down-display').textContent = downPct + '%';
+  document.getElementById('carloan-rate-display').textContent = rate.toFixed(1) + '%';
+  document.getElementById('carloan-tenure-display').textContent = tenure + ' Years';
+  document.getElementById('carloan-roi-display').textContent = roi.toFixed(1) + '%';
+  document.getElementById('carloan-inf-display').textContent = inflation.toFixed(1) + '%';
+
+  var down = price * downPct/100;
+  var loanAmt = price - down;
+  var emi = calcEMI_carloan(loanAmt, rate, tenure);
+
+  // Option A: Cash purchase, SIP the EMI-equivalent monthly
+  var rMonthly = roi/12/100;
+  var nMonths = tenure*12;
+  var optionA = rMonthly === 0 ? emi*nMonths : emi*(((Math.pow(1+rMonthly,nMonths)-1)/rMonthly))*(1+rMonthly);
+
+  // Option B: Loan, invest the loan-equivalent amount as lumpsum today
+  var optionB = loanAmt * Math.pow(1+roi/100, tenure);
+
+  document.getElementById('carloan-cash-result').textContent = fmtCr(optionA);
+  document.getElementById('carloan-loan-result').textContent = fmtCr(optionB);
+
+  var verdictEl = document.getElementById('carloan-verdict');
+  var diff = optionB - optionA;
+  if (Math.abs(diff) < price*0.01) {
+    verdictEl.textContent = 'Both options land close to each other at these numbers — the decision may come down to your comfort with debt, not pure math.';
+  } else if (diff > 0) {
+    verdictEl.textContent = 'Taking the loan and investing the lumpsum projects to end up ahead by ' + fmtCr(diff) + ' — but this assumes your investment return holds steady, which is never guaranteed the way the loan math is.';
+  } else {
+    verdictEl.textContent = 'Paying cash and SIP-ing the EMI-equivalent projects to end up ahead by ' + fmtCr(-diff) + ' at these numbers.';
+  }
+
+  // Inflation effect on EMI real burden
+  var totalNominal = emi * nMonths;
+  var realTotal = 0;
+  for (var m = 1; m <= nMonths; m++) {
+    realTotal += emi / Math.pow(1+inflation/100, m/12);
+  }
+  document.getElementById('carloan-nominal-emi').textContent = fmtCr(totalNominal);
+  document.getElementById('carloan-real-emi').textContent = fmtCr(realTotal);
+  var savingsPct = totalNominal > 0 ? ((1 - realTotal/totalNominal)*100).toFixed(0) : 0;
+  var noteEl = document.getElementById('carloan-inflation-note');
+  if (savingsPct > 15) {
+    noteEl.textContent = 'Inflation genuinely matters here — your EMI feels ' + savingsPct + '% lighter in today\'s-money terms by the time you finish paying it, since you\'re repaying with progressively cheaper future rupees.';
+  } else {
+    noteEl.textContent = 'At this tenure and inflation rate, the effect is real but modest (' + savingsPct + '%) — not the deciding factor here.';
+  }
+}
+
+function updateRentBuy() {
+  var price = parseFloat(document.getElementById('rb-price').value);
+  var rent = parseFloat(document.getElementById('rb-rent').value);
+  var rate = parseFloat(document.getElementById('rb-rate').value);
+  var years = parseFloat(document.getElementById('rb-years').value);
+  var appr = parseFloat(document.getElementById('rb-appr').value);
+  var roi = parseFloat(document.getElementById('rb-roi').value);
+  var rentInc = parseFloat(document.getElementById('rb-rentinc').value);
+
+  document.getElementById('rb-price-display').textContent = fmtCr(price);
+  document.getElementById('rb-rent-display').textContent = fmtCr(rent);
+  document.getElementById('rb-rate-display').textContent = rate.toFixed(1) + '%';
+  document.getElementById('rb-years-display').textContent = years + ' Years';
+  document.getElementById('rb-appr-display').textContent = appr.toFixed(1) + '%';
+  document.getElementById('rb-roi-display').textContent = roi.toFixed(1) + '%';
+  document.getElementById('rb-rentinc-display').textContent = rentInc.toFixed(1) + '%';
+
+  var down = price * 0.20;
+  var loanAmt = price - down;
+  var r = rate/12/100;
+  var n = years*12;
+  var emi = r===0 ? loanAmt/n : loanAmt*r*Math.pow(1+r,n)/(Math.pow(1+r,n)-1);
+
+  // BUYING: home value at year N (appreciated) minus remaining loan balance (assume tenure=years, so fully paid at year 'years' if years matches loan tenure; here just use full appreciation and assume loan matches horizon)
+  var homeValueAtEnd = price * Math.pow(1+appr/100, years);
+  var buyNetWorth = homeValueAtEnd; // assuming loan fully repaid by 'years' (using years as tenure)
+
+  // RENTING: invest down payment as lumpsum, invest (EMI - rent) monthly if positive, rent grows over time
+  var rMonthly = roi/12/100;
+  var investBalance = down; // lumpsum down payment invested instead
+  var currentRent = rent;
+  for (var m = 1; m <= years*12; m++) {
+    var monthlyDiff = emi - currentRent;
+    investBalance = investBalance*(1+rMonthly) + monthlyDiff;
+    if (m % 12 === 0) { currentRent *= (1 + rentInc/100); }
+  }
+  var rentNetWorth = investBalance;
+
+  document.getElementById('rb-rent-result').textContent = fmtCr(Math.max(rentNetWorth,0));
+  document.getElementById('rb-buy-result').textContent = fmtCr(buyNetWorth);
+
+  var verdictEl = document.getElementById('rb-verdict');
+  var diff = buyNetWorth - rentNetWorth;
+  if (Math.abs(diff) < price*0.03) {
+    verdictEl.textContent = 'These land close to each other — the decision may come down to lifestyle preference and stability, not pure wealth-building math.';
+  } else if (diff > 0) {
+    verdictEl.textContent = 'Buying projects to build more net worth by ' + fmtCr(diff) + ' at these numbers, mainly from home appreciation.';
+  } else {
+    verdictEl.textContent = 'Renting and investing the difference projects to build more net worth by ' + fmtCr(-diff) + ' at these numbers.';
+  }
+}
+
+function updateFDMF() {
+  var amt = parseFloat(document.getElementById('fdmf-amt').value);
+  var fdRate = parseFloat(document.getElementById('fdmf-fdrate').value);
+  var mfRate = parseFloat(document.getElementById('fdmf-mfrate').value);
+  var years = parseFloat(document.getElementById('fdmf-years').value);
+  var slab = parseFloat(document.getElementById('fdmf-slab').value);
+
+  document.getElementById('fdmf-amt-display').textContent = fmtCr(amt);
+  document.getElementById('fdmf-fdrate-display').textContent = fdRate.toFixed(1) + '%';
+  document.getElementById('fdmf-mfrate-display').textContent = mfRate.toFixed(1) + '%';
+  document.getElementById('fdmf-years-display').textContent = years + ' Years';
+  document.getElementById('fdmf-slab-display').textContent = slab + '%';
+
+  // FD: interest taxed annually at slab rate, so effective post-tax rate compounds yearly
+  var postTaxFDRate = fdRate * (1 - slab/100);
+  var fdFinal = amt * Math.pow(1 + postTaxFDRate/100, years);
+
+  // MF: grows tax-free until redemption, then LTCG 12.5% above 1.25L exemption if held 24+ months
+  var mfGross = amt * Math.pow(1 + mfRate/100, years);
+  var gain = mfGross - amt;
+  var taxableGain = Math.max(gain - 125000, 0);
+  var mfTax = years >= 2 ? taxableGain * 0.125 : taxableGain * (slab/100);
+  var mfFinal = mfGross - mfTax;
+
+  document.getElementById('fdmf-fd-result').textContent = fmtCr(fdFinal);
+  document.getElementById('fdmf-mf-result').textContent = fmtCr(mfFinal);
+
+  var verdictEl = document.getElementById('fdmf-verdict');
+  var diff = mfFinal - fdFinal;
+  if (diff > 0) {
+    verdictEl.textContent = 'At these numbers, the mutual fund route nets ' + fmtCr(diff) + ' more after tax — but this comes with real market risk the FD doesn\'t have.';
+  } else {
+    verdictEl.textContent = 'At these numbers, the FD nets ' + fmtCr(-diff) + ' more after tax — the guaranteed-return trade-off is working in its favor here.';
+  }
+}
+
 
 // ── DONUT CHART ──
 function drawDonut(canvasId, invested, returns) {
