@@ -357,744 +357,1669 @@ footer{background:#060e1a;padding:56px 5% 28px;border-top:1px solid rgba(255,255
   <button class="hamburger" onclick="toggleNav()"><span></span><span></span><span></span></button>
 </nav>
 <section style="background:var(--navy);padding:120px 5% 80px;min-height:100vh;">
-  <div style="text-align:center;max-width:700px;margin:0 auto 60px;">
+  <div style="text-align:center;max-width:700px;margin:0 auto 50px;">
     <div class="sec-label" style="justify-content:center">Free Tools</div>
     <h1 style="font-family:'Cormorant Garamond',serif;font-size:clamp(36px,4.5vw,58px);font-weight:300;line-height:1.1;margin-bottom:14px;">Financial <em style="font-style:italic;color:var(--gold)">Calculators</em></h1>
-    <p style="color:rgba(255,255,255,.52);font-size:15px;line-height:1.75;">Plan your wealth journey with precision. All calculators are free — no sign-up needed.</p>
+    <p style="color:rgba(255,255,255,.52);font-size:15px;line-height:1.75;">Real numbers, real assumptions, no shortcuts. Every calculator here is free and asks only what it actually needs.</p>
   </div>
+  <style>
+/* ═══════════ ASHVAMEDHA CALCULATOR STUDIO ═══════════ */
+.av-studio{background:var(--navy);padding:112px 0 90px;min-height:100vh;position:relative;overflow:hidden}
+.av-studio::before{content:"";position:absolute;inset:0;pointer-events:none;background:
+  radial-gradient(900px 420px at 85% -5%,rgba(201,168,76,.10),transparent 60%),
+  radial-gradient(700px 380px at -10% 25%,rgba(43,58,174,.14),transparent 60%)}
+.av-wrap{position:relative;max-width:1180px;margin:0 auto;padding:0 5%}
+.av-hero{text-align:center;max-width:760px;margin:0 auto 34px}
+.av-eyebrow{display:inline-flex;align-items:center;gap:10px;font-size:11px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-bottom:14px}
+.av-eyebrow::before,.av-eyebrow::after{content:"";width:34px;height:1px;background:var(--gold);opacity:.6}
+.av-hero h1{font-family:'Cormorant Garamond',serif;font-size:clamp(34px,5vw,60px);font-weight:300;line-height:1.08;margin:0 0 12px}
+.av-hero h1 em{font-style:italic;color:var(--gold)}
+.av-hero p{color:rgba(255,255,255,.58);font-size:15px;line-height:1.7;margin:0 auto}
+.av-trust{display:flex;flex-wrap:wrap;gap:8px 18px;justify-content:center;margin-top:18px;font-size:12.5px;color:rgba(255,255,255,.6)}
+.av-trust span::before{content:"✓ ";color:var(--gold);font-weight:700}
 
-  <!-- CALCULATOR TABS -->
-  <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-bottom:50px;">
-    <button class="calc-tab active" onclick="switchCalc('sip',this)">📈 SIP Calculator</button>
-    <button class="calc-tab" onclick="switchCalc('stepup',this)">🚀 Step-Up SIP</button>
-    <button class="calc-tab" onclick="switchCalc('lumpsum',this)">💰 Lumpsum</button>
-    <button class="calc-tab" onclick="switchCalc('retirement',this)">🏖️ Retirement</button>
-    <button class="calc-tab" onclick="switchCalc('house',this)">🏠 Home Buying</button>
-    <button class="calc-tab" onclick="switchCalc('fire',this)">🔥 FIRE Number</button>
-    <button class="calc-tab" onclick="switchCalc('runway',this)">🎯 Goal Planner</button>
-    <button class="calc-tab" onclick="switchCalc('homeloan',this)">🏦 Loan vs Cash (Home)</button>
-    <button class="calc-tab" onclick="switchCalc('carloan',this)">🚗 Loan vs Cash (Car)</button>
-    <button class="calc-tab" onclick="switchCalc('rentbuy',this)">🏡 Rent vs Buy</button>
-    <button class="calc-tab" onclick="switchCalc('fdmf',this)">🏦 FD vs Mutual Fund</button>
-  </div>
+/* picker */
+.av-picker{margin:0 auto 26px;max-width:1180px}
+.av-groups{display:flex;gap:6px;justify-content:center;flex-wrap:wrap;margin-bottom:14px}
+.av-group{font-family:'Outfit',sans-serif;background:transparent;border:0;color:rgba(255,255,255,.55);padding:9px 16px;font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;cursor:pointer;border-radius:8px;transition:.2s;position:relative}
+.av-group:hover{color:#fff}
+.av-group.on{color:var(--gold)}
+.av-group.on::after{content:"";position:absolute;left:16px;right:16px;bottom:2px;height:2px;background:var(--gold);border-radius:2px}
+.av-pills{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
+.av-pill{font-family:'Outfit',sans-serif;display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);color:rgba(255,255,255,.72);padding:10px 18px;border-radius:100px;font-size:13.5px;font-weight:500;cursor:pointer;transition:.22s;min-height:44px}
+.av-pill:hover{border-color:rgba(201,168,76,.4);color:var(--gold);transform:translateY(-1px)}
+.av-pill.on{background:rgba(201,168,76,.15);border-color:var(--gold);color:var(--gold);font-weight:700}
+.av-pill i{font-style:normal;font-size:16px}
 
-  <!-- ─ SIP CALCULATOR ─ -->
-  <div class="calc-panel active" id="calc-sip">
-    <div class="calc-box">
-      <div class="calc-left">
-        <h2 class="calc-title">SIP Calculator</h2>
-        <p class="calc-desc">Calculate how much your monthly SIP investment will grow over time with the power of compounding.</p>
-        <div class="calc-field">
-          <div class="calc-label-row"><label>Monthly SIP Amount</label><span class="calc-val-display" id="sip-amt-display">₹5,000</span></div>
-          <input type="range" min="500" max="200000" step="500" value="5000" class="calc-slider" oninput="updateSIP()">
-          <div class="calc-range-labels"><span>₹500</span><span>₹2,00,000</span></div>
-        </div>
-        <div class="calc-field">
-          <div class="calc-label-row"><label>Expected Annual Return</label><span class="calc-val-display" id="sip-rate-display">12%</span></div>
-          <input type="range" min="1" max="30" step="0.5" value="12" class="calc-slider" oninput="updateSIP()">
-          <div class="calc-range-labels"><span>1%</span><span>30%</span></div>
-        </div>
-        <div class="calc-field">
-          <div class="calc-label-row"><label>Investment Duration</label><span class="calc-val-display" id="sip-yr-display">10 Years</span></div>
-          <input type="range" min="1" max="40" step="1" value="10" class="calc-slider" oninput="updateSIP()">
-          <div class="calc-range-labels"><span>1 Yr</span><span>40 Yrs</span></div>
-        </div>
-        <a href="https://wa.link/rwwzd4" target="_blank" class="calc-cta-btn">Start Your SIP — Talk to Manoj →</a>
-        <button onclick="downloadCalcPDF()" class="pdf-btn" style="display:block;width:100%;margin-top:10px;background:transparent;border:1px solid rgba(201,168,76,.4);color:var(--gold);padding:12px;border-radius:12px;font-size:13px;font-weight:600;cursor:pointer;font-family:'Outfit',sans-serif;">📄 Download This Result as PDF</button>
-      </div>
-      <div class="calc-right">
-        <div class="calc-result-card">
-          <div class="calc-donut-wrap">
-            <canvas id="sip-chart" width="220" height="220"></canvas>
-            <div class="calc-donut-center">
-              <div class="calc-total-label">Total Value</div>
-              <div class="calc-total-val" id="sip-total">₹23.2L</div>
-            </div>
-          </div>
-          <div class="calc-result-items">
-            <div class="calc-result-item">
-              <div class="calc-result-dot" style="background:#2B3AAE"></div>
-              <div><div class="calc-result-label">Invested Amount</div><div class="calc-result-val" id="sip-invested">₹6.0L</div></div>
-            </div>
-            <div class="calc-result-item">
-              <div class="calc-result-dot" style="background:var(--gold)"></div>
-              <div><div class="calc-result-label">Estimated Returns</div><div class="calc-result-val" id="sip-returns">₹17.2L</div></div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+/* layout */
+.av-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.08fr);gap:28px;align-items:start}
+.av-card{background:linear-gradient(180deg,rgba(255,255,255,.035),rgba(255,255,255,.015)),var(--navy-mid);border:1px solid rgba(255,255,255,.08);border-radius:20px;padding:34px}
+.av-results{position:sticky;top:92px}
+.av-title{font-family:'Cormorant Garamond',serif;font-size:29px;font-weight:600;margin:0 0 6px;line-height:1.15}
+.av-blurb{font-size:13.5px;color:rgba(255,255,255,.55);line-height:1.65;margin:0 0 20px}
+.av-presets{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 22px}
+.av-preset{font-family:'Outfit',sans-serif;background:rgba(255,255,255,.05);border:1px dashed rgba(201,168,76,.4);color:var(--gold-light);font-size:12px;padding:7px 13px;border-radius:100px;cursor:pointer;transition:.2s;min-height:34px}
+.av-preset:hover{background:rgba(201,168,76,.12)}
 
-        <div class="calc-swp-addon" style="margin-top:28px;padding-top:28px;border-top:1px dashed rgba(201,168,76,.25);">
-          <div style="display:flex;align-items:center;gap:10px;margin-bottom:18px;">
-            <span style="font-size:20px;">💸</span>
-            <div>
-              <div style="font-size:15px;font-weight:700;color:#fff;">Now Withdraw From This Corpus (SWP)</div>
-              <div style="font-size:11px;color:rgba(255,255,255,.5);">See how long your money lasts — no need to visit another page</div>
-            </div>
-          </div>
-          <div class="calc-field">
-            <div class="calc-label-row"><label>Starting Corpus</label><span class="calc-val-display" id="sip-swp-corpus-display">₹0</span></div>
-            <input type="range" min="100000" max="100000000" step="50000" value="1000000" class="calc-slider" id="sip-swp-corpus-slider" oninput="updateSipSWP()">
-            <div class="calc-range-labels"><span>₹1 Lakh</span><span>₹10 Cr</span></div>
-          </div>
-          <div class="calc-field">
-            <div class="calc-label-row"><label>Monthly Withdrawal</label><span class="calc-val-display" id="sip-swp-wd-display">₹10,000</span></div>
-            <input type="range" min="1000" max="1000000" step="1000" value="10000" class="calc-slider" id="sip-swp-wd-slider" oninput="updateSipSWP()">
-            <div class="calc-range-labels"><span>₹1,000</span><span>₹10 Lakh</span></div>
-          </div>
-          <div class="calc-field">
-            <div class="calc-label-row"><label>Expected Return During Withdrawal</label><span class="calc-val-display" id="sip-swp-roi-display">8%</span></div>
-            <input type="range" min="2" max="18" step="0.5" value="8" class="calc-slider" id="sip-swp-roi-slider" oninput="updateSipSWP()">
-            <div class="calc-range-labels"><span>2%</span><span>18%</span></div>
-          </div>
-          <div class="calc-field">
-            <div class="calc-label-row"><label>Annual Step-Up on Withdrawal (Inflation)</label><span class="calc-val-display" id="sip-swp-step-display">5%</span></div>
-            <input type="range" min="0" max="12" step="0.5" value="5" class="calc-slider" id="sip-swp-step-slider" oninput="updateSipSWP()">
-            <div class="calc-range-labels"><span>0%</span><span>12%</span></div>
-          </div>
-          <div style="background:#0a1628;border-radius:12px;padding:18px;margin-top:16px;text-align:center;">
-            <div style="font-size:11px;color:rgba(255,255,255,.5);margin-bottom:6px;">Your Money Lasts</div>
-            <div id="sip-swp-result" style="font-family:'Cormorant Garamond',serif;font-size:26px;color:var(--gold);font-weight:700;">— years</div>
-            <div id="sip-swp-subresult" style="font-size:11px;color:rgba(255,255,255,.5);margin-top:6px;">Move the sliders above to plan your withdrawal</div>
-          </div>
-        </div>
-  </div>
+/* fields */
+.av-field{margin-bottom:24px}
+.av-field[hidden]{display:none}
+.av-lab{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:11px}
+.av-lab label{font-size:13.5px;font-weight:500;color:rgba(255,255,255,.82);line-height:1.3}
+.av-lab label small{display:block;font-size:11px;font-weight:400;color:var(--muted);margin-top:2px}
+.av-inp{display:flex;align-items:center;background:rgba(201,168,76,.09);border:1px solid rgba(201,168,76,.25);border-radius:10px;padding:0 12px;min-width:118px;max-width:170px;transition:.2s;height:42px;flex-shrink:0}
+.av-inp:focus-within{border-color:var(--gold);box-shadow:0 0 0 3px rgba(201,168,76,.16);background:rgba(201,168,76,.13)}
+.av-inp.bad{border-color:#e08080;box-shadow:0 0 0 3px rgba(224,128,128,.18)}
+.av-inp b{font-weight:600;color:var(--gold);font-size:14px}
+.av-inp input{width:100%;min-width:0;background:transparent;border:0;outline:0;color:#fff;font-family:'Outfit',sans-serif;font-size:15px;font-weight:700;text-align:right;padding:0 4px}
+.av-inp.pre input{text-align:left}
+.av-inp em{font-style:normal;font-size:12px;color:var(--muted);white-space:nowrap}
+.av-range{width:100%;-webkit-appearance:none;appearance:none;height:6px;border-radius:6px;outline:none;cursor:pointer;background:linear-gradient(90deg,var(--gold) var(--p,0%),rgba(255,255,255,.13) var(--p,0%));margin:6px 0}
+.av-range::-webkit-slider-thumb{-webkit-appearance:none;width:24px;height:24px;border-radius:50%;background:linear-gradient(135deg,var(--gold),var(--gold-light));border:3px solid var(--navy-mid);box-shadow:0 2px 10px rgba(201,168,76,.5);cursor:grab}
+.av-range::-moz-range-thumb{width:20px;height:20px;border-radius:50%;background:linear-gradient(135deg,var(--gold),var(--gold-light));border:3px solid var(--navy-mid);cursor:grab}
+.av-range:focus-visible{box-shadow:0 0 0 3px rgba(201,168,76,.3)}
+.av-rl{display:flex;justify-content:space-between;font-size:10.5px;color:var(--muted);margin-top:4px}
+.av-hint{font-size:11.5px;color:var(--muted);margin-top:6px;line-height:1.5}
 
-  <!-- ─ STEP-UP SIP ─ -->
-  <div class="calc-panel" id="calc-stepup">
-    <div class="calc-box">
-      <div class="calc-left">
-        <h2 class="calc-title">Step-Up SIP Calculator</h2>
-        <p class="calc-desc">Increase your SIP every year as your salary grows — and watch your wealth compound dramatically faster.</p>
-        <div class="calc-field">
-          <div class="calc-label-row"><label>Starting Monthly SIP</label><span class="calc-val-display" id="su-amt-display">₹5,000</span></div>
-          <input type="range" min="500" max="100000" step="500" value="5000" class="calc-slider" oninput="updateStepUp()">
-          <div class="calc-range-labels"><span>₹500</span><span>₹1,00,000</span></div>
-        </div>
-        <div class="calc-field">
-          <div class="calc-label-row"><label>Annual Step-Up %</label><span class="calc-val-display" id="su-step-display">10%</span></div>
-          <input type="range" min="1" max="50" step="1" value="10" class="calc-slider" oninput="updateStepUp()">
-          <div class="calc-range-labels"><span>1%</span><span>50%</span></div>
-        </div>
-        <div class="calc-field">
-          <div class="calc-label-row"><label>Expected Annual Return</label><span class="calc-val-display" id="su-rate-display">12%</span></div>
-          <input type="range" min="1" max="30" step="0.5" value="12" class="calc-slider" oninput="updateStepUp()">
-          <div class="calc-range-labels"><span>1%</span><span>30%</span></div>
-        </div>
-        <div class="calc-field">
-          <div class="calc-label-row"><label>Investment Duration</label><span class="calc-val-display" id="su-yr-display">10 Years</span></div>
-          <input type="range" min="1" max="40" step="1" value="10" class="calc-slider" oninput="updateStepUp()">
-          <div class="calc-range-labels"><span>1 Yr</span><span>40 Yrs</span></div>
-        </div>
-        <a href="https://wa.link/rwwzd4" target="_blank" class="calc-cta-btn">Start Step-Up SIP — Talk to Manoj →</a>
-        <button onclick="downloadCalcPDF()" class="pdf-btn" style="display:block;width:100%;margin-top:10px;background:transparent;border:1px solid rgba(201,168,76,.4);color:var(--gold);padding:12px;border-radius:12px;font-size:13px;font-weight:600;cursor:pointer;font-family:'Outfit',sans-serif;">📄 Download This Result as PDF</button>
-      </div>
-      <div class="calc-right">
-        <div class="calc-result-card">
-          <div class="calc-donut-wrap">
-            <canvas id="su-chart" width="220" height="220"></canvas>
-            <div class="calc-donut-center">
-              <div class="calc-total-label">Total Value</div>
-              <div class="calc-total-val" id="su-total">₹23.2L</div>
-            </div>
-          </div>
-          <div class="calc-result-items">
-            <div class="calc-result-item"><div class="calc-result-dot" style="background:#2B3AAE"></div><div><div class="calc-result-label">Invested Amount</div><div class="calc-result-val" id="su-invested">₹6.0L</div></div></div>
-            <div class="calc-result-item"><div class="calc-result-dot" style="background:var(--gold)"></div><div><div class="calc-result-label">Estimated Returns</div><div class="calc-result-val" id="su-returns">₹17.2L</div></div></div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
+/* segmented + toggle + select */
+.av-seg{display:flex;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:12px;padding:4px;gap:4px}
+.av-seg button{flex:1;font-family:'Outfit',sans-serif;background:transparent;border:0;color:rgba(255,255,255,.65);font-size:13px;font-weight:600;padding:10px 6px;border-radius:9px;cursor:pointer;transition:.2s;min-height:42px}
+.av-seg button.on{background:linear-gradient(135deg,var(--gold),var(--gold-light));color:var(--navy)}
+.av-tog{display:flex;align-items:center;gap:12px;cursor:pointer;font-size:13.5px;color:rgba(255,255,255,.82)}
+.av-tog input{position:absolute;opacity:0}
+.av-tog .sw{width:44px;height:26px;background:rgba(255,255,255,.15);border-radius:20px;position:relative;transition:.2s;flex-shrink:0}
+.av-tog .sw::after{content:"";position:absolute;top:3px;left:3px;width:20px;height:20px;border-radius:50%;background:#fff;transition:.2s}
+.av-tog input:checked+.sw{background:var(--gold)}
+.av-tog input:checked+.sw::after{left:21px;background:var(--navy)}
+.av-tog input:focus-visible+.sw{box-shadow:0 0 0 3px rgba(201,168,76,.35)}
+.av-sel{width:100%;height:44px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.12);border-radius:10px;color:#fff;font-family:'Outfit',sans-serif;font-size:14px;padding:0 12px;outline:0}
+.av-sel option{background:#112240}
 
-  <!-- ─ LUMPSUM ─ -->
-  <div class="calc-panel" id="calc-lumpsum">
-    <div class="calc-box">
-      <div class="calc-left">
-        <h2 class="calc-title">Lumpsum Calculator</h2>
-        <p class="calc-desc">Have a one-time amount to invest? See how it grows over time using the power of compounding.</p>
-        <div class="calc-field">
-          <div class="calc-label-row"><label>One-Time Investment Amount</label><span class="calc-val-display" id="ls-amt-display">₹1,00,000</span></div>
-          <input type="range" min="10000" max="10000000" step="10000" value="100000" class="calc-slider" oninput="updateLumpsum()">
-          <div class="calc-range-labels"><span>₹10,000</span><span>₹1 Cr</span></div>
-        </div>
-        <div class="calc-field">
-          <div class="calc-label-row"><label>Expected Annual Return</label><span class="calc-val-display" id="ls-rate-display">12%</span></div>
-          <input type="range" min="1" max="30" step="0.5" value="12" class="calc-slider" oninput="updateLumpsum()">
-          <div class="calc-range-labels"><span>1%</span><span>30%</span></div>
-        </div>
-        <div class="calc-field">
-          <div class="calc-label-row"><label>Investment Duration</label><span class="calc-val-display" id="ls-yr-display">10 Years</span></div>
-          <input type="range" min="1" max="40" step="1" value="10" class="calc-slider" oninput="updateLumpsum()">
-          <div class="calc-range-labels"><span>1 Yr</span><span>40 Yrs</span></div>
-        </div>
-        <a href="https://wa.link/rwwzd4" target="_blank" class="calc-cta-btn">Invest Your Lumpsum — Talk to Manoj →</a>
-        <button onclick="downloadCalcPDF()" class="pdf-btn" style="display:block;width:100%;margin-top:10px;background:transparent;border:1px solid rgba(201,168,76,.4);color:var(--gold);padding:12px;border-radius:12px;font-size:13px;font-weight:600;cursor:pointer;font-family:'Outfit',sans-serif;">📄 Download This Result as PDF</button>
-      </div>
-      <div class="calc-right">
-        <div class="calc-result-card">
-          <div class="calc-donut-wrap">
-            <canvas id="ls-chart" width="220" height="220"></canvas>
-            <div class="calc-donut-center"><div class="calc-total-label">Total Value</div><div class="calc-total-val" id="ls-total">₹3.1L</div></div>
-          </div>
-          <div class="calc-result-items">
-            <div class="calc-result-item"><div class="calc-result-dot" style="background:#2B3AAE"></div><div><div class="calc-result-label">Invested Amount</div><div class="calc-result-val" id="ls-invested">₹1.0L</div></div></div>
-            <div class="calc-result-item"><div class="calc-result-dot" style="background:var(--gold)"></div><div><div class="calc-result-label">Estimated Returns</div><div class="calc-result-val" id="ls-returns">₹2.1L</div></div></div>
-          </div>
-        </div>
-      </div>
-    </div>
+/* advanced */
+.av-adv{margin-top:6px;border-top:1px dashed rgba(255,255,255,.14);padding-top:14px}
+.av-adv summary{list-style:none;cursor:pointer;display:flex;align-items:center;justify-content:space-between;color:var(--gold);font-size:13px;font-weight:700;letter-spacing:.04em;padding:6px 0;min-height:40px}
+.av-adv summary::-webkit-details-marker{display:none}
+.av-adv summary::after{content:"＋";font-size:18px;line-height:1;transition:.2s}
+.av-adv[open] summary::after{content:"－"}
+.av-adv .in{padding-top:16px}
 
-        <div class="calc-swp-addon" style="margin-top:28px;padding-top:28px;border-top:1px dashed rgba(201,168,76,.25);">
-          <div style="display:flex;align-items:center;gap:10px;margin-bottom:18px;">
-            <span style="font-size:20px;">💸</span>
-            <div>
-              <div style="font-size:15px;font-weight:700;color:#fff;">Now Withdraw From This Corpus (SWP)</div>
-              <div style="font-size:11px;color:rgba(255,255,255,.5);">See how long your money lasts — no need to visit another page</div>
-            </div>
-          </div>
-          <div class="calc-field">
-            <div class="calc-label-row"><label>Starting Corpus</label><span class="calc-val-display" id="lump-swp-corpus-display">₹0</span></div>
-            <input type="range" min="100000" max="100000000" step="50000" value="1000000" class="calc-slider" id="lump-swp-corpus-slider" oninput="updateLumpSWP()">
-            <div class="calc-range-labels"><span>₹1 Lakh</span><span>₹10 Cr</span></div>
-          </div>
-          <div class="calc-field">
-            <div class="calc-label-row"><label>Monthly Withdrawal</label><span class="calc-val-display" id="lump-swp-wd-display">₹10,000</span></div>
-            <input type="range" min="1000" max="1000000" step="1000" value="10000" class="calc-slider" id="lump-swp-wd-slider" oninput="updateLumpSWP()">
-            <div class="calc-range-labels"><span>₹1,000</span><span>₹10 Lakh</span></div>
-          </div>
-          <div class="calc-field">
-            <div class="calc-label-row"><label>Expected Return During Withdrawal</label><span class="calc-val-display" id="lump-swp-roi-display">8%</span></div>
-            <input type="range" min="2" max="18" step="0.5" value="8" class="calc-slider" id="lump-swp-roi-slider" oninput="updateLumpSWP()">
-            <div class="calc-range-labels"><span>2%</span><span>18%</span></div>
-          </div>
-          <div class="calc-field">
-            <div class="calc-label-row"><label>Annual Step-Up on Withdrawal (Inflation)</label><span class="calc-val-display" id="lump-swp-step-display">5%</span></div>
-            <input type="range" min="0" max="12" step="0.5" value="5" class="calc-slider" id="lump-swp-step-slider" oninput="updateLumpSWP()">
-            <div class="calc-range-labels"><span>0%</span><span>12%</span></div>
-          </div>
-          <div style="background:#0a1628;border-radius:12px;padding:18px;margin-top:16px;text-align:center;">
-            <div style="font-size:11px;color:rgba(255,255,255,.5);margin-bottom:6px;">Your Money Lasts</div>
-            <div id="lump-swp-result" style="font-family:'Cormorant Garamond',serif;font-size:26px;color:var(--gold);font-weight:700;">— years</div>
-            <div id="lump-swp-subresult" style="font-size:11px;color:rgba(255,255,255,.5);margin-top:6px;">Move the sliders above to plan your withdrawal</div>
-          </div>
-        </div>
-  </div>
+/* results */
+.av-verdict{display:flex;gap:12px;align-items:flex-start;border-radius:14px;padding:14px 16px;margin-bottom:18px;border:1px solid;font-size:13.5px;line-height:1.55}
+.av-verdict .ic{font-size:20px;line-height:1.2}
+.av-verdict b{display:block;font-size:14px;margin-bottom:2px;color:#fff}
+.av-verdict.good{background:rgba(63,143,95,.12);border-color:rgba(63,143,95,.4);color:#bfe6cd}
+.av-verdict.warn{background:rgba(224,170,60,.11);border-color:rgba(224,170,60,.4);color:#f1d9a3}
+.av-verdict.bad{background:rgba(220,80,80,.11);border-color:rgba(220,80,80,.4);color:#f0b4b4}
+.av-verdict.info{background:rgba(120,150,255,.10);border-color:rgba(120,150,255,.35);color:#c5d0ff}
+.av-hero-num{text-align:center;padding:6px 0 20px;border-bottom:1px solid rgba(255,255,255,.07);margin-bottom:20px}
+.av-hl{font-size:11.5px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:rgba(255,255,255,.5);margin-bottom:8px}
+.av-hv{font-family:'Cormorant Garamond',serif;font-size:clamp(40px,7vw,62px);font-weight:700;line-height:1.02;background:linear-gradient(135deg,var(--gold-light),var(--gold));-webkit-background-clip:text;background-clip:text;color:transparent;font-variant-numeric:tabular-nums;word-break:break-word}
+.av-hs{font-size:13px;color:rgba(255,255,255,.55);margin-top:8px;line-height:1.5}
+.av-tiles{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-bottom:20px}
+.av-tile{background:rgba(10,22,40,.75);border:1px solid rgba(255,255,255,.06);border-radius:12px;padding:13px 14px;min-width:0}
+.av-tile.hl{border-color:rgba(201,168,76,.4);background:rgba(201,168,76,.07)}
+.av-tile .k{font-size:11px;color:rgba(255,255,255,.5);margin-bottom:4px;line-height:1.3}
+.av-tile .v{font-size:clamp(15px,2.4vw,18px);font-weight:700;color:#fff;font-variant-numeric:tabular-nums;word-break:break-word}
+.av-tile .v.g{color:#7fd6a0}.av-tile .v.r{color:#f09a9a}.av-tile .v.y{color:var(--gold-light)}
+.av-tile .s{font-size:10.5px;color:var(--muted);margin-top:3px;line-height:1.35}
+.av-split{margin:0 0 20px}
+.av-splitbar{display:flex;height:14px;border-radius:8px;overflow:hidden;background:rgba(255,255,255,.08)}
+.av-splitbar i{display:block;height:100%;transition:width .35s}
+.av-legend{display:flex;flex-wrap:wrap;gap:6px 16px;margin-top:10px;font-size:12px;color:rgba(255,255,255,.65)}
+.av-legend span::before{content:"";display:inline-block;width:9px;height:9px;border-radius:50%;background:var(--c);margin-right:7px}
+.av-chartbox{margin:0 0 20px}
+.av-ctitle{font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.5);margin-bottom:6px}
+.av-chartbox canvas{width:100%;display:block;touch-action:pan-y;cursor:crosshair}
+.av-insights{display:grid;gap:10px;margin:0 0 18px}
+.av-ins{display:flex;gap:12px;background:rgba(255,255,255,.035);border:1px solid rgba(255,255,255,.07);border-left:3px solid var(--gold);border-radius:12px;padding:12px 14px;font-size:13px;line-height:1.55;color:rgba(255,255,255,.78)}
+.av-ins.good{border-left-color:#3f8f5f}.av-ins.warn{border-left-color:#e0aa3c}.av-ins.bad{border-left-color:#dc5050}
+.av-ins .ic{font-size:18px;line-height:1.3}
+.av-ins b{color:#fff}
+.av-more{border:1px solid rgba(255,255,255,.08);border-radius:12px;margin-bottom:10px;background:rgba(255,255,255,.02)}
+.av-more summary{list-style:none;cursor:pointer;padding:12px 14px;font-size:13px;font-weight:600;color:rgba(255,255,255,.75);display:flex;justify-content:space-between;align-items:center;min-height:44px}
+.av-more summary::-webkit-details-marker{display:none}
+.av-more summary::after{content:"▾";color:var(--gold)}
+.av-more[open] summary::after{content:"▴"}
+.av-more .in{padding:0 14px 14px;font-size:12.5px;line-height:1.7;color:rgba(255,255,255,.6)}
+.av-tblwrap{overflow-x:auto;-webkit-overflow-scrolling:touch}
+.av-tbl{width:100%;border-collapse:collapse;font-size:12.5px;min-width:340px}
+.av-tbl th{position:sticky;top:0;text-align:right;font-weight:600;color:var(--gold);padding:8px 10px;border-bottom:1px solid rgba(255,255,255,.14);background:#0f1d36;white-space:nowrap}
+.av-tbl th:first-child,.av-tbl td:first-child{text-align:left}
+.av-tbl td{text-align:right;padding:7px 10px;border-bottom:1px solid rgba(255,255,255,.05);color:rgba(255,255,255,.78);font-variant-numeric:tabular-nums;white-space:nowrap}
 
-  <!-- ─ RETIREMENT ─ -->
-  <div class="calc-panel" id="calc-retirement">
-    <div class="calc-box">
-      <div class="calc-left">
-        <h2 class="calc-title">Retirement Calculator</h2>
-        <p class="calc-desc">Find out exactly how much you need to invest today to live comfortably after retirement.</p>
-        <div class="calc-field">
-          <div class="calc-label-row"><label>Current Age</label><span class="calc-val-display" id="ret-age-display">30 Years</span></div>
-          <input type="range" min="18" max="60" step="1" value="30" class="calc-slider" oninput="updateRetirement()">
-          <div class="calc-range-labels"><span>18</span><span>60</span></div>
-        </div>
-        <div class="calc-field">
-          <div class="calc-label-row"><label>Retirement Age</label><span class="calc-val-display" id="ret-retire-display">60 Years</span></div>
-          <input type="range" min="40" max="70" step="1" value="60" class="calc-slider" oninput="updateRetirement()">
-          <div class="calc-range-labels"><span>40</span><span>70</span></div>
-        </div>
-        <div class="calc-field">
-          <div class="calc-label-row"><label>Monthly Expenses Today</label><span class="calc-val-display" id="ret-exp-display">₹50,000</span></div>
-          <input type="range" min="10000" max="500000" step="5000" value="50000" class="calc-slider" oninput="updateRetirement()">
-          <div class="calc-range-labels"><span>₹10K</span><span>₹5 Lakh</span></div>
-        </div>
-        <div class="calc-field">
-          <div class="calc-label-row"><label>Inflation Rate</label><span class="calc-val-display" id="ret-inf-display">6%</span></div>
-          <input type="range" min="3" max="12" step="0.5" value="6" class="calc-slider" oninput="updateRetirement()">
-          <div class="calc-range-labels"><span>3%</span><span>12%</span></div>
-        </div>
-        <div class="calc-field">
-          <div class="calc-label-row"><label>Expected Return on Investment</label><span class="calc-val-display" id="ret-roi-display">12%</span></div>
-          <input type="range" min="5" max="20" step="0.5" value="12" class="calc-slider" oninput="updateRetirement()">
-          <div class="calc-range-labels"><span>5%</span><span>20%</span></div>
-        </div>
-        <div class="calc-field">
-          <div class="calc-label-row"><label>Current Savings</label><span class="calc-val-display" id="ret-sav-display">₹2,00,000</span></div>
-          <input type="range" min="0" max="5000000" step="50000" value="200000" class="calc-slider" oninput="updateRetirement()">
-          <div class="calc-range-labels"><span>₹0</span><span>₹50 Lakh</span></div>
-        </div>
-        <a href="https://wa.link/rwwzd4" target="_blank" class="calc-cta-btn">Plan Your Retirement — Talk to Manoj →</a>
-        <button onclick="downloadCalcPDF()" class="pdf-btn" style="display:block;width:100%;margin-top:10px;background:transparent;border:1px solid rgba(201,168,76,.4);color:var(--gold);padding:12px;border-radius:12px;font-size:13px;font-weight:600;cursor:pointer;font-family:'Outfit',sans-serif;">📄 Download This Result as PDF</button>
-      </div>
-      <div class="calc-right">
-        <div class="calc-result-card" style="gap:18px;">
-          <div style="text-align:center;padding:20px;background:rgba(201,168,76,.08);border:1px solid rgba(201,168,76,.2);border-radius:12px;">
-            <div style="font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.12em;margin-bottom:6px;">Corpus Needed at Retirement</div>
-            <div class="calc-total-val" id="ret-corpus" style="font-size:32px;">₹4.8 Cr</div>
-          </div>
-          <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
-            <div style="background:rgba(255,255,255,.04);border-radius:10px;padding:16px;text-align:center;border:1px solid rgba(255,255,255,.07);">
-              <div style="font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.1em;margin-bottom:6px;">Monthly SIP Needed</div>
-              <div style="font-size:20px;font-weight:800;color:var(--gold);" id="ret-sip">₹12,450</div>
-            </div>
-            <div style="background:rgba(255,255,255,.04);border-radius:10px;padding:16px;text-align:center;border:1px solid rgba(255,255,255,.07);">
-              <div style="font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.1em;margin-bottom:6px;">Years to Retire</div>
-              <div style="font-size:20px;font-weight:800;color:var(--gold);" id="ret-years">30</div>
-            </div>
-          </div>
-          <div style="background:rgba(255,255,255,.04);border-radius:10px;padding:16px;border:1px solid rgba(255,255,255,.07);">
-            <div style="font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.1em;margin-bottom:6px;">Monthly Expenses at Retirement (Inflation adjusted)</div>
-            <div style="font-size:20px;font-weight:800;color:#fff;" id="ret-future-exp">₹2,87,175</div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
+/* actions */
+.av-actions{display:grid;gap:10px;margin-top:6px}
+.av-btn{font-family:'Outfit',sans-serif;display:flex;align-items:center;justify-content:center;gap:9px;border-radius:12px;font-size:14.5px;font-weight:700;padding:14px 18px;cursor:pointer;border:1px solid transparent;text-decoration:none;transition:.22s;min-height:50px;text-align:center}
+.av-btn.pri{background:linear-gradient(135deg,var(--gold),var(--gold-light));color:var(--navy)}
+.av-btn.pri:hover{transform:translateY(-2px);box-shadow:0 10px 26px rgba(201,168,76,.3)}
+.av-btn.sec{background:rgba(255,255,255,.05);border-color:rgba(201,168,76,.45);color:var(--gold)}
+.av-btn.sec:hover{background:rgba(201,168,76,.12)}
+.av-btn.wa{background:#25d366;color:#052e16}
+.av-btn.ghost{background:transparent;border-color:rgba(255,255,255,.15);color:rgba(255,255,255,.75);font-weight:600;font-size:13px;min-height:44px}
+.av-2col{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.av-phase{margin-top:28px}
+.av-phasehd{display:flex;align-items:center;gap:14px;margin:0 0 16px}
+.av-phasehd .n{width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,var(--gold),var(--gold-light));color:var(--navy);font-weight:800;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.av-phasehd h3{font-family:'Cormorant Garamond',serif;font-size:26px;margin:0;font-weight:600}
+.av-phasehd p{margin:2px 0 0;font-size:12.5px;color:var(--muted)}
+.av-link{background:none;border:0;color:var(--gold);font-family:'Outfit',sans-serif;font-size:12px;text-decoration:underline;cursor:pointer;padding:4px 0}
 
-  <!-- ─ HOUSE BUYING ─ -->
-  <div class="calc-panel" id="calc-house">
-    <div class="calc-box">
-      <div class="calc-left">
-        <h2 class="calc-title">Home Buying Calculator</h2>
-        <p class="calc-desc">Planning to buy a home? Find out how much you need to save and what your EMI will look like.</p>
-        <div class="calc-field">
-          <div class="calc-label-row"><label>Home Value (Target Price)</label><span class="calc-val-display" id="h-price-display">₹50,00,000</span></div>
-          <input type="range" min="1000000" max="100000000" step="500000" value="5000000" class="calc-slider" oninput="updateHouse()">
-          <div class="calc-range-labels"><span>₹10 Lakh</span><span>₹10 Cr</span></div>
-        </div>
-        <div class="calc-field">
-          <div class="calc-label-row"><label>Down Payment %</label><span class="calc-val-display" id="h-down-display">20%</span></div>
-          <input type="range" min="5" max="50" step="1" value="20" class="calc-slider" oninput="updateHouse()">
-          <div class="calc-range-labels"><span>5%</span><span>50%</span></div>
-        </div>
-        <div class="calc-field">
-          <div class="calc-label-row"><label>Loan Interest Rate</label><span class="calc-val-display" id="h-rate-display">8.5%</span></div>
-          <input type="range" min="6" max="15" step="0.1" value="8.5" class="calc-slider" oninput="updateHouse()">
-          <div class="calc-range-labels"><span>6%</span><span>15%</span></div>
-        </div>
-        <div class="calc-field">
-          <div class="calc-label-row"><label>Loan Tenure</label><span class="calc-val-display" id="h-tenure-display">20 Years</span></div>
-          <input type="range" min="5" max="30" step="1" value="20" class="calc-slider" oninput="updateHouse()">
-          <div class="calc-range-labels"><span>5 Yrs</span><span>30 Yrs</span></div>
-        </div>
-        <a href="https://wa.link/rwwzd4" target="_blank" class="calc-cta-btn">Plan Your Home Purchase — Talk to Manoj →</a>
-        <button onclick="downloadCalcPDF()" class="pdf-btn" style="display:block;width:100%;margin-top:10px;background:transparent;border:1px solid rgba(201,168,76,.4);color:var(--gold);padding:12px;border-radius:12px;font-size:13px;font-weight:600;cursor:pointer;font-family:'Outfit',sans-serif;">📄 Download This Result as PDF</button>
-      </div>
-      <div class="calc-right">
-        <div class="calc-result-card" style="gap:16px;">
-          <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
-            <div style="background:rgba(201,168,76,.08);border:1px solid rgba(201,168,76,.2);border-radius:12px;padding:18px;text-align:center;">
-              <div style="font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.1em;margin-bottom:6px;">Monthly EMI</div>
-              <div style="font-size:24px;font-weight:800;color:var(--gold);" id="h-emi">₹34,695</div>
-            </div>
-            <div style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07);border-radius:12px;padding:18px;text-align:center;">
-              <div style="font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.1em;margin-bottom:6px;">Down Payment</div>
-              <div style="font-size:24px;font-weight:800;color:#fff;" id="h-downamt">₹10,00,000</div>
-            </div>
-          </div>
-          <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
-            <div style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07);border-radius:12px;padding:18px;text-align:center;">
-              <div style="font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.1em;margin-bottom:6px;">Loan Amount</div>
-              <div style="font-size:20px;font-weight:800;color:#fff;" id="h-loan">₹40,00,000</div>
-            </div>
-            <div style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07);border-radius:12px;padding:18px;text-align:center;">
-              <div style="font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.1em;margin-bottom:6px;">Total Interest</div>
-              <div style="font-size:20px;font-weight:800;color:#e05c2a;" id="h-interest">₹43,27,200</div>
-            </div>
-          </div>
-          <div style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07);border-radius:10px;padding:16px;text-align:center;">
-            <div style="font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.1em;margin-bottom:6px;">Total Amount Payable</div>
-            <div style="font-size:22px;font-weight:800;color:#fff;" id="h-total">₹83,27,200</div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
+/* sticky mobile result bar */
+.av-sticky{position:fixed;left:12px;right:12px;bottom:12px;z-index:800;display:none;align-items:center;gap:12px;background:rgba(10,22,40,.96);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border:1px solid rgba(201,168,76,.5);border-radius:16px;padding:10px 12px 10px 16px;box-shadow:0 12px 36px rgba(0,0,0,.5);transform:translateY(140%);transition:transform .3s}
+.av-sticky.show{transform:none}
+.av-sticky .t{flex:1;min-width:0}
+.av-sticky .l{font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.55);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.av-sticky .v{font-family:'Cormorant Garamond',serif;font-size:24px;font-weight:700;color:var(--gold-light);line-height:1.1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.av-sticky button{font-family:'Outfit',sans-serif;background:var(--gold);color:var(--navy);border:0;border-radius:10px;font-weight:800;font-size:13px;padding:11px 14px;cursor:pointer;min-height:44px;white-space:nowrap}
 
-  <!-- ─ FIRE NUMBER ─ -->
-  <div class="calc-panel" id="calc-fire">
-    <div class="calc-box">
-      <div class="calc-left">
-        <h2 class="calc-title">FIRE Number Calculator</h2>
-        <p class="calc-desc">Find out exactly how much you need to become financially independent — and how many years of investing it takes to get there.</p>
-        <div class="calc-field">
-          <div class="calc-label-row"><label>Current Monthly Expenses</label><span class="calc-val-display" id="fire-exp-display">₹50,000</span></div>
-          <input type="range" min="10000" max="1000000" step="5000" value="50000" class="calc-slider" oninput="updateFIRE()" id="fire-exp">
-          <div class="calc-range-labels"><span>₹10K</span><span>₹10 Lakh</span></div>
-        </div>
-        <div class="calc-field">
-          <div class="calc-label-row"><label>Safe Withdrawal Rate</label><span class="calc-val-display" id="fire-swr-display">4%</span></div>
-          <input type="range" min="2.5" max="6" step="0.25" value="4" class="calc-slider" oninput="updateFIRE()" id="fire-swr">
-          <div class="calc-range-labels"><span>2.5% (Conservative)</span><span>6% (Aggressive)</span></div>
-        </div>
-        <div class="calc-field">
-          <div class="calc-label-row"><label>Current Investments</label><span class="calc-val-display" id="fire-current-display">₹5,00,000</span></div>
-          <input type="range" min="0" max="50000000" step="100000" value="500000" class="calc-slider" oninput="updateFIRE()" id="fire-current">
-          <div class="calc-range-labels"><span>₹0</span><span>₹5 Cr</span></div>
-        </div>
-        <div class="calc-field">
-          <div class="calc-label-row"><label>Monthly Investment</label><span class="calc-val-display" id="fire-monthly-display">₹25,000</span></div>
-          <input type="range" min="1000" max="500000" step="1000" value="25000" class="calc-slider" oninput="updateFIRE()" id="fire-monthly">
-          <div class="calc-range-labels"><span>₹1,000</span><span>₹5 Lakh</span></div>
-        </div>
-        <div class="calc-field">
-          <div class="calc-label-row"><label>Expected Annual Return</label><span class="calc-val-display" id="fire-roi-display">12%</span></div>
-          <input type="range" min="5" max="20" step="0.5" value="12" class="calc-slider" oninput="updateFIRE()" id="fire-roi">
-          <div class="calc-range-labels"><span>5%</span><span>20%</span></div>
-        </div>
-        <a href="https://wa.link/rwwzd4" target="_blank" class="calc-cta-btn">Make Your FIRE Plan Real — Talk to Manoj →</a>
-        <button onclick="downloadCalcPDF()" class="pdf-btn" style="display:block;width:100%;margin-top:10px;background:transparent;border:1px solid rgba(201,168,76,.4);color:var(--gold);padding:12px;border-radius:12px;font-size:13px;font-weight:600;cursor:pointer;font-family:'Outfit',sans-serif;">📄 Download This Result as PDF</button>
-      </div>
-      <div class="calc-right">
-        <div class="calc-result-card" style="gap:16px;">
-          <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
-            <div style="background:#0a1628;border-radius:12px;padding:16px;text-align:center;">
-              <div style="font-size:11px;color:rgba(255,255,255,.5);margin-bottom:6px;">Your FIRE Number</div>
-              <div id="fire-number" style="font-family:'Cormorant Garamond',serif;font-size:24px;color:#fff;">₹0</div>
-            </div>
-            <div style="background:#0a1628;border-radius:12px;padding:16px;text-align:center;">
-              <div style="font-size:11px;color:rgba(255,255,255,.5);margin-bottom:6px;">Years to Reach It</div>
-              <div id="fire-years" style="font-family:'Cormorant Garamond',serif;font-size:24px;color:var(--gold);">0</div>
-            </div>
-          </div>
-          <div style="background:rgba(201,168,76,.08);border:1px solid rgba(201,168,76,.25);border-radius:12px;padding:16px;">
-            <div style="font-size:12px;color:rgba(255,255,255,.7);line-height:1.6;">Based on the 25x-annual-expenses rule (inverse of your safe withdrawal rate). This is a starting estimate — your actual retirement expenses, healthcare costs, and inflation over time may require adjusting this number upward.</div>
-          </div>
-          <div id="fire-lean-fat" style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;">
-            <div style="text-align:center;padding:10px;background:#0a1628;border-radius:8px;">
-              <div style="font-size:10px;color:rgba(255,255,255,.5);">Lean FIRE</div>
-              <div id="fire-lean" style="font-size:13px;color:#fff;font-weight:600;">₹0</div>
-            </div>
-            <div style="text-align:center;padding:10px;background:rgba(201,168,76,.1);border-radius:8px;">
-              <div style="font-size:10px;color:rgba(255,255,255,.5);">Regular FIRE</div>
-              <div id="fire-regular" style="font-size:13px;color:var(--gold);font-weight:700;">₹0</div>
-            </div>
-            <div style="text-align:center;padding:10px;background:#0a1628;border-radius:8px;">
-              <div style="font-size:10px;color:rgba(255,255,255,.5);">Fat FIRE</div>
-              <div id="fire-fat" style="font-size:13px;color:#fff;font-weight:600;">₹0</div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
+/* lead modal */
+.av-modal{position:fixed;inset:0;z-index:2000;background:rgba(3,8,18,.78);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);display:none;align-items:center;justify-content:center;padding:16px;overflow-y:auto}
+.av-modal.open{display:flex}
+.av-mcard{background:var(--navy-mid);border:1px solid rgba(201,168,76,.35);border-radius:20px;max-width:440px;width:100%;padding:30px 26px;position:relative;box-shadow:0 30px 80px rgba(0,0,0,.6);animation:avPop .28s ease}
+@keyframes avPop{from{transform:translateY(14px) scale(.98);opacity:0}to{transform:none;opacity:1}}
+.av-x{position:absolute;top:12px;right:12px;width:40px;height:40px;border-radius:50%;background:rgba(255,255,255,.07);border:0;color:#fff;font-size:20px;cursor:pointer}
+.av-mcard h3{font-family:'Cormorant Garamond',serif;font-size:27px;margin:0 0 6px;font-weight:600;padding-right:36px}
+.av-mcard p.s{font-size:13px;color:rgba(255,255,255,.6);line-height:1.6;margin:0 0 18px}
+.av-mf{margin-bottom:14px}
+.av-mf label{display:block;font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:7px}
+.av-mf .box{display:flex;align-items:center;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.14);border-radius:10px;padding:0 14px;height:48px}
+.av-mf .box:focus-within{border-color:var(--gold)}
+.av-mf .box.bad{border-color:#e08080}
+.av-mf .box span{color:var(--gold);font-weight:700;margin-right:8px}
+.av-mf input{flex:1;min-width:0;background:transparent;border:0;outline:0;color:#fff;font-family:'Outfit',sans-serif;font-size:16px}
+.av-err{font-size:12px;color:#f09a9a;min-height:16px;margin-top:6px}
+.av-fine{font-size:11px;color:var(--muted);line-height:1.55;margin-top:12px}
+.av-done{text-align:center;padding:6px 0}
+.av-done .big{font-size:46px;margin-bottom:6px}
+.av-spin{width:34px;height:34px;border:3px solid rgba(255,255,255,.15);border-top-color:var(--gold);border-radius:50%;margin:10px auto 14px;animation:avSp .8s linear infinite}
+@keyframes avSp{to{transform:rotate(360deg)}}
+.av-toast{position:fixed;left:50%;bottom:26px;transform:translateX(-50%) translateY(30px);opacity:0;background:#0f1d36;border:1px solid var(--gold);color:#fff;font-size:13px;padding:11px 18px;border-radius:100px;z-index:3000;transition:.3s;pointer-events:none}
+.av-toast.show{opacity:1;transform:translateX(-50%)}
 
+/* ─── responsive ─── */
+@media(max-width:980px){
+  .av-grid{grid-template-columns:minmax(0,1fr);gap:18px}
+  .av-results{position:static}
+  .av-sticky{display:flex}
+  .av-studio{padding-top:96px}
+}
+@media(max-width:640px){
+  .av-wrap{padding:0 14px}
+  .av-card{padding:20px 16px;border-radius:16px}
+  .av-title{font-size:25px}
+  .av-pills{flex-wrap:nowrap;justify-content:flex-start;overflow-x:auto;-webkit-overflow-scrolling:touch;scroll-snap-type:x proximity;padding:2px 14px 8px;margin:0 -14px;scrollbar-width:none}
+  .av-pills::-webkit-scrollbar{display:none}
+  .av-pill{flex:0 0 auto;scroll-snap-align:center;white-space:nowrap;padding:10px 15px}
+  .av-groups{gap:2px}.av-group{padding:9px 9px;font-size:10.5px;letter-spacing:.08em}
+  .av-group.on::after{left:9px;right:9px}
+  .av-lab{flex-wrap:wrap}
+  .av-inp{min-width:112px}
+  .av-2col{grid-template-columns:1fr}
+  .av-phasehd h3{font-size:22px}
+  .av-tbl{font-size:12px}
+}
+@media(max-width:380px){.av-tiles{grid-template-columns:1fr}}
+@media(prefers-reduced-motion:reduce){.av-studio *{transition:none!important;animation:none!important}}
 
-  <!-- ─ GOAL PLANNER ─ -->
-  <div class="calc-panel" id="calc-runway">
-    <div class="calc-box">
-      <div class="calc-left">
-        <h2 class="calc-title">Financial Goal Planner</h2>
-        <p class="calc-desc">Enter your income and expenses to see your real savings rate — then find out how many years it takes to hit a specific target amount.</p>
-        <div class="calc-field">
-          <div class="calc-label-row"><label>Monthly Take-Home Income</label><span class="calc-val-display" id="rw-income-display">₹80,000</span></div>
-          <input type="range" min="15000" max="2000000" step="5000" value="80000" class="calc-slider" oninput="updateRunway()" id="rw-income">
-          <div class="calc-range-labels"><span>₹15K</span><span>₹20 Lakh</span></div>
-        </div>
-        <div class="calc-field">
-          <div class="calc-label-row"><label>Monthly Expenses</label><span class="calc-val-display" id="rw-expense-display">₹50,000</span></div>
-          <input type="range" min="5000" max="2000000" step="5000" value="50000" class="calc-slider" oninput="updateRunway()" id="rw-expense">
-          <div class="calc-range-labels"><span>₹5K</span><span>₹20 Lakh</span></div>
-        </div>
-        <div class="calc-field">
-          <div class="calc-label-row"><label>Target Amount You Want to Reach</label><span class="calc-val-display" id="rw-target-display">₹50,00,000</span></div>
-          <input type="range" min="100000" max="100000000" step="100000" value="5000000" class="calc-slider" oninput="updateRunway()" id="rw-target">
-          <div class="calc-range-labels"><span>₹1 Lakh</span><span>₹10 Cr</span></div>
-        </div>
-        <div class="calc-field">
-          <div class="calc-label-row"><label>Current Savings Already Invested</label><span class="calc-val-display" id="rw-current-display">₹1,00,000</span></div>
-          <input type="range" min="0" max="20000000" step="50000" value="100000" class="calc-slider" oninput="updateRunway()" id="rw-current">
-          <div class="calc-range-labels"><span>₹0</span><span>₹2 Cr</span></div>
-        </div>
-        <div class="calc-field">
-          <div class="calc-label-row"><label>Expected Annual Return</label><span class="calc-val-display" id="rw-roi-display">12%</span></div>
-          <input type="range" min="4" max="20" step="0.5" value="12" class="calc-slider" oninput="updateRunway()" id="rw-roi">
-          <div class="calc-range-labels"><span>4%</span><span>20%</span></div>
-        </div>
-        <a href="https://wa.link/rwwzd4" target="_blank" class="calc-cta-btn">Build Your Real Plan — Talk to Manoj →</a>
-        <button onclick="downloadCalcPDF()" class="pdf-btn" style="display:block;width:100%;margin-top:10px;background:transparent;border:1px solid rgba(201,168,76,.4);color:var(--gold);padding:12px;border-radius:12px;font-size:13px;font-weight:600;cursor:pointer;font-family:'Outfit',sans-serif;">📄 Download This Result as PDF</button>
-      </div>
-      <div class="calc-right">
-        <div class="calc-result-card" style="gap:16px;">
-          <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
-            <div style="background:#0a1628;border-radius:12px;padding:16px;text-align:center;">
-              <div style="font-size:11px;color:rgba(255,255,255,.5);margin-bottom:6px;">Monthly Savings</div>
-              <div id="rw-savings" style="font-family:'Cormorant Garamond',serif;font-size:22px;color:#fff;">₹0</div>
-            </div>
-            <div style="background:#0a1628;border-radius:12px;padding:16px;text-align:center;">
-              <div style="font-size:11px;color:rgba(255,255,255,.5);margin-bottom:6px;">Savings Rate</div>
-              <div id="rw-rate" style="font-family:'Cormorant Garamond',serif;font-size:22px;color:var(--gold);">0%</div>
-            </div>
-          </div>
-          <div id="rw-warning" style="display:none;background:rgba(220,80,80,.1);border:1px solid rgba(220,80,80,.3);border-radius:12px;padding:14px;font-size:12px;color:#e08080;line-height:1.6;"></div>
-          <div style="background:rgba(201,168,76,.08);border:1px solid rgba(201,168,76,.25);border-radius:12px;padding:20px;text-align:center;">
-            <div style="font-size:11px;color:rgba(255,255,255,.5);margin-bottom:8px;">Years to Reach Your Target</div>
-            <div id="rw-years" style="font-family:'Cormorant Garamond',serif;font-size:32px;color:var(--gold);font-weight:700;">—</div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
+/* ── lead-capture modal text inputs (added) ── */
+.av-txt{width:100%;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.14);border-radius:10px;color:#fff;font-family:'Outfit',sans-serif;font-size:15px;padding:13px 14px;outline:none;transition:.2s;box-sizing:border-box;min-height:44px}
+.av-txt:focus{border-color:var(--gold);background:rgba(255,255,255,.09)}
+.av-txt::placeholder{color:rgba(255,255,255,.35)}
 
+/* ── page-level wrapper for the studio (calculators page) ── */
+.av-studio-page{max-width:1180px;margin:0 auto}
+.av-calc-panel[hidden]{display:none}
 
-  <!-- ─ HOME LOAN VS CASH — WHICH ACTUALLY WINS ─ -->
-  <div class="calc-panel" id="calc-homeloan">
-    <div class="calc-box">
-      <div class="calc-left">
-        <h2 class="calc-title">Home Loan vs Cash — Which Actually Wins</h2>
-        <p class="calc-desc">If you have the cash to buy outright, is it actually better to take a loan and invest the money instead? Real math, including how inflation quietly reduces your real EMI burden over time.</p>
-        <div class="calc-field">
-          <div class="calc-label-row"><label>Home Price</label><span class="calc-val-display" id="homeloan-price-display">₹0</span></div>
-          <input type="range" min="1000000" max="100000000" step="500000" value="8000000" class="calc-slider" oninput="updateHomeloanCompare()" id="homeloan-price">
-          <div class="calc-range-labels"><span>₹10 Lakh</span><span>₹10 Cr</span></div>
-        </div>
-        <div class="calc-field">
-          <div class="calc-label-row"><label>Down Payment %</label><span class="calc-val-display" id="homeloan-down-display">20%</span></div>
-          <input type="range" min="0" max="80" step="5" value="20" class="calc-slider" oninput="updateHomeloanCompare()" id="homeloan-down">
-          <div class="calc-range-labels"><span>0%</span><span>80%</span></div>
-        </div>
-        <div class="calc-field">
-          <div class="calc-label-row"><label>Loan Interest Rate</label><span class="calc-val-display" id="homeloan-rate-display">8.5%</span></div>
-          <input type="range" min="6" max="15" step="0.1" value="8.5" class="calc-slider" oninput="updateHomeloanCompare()" id="homeloan-rate">
-          <div class="calc-range-labels"><span>6%</span><span>15%</span></div>
-        </div>
-        <div class="calc-field">
-          <div class="calc-label-row"><label>Loan Tenure</label><span class="calc-val-display" id="homeloan-tenure-display">20 Years</span></div>
-          <input type="range" min="5" max="30" step="1" value="20" class="calc-slider" oninput="updateHomeloanCompare()" id="homeloan-tenure">
-          <div class="calc-range-labels"><span>5 Yrs</span><span>30 Yrs</span></div>
-        </div>
-        <div class="calc-field">
-          <div class="calc-label-row"><label>Expected Investment Return</label><span class="calc-val-display" id="homeloan-roi-display">12%</span></div>
-          <input type="range" min="4" max="20" step="0.5" value="12" class="calc-slider" oninput="updateHomeloanCompare()" id="homeloan-roi">
-          <div class="calc-range-labels"><span>4%</span><span>20%</span></div>
-        </div>
-        <div class="calc-field">
-          <div class="calc-label-row"><label>Expected Inflation</label><span class="calc-val-display" id="homeloan-inf-display">6%</span></div>
-          <input type="range" min="2" max="10" step="0.5" value="6" class="calc-slider" oninput="updateHomeloanCompare()" id="homeloan-inf">
-          <div class="calc-range-labels"><span>2%</span><span>10%</span></div>
-        </div>
-        <a href="https://wa.link/rwwzd4" target="_blank" class="calc-cta-btn">Get the Real Answer for You — Talk to Manoj →</a>
-        <button onclick="downloadCalcPDF()" class="pdf-btn" style="display:block;width:100%;margin-top:10px;background:transparent;border:1px solid rgba(201,168,76,.4);color:var(--gold);padding:12px;border-radius:12px;font-size:13px;font-weight:600;cursor:pointer;font-family:'Outfit',sans-serif;">📄 Download This Result as PDF</button>
-      </div>
-      <div class="calc-right">
-        <div class="calc-result-card" style="gap:14px;">
-          <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
-            <div style="background:#0a1628;border-radius:12px;padding:16px;text-align:center;">
-              <div style="font-size:11px;color:rgba(255,255,255,.5);margin-bottom:6px;">Pay Cash, SIP the EMI</div>
-              <div id="homeloan-cash-result" style="font-family:'Cormorant Garamond',serif;font-size:20px;color:#fff;">₹0</div>
-            </div>
-            <div style="background:#0a1628;border-radius:12px;padding:16px;text-align:center;">
-              <div style="font-size:11px;color:rgba(255,255,255,.5);margin-bottom:6px;">Take Loan, Invest Lumpsum</div>
-              <div id="homeloan-loan-result" style="font-family:'Cormorant Garamond',serif;font-size:20px;color:#fff;">₹0</div>
-            </div>
-          </div>
-          <div id="homeloan-verdict" style="background:rgba(201,168,76,.1);border:1px solid rgba(201,168,76,.3);border-radius:12px;padding:16px;text-align:center;font-size:13px;color:#fff;font-weight:600;"></div>
-          <div style="border-top:1px dashed rgba(255,255,255,.15);padding-top:14px;">
-            <div style="font-size:11px;color:rgba(255,255,255,.5);margin-bottom:10px;">How Inflation Actually Affects Your EMI Burden</div>
-            <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
-              <div style="text-align:center;">
-                <div style="font-size:10px;color:rgba(255,255,255,.45);">Total EMI Paid (Nominal)</div>
-                <div id="homeloan-nominal-emi" style="font-size:14px;color:#fff;font-weight:600;">₹0</div>
-              </div>
-              <div style="text-align:center;">
-                <div style="font-size:10px;color:rgba(255,255,255,.45);">Real Cost (Today's Money)</div>
-                <div id="homeloan-real-emi" style="font-size:14px;color:#3f8f5f;font-weight:600;">₹0</div>
-              </div>
-            </div>
-            <div id="homeloan-inflation-note" style="font-size:11px;color:rgba(255,255,255,.5);margin-top:10px;text-align:center;"></div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-
-  <!-- ─ CAR LOAN VS CASH — WHICH ACTUALLY WINS ─ -->
-  <div class="calc-panel" id="calc-carloan">
-    <div class="calc-box">
-      <div class="calc-left">
-        <h2 class="calc-title">Car Loan vs Cash — Which Actually Wins</h2>
-        <p class="calc-desc">If you have the cash to buy outright, is it actually better to take a loan and invest the money instead? Real math, including how inflation quietly reduces your real EMI burden over time.</p>
-        <div class="calc-field">
-          <div class="calc-label-row"><label>Car Price</label><span class="calc-val-display" id="carloan-price-display">₹0</span></div>
-          <input type="range" min="300000" max="10000000" step="50000" value="1000000" class="calc-slider" oninput="updateCarloanCompare()" id="carloan-price">
-          <div class="calc-range-labels"><span>₹3 Lakh</span><span>₹1 Cr</span></div>
-        </div>
-        <div class="calc-field">
-          <div class="calc-label-row"><label>Down Payment %</label><span class="calc-val-display" id="carloan-down-display">20%</span></div>
-          <input type="range" min="0" max="80" step="5" value="20" class="calc-slider" oninput="updateCarloanCompare()" id="carloan-down">
-          <div class="calc-range-labels"><span>0%</span><span>80%</span></div>
-        </div>
-        <div class="calc-field">
-          <div class="calc-label-row"><label>Loan Interest Rate</label><span class="calc-val-display" id="carloan-rate-display">9.5%</span></div>
-          <input type="range" min="8" max="16" step="0.1" value="9.5" class="calc-slider" oninput="updateCarloanCompare()" id="carloan-rate">
-          <div class="calc-range-labels"><span>8%</span><span>16%</span></div>
-        </div>
-        <div class="calc-field">
-          <div class="calc-label-row"><label>Loan Tenure</label><span class="calc-val-display" id="carloan-tenure-display">5 Years</span></div>
-          <input type="range" min="1" max="8" step="1" value="5" class="calc-slider" oninput="updateCarloanCompare()" id="carloan-tenure">
-          <div class="calc-range-labels"><span>1 Yrs</span><span>8 Yrs</span></div>
-        </div>
-        <div class="calc-field">
-          <div class="calc-label-row"><label>Expected Investment Return</label><span class="calc-val-display" id="carloan-roi-display">12%</span></div>
-          <input type="range" min="4" max="20" step="0.5" value="12" class="calc-slider" oninput="updateCarloanCompare()" id="carloan-roi">
-          <div class="calc-range-labels"><span>4%</span><span>20%</span></div>
-        </div>
-        <div class="calc-field">
-          <div class="calc-label-row"><label>Expected Inflation</label><span class="calc-val-display" id="carloan-inf-display">6%</span></div>
-          <input type="range" min="2" max="10" step="0.5" value="6" class="calc-slider" oninput="updateCarloanCompare()" id="carloan-inf">
-          <div class="calc-range-labels"><span>2%</span><span>10%</span></div>
-        </div>
-        <a href="https://wa.link/rwwzd4" target="_blank" class="calc-cta-btn">Get the Real Answer for You — Talk to Manoj →</a>
-        <button onclick="downloadCalcPDF()" class="pdf-btn" style="display:block;width:100%;margin-top:10px;background:transparent;border:1px solid rgba(201,168,76,.4);color:var(--gold);padding:12px;border-radius:12px;font-size:13px;font-weight:600;cursor:pointer;font-family:'Outfit',sans-serif;">📄 Download This Result as PDF</button>
-      </div>
-      <div class="calc-right">
-        <div class="calc-result-card" style="gap:14px;">
-          <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
-            <div style="background:#0a1628;border-radius:12px;padding:16px;text-align:center;">
-              <div style="font-size:11px;color:rgba(255,255,255,.5);margin-bottom:6px;">Pay Cash, SIP the EMI</div>
-              <div id="carloan-cash-result" style="font-family:'Cormorant Garamond',serif;font-size:20px;color:#fff;">₹0</div>
-            </div>
-            <div style="background:#0a1628;border-radius:12px;padding:16px;text-align:center;">
-              <div style="font-size:11px;color:rgba(255,255,255,.5);margin-bottom:6px;">Take Loan, Invest Lumpsum</div>
-              <div id="carloan-loan-result" style="font-family:'Cormorant Garamond',serif;font-size:20px;color:#fff;">₹0</div>
-            </div>
-          </div>
-          <div id="carloan-verdict" style="background:rgba(201,168,76,.1);border:1px solid rgba(201,168,76,.3);border-radius:12px;padding:16px;text-align:center;font-size:13px;color:#fff;font-weight:600;"></div>
-          <div style="border-top:1px dashed rgba(255,255,255,.15);padding-top:14px;">
-            <div style="font-size:11px;color:rgba(255,255,255,.5);margin-bottom:10px;">How Inflation Actually Affects Your EMI Burden</div>
-            <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
-              <div style="text-align:center;">
-                <div style="font-size:10px;color:rgba(255,255,255,.45);">Total EMI Paid (Nominal)</div>
-                <div id="carloan-nominal-emi" style="font-size:14px;color:#fff;font-weight:600;">₹0</div>
-              </div>
-              <div style="text-align:center;">
-                <div style="font-size:10px;color:rgba(255,255,255,.45);">Real Cost (Today's Money)</div>
-                <div id="carloan-real-emi" style="font-size:14px;color:#3f8f5f;font-weight:600;">₹0</div>
-              </div>
-            </div>
-            <div id="carloan-inflation-note" style="font-size:11px;color:rgba(255,255,255,.5);margin-top:10px;text-align:center;"></div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-
-  <!-- ─ RENT VS BUY ─ -->
-  <div class="calc-panel" id="calc-rentbuy">
-    <div class="calc-box">
-      <div class="calc-left">
-        <h2 class="calc-title">Rent vs Buy Calculator</h2>
-        <p class="calc-desc">Renting and investing the difference vs buying and building equity — see which actually builds more wealth over your specific timeline.</p>
-        <div class="calc-field">
-          <div class="calc-label-row"><label>Home Price if Buying</label><span class="calc-val-display" id="rb-price-display">₹80,00,000</span></div>
-          <input type="range" min="1000000" max="100000000" step="500000" value="8000000" class="calc-slider" oninput="updateRentBuy()" id="rb-price">
-          <div class="calc-range-labels"><span>₹10 Lakh</span><span>₹10 Cr</span></div>
-        </div>
-        <div class="calc-field">
-          <div class="calc-label-row"><label>Current Monthly Rent for Equivalent Home</label><span class="calc-val-display" id="rb-rent-display">₹25,000</span></div>
-          <input type="range" min="3000" max="500000" step="1000" value="25000" class="calc-slider" oninput="updateRentBuy()" id="rb-rent">
-          <div class="calc-range-labels"><span>₹3,000</span><span>₹5 Lakh</span></div>
-        </div>
-        <div class="calc-field">
-          <div class="calc-label-row"><label>Loan Interest Rate (if Buying)</label><span class="calc-val-display" id="rb-rate-display">8.5%</span></div>
-          <input type="range" min="6" max="14" step="0.1" value="8.5" class="calc-slider" oninput="updateRentBuy()" id="rb-rate">
-          <div class="calc-range-labels"><span>6%</span><span>14%</span></div>
-        </div>
-        <div class="calc-field">
-          <div class="calc-label-row"><label>Time Horizon</label><span class="calc-val-display" id="rb-years-display">15 Years</span></div>
-          <input type="range" min="3" max="30" step="1" value="15" class="calc-slider" oninput="updateRentBuy()" id="rb-years">
-          <div class="calc-range-labels"><span>3 Yrs</span><span>30 Yrs</span></div>
-        </div>
-        <div class="calc-field">
-          <div class="calc-label-row"><label>Expected Home Appreciation</label><span class="calc-val-display" id="rb-appr-display">6%</span></div>
-          <input type="range" min="0" max="15" step="0.5" value="6" class="calc-slider" oninput="updateRentBuy()" id="rb-appr">
-          <div class="calc-range-labels"><span>0%</span><span>15%</span></div>
-        </div>
-        <div class="calc-field">
-          <div class="calc-label-row"><label>Expected Investment Return (if Renting)</label><span class="calc-val-display" id="rb-roi-display">12%</span></div>
-          <input type="range" min="4" max="20" step="0.5" value="12" class="calc-slider" oninput="updateRentBuy()" id="rb-roi">
-          <div class="calc-range-labels"><span>4%</span><span>20%</span></div>
-        </div>
-        <div class="calc-field">
-          <div class="calc-label-row"><label>Annual Rent Increase</label><span class="calc-val-display" id="rb-rentinc-display">5%</span></div>
-          <input type="range" min="0" max="12" step="0.5" value="5" class="calc-slider" oninput="updateRentBuy()" id="rb-rentinc">
-          <div class="calc-range-labels"><span>0%</span><span>12%</span></div>
-        </div>
-        <a href="https://wa.link/rwwzd4" target="_blank" class="calc-cta-btn">Talk Through Your Decision — Talk to Manoj →</a>
-        <button onclick="downloadCalcPDF()" class="pdf-btn" style="display:block;width:100%;margin-top:10px;background:transparent;border:1px solid rgba(201,168,76,.4);color:var(--gold);padding:12px;border-radius:12px;font-size:13px;font-weight:600;cursor:pointer;font-family:'Outfit',sans-serif;">📄 Download This Result as PDF</button>
-      </div>
-      <div class="calc-right">
-        <div class="calc-result-card" style="gap:14px;">
-          <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
-            <div style="background:#0a1628;border-radius:12px;padding:16px;text-align:center;">
-              <div style="font-size:11px;color:rgba(255,255,255,.5);margin-bottom:6px;">Net Worth if Renting</div>
-              <div id="rb-rent-result" style="font-family:'Cormorant Garamond',serif;font-size:20px;color:#fff;">₹0</div>
-            </div>
-            <div style="background:#0a1628;border-radius:12px;padding:16px;text-align:center;">
-              <div style="font-size:11px;color:rgba(255,255,255,.5);margin-bottom:6px;">Net Worth if Buying</div>
-              <div id="rb-buy-result" style="font-family:'Cormorant Garamond',serif;font-size:20px;color:#fff;">₹0</div>
-            </div>
-          </div>
-          <div id="rb-verdict" style="background:rgba(201,168,76,.1);border:1px solid rgba(201,168,76,.3);border-radius:12px;padding:16px;text-align:center;font-size:13px;color:#fff;font-weight:600;"></div>
-          <p style="font-size:11px;color:rgba(255,255,255,.45);line-height:1.6;margin:0;">Buying scenario assumes a 20% down payment invested nowhere (it's in the home), remaining as loan, and home equity plus appreciation as your net worth. Renting scenario assumes the down payment plus the monthly EMI-minus-rent difference gets invested. Excludes property tax, maintenance, and brokerage — real decisions should factor these in too.</p>
-        </div>
-      </div>
-    </div>
-  </div>
-
-
-  <!-- ─ FD VS MUTUAL FUND ─ -->
-  <div class="calc-panel" id="calc-fdmf">
-    <div class="calc-box">
-      <div class="calc-left">
-        <h2 class="calc-title">FD vs Mutual Fund Calculator</h2>
-        <p class="calc-desc">Guaranteed but taxed heavily, or market-linked with more favorable tax treatment — see the real after-tax numbers side by side.</p>
-        <div class="calc-field">
-          <div class="calc-label-row"><label>Amount to Invest</label><span class="calc-val-display" id="fdmf-amt-display">₹5,00,000</span></div>
-          <input type="range" min="10000" max="50000000" step="10000" value="500000" class="calc-slider" oninput="updateFDMF()" id="fdmf-amt">
-          <div class="calc-range-labels"><span>₹10,000</span><span>₹5 Cr</span></div>
-        </div>
-        <div class="calc-field">
-          <div class="calc-label-row"><label>FD Interest Rate</label><span class="calc-val-display" id="fdmf-fdrate-display">7%</span></div>
-          <input type="range" min="4" max="10" step="0.1" value="7" class="calc-slider" oninput="updateFDMF()" id="fdmf-fdrate">
-          <div class="calc-range-labels"><span>4%</span><span>10%</span></div>
-        </div>
-        <div class="calc-field">
-          <div class="calc-label-row"><label>Expected Mutual Fund Return</label><span class="calc-val-display" id="fdmf-mfrate-display">12%</span></div>
-          <input type="range" min="4" max="20" step="0.5" value="12" class="calc-slider" oninput="updateFDMF()" id="fdmf-mfrate">
-          <div class="calc-range-labels"><span>4%</span><span>20%</span></div>
-        </div>
-        <div class="calc-field">
-          <div class="calc-label-row"><label>Investment Duration</label><span class="calc-val-display" id="fdmf-years-display">5 Years</span></div>
-          <input type="range" min="1" max="30" step="1" value="5" class="calc-slider" oninput="updateFDMF()" id="fdmf-years">
-          <div class="calc-range-labels"><span>1 Yr</span><span>30 Yrs</span></div>
-        </div>
-        <div class="calc-field">
-          <div class="calc-label-row"><label>Your Income Tax Slab</label><span class="calc-val-display" id="fdmf-slab-display">30%</span></div>
-          <input type="range" min="0" max="30" step="5" value="30" class="calc-slider" oninput="updateFDMF()" id="fdmf-slab">
-          <div class="calc-range-labels"><span>0%</span><span>30%</span></div>
-        </div>
-        <a href="https://wa.link/rwwzd4" target="_blank" class="calc-cta-btn">Plan Your Allocation — Talk to Manoj →</a>
-        <button onclick="downloadCalcPDF()" class="pdf-btn" style="display:block;width:100%;margin-top:10px;background:transparent;border:1px solid rgba(201,168,76,.4);color:var(--gold);padding:12px;border-radius:12px;font-size:13px;font-weight:600;cursor:pointer;font-family:'Outfit',sans-serif;">📄 Download This Result as PDF</button>
-      </div>
-      <div class="calc-right">
-        <div class="calc-result-card" style="gap:14px;">
-          <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
-            <div style="background:#0a1628;border-radius:12px;padding:16px;text-align:center;">
-              <div style="font-size:11px;color:rgba(255,255,255,.5);margin-bottom:6px;">FD — After Tax</div>
-              <div id="fdmf-fd-result" style="font-family:'Cormorant Garamond',serif;font-size:20px;color:#fff;">₹0</div>
-            </div>
-            <div style="background:#0a1628;border-radius:12px;padding:16px;text-align:center;">
-              <div style="font-size:11px;color:rgba(255,255,255,.5);margin-bottom:6px;">Mutual Fund — After Tax</div>
-              <div id="fdmf-mf-result" style="font-family:'Cormorant Garamond',serif;font-size:20px;color:#fff;">₹0</div>
-            </div>
-          </div>
-          <div id="fdmf-verdict" style="background:rgba(201,168,76,.1);border:1px solid rgba(201,168,76,.3);border-radius:12px;padding:16px;text-align:center;font-size:13px;color:#fff;font-weight:600;"></div>
-          <p style="font-size:11px;color:rgba(255,255,255,.45);line-height:1.6;margin:0;">FD interest is taxed annually at your slab rate every year. Mutual fund LTCG (24+ month holding) is taxed at 12.5% only on gains above ₹1.25 lakh, and only when you actually sell — a real, meaningful structural difference, not just a return-rate comparison. Mutual funds carry market risk that FDs don't.</p>
-        </div>
-      </div>
-    </div>
-  </div>
-
+  </style>
+  <div class="av-studio-page" id="av-studio-root"></div>
 </section>
-</div><!-- /page-calculators -->
+<script>
+
+/* ===== engine.js ===== */
+/* Ashvamedha Finance — calculation engine (pure functions, no DOM).
+   CONVENTIONS (one set, used everywhere so calculators never contradict each other):
+   • "Expected return" = annualised effective return (CAGR/XIRR style). Monthly rate = (1+R)^(1/12) − 1.
+   • SIP / recurring contributions are made at the START of each month.
+   • Loan EMIs use the bank convention: nominal annual rate / 12, monthly compounding.
+   • Equity/MF gains tax: LTCG 12.5% above ₹1.25L/yr exemption if held > 12 months; STCG 20% otherwise.
+     Debt mutual funds and FD interest: taxed at the investor's slab rate.
+   • Property gains: 12.5% LTCG (no indexation), held > 24 months.
+*/
+(function (root) {
+  'use strict';
+  const E = {};
+  const LTCG_EXEMPT = 125000;
+
+  /* ───────── helpers ───────── */
+  E.mRate = (pct) => Math.pow(1 + pct / 100, 1 / 12) - 1;
+  E.clamp = (x, a, b) => Math.min(Math.max(x, a), b);
+  E.nMonths = (years) => Math.max(0, Math.round(years * 12));
+
+  E.fmtIN = (n) => {                       // ₹12,34,567
+    n = Math.round(n || 0);
+    const neg = n < 0; n = Math.abs(n);
+    let s = String(n), out;
+    if (s.length > 3) { const last3 = s.slice(-3); let rest = s.slice(0, -3); rest = rest.replace(/\B(?=(\d{2})+(?!\d))/g, ','); out = rest + ',' + last3; }
+    else out = s;
+    return (neg ? '-' : '') + '₹' + out;
+  };
+  E.fmtC = (n) => {                        // ₹1.23 Cr / ₹12.3 L / ₹45,000
+    const neg = n < 0, a = Math.abs(n || 0), sg = neg ? '-' : '';
+    if (a >= 1e7) return sg + '₹' + (a / 1e7).toFixed(a >= 1e9 ? 0 : 2) + ' Cr';
+    if (a >= 1e5) return sg + '₹' + (a / 1e5).toFixed(a >= 1e6 ? 1 : 2) + ' L';
+    return sg + E.fmtIN(a);
+  };
+
+  /* equity-fund tax on a realised gain */
+  E.taxEquity = (gain, years, cgtPct) => {
+    if (gain <= 0) return 0;
+    if (years > 1 - 1e-9) return Math.max(gain - LTCG_EXEMPT, 0) * cgtPct / 100;   // LTCG
+    return gain * 0.20;                                                             // STCG
+  };
+  E.taxDebt = (gain, slabPct) => Math.max(gain, 0) * slabPct / 100;
+
+  /* ───────── loans ───────── */
+  E.emi = (P, ratePct, years) => {
+    const r = ratePct / 1200, n = E.nMonths(years);
+    if (P <= 0 || n <= 0) return 0;
+    return r === 0 ? P / n : P * r * Math.pow(1 + r, n) / (Math.pow(1 + r, n) - 1);
+  };
+  // Month-by-month amortisation. Returns arrays indexed by month (bal[0]=P) and per-month interest (int[1..n]).
+  E.loanMonthly = (P, ratePct, years, extraMonthly) => {
+    extraMonthly = extraMonthly || 0;
+    const r = ratePct / 1200, emi = E.emi(P, ratePct, years);
+    const bal = [P], int = [0], prin = [0];
+    let b = P, m = 0, totalInterest = 0;
+    while (b > 0.005 && m < 12 * 60) {
+      m++;
+      const i = b * r; let p = emi - i + extraMonthly; if (p > b) p = b; if (p < 0) p = 0;
+      b -= p; totalInterest += i; bal.push(b); int.push(i); prin.push(p);
+    }
+    return { emi, months: m, bal, int, prin, totalInterest };
+  };
+  E.loanYearly = (sched) => {
+    const out = []; let yi = 0, yp = 0;
+    for (let k = 1; k < sched.bal.length; k++) {
+      yi += sched.int[k]; yp += sched.prin[k];
+      if (k % 12 === 0 || k === sched.bal.length - 1) { out.push({ year: Math.ceil(k / 12), interest: yi, principal: yp, balance: sched.bal[k] }); yi = 0; yp = 0; }
+    }
+    return out;
+  };
+
+  /* ───────── growth: SIP / step-up / lumpsum ───────── */
+  E.sipGrow = (o) => {
+    const m = E.mRate(o.retPct), n = E.nMonths(o.years);
+    let bal = o.lump || 0, inv = o.lump || 0, amt = o.monthly;
+    const yearly = [{ year: 0, invested: inv, value: bal }];
+    for (let k = 1; k <= n; k++) {
+      bal = (bal + amt) * (1 + m); inv += amt;
+      if (k % 12 === 0) { yearly.push({ year: k / 12, invested: inv, value: bal }); amt *= (1 + (o.stepPct || 0) / 100); }
+    }
+    return { fv: bal, invested: inv, gain: bal - inv, yearly };
+  };
+  E.lumpGrow = (o) => {
+    const yearly = [];
+    for (let t = 0; t <= o.years; t++) yearly.push({ year: t, invested: o.amount, value: o.amount * Math.pow(1 + o.retPct / 100, t) });
+    const fv = o.amount * Math.pow(1 + o.retPct / 100, o.years);
+    return { fv, invested: o.amount, gain: fv - o.amount, yearly };
+  };
+  E.real = (v, infPct, years) => v / Math.pow(1 + infPct / 100, years);
+
+  /* ───────── SWP ───────── */
+  E.swp = (o) => {
+    const m = E.mRate(o.retPct), N = E.nMonths(o.maxYears || 60);
+    let bal = o.corpus, w = o.monthly, lasted = 0, withdrawn = 0, depleted = false;
+    const yearly = [{ year: 0, balance: bal, withdrawn: 0 }];
+    for (let k = 1; k <= N; k++) {
+      if (bal < w) { lasted = (k - 1) + (w > 0 ? bal / w : 0); withdrawn += bal; bal = 0; depleted = true; yearly.push({ year: lasted / 12, balance: 0, withdrawn }); break; }
+      bal -= w; withdrawn += w; bal *= (1 + m); lasted = k;
+      if (k % 12 === 0) { yearly.push({ year: k / 12, balance: bal, withdrawn }); w *= (1 + (o.stepPct || 0) / 100); }
+    }
+    return { depleted, monthsLasted: lasted, yearsLasted: lasted / 12, endBalance: bal, totalWithdrawn: withdrawn, yearly, firstWithdrawal: o.monthly };
+  };
+  // Largest starting monthly withdrawal that lasts `years` years.
+  E.swpSustainable = (o) => {
+    let lo = 0, hi = o.corpus;
+    for (let i = 0; i < 60; i++) {
+      const mid = (lo + hi) / 2;
+      const r = E.swp({ corpus: o.corpus, monthly: mid, retPct: o.retPct, stepPct: o.stepPct, maxYears: o.years });
+      if (r.depleted) hi = mid; else lo = mid;
+    }
+    return lo;
+  };
+
+  /* ───────── retirement ───────── */
+  E.retirement = (o) => {
+    const y = Math.max(o.retAge - o.age, 1), N = Math.max((o.lifeAge - o.retAge) * 12, 12);
+    const mPost = E.mRate(o.postRetPct), inf = o.infPct / 100;
+    const eRet = o.expense * Math.pow(1 + inf, y);
+    const pension = (o.pensionToday || 0) * Math.pow(1 + inf, y);
+    const w0 = Math.max(eRet - pension, 0);
+    let corpus = 0;
+    for (let k = 0; k < N; k++) corpus += (w0 * Math.pow(1 + inf, Math.floor(k / 12))) / Math.pow(1 + mPost, k);
+    const fvSav = o.savings * Math.pow(1 + o.preRetPct / 100, y);
+    const gap = Math.max(corpus - fvSav, 0);
+    const unit = E.sipGrow({ monthly: 1, retPct: o.preRetPct, years: y, stepPct: o.stepPct || 0 }).fv;
+    const sip = unit > 0 ? gap / unit : 0;
+    // path: accumulate then draw down
+    const path = [];
+    const mPre = E.mRate(o.preRetPct);
+    let bal = o.savings, amt = sip;
+    path.push({ age: o.age, balance: bal });
+    for (let k = 1; k <= y * 12; k++) { bal = (bal + amt) * (1 + mPre); if (k % 12 === 0) { path.push({ age: o.age + k / 12, balance: bal }); amt *= (1 + (o.stepPct || 0) / 100); } }
+    const atRetire = bal;
+    let b = atRetire, w = w0;
+    for (let k = 1; k <= N; k++) {
+      if (b < w) { b = 0; } else { b -= w; b *= (1 + mPost); }
+      if (k % 12 === 0) { path.push({ age: o.retAge + k / 12, balance: Math.max(b, 0) }); w *= (1 + inf); }
+    }
+    return { yearsToRetire: y, expenseAtRetirement: eRet, corpusNeeded: corpus, fvSavings: fvSav, gap, sip, unitFV: unit, path, retirementYears: N / 12, withdrawalAtRetirement: w0 };
+  };
+
+  /* ───────── FIRE ───────── */
+  E.fire = (o) => {
+    const number = o.expense * 12 / (o.swrPct / 100);
+    const m = E.mRate(o.retPct), inf = o.infPct / 100;
+    let bal = o.current, amt = o.monthly, hit = (bal >= number) ? 0 : null;
+    const yearly = [{ year: 0, portfolio: bal, target: number }];
+    const cap = E.nMonths(o.maxYears || 60);
+    let k = 0;
+    while (k < cap) {
+      k++;
+      bal = (bal + amt) * (1 + m);
+      const tgt = number * Math.pow(1 + inf, k / 12);
+      if (hit === null && bal >= tgt) hit = k;
+      if (k % 12 === 0) { yearly.push({ year: k / 12, portfolio: bal, target: tgt }); amt *= (1 + (o.stepPct || 0) / 100); }
+      if (hit !== null && k >= hit + 24) break;
+    }
+    const yearsToFI = hit === null ? null : hit / 12;
+    return {
+      number, lean: number * 0.7, fat: number * 1.5,
+      yearsToFI, nominalAtFI: yearsToFI === null ? null : number * Math.pow(1 + inf, yearsToFI),
+      progressPct: Math.min(100, o.current / number * 100), yearly
+    };
+  };
+
+  /* ───────── goal planner (income − expenses → years to target) ───────── */
+  E.goal = (o) => {
+    const m = E.mRate(o.retPct), inf = o.infPct / 100, g = (o.incomeGrowthPct || 0) / 100;
+    let bal = o.current, hit = null;
+    const cap = E.nMonths(o.maxYears || 60), yearly = [{ year: 0, portfolio: bal, target: o.target }];
+    const firstSave = o.income - o.expense;
+    let k = 0;
+    while (k < cap) {
+      const yi = Math.floor(k / 12);
+      const save = o.income * Math.pow(1 + g, yi) - o.expense * Math.pow(1 + inf, yi);
+      k++;
+      bal = (bal + Math.max(save, 0)) * (1 + m);
+      const tgt = o.target * Math.pow(1 + inf, k / 12);
+      if (hit === null && bal >= tgt) hit = k;
+      if (k % 12 === 0) yearly.push({ year: k / 12, portfolio: bal, target: tgt });
+      if (hit !== null && k >= hit + 12) break;
+      if (firstSave <= 0 && k >= 24) break;
+    }
+    return { firstSave, savingsRatePct: o.income > 0 ? firstSave / o.income * 100 : 0, yearsToGoal: hit === null ? null : hit / 12, yearly };
+  };
+
+  /* ───────── loan vs cash ───────── */
+  E.loanVsCash = (o) => {
+    const price = o.price, down = price * o.downPct / 100, loan = price - down;
+    const n = E.nMonths(o.tenure);
+    if (loan <= 0 || n <= 0) return { noLoan: true };
+    const sched = E.loanMonthly(loan, o.ratePct, o.tenure);
+    const emi = sched.emi, nn = sched.bal.length - 1;
+    const run = (retPct) => {
+      const m = E.mRate(retPct);
+      let A = 0, Ainv = 0, B = loan, Binv = loan, yInt = 0; const yearly = [{ year: 0, A: 0, B: loan - loan }];
+      for (let k = 1; k <= nn; k++) {
+        A = (A + emi) * (1 + m); Ainv += emi;
+        B = B * (1 + m);
+        yInt += sched.int[k];
+        if (k % 12 === 0) {
+          if (o.claimTax) { const ben = Math.min(yInt, 200000) * (o.slabPct || 0) / 100; B += ben; Binv += ben; }
+          yInt = 0;
+        }
+        if (k % 12 === 0) yearly.push({ year: k / 12, A, B: B - sched.bal[k], loan: sched.bal[k], Bport: B });
+      }
+      const gainA = A - Ainv, gainB = B - Binv;
+      const isEq = (o.fundType || 'equity') === 'equity';
+      const taxA = isEq ? E.taxEquity(gainA, nn / 12, o.cgtPct) : E.taxDebt(gainA, o.slabPct || 0);
+      const taxB = isEq ? E.taxEquity(gainB, nn / 12, o.cgtPct) : E.taxDebt(gainB, o.slabPct || 0);
+      return { A, B, Ainv, Binv, finalA: A - taxA, finalB: B - taxB, taxA, taxB, yearly };
+    };
+    const r = run(o.retPct);
+    // break-even investment return
+    const f = (x) => { const q = run(x); return q.finalB - q.finalA; };
+    let be = null;
+    if (f(0) < 0 && f(60) > 0) { let lo = 0, hi = 60; for (let i = 0; i < 60; i++) { const mid = (lo + hi) / 2; if (f(mid) < 0) lo = mid; else hi = mid; } be = (lo + hi) / 2; }
+    else if (f(0) >= 0) be = 0;
+    let realEmiPV = 0; for (let k = 1; k <= nn; k++) realEmiPV += emi / Math.pow(1 + o.infPct / 100, k / 12);
+    return {
+      loan, down, emi, months: nn, totalInterest: sched.totalInterest, totalPaid: emi * nn,
+      finalA: r.finalA, finalB: r.finalB, diff: r.finalB - r.finalA, taxA: r.taxA, taxB: r.taxB,
+      realA: E.real(r.finalA, o.infPct, nn / 12), realB: E.real(r.finalB, o.infPct, nn / 12),
+      breakeven: be, realRatePct: ((1 + o.ratePct / 100) / (1 + o.infPct / 100) - 1) * 100,
+      realEmiPV, inflationEasePct: (1 - realEmiPV / (emi * nn)) * 100, yearly: r.yearly,
+      totalCashNeeded: price * (1 + (o.regPct || 0) / 100), regCost: price * (o.regPct || 0) / 100
+    };
+  };
+
+  /* ───────── rent vs buy (self-occupied home) ───────── */
+  E.rentVsBuy = (o) => {
+    const price = o.price, down = price * o.downPct / 100, loan = price - down, reg = price * o.regPct / 100;
+    const C0 = down + reg, H = E.nMonths(o.horizon), m = E.mRate(o.retPct);
+    const sched = loan > 0 ? E.loanMonthly(loan, o.ratePct, o.tenure) : { emi: 0, bal: [0], int: [0] };
+    const nn = sched.bal.length - 1, emi = sched.emi;
+    let buyP = 0, rentP = C0, invB = 0, invR = C0, yInt = 0;
+    const yearly = [{ year: 0, buy: price * (1 - o.sellPct / 100) - loan - reg, rent: C0 }];
+    const appr = o.apprPct / 100;
+    for (let k = 1; k <= H; k++) {
+      const yi = Math.floor((k - 1) / 12);
+      const rent = o.rent * Math.pow(1 + o.rentGrowthPct / 100, yi);
+      const homePrev = price * Math.pow(1 + appr, (k - 1) / 12);
+      const maint = homePrev * o.maintPct / 100 / 12;
+      const emiK = k <= nn ? emi : 0;
+      const buyOut = emiK + maint, budget = Math.max(buyOut, rent);
+      const iB = budget - buyOut, iR = budget - rent;
+      buyP = (buyP + iB) * (1 + m); rentP = (rentP + iR) * (1 + m); invB += iB; invR += iR;
+      if (k <= nn) yInt += sched.int[k];
+      if (k % 12 === 0) {
+        if (o.claimTax && k <= nn) { const ben = Math.min(yInt, 200000) * (o.slabPct || 0) / 100; buyP += ben; invB += ben; }
+        yInt = 0;
+        const hv = price * Math.pow(1 + appr, k / 12), lb = k <= nn ? sched.bal[k] : 0;
+        yearly.push({ year: k / 12, buy: hv * (1 - o.sellPct / 100) - lb + buyP, rent: rentP });
+      }
+    }
+    const homeEnd = price * Math.pow(1 + appr, H / 12), sellCost = homeEnd * o.sellPct / 100;
+    const propGain = homeEnd - sellCost - (price + reg);
+    const propTax = (H / 12 > 2 ? Math.max(propGain, 0) * o.cgtPct / 100 : Math.max(propGain, 0) * (o.slabPct || 0) / 100);
+    const loanOut = H <= nn ? sched.bal[H] : 0;
+    const tx = (port, inv) => E.taxEquity(port - inv, H / 12, o.cgtPct);
+    const buyFinal = homeEnd - sellCost - propTax - loanOut + buyP - tx(buyP, invB);
+    const rentFinal = rentP - tx(rentP, invR);
+    const f = (ap) => { const q = E.rentVsBuy(Object.assign({}, o, { apprPct: ap, _noSolve: true })); return q.buyFinal - q.rentFinal; };
+    let be = null;
+    if (!o._noSolve) {
+      if (f(-5) >= 0) be = -Infinity; else if (f(25) < 0) be = Infinity;
+      else { let lo = -5, hi = 25; for (let i = 0; i < 50; i++) { const mid = (lo + hi) / 2; if (f(mid) < 0) lo = mid; else hi = mid; } be = (lo + hi) / 2; }
+    }
+    return { emi, upfront: C0, reg, homeEnd, sellCost, propTax, loanOut, buyFinal, rentFinal, diff: buyFinal - rentFinal, breakevenAppr: be, yearly };
+  };
+
+  /* ───────── mutual fund vs investment property ───────── */
+  E.mfVsRe = (o) => {
+    const price = o.price, down = price * o.downPct / 100, loan = price - down;
+    const acq = price * (o.regPct + o.brokPct) / 100, C0 = down + acq;
+    const H = E.nMonths(o.horizon), m = E.mRate(o.retPct);
+    const sched = loan > 0 ? E.loanMonthly(loan, o.ratePct, o.tenure) : { emi: 0, bal: [0], int: [0] };
+    const nn = sched.bal.length - 1, emi = sched.emi, appr = o.apprPct / 100;
+    let mf = C0, invMF = C0, side = 0, invSide = 0;
+    const flowsRE = [-C0], flowsMF = [-C0];
+    const yearly = [{ year: 0, re: price - loan - acq, mf: C0 }];
+    let cumInflow = 0;
+    for (let k = 1; k <= H; k++) {
+      const yi = Math.floor((k - 1) / 12);
+      const rentGross = price * o.yieldPct / 100 / 12 * Math.pow(1 + o.rentGrowthPct / 100, yi) * (1 - o.vacancyPct / 100);
+      const rentTax = rentGross * 0.7 * (o.slabPct || 0) / 100;
+      const homePrev = price * Math.pow(1 + appr, (k - 1) / 12);
+      const cost = homePrev * o.maintPct / 100 / 12;
+      const emiK = k <= nn ? emi : 0;
+      const cash = rentGross - rentTax - cost - emiK;
+      const shortfall = Math.max(-cash, 0), surplus = Math.max(cash, 0);
+      mf = (mf + shortfall) * (1 + m); invMF += shortfall;
+      side = (side + surplus) * (1 + m); invSide += surplus;
+      flowsRE.push(cash); flowsMF.push(-shortfall);
+      if (k % 12 === 0) {
+        const hv = price * Math.pow(1 + appr, k / 12), lb = k <= nn ? sched.bal[k] : 0;
+        yearly.push({ year: k / 12, re: hv * (1 - o.sellPct / 100) - lb + side, mf });
+      }
+    }
+    const homeEnd = price * Math.pow(1 + appr, H / 12), sellCost = homeEnd * o.sellPct / 100;
+    const propGain = homeEnd - sellCost - (price + acq);
+    const propTax = H / 12 > 2 ? Math.max(propGain, 0) * o.cgtPct / 100 : Math.max(propGain, 0) * (o.slabPct || 0) / 100;
+    const loanOut = H <= nn ? sched.bal[H] : 0;
+    const tx = (port, inv) => E.taxEquity(port - inv, H / 12, o.cgtPct);
+    const netSale = homeEnd - sellCost - propTax - loanOut;
+    const reFinal = netSale + side - tx(side, invSide);
+    const mfFinal = mf - tx(mf, invMF);
+    flowsRE[H] += netSale; flowsMF[H] += mfFinal - 0;   // MF path: only its own contributions vs final
+    const irr = (flows) => {
+      const npv = (r) => { let s = 0; for (let k = 0; k < flows.length; k++) s += flows[k] / Math.pow(1 + r, k); return s; };
+      let lo = -0.02, hi = 0.05; if (npv(lo) * npv(hi) > 0) return null;
+      for (let i = 0; i < 80; i++) { const mid = (lo + hi) / 2; if (npv(lo) * npv(mid) <= 0) hi = mid; else lo = mid; }
+      return (Math.pow(1 + (lo + hi) / 2, 12) - 1) * 100;
+    };
+    // MF path flows: initial C0 out, shortfalls out, final in
+    const f = (ap) => { const q = E.mfVsRe(Object.assign({}, o, { apprPct: ap, _noSolve: true })); return q.reFinal - q.mfFinal; };
+    let be = null;
+    if (!o._noSolve) {
+      if (f(-5) >= 0) be = -Infinity; else if (f(25) < 0) be = Infinity;
+      else { let lo = -5, hi = 25; for (let i = 0; i < 50; i++) { const mid = (lo + hi) / 2; if (f(mid) < 0) lo = mid; else hi = mid; } be = (lo + hi) / 2; }
+    }
+    return { upfront: C0, acq, emi, netSale, reFinal, mfFinal, diff: reFinal - mfFinal, reIRR: irr(flowsRE), mfIRR: irr(flowsMF), breakevenAppr: be, yearly, grossYieldPct: o.yieldPct, netYieldPct: (price * o.yieldPct / 100 * (1 - o.vacancyPct / 100) * (1 - 0.7 * (o.slabPct || 0) / 100) - price * o.maintPct / 100) / price * 100 };
+  };
+
+  /* ───────── FD vs mutual fund ───────── */
+  E.fdVsMf = (o) => {
+    const yrs = o.years, fdNet = o.fdPct * (1 - o.slabPct / 100);
+    const yearly = []; let fd = o.amount;
+    const isEq = (o.fundType || 'equity') === 'equity';
+    for (let t = 0; t <= yrs; t++) {
+      const fdV = o.amount * Math.pow(1 + fdNet / 100, t);
+      const gross = o.amount * Math.pow(1 + o.mfPct / 100, t);
+      const tax = t === 0 ? 0 : (isEq ? E.taxEquity(gross - o.amount, t, o.cgtPct) : E.taxDebt(gross - o.amount, o.slabPct));
+      yearly.push({ year: t, fd: fdV, mf: gross - tax });
+    }
+    const fdFinal = yearly[yearly.length - 1].fd, mfFinal = yearly[yearly.length - 1].mf;
+    const cagr = (v) => (Math.pow(v / o.amount, 1 / yrs) - 1) * 100;
+    const f = (x) => { const g = o.amount * Math.pow(1 + x / 100, yrs); const t = isEq ? E.taxEquity(g - o.amount, yrs, o.cgtPct) : E.taxDebt(g - o.amount, o.slabPct); return g - t - fdFinal; };
+    let be = null; if (f(0) < 0 && f(60) > 0) { let lo = 0, hi = 60; for (let i = 0; i < 60; i++) { const mid = (lo + hi) / 2; if (f(mid) < 0) lo = mid; else hi = mid; } be = (lo + hi) / 2; }
+    return {
+      fdFinal, mfFinal, diff: mfFinal - fdFinal, fdCagr: cagr(fdFinal), mfCagr: cagr(mfFinal),
+      fdReal: ((1 + cagr(fdFinal) / 100) / (1 + o.infPct / 100) - 1) * 100, mfReal: ((1 + cagr(mfFinal) / 100) / (1 + o.infPct / 100) - 1) * 100,
+      breakevenMf: be, yearly
+    };
+  };
+
+  /* ───────── term cover (human life value, needs-based) ───────── */
+  E.termCover = (o) => {
+    const m = E.mRate(o.retPct), inf = o.infPct / 100, N = E.nMonths(o.years);
+    let pv = 0; for (let k = 0; k < N; k++) pv += o.expense * Math.pow(1 + inf, Math.floor(k / 12)) / Math.pow(1 + m, k);
+    const needs = pv + o.loans + o.goals;
+    const assets = o.savings + o.existingCover;
+    const required = Math.max(needs - assets, 0);
+    return { incomeReplacement: pv, needs, assets, required, multipleOfIncome: o.annualIncome > 0 ? required / o.annualIncome : null };
+  };
+
+  /* ───────── emergency fund ───────── */
+  E.emergency = (o) => {
+    const base = { salaried: 6, business: 9, freelance: 12 }[o.job] || 6;
+    const months = Math.min(base + Math.min(o.dependents, 3) + (o.singleIncome ? 1 : 0), 15);
+    const monthly = o.expense + o.emis, target = monthly * months, gap = Math.max(target - o.saved, 0);
+    return { months, monthly, target, gap, monthsCovered: monthly > 0 ? o.saved / monthly : 0, monthsToBuild: o.canSave > 0 ? Math.ceil(gap / o.canSave) : null };
+  };
+
+  if (typeof module !== 'undefined' && module.exports) module.exports = E; else root.AVE = E;
+})(typeof window !== 'undefined' ? window : globalThis);
+
+
+/* ===== avs.js ===== */
+/* ── AVS: app-level services (lead capture, PDF, sharing, sticky bar) ── */
+window.AVS = (function () {
+  const CFG = {
+    brand: 'Ashvamedha Finance', person: 'Manoj Kumar', wa: '918790109022', phone: '+91 87901 09022',
+    address: 'Road No. 5, Green Valley, Banjara Hills, Hyderabad', site: 'ashvamedhaai.com',
+  };
+
+  function waLink(calc) {
+    const t = calc && calc.sections && calc.sections[0] ? calc.sections[0].cfg.title : 'a calculator';
+    return 'https://wa.me/' + CFG.wa + '?text=' + encodeURIComponent(
+      "Hi Manoj, I was using the " + t + " on your website and I'd like to talk through my numbers."
+    );
+  }
+
+  function copyLink(calc) {
+    const url = location.href;
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(url).then(() => toast('Link copied — paste it anywhere'));
+    } else {
+      const ta = document.createElement('textarea'); ta.value = url; document.body.append(ta);
+      ta.select(); document.execCommand('copy'); ta.remove(); toast('Link copied — paste it anywhere');
+    }
+  }
+
+  function saveHash(calc) {
+    try {
+      const parts = [];
+      calc.sections.forEach(s => { parts.push(s.cfg.id + '=' + encodeURIComponent(JSON.stringify(s.vals))); });
+      history.replaceState(null, '', '#' + parts.join('&'));
+    } catch (e) { /* non-fatal */ }
+  }
+
+  function loadHash(calc) {
+    if (!location.hash) return;
+    try {
+      const pending = {};
+      location.hash.slice(1).split('&').forEach(p => {
+        const i = p.indexOf('=');
+        if (i < 0) return;
+        const id = p.slice(0, i), val = JSON.parse(decodeURIComponent(p.slice(i + 1)));
+        pending[id] = val;
+      });
+      calc.pending = pending;
+    } catch (e) { /* ignore malformed hash */ }
+  }
+
+  function syncSticky(calc) {
+    const bar = document.querySelector('.av-sticky');
+    if (!bar || !calc.sections[0] || !calc.sections[0].res) return;
+    const r = calc.sections[0].res;
+    bar.querySelector('.l').textContent = r.hero.label;
+    bar.querySelector('.v').textContent = (r.hero.fmt || String)(r.hero.value);
+    if (window.innerWidth <= 980) {
+      const onScreen = isInViewport(calc.sections[0].rightEl);
+      bar.classList.toggle('show', !onScreen);
+    }
+  }
+
+  function isInViewport(el) {
+    if (!el) return true;
+    const r = el.getBoundingClientRect();
+    return r.top < window.innerHeight * 0.7 && r.bottom > 100;
+  }
+
+  window.addEventListener('scroll', () => {
+    document.querySelectorAll('.av-studio').forEach(host => { if (host._calc) syncSticky(host._calc); });
+  }, { passive: true });
+
+  /* ── Lead capture modal → PDF ── */
+  let leadModal, leadCalc, leadNameInput, leadPhoneInput, leadErr;
+
+  function buildModalOnce() {
+    if (leadModal) return;
+    leadModal = document.createElement('div');
+    leadModal.className = 'av-modal';
+    leadModal.innerHTML = `
+      <div class="av-mcard" role="dialog" aria-modal="true" aria-labelledby="av-lead-title">
+        <button type="button" aria-label="Close" style="position:absolute;top:16px;right:16px;background:none;border:0;color:rgba(255,255,255,.5);font-size:22px;cursor:pointer;line-height:1;" id="av-lead-close">&times;</button>
+        <h3 id="av-lead-title">Get Your Report</h3>
+        <p style="font-size:13px;color:rgba(255,255,255,.6);margin:0 0 20px;line-height:1.6;">Enter your name and mobile number — your personalised PDF report will be generated right away.</p>
+        <div class="av-field">
+          <div class="av-lab"><label for="av-lead-name">Your Name</label></div>
+          <input type="text" id="av-lead-name" class="av-txt" placeholder="e.g. Priya Reddy" autocomplete="name">
+        </div>
+        <div class="av-field">
+          <div class="av-lab"><label for="av-lead-phone">Mobile Number</label></div>
+          <input type="tel" id="av-lead-phone" class="av-txt" placeholder="10-digit mobile number" autocomplete="tel" inputmode="numeric" maxlength="10">
+        </div>
+        <div id="av-lead-err" style="display:none;color:#e08080;font-size:12px;margin:-8px 0 14px;"></div>
+        <button type="button" class="av-btn pri" id="av-lead-submit" style="width:100%;justify-content:center;">Generate My PDF Report →</button>
+        <p style="font-size:10.5px;color:rgba(255,255,255,.4);margin:14px 0 0;text-align:center;">We'll only use this to prepare your report and, if you'd like, follow up about your plan.</p>
+      </div>`;
+    document.body.append(leadModal);
+    leadNameInput = leadModal.querySelector('#av-lead-name');
+    leadPhoneInput = leadModal.querySelector('#av-lead-phone');
+    leadErr = leadModal.querySelector('#av-lead-err');
+    leadModal.querySelector('#av-lead-close').addEventListener('click', closeLead);
+    leadModal.addEventListener('click', (e) => { if (e.target === leadModal) closeLead(); });
+    leadModal.querySelector('#av-lead-submit').addEventListener('click', submitLead);
+    leadPhoneInput.addEventListener('input', () => { leadPhoneInput.value = leadPhoneInput.value.replace(/\D/g, '').slice(0, 10); });
+  }
+
+  function openLead(calc) {
+    buildModalOnce();
+    leadCalc = calc;
+    leadErr.style.display = 'none';
+    leadModal.classList.add('open');
+    setTimeout(() => leadNameInput.focus(), 50);
+  }
+  function closeLead() { if (leadModal) leadModal.classList.remove('open'); }
+
+  function submitLead() {
+    const name = leadNameInput.value.trim();
+    const phone = leadPhoneInput.value.trim();
+    if (name.length < 2) { showLeadErr('Please enter your name.'); return; }
+    if (!/^[6-9]\d{9}$/.test(phone)) { showLeadErr('Please enter a valid 10-digit Indian mobile number.'); return; }
+    closeLead();
+    generatePDF(leadCalc, name, phone);
+    notifyManoj(leadCalc, name, phone);
+    try {
+      const key = 'av_leads';
+      const existing = JSON.parse(localStorage.getItem(key) || '[]');
+      existing.push({ name, phone, calc: leadCalc.sections.map(s => s.cfg.title).join(' + '), ts: Date.now() });
+      localStorage.setItem(key, JSON.stringify(existing.slice(-200)));
+    } catch (e) { /* storage may be unavailable, non-fatal */ }
+  }
+
+  function showLeadErr(msg) { leadErr.textContent = msg; leadErr.style.display = 'block'; }
+
+  /* ── generic "Your Investment Plan" rows from any section's fields + current values ── */
+  function planRowsFor(sec) {
+    const allFields = (sec.cfg.fields || []).concat(sec.cfg.adv || []);
+    return allFields.filter(f => !(f.showIf && !f.showIf(sec.vals))).map(f => {
+      const v = sec.vals[f.k];
+      let disp;
+      if (f.type === 'money') disp = fmtC(v);
+      else if (f.type === 'pct') disp = (+v).toFixed(2).replace(/\.?0+$/, '') + '%';
+      else if (f.type === 'yrs') disp = v + ' years';
+      else if (f.type === 'tog') disp = v ? 'Yes' : 'No';
+      else if (f.type === 'seg' || f.type === 'sel') { const o = (f.options || []).find(o => o.v === v); disp = o ? o.label : String(v); }
+      else disp = String(v);
+      return `<tr><td>${f.label}</td><td style="font-weight:700;">${disp}</td></tr>`;
+    }).join('');
+  }
+
+  function tableHTML(t) {
+    if (!t || !t.rows || !t.rows.length) return '';
+    return `<table class="pdt"><thead><tr>${t.cols.map(c => `<th>${c}</th>`).join('')}</tr></thead>
+      <tbody>${t.rows.map(row => `<tr>${row.map((c, i) => `<td${i === 0 ? '' : ' style="text-align:right;"'}>${c}</td>`).join('')}</tr>`).join('')}</tbody></table>`;
+  }
+
+  const WHY_CHOOSE_ME = `
+    <div class="wcm">
+      <div class="wcm-h">Why Choose Me</div>
+      <div class="wcm-stats">
+        <div class="wcm-stat" style="background:#eaf2fb;"><div class="wcm-num" style="color:#c0392b;">500+</div><div class="wcm-lbl">Clients Advised</div></div>
+        <div class="wcm-stat" style="background:#eafaf1;"><div class="wcm-num" style="color:#1e8449;">Rs 50 Cr+</div><div class="wcm-lbl">Investments Advised</div></div>
+        <div class="wcm-stat" style="background:#fdf6e3;"><div class="wcm-num" style="color:#b8960c;">Rs 1 Cr+</div><div class="wcm-lbl">Insurance Advised</div></div>
+        <div class="wcm-stat" style="background:#eaf2fb;"><div class="wcm-num" style="color:#1a3c6e;">Rs 5 Cr+</div><div class="wcm-lbl">Claims Settled</div></div>
+      </div>
+      <div class="wcm-cols">
+        <div class="wcm-col" style="background:#eaf2fb;">
+          <div class="wcm-name">Manoj Kumar</div>
+          <div class="wcm-role">Relationship Manager</div>
+          <div class="wcm-phone">📞 8790109022</div>
+          <div class="wcm-addr">4th Floor, Midtown Building,<br>opp. Jalgam Vengal Rao Park,<br>Banjara Hills, Hyderabad,<br>Telangana 500082</div>
+        </div>
+        <div class="wcm-col" style="background:#eafaf1;">
+          <div class="wcm-svc-h">Services We Offer</div>
+          <div class="wcm-svc"><i style="background:#c0392b"></i>Investment Advisory</div>
+          <div class="wcm-svc"><i style="background:#1e8449"></i>Mutual Funds and SIP Planning</div>
+          <div class="wcm-svc"><i style="background:#b8960c"></i>Retirement Planning</div>
+          <div class="wcm-svc"><i style="background:#1a3c6e"></i>Insurance Advisory (Life, Health)</div>
+          <div class="wcm-svc"><i style="background:#c0392b"></i>Portfolio Management Services (PMS)</div>
+        </div>
+      </div>
+    </div>`;
+
+  /* ── PDF via print — build a clean printable document, then trigger print ── */
+  function generatePDF(calc, name, phone) {
+    const win = window.open('', '_blank');
+    if (!win) { toast('Please allow pop-ups to download your PDF'); return; }
+    const today = new Date().toLocaleDateString('en-IN', { day: 'numeric', month: 'long', year: 'numeric' });
+    let sectionsHTML = '';
+    calc.sections.forEach(sec => {
+      const r = sec.res; if (!r) return;
+      const tiles = (r.tiles || []).map(t => `<div class="pt"><div class="ptk">${t.k}</div><div class="ptv">${t.v}</div>${t.s ? `<div class="pts">${t.s}</div>` : ''}</div>`).join('');
+      const insights = (r.insights || []).map(i => `<div class="pin">• ${stripHTML(i.html)}</div>`).join('');
+      const verdict = r.verdict ? `<div class="pverd">${r.verdict.icon || ''} ${r.verdict.title || ''}${r.verdict.text || ''}</div>` : '';
+      const plan = planRowsFor(sec);
+      sectionsHTML += `
+        <div class="psec">
+          <h2>${sec.cfg.title}</h2>
+          ${plan ? `<div class="psub">Your Investment Plan — the exact inputs used</div><table class="pdt plan">${plan}</table>` : ''}
+          <div class="phero"><div class="phl">${r.hero.label}</div><div class="phv">${(r.hero.fmt || String)(r.hero.value)}</div>${r.hero.sub ? `<div class="phs">${r.hero.sub}</div>` : ''}</div>
+          ${verdict}
+          <div class="ptiles">${tiles}</div>
+          ${insights ? `<div class="pins">${insights}</div>` : ''}
+          ${r.table ? `<div class="psub">Year-by-Year Detail</div>${tableHTML(r.table)}` : ''}
+        </div>`;
+    });
+    win.document.write(`<!DOCTYPE html><html><head><meta charset="utf-8"><title>Your Report — ${CFG.brand}</title>
+      <style>
+        *{-webkit-print-color-adjust:exact;print-color-adjust:exact;box-sizing:border-box;}
+        body{font-family:Georgia,'Times New Roman',serif;color:#111;max-width:760px;margin:0 auto;padding:40px 32px;line-height:1.5;}
+        .phead{border-bottom:3px solid #c9a84c;padding-bottom:18px;margin-bottom:28px;}
+        .pbrand{font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:#c9a84c;font-weight:700;}
+        .ptitle{font-size:26px;margin:6px 0 4px;}
+        .pfor{font-size:14px;color:#555;}
+        .psec{margin-bottom:36px;page-break-inside:avoid;}
+        .psec h2{font-size:19px;border-bottom:1px solid #ddd;padding-bottom:8px;}
+        .psub{font-family:Arial,sans-serif;font-size:13px;font-weight:800;color:#0a1628;margin:18px 0 8px;}
+        table.pdt{width:100%;border-collapse:collapse;font-family:Arial,sans-serif;font-size:12.5px;background:#faf9f5;border:1px solid #e8e2d0;border-radius:8px;overflow:hidden;}
+        table.pdt.plan td{padding:9px 14px;border-bottom:1px solid #e8e2d0;}
+        table.pdt.plan td:first-child{color:#555;}
+        table.pdt th{text-align:left;font-size:10px;text-transform:uppercase;color:#a4842f;border-bottom:1px solid #ddd;padding:6px 8px;background:#faf6ec;}
+        table.pdt td{padding:7px 8px;border-bottom:1px solid #eee;}
+        table.pdt tr:last-child td{border-bottom:none;}
+        .phero{background:#f8f5ec;border:1px solid #e8d9a8;border-radius:10px;padding:16px 20px;margin:14px 0;}
+        .phl{font-size:11px;text-transform:uppercase;letter-spacing:.08em;color:#888;}
+        .phv{font-size:28px;font-weight:700;color:#8a6d1f;}
+        .phs{font-size:12px;color:#666;margin-top:4px;}
+        .pverd{font-family:Arial,sans-serif;font-size:13px;background:#eef7f0;border:1px solid #cfe8d5;border-radius:8px;padding:10px 14px;margin-bottom:12px;}
+        .ptiles{display:flex;flex-wrap:wrap;gap:10px;margin:12px 0;}
+        .pt{border:1px solid #ddd;border-radius:8px;padding:10px 14px;min-width:140px;}
+        .ptk{font-size:10px;color:#888;text-transform:uppercase;}
+        .ptv{font-size:15px;font-weight:700;}
+        .pts{font-size:10px;color:#999;margin-top:2px;}
+        .pins{margin-top:10px;}
+        .pin{font-size:12.5px;color:#444;margin-bottom:4px;}
+        .wcm{margin-top:20px;padding-top:28px;border-top:1px solid #ddd;font-family:Arial,Helvetica,sans-serif;}
+        .wcm-h{font-size:22px;font-weight:800;color:#0a1628;margin-bottom:16px;}
+        .wcm-stats{display:flex;gap:0;border-radius:8px;overflow:hidden;margin-bottom:24px;}
+        .wcm-stat{flex:1;text-align:center;padding:18px 8px;}
+        .wcm-num{font-size:22px;font-weight:800;margin-bottom:6px;}
+        .wcm-lbl{font-size:12px;color:#555;}
+        .wcm-cols{display:flex;gap:0;border-radius:8px;overflow:hidden;}
+        .wcm-col{flex:1;padding:22px 24px;}
+        .wcm-name{font-size:20px;font-weight:800;color:#0a1628;margin-bottom:4px;}
+        .wcm-role{font-size:14px;font-weight:700;color:#c0392b;margin-bottom:14px;}
+        .wcm-phone{font-size:14px;font-weight:700;color:#111;margin-bottom:14px;}
+        .wcm-addr{font-size:13px;color:#333;line-height:1.7;}
+        .wcm-svc-h{font-size:18px;font-weight:800;color:#0a1628;margin-bottom:14px;}
+        .wcm-svc{font-size:14px;color:#222;margin-bottom:10px;display:flex;align-items:center;gap:10px;}
+        .wcm-svc i{width:9px;height:9px;border-radius:50%;display:inline-block;flex-shrink:0;}
+        .pdisc{font-size:10px;color:#999;margin-top:16px;font-style:italic;font-family:Arial,sans-serif;}
+        @media print{body{padding:20px;} .psec{page-break-inside:avoid;}}
+        @media(max-width:480px){.wcm-stats,.wcm-cols,.ptiles{flex-direction:column;}}
+      </style></head><body>
+      <div class="phead">
+        <div class="pbrand">${CFG.brand}</div>
+        <div class="ptitle">Your Personalised Financial Report</div>
+        <div class="pfor">Report generated for ${escapeHTML(name)} by ${CFG.brand} · ${today}</div>
+      </div>
+      ${sectionsHTML}
+      ${WHY_CHOOSE_ME}
+      <div class="pdisc">This is an educational illustration based on the assumptions shown on ${CFG.site} — it is not investment advice or a recommendation to buy or sell any security. Ashvamedha Finance's SEBI Research Analyst registration is currently in application.</div>
+      <script>setTimeout(()=>window.print(),400);<\/script>
+      </body></html>`);
+    win.document.close();
+  }
+
+  function notifyManoj(calc, name, phone) {
+    const lines = ['New calculator lead:', 'Name: ' + name, 'Mobile: ' + phone, ''];
+    calc.sections.forEach(sec => {
+      if (!sec.res) return;
+      lines.push(sec.cfg.title + ': ' + sec.res.hero.label + ' = ' + (sec.res.hero.fmt || String)(sec.res.hero.value));
+    });
+    const waUrl = 'https://wa.me/' + CFG.wa + '?text=' + encodeURIComponent(lines.join('\n'));
+    window.open(waUrl, '_blank');
+  }
+
+  function stripHTML(html) { const d = document.createElement('div'); d.innerHTML = html; return d.textContent || ''; }
+  function escapeHTML(s) { const d = document.createElement('div'); d.textContent = s; return d.innerHTML; }
+
+  let toastT;
+  function toast(msg) {
+    let t = document.querySelector('.av-toast');
+    if (!t) { t = document.createElement('div'); t.className = 'av-toast'; t.setAttribute('role', 'status'); document.body.append(t); }
+    t.textContent = msg; t.classList.add('show'); clearTimeout(toastT); toastT = setTimeout(() => t.classList.remove('show'), 2300);
+  }
+
+  return { waLink, copyLink, saveHash, loadHash, syncSticky, openLead, closeLead, toast, notifyManoj };
+})();
+
+
+/* ===== p1_core.js ===== */
+const E = window.AVE;
+const CFG = {
+  brand: 'Ashvamedha Finance', person: 'Manoj Kumar', wa: '918790109022', phone: '+91 87901 09022',
+  address: 'Road No. 5, Green Valley, Banjara Hills, Hyderabad', site: 'ashvamedhaai.com',
+  sebi: "Ashvamedha Finance's SEBI Research Analyst registration is currently in application. This report is an educational illustration based on the assumptions shown — it is not investment advice or a recommendation to buy or sell any security."
+};
+
+/* ── tiny DOM helper ── */
+const h = (tag, attrs, ...kids) => {
+  const el = document.createElement(tag);
+  for (const k in (attrs || {})) {
+    const v = attrs[k];
+    if (v === false || v == null) continue;
+    if (k === 'class') el.className = v;
+    else if (k === 'html') el.innerHTML = v;
+    else if (k.slice(0, 2) === 'on') el.addEventListener(k.slice(2), v);
+    else el.setAttribute(k, v === true ? '' : v);
+  }
+  kids.flat().forEach(c => { if (c != null && c !== false) el.append(c.nodeType ? c : document.createTextNode(c)); });
+  return el;
+};
+const fmtC = E.fmtC, fmtIN = E.fmtIN;
+const round1 = (v) => Math.round(v * 10) / 10;
+const fmtPct = (v, d) => (Math.round(v * Math.pow(10, d == null ? 1 : d)) / Math.pow(10, d == null ? 1 : d)) + '%';
+const fmtYrs = (y) => y === null || y === undefined ? '—' : (y >= 60 ? '60+ yrs' : (y < 1 ? Math.round(y * 12) + ' months' : round1(y) + ' yrs'));
+const fmtAxis = (v) => { const a = Math.abs(v), s = v < 0 ? '-' : ''; if (a >= 1e7) return s + '₹' + +(a / 1e7).toFixed(a >= 1e8 ? 0 : 1) + 'Cr'; if (a >= 1e5) return s + '₹' + +(a / 1e5).toFixed(a >= 1e6 ? 0 : 1) + 'L'; if (a >= 1e3) return s + '₹' + +(a / 1e3).toFixed(0) + 'K'; return s + '₹' + Math.round(a); };
+const niceRound = (v, step, min, max) => {
+  if (v <= 0) return 0;
+  const mag = Math.pow(10, Math.floor(Math.log10(v)) - 1);
+  let r = Math.round(v / mag) * mag; const st = step || 1; r = Math.round(r / st) * st;
+  return Math.min(Math.max(r, min), max);
+};
+const snap = (v, step, min, max) => Math.min(Math.max(Math.round(v / step) * step, min), max);
+const ins = (icon, tone, html) => ({ icon, tone, html });
+const $q = (s, r) => (r || document).querySelector(s);
+const raf = (fn) => window.requestAnimationFrame(fn);
+let toastT;
+function toast(msg) {
+  let t = $q('.av-toast'); if (!t) { t = h('div', { class: 'av-toast', role: 'status' }); document.body.append(t); }
+  t.textContent = msg; t.classList.add('show'); clearTimeout(toastT); toastT = setTimeout(() => t.classList.remove('show'), 2300);
+}
+
+/* ── field factories ── */
+const F = {
+  money: (k, label, o) => Object.assign({ k, label, type: 'money', min: 1000, max: 1e7, step: 1000, def: 100000, scale: 'log' }, o),
+  pct: (k, label, o) => Object.assign({ k, label, type: 'pct', min: 0, max: 30, step: 0.5, def: 10, hardMin: 0, hardMax: 100 }, o),
+  yrs: (k, label, o) => Object.assign({ k, label, type: 'yrs', min: 1, max: 40, step: 1, def: 10, hardMin: 1, hardMax: 70 }, o),
+  seg: (k, label, options, def, o) => Object.assign({ k, label, type: 'seg', options, def }, o),
+  tog: (k, label, def, o) => Object.assign({ k, label, type: 'tog', def }, o),
+  sel: (k, label, options, def, o) => Object.assign({ k, label, type: 'sel', options, def }, o)
+};
+const hardMin = (f) => f.hardMin != null ? f.hardMin : (f.zeroOk ? 0 : f.min);
+const hardMax = (f) => f.hardMax != null ? f.hardMax : (f.type === 'money' ? 1e10 : f.max);
+const clampF = (f, v) => Math.min(Math.max(v, hardMin(f)), hardMax(f));
+const posToVal = (f, pos) => {
+  if (f.scale === 'log') {
+    if (f.zeroOk && pos === 0) return 0;
+    const lo = Math.log(f.min), hi = Math.log(f.max), fr = f.zeroOk ? (pos - 1) / 999 : pos / 1000;
+    return niceRound(Math.exp(lo + (hi - lo) * fr), f.step, f.min, f.max);
+  }
+  return +pos;
+};
+const valToPos = (f, v) => {
+  if (f.scale !== 'log') return v;
+  if (f.zeroOk && v <= 0) return 0;
+  v = Math.min(Math.max(v, f.min), f.max);
+  const fr = (Math.log(v) - Math.log(f.min)) / (Math.log(f.max) - Math.log(f.min));
+  return Math.round(f.zeroOk ? 1 + fr * 999 : fr * 1000);
+};
+const fmtInput = (f, v) => f.type === 'money' ? Math.round(v).toLocaleString('en-IN') : String(+(+v).toFixed(2));
+const parseInput = (s) => { const n = parseFloat(String(s).replace(/[^\d.]/g, '')); return isNaN(n) ? null : n; };
+const rangeLabel = (f, which) => {
+  const v = which === 'min' ? (f.zeroOk ? 0 : f.min) : f.max;
+  if (f.type === 'money') return fmtC(v).replace(/\.00 /, ' ');
+  return v + (f.type === 'pct' ? '%' : (f.unit === 'age' ? '' : (f.type === 'yrs' ? ' yrs' : '')));
+};
+
+/* ── build one input control; returns {el, set(v), refresh()} ── */
+function buildField(f, sec) {
+  const id = 'avf-' + sec.uid + '-' + f.k;
+  const wrap = h('div', { class: 'av-field', 'data-k': f.k });
+  const ctl = { el: wrap, f };
+  const V = () => sec.vals;
+
+  if (f.type === 'seg') {
+    const bar = h('div', { class: 'av-seg', role: 'group', 'aria-label': f.label });
+    f.options.forEach(o => bar.append(h('button', { type: 'button', 'data-v': o.v, onclick: () => sec.set(f.k, o.v) }, o.label)));
+    wrap.append(h('div', { class: 'av-lab' }, h('label', null, f.label)), bar);
+    ctl.set = (v) => bar.querySelectorAll('button').forEach(b => b.classList.toggle('on', b.dataset.v === String(v)));
+  } else if (f.type === 'tog') {
+    const cb = h('input', { type: 'checkbox', id, onchange: () => sec.set(f.k, cb.checked) });
+    wrap.append(h('label', { class: 'av-tog', for: id }, cb, h('span', { class: 'sw' }), h('span', null, f.label)));
+    if (f.hint) wrap.append(h('div', { class: 'av-hint' }, f.hint));
+    ctl.set = (v) => { cb.checked = !!v; };
+  } else if (f.type === 'sel') {
+    const s = h('select', { class: 'av-sel', id, onchange: () => sec.set(f.k, isNaN(+s.value) ? s.value : +s.value) }, f.options.map(o => h('option', { value: o.v }, o.label)));
+    wrap.append(h('div', { class: 'av-lab' }, h('label', { for: id }, f.label)), s);
+    ctl.set = (v) => { s.value = String(v); };
+  } else {
+    const isMoney = f.type === 'money';
+    const unit = f.type === 'pct' ? '%' : (f.unit === 'age' ? 'yrs' : (f.type === 'yrs' ? 'yrs' : ''));
+    const inp = h('input', { id, type: 'text', inputmode: isMoney ? 'numeric' : 'decimal', autocomplete: 'off', spellcheck: 'false', 'aria-label': f.label });
+    const box = h('div', { class: 'av-inp' + (isMoney ? ' pre' : '') }, isMoney ? h('b', null, '₹') : null, inp, unit ? h('em', null, unit) : null);
+    const rmax = f.scale === 'log' ? 1000 : f.max, rmin = f.scale === 'log' ? 0 : f.min;
+    const rng = h('input', { type: 'range', class: 'av-range', min: rmin, max: rmax, step: f.scale === 'log' ? 1 : f.step, 'aria-label': f.label + ' slider' });
+    const paint = () => { const p = (rng.value - rmin) / (rmax - rmin) * 100; rng.style.setProperty('--p', Math.min(100, Math.max(0, p)) + '%'); };
+    const labelText = typeof f.label === 'function' ? f.label(V()) : f.label;
+    wrap.append(
+      h('div', { class: 'av-lab' }, h('label', { for: id }, labelText, f.sub ? h('small', null, f.sub) : null), box),
+      rng, h('div', { class: 'av-rl' }, h('span', null, rangeLabel(f, 'min')), h('span', null, rangeLabel(f, 'max'))),
+      f.hint ? h('div', { class: 'av-hint' }, f.hint) : null
+    );
+    rng.addEventListener('input', () => { const v = posToVal(f, +rng.value); inp.value = fmtInput(f, v); box.classList.remove('bad'); paint(); sec.set(f.k, v, 'slider'); });
+    inp.addEventListener('focus', () => raf(() => inp.select()));
+    inp.addEventListener('input', () => {
+      const n = parseInput(inp.value); if (n === null) return;
+      box.classList.toggle('bad', n > hardMax(f) || (n < hardMin(f) && inp.value !== ''));
+      const v = clampF(f, n); rng.value = valToPos(f, v); paint(); sec.set(f.k, v, 'text');
+    });
+    const commit = () => { const n = parseInput(inp.value); const v = n === null ? sec.vals[f.k] : clampF(f, n); inp.value = fmtInput(f, v); box.classList.remove('bad'); rng.value = valToPos(f, v); paint(); sec.set(f.k, v, 'commit'); };
+    inp.addEventListener('blur', commit);
+    inp.addEventListener('keydown', (e) => { if (e.key === 'Enter') { commit(); inp.blur(); } });
+    ctl.set = (v, from) => { if (from !== 'text') inp.value = fmtInput(f, v); if (from !== 'slider') rng.value = valToPos(f, v); paint(); };
+    ctl.labelEl = wrap.querySelector('label');
+  }
+  return ctl;
+}
+
+/* ── canvas chart ── */
+function niceTicks(min, max, n) {
+  const range = Math.max(max - min, 1e-9), raw = range / n, mag = Math.pow(10, Math.floor(Math.log10(raw)));
+  const step = [1, 2, 2.5, 5, 10].map(m => m * mag).find(s => s >= raw) || raw;
+  const lo = Math.floor(min / step) * step, hi = Math.ceil(max / step) * step, t = [];
+  for (let v = lo; v <= hi + step / 2; v += step) t.push(v);
+  return t;
+}
+function drawChart(canvas, o) {
+  const dpr = o.dpr || Math.min(window.devicePixelRatio || 1, 2);
+  const W = o.width || canvas.clientWidth || 560, H = o.height || (W < 420 ? 210 : 250);
+  canvas.width = Math.round(W * dpr); canvas.height = Math.round(H * dpr);
+  if (!o.width) canvas.style.height = H + 'px';
+  const c = canvas.getContext('2d'); c.setTransform(dpr, 0, 0, dpr, 0, 0); c.clearRect(0, 0, W, H);
+  const light = o.theme === 'light';
+  const th = light ? { grid: 'rgba(10,22,40,.11)', axis: '#6b778c', bg: '#fff', tipBg: '#0a1628', tipTx: '#fff' } : { grid: 'rgba(255,255,255,.08)', axis: 'rgba(255,255,255,.55)', bg: '#112240', tipBg: '#0a1628', tipTx: '#fff' };
+  const fontB = light ? '600 ' + (o.fs || 12) + 'px Outfit, Arial, sans-serif' : '500 11px Outfit, Arial, sans-serif';
+  c.font = fontB;
+  const all = [].concat(...o.series.map(s => s.values)), xs = o.xs;
+  let ymin = Math.min(0, ...all), ymax = Math.max(...all, 1);
+  const ticks = niceTicks(ymin, ymax * 1.04, 4); ymin = ticks[0]; ymax = ticks[ticks.length - 1];
+  const yl = ticks.map(t => (o.yFmt || fmtAxis)(t));
+  const padL = Math.max(...yl.map(s => c.measureText(s).width)) + 12, padR = 12, padT = 12, padB = 26;
+  const iw = W - padL - padR, ih = H - padT - padB;
+  const x0 = xs[0], x1 = xs[xs.length - 1] === x0 ? x0 + 1 : xs[xs.length - 1];
+  const X = (x) => padL + (x - x0) / (x1 - x0) * iw, Y = (v) => padT + ih - (v - ymin) / (ymax - ymin) * ih;
+  c.strokeStyle = th.grid; c.lineWidth = 1; c.fillStyle = th.axis; c.textAlign = 'right'; c.textBaseline = 'middle';
+  ticks.forEach((t, i) => { const y = Math.round(Y(t)) + .5; c.beginPath(); c.moveTo(padL, y); c.lineTo(W - padR, y); c.stroke(); c.fillText(yl[i], padL - 8, y); });
+  c.textAlign = 'center'; c.textBaseline = 'top';
+  const nx = Math.min(6, xs.length), used = new Set();
+  for (let i = 0; i < nx; i++) { const idx = Math.round(i * (xs.length - 1) / Math.max(nx - 1, 1)); if (used.has(idx)) continue; used.add(idx); c.fillText((o.xFmt || String)(xs[idx]), X(xs[idx]), H - padB + 8); }
+  const prog = o.progress == null ? 1 : o.progress;
+  c.save(); c.beginPath(); c.rect(0, 0, padL + iw * prog + 2, H); c.clip();
+  o.series.forEach(s => {
+    c.beginPath(); s.values.forEach((v, i) => { const x = X(xs[i]), y = Y(v); i ? c.lineTo(x, y) : c.moveTo(x, y); });
+    if (s.fill) { const g = c.createLinearGradient(0, padT, 0, padT + ih); g.addColorStop(0, s.color + (light ? '55' : '66')); g.addColorStop(1, s.color + '00'); c.save(); c.lineTo(X(xs[xs.length - 1]), Y(Math.max(ymin, 0))); c.lineTo(X(xs[0]), Y(Math.max(ymin, 0))); c.closePath(); c.fillStyle = g; c.fill(); c.restore();
+      c.beginPath(); s.values.forEach((v, i) => { const x = X(xs[i]), y = Y(v); i ? c.lineTo(x, y) : c.moveTo(x, y); }); }
+    c.strokeStyle = s.color; c.lineWidth = s.w || 2.6; c.lineJoin = 'round'; c.setLineDash(s.dash ? [6, 5] : []); c.stroke(); c.setLineDash([]);
+  });
+  c.restore();
+  if (ymin < 0) { const y = Math.round(Y(0)) + .5; c.strokeStyle = th.axis; c.beginPath(); c.moveTo(padL, y); c.lineTo(W - padR, y); c.stroke(); }
+  if (o.hover != null && !light) {
+    const i = o.hover, x = X(xs[i]);
+    c.strokeStyle = 'rgba(232,200,120,.6)'; c.setLineDash([4, 4]); c.beginPath(); c.moveTo(x, padT); c.lineTo(x, padT + ih); c.stroke(); c.setLineDash([]);
+    o.series.forEach(s => { c.fillStyle = s.color; c.beginPath(); c.arc(x, Y(s.values[i]), 4.5, 0, 7); c.fill(); c.strokeStyle = '#0a1628'; c.lineWidth = 2; c.stroke(); });
+    const lines = [(o.xTitle || '') + ' ' + (o.xFmt || String)(xs[i])].concat(o.series.map(s => s.name + ': ' + (o.tipFmt || fmtC)(s.values[i])));
+    c.font = '600 12px Outfit, Arial, sans-serif';
+    const tw = Math.max(...lines.map(l => c.measureText(l).width)) + 22, th2 = lines.length * 18 + 12;
+    let tx = x + 12; if (tx + tw > W - 4) tx = x - tw - 12; if (tx < 4) tx = 4; const ty = padT + 4;
+    c.fillStyle = 'rgba(10,22,40,.96)'; c.strokeStyle = 'rgba(201,168,76,.6)'; c.lineWidth = 1;
+    c.beginPath(); c.roundRect ? c.roundRect(tx, ty, tw, th2, 8) : c.rect(tx, ty, tw, th2); c.fill(); c.stroke();
+    c.textAlign = 'left'; c.textBaseline = 'top';
+    lines.forEach((l, k) => { c.fillStyle = k === 0 ? '#e8c878' : '#fff'; c.font = (k === 0 ? '700 ' : '500 ') + '12px Outfit, Arial, sans-serif'; c.fillText(l, tx + 11, ty + 8 + k * 18); });
+  }
+  return { X, Y, padL, padR, iw };
+}
+
+/* ── count-up ── */
+function animateHero(el, to, fmt) {
+  const from = el._val == null ? to : el._val; el._val = to;
+  if (typeof to !== 'number' || from === to || matchMedia('(prefers-reduced-motion:reduce)').matches) { el.textContent = typeof to === 'number' ? fmt(to) : to; return; }
+  cancelAnimationFrame(el._raf); const t0 = performance.now(), dur = 320;
+  const step = (t) => { const p = Math.min(1, (t - t0) / dur), e = 1 - Math.pow(1 - p, 3); el.textContent = fmt(from + (to - from) * e); if (p < 1) el._raf = raf(step); };
+  el._raf = raf(step);
+}
+
+/* ── a calculator section: inputs card + results card ── */
+let UID = 0;
+function mountSection(cfg, host, calc) {
+  const sec = { cfg, uid: ++UID, vals: {}, ctl: {}, res: null, calc, linked: true, firstPaint: true };
+  const all = (cfg.fields || []).concat(cfg.adv || []);
+  all.forEach(f => { sec.vals[f.k] = f.def; });
+  if (calc.saved && calc.saved[cfg.id]) Object.assign(sec.vals, calc.saved[cfg.id]);
+  if (calc.pending && calc.pending[cfg.id]) Object.assign(sec.vals, calc.pending[cfg.id]);
+
+  const left = h('div', { class: 'av-card av-inputs' });
+  left.append(h('h2', { class: 'av-title' }, cfg.title), h('p', { class: 'av-blurb' }, cfg.blurb));
+  if (cfg.presets && cfg.presets.length) left.append(h('div', { class: 'av-presets' }, cfg.presets.map(p => h('button', { type: 'button', class: 'av-preset', onclick: () => { Object.keys(p.set).forEach(k => sec.set(k, p.set[k], 'preset')); } }, p.label))));
+  (cfg.fields || []).forEach(f => { const c = buildField(f, sec); sec.ctl[f.k] = c; left.append(c.el); });
+  if (cfg.linkable) left.append(h('button', { type: 'button', class: 'av-link', onclick: () => { sec.linked = true; sec.applyLink(true); } }, '↺ Use the corpus from the calculator above'));
+  if (cfg.adv && cfg.adv.length) {
+    const inner = h('div', { class: 'in' });
+    cfg.adv.forEach(f => { const c = buildField(f, sec); sec.ctl[f.k] = c; inner.append(c.el); });
+    left.append(h('details', { class: 'av-adv' }, h('summary', null, cfg.advTitle || 'Advanced assumptions'), inner));
+  }
+
+  const right = h('div', { class: 'av-card av-results' });
+  const slot = { verdict: h('div'), hero: h('div', { class: 'av-hero-num' }), tiles: h('div', { class: 'av-tiles' }), split: h('div', { class: 'av-split' }),
+    chartbox: h('div', { class: 'av-chartbox' }), ins: h('div', { class: 'av-insights' }), tbl: h('details', { class: 'av-more' }), method: h('details', { class: 'av-more' }), actions: h('div', { class: 'av-actions' }) };
+  slot.hl = h('div', { class: 'av-hl' }); slot.hv = h('div', { class: 'av-hv', 'aria-live': 'polite' }); slot.hs = h('div', { class: 'av-hs' });
+  slot.hero.append(slot.hl, slot.hv, slot.hs);
+  slot.ctitle = h('div', { class: 'av-ctitle' }); slot.legend = h('div', { class: 'av-legend' }); slot.canvas = h('canvas', { role: 'img', 'aria-label': 'Chart' });
+  slot.chartbox.append(slot.ctitle, slot.legend, slot.canvas);
+  slot.tbl.append(h('summary', null, 'Year-by-year breakdown'), h('div', { class: 'in' }, h('div', { class: 'av-tblwrap' }, slot.table = h('table', { class: 'av-tbl' }))));
+  slot.method.append(h('summary', null, 'How this is calculated'), slot.methodIn = h('div', { class: 'in' }));
+  slot.actions.append(
+    h('a', { class: 'av-btn pri', target: '_blank', rel: 'noopener', 'data-act': 'wa' }, 'Make it real with Manoj →'),
+    h('div', { class: 'av-2col' },
+      h('button', { type: 'button', class: 'av-btn sec', onclick: () => AVS.openLead(calc) }, '📄 Download PDF report'),
+      h('button', { type: 'button', class: 'av-btn ghost', onclick: () => AVS.copyLink(calc) }, '🔗 Copy link'))
+  );
+  right.append(slot.verdict, slot.hero, slot.tiles, slot.split, slot.chartbox, slot.ins, slot.tbl, slot.method, slot.actions);
+  sec.slot = slot;
+  host.append(h('div', { class: 'av-grid' }, left, right));
+  sec.leftEl = left; sec.rightEl = right;
+
+  /* state changes */
+  let pend = false;
+  sec.set = (k, v, from) => {
+    sec.vals[k] = v;
+    if (sec.ctl[k] && sec.ctl[k].set && from !== 'noui') sec.ctl[k].set(v, from);
+    if (cfg.linkable && (k === 'corpus' || k === 'monthly') && from !== 'link') sec.linked = false;
+    if (from === 'preset') { if (!pend) { pend = true; raf(() => { pend = false; sec.refresh(); }); } return; }
+    sec.refresh();
+  };
+  sec.refresh = () => {
+    if (sec._q) return; sec._q = true;
+    raf(() => { sec._q = false; sec.update(); });
+  };
+  sec.applyLink = (force) => {
+    if (!cfg.linkable || !calc.sections[0] || !calc.sections[0].res || (!sec.linked && !force)) return;
+    const d = cfg.deriveFromParent(calc.sections[0].res);
+    Object.keys(d).forEach(k => sec.set(k, clampF(all.find(f => f.k === k), d[k]), 'link'));
+    sec.linked = true;
+  };
+  sec.update = () => {
+    all.forEach(f => { const c = sec.ctl[f.k]; if (c) c.el.hidden = !!(f.showIf && !f.showIf(sec.vals)); if (c && c.labelEl && typeof f.label === 'function') c.labelEl.firstChild.textContent = f.label(sec.vals); });
+    const r = cfg.compute(sec.vals, calc); sec.res = r; calc.saved = calc.saved || {}; calc.saved[cfg.id] = Object.assign({}, sec.vals);
+    renderResult(sec, r);
+    if (calc.sections[0] === sec) { AVS.syncSticky(calc); calc.sections.slice(1).forEach(s2 => s2.applyLink && s2.applyLink()); }
+    AVS.saveHash(calc);
+  };
+  sec.ctl && all.forEach(f => sec.ctl[f.k] && sec.ctl[f.k].set(sec.vals[f.k]));
+  return sec;
+}
+
+function renderResult(sec, r) {
+  const s = sec.slot, calc = sec.calc;
+  s.verdict.innerHTML = '';
+  if (r.verdict) s.verdict.append(h('div', { class: 'av-verdict ' + (r.verdict.tone || 'info'), role: 'status' }, h('span', { class: 'ic' }, r.verdict.icon || 'ℹ️'), h('div', null, h('b', null, r.verdict.title), r.verdict.text)));
+  s.hl.textContent = r.hero.label;
+  animateHero(s.hv, r.hero.value, r.hero.fmt || String); s.hs.textContent = r.hero.sub || '';
+  s.tiles.innerHTML = ''; (r.tiles || []).forEach(t => s.tiles.append(h('div', { class: 'av-tile' + (t.hl ? ' hl' : '') }, h('div', { class: 'k' }, t.k), h('div', { class: 'v ' + (t.tone || '') }, t.v), t.s ? h('div', { class: 's' }, t.s) : null)));
+  s.split.innerHTML = '';
+  if (r.split) { const tot = r.split.reduce((a, b) => a + Math.max(b.value, 0), 0) || 1;
+    s.split.append(h('div', { class: 'av-splitbar' }, r.split.map(p => h('i', { style: 'width:' + (Math.max(p.value, 0) / tot * 100) + '%;background:' + p.color }))),
+      h('div', { class: 'av-legend' }, r.split.map(p => h('span', { style: '--c:' + p.color }, p.label + ' · ' + fmtC(p.value) + ' (' + Math.round(Math.max(p.value, 0) / tot * 100) + '%)')))); }
+  s.chartbox.style.display = r.chart ? '' : 'none';
+  if (r.chart) {
+    s.ctitle.textContent = r.chart.title || ''; s.legend.innerHTML = '';
+    r.chart.series.forEach(se => s.legend.append(h('span', { style: '--c:' + se.color }, se.name)));
+    s.chartData = r.chart;
+    const paint = (hover, progress) => drawChart(s.canvas, Object.assign({}, r.chart, { hover, progress }));
+    s.paint = paint;
+    if (sec.firstPaint && !matchMedia('(prefers-reduced-motion:reduce)').matches) { sec.firstPaint = false; const t0 = performance.now(); const st = (t) => { const p = Math.min(1, (t - t0) / 650); paint(null, 1 - Math.pow(1 - p, 3)); if (p < 1) raf(st); }; raf(st); }
+    else { sec.firstPaint = false; paint(null, 1); }
+    if (!s.canvas._bound) {
+      s.canvas._bound = true;
+      const mv = (e) => { const cd = s.chartData; if (!cd) return; const rect = s.canvas.getBoundingClientRect(); const px = (e.touches ? e.touches[0].clientX : e.clientX) - rect.left;
+        const geo = drawChart(document.createElement('canvas'), Object.assign({}, cd, { width: rect.width, height: rect.height, dpr: 1 }));
+        const xs = cd.xs; let best = 0, bd = 1e9; xs.forEach((x, i) => { const d = Math.abs(geo.X(x) - px); if (d < bd) { bd = d; best = i; } }); s.paint(best, 1); };
+      s.canvas.addEventListener('pointermove', mv); s.canvas.addEventListener('pointerdown', mv);
+      s.canvas.addEventListener('pointerleave', () => s.paint(null, 1));
+    }
+  }
+  s.ins.innerHTML = ''; (r.insights || []).forEach(i => s.ins.append(h('div', { class: 'av-ins ' + (i.tone || '') }, h('span', { class: 'ic' }, i.icon), h('div', { html: i.html }))));
+  s.tbl.style.display = r.table ? '' : 'none';
+  if (r.table) { s.table.innerHTML = '<thead><tr>' + r.table.cols.map(c => '<th>' + c + '</th>').join('') + '</tr></thead><tbody>' + r.table.rows.map(rw => '<tr>' + rw.map(x => '<td>' + x + '</td>').join('') + '</tr>').join('') + '</tbody>'; }
+  s.methodIn.innerHTML = r.method || '';
+  const wa = s.actions.querySelector('[data-act=wa]'); if (wa) wa.href = AVS.waLink(calc);
+}
+
+
+/* ===== page_shell.js ===== */
+/* ── mountCalc: wraps one or more linked sections (e.g. SIP + SWP) into one calculator ── */
+function mountCalc(cfgs, container) {
+  const calc = { sections: [], saved: {}, pending: {} };
+  AVS.loadHash(calc);
+  container.innerHTML = '';
+  cfgs.forEach((cfg, i) => {
+    const wrap = document.createElement('div');
+    wrap.className = 'av-calc-block';
+    if (i > 0) wrap.style.marginTop = '28px';
+    container.append(wrap);
+    const sec = mountSection(cfg, wrap, calc);
+    calc.sections.push(sec);
+  });
+  calc.sections.forEach(s => { if (s.cfg.linkable) s.applyLink(); });
+  calc.sections.forEach(s => s.update());
+  container._calc = calc;
+  return calc;
+}
+
+/* ── top-level tab switching between different calculator TYPES ── */
+const CALC_REGISTRY = {};
+function registerCalc(id, label, icon, cfgsFactory) {
+  CALC_REGISTRY[id] = { label, icon, cfgsFactory, mounted: null };
+}
+function switchStudioCalc(id) {
+  document.querySelectorAll('.av-pill[data-id]').forEach(b => b.classList.toggle('on', b.dataset.id === id));
+  document.querySelectorAll('.av-calc-panel').forEach(p => p.hidden = (p.dataset.id !== id));
+  const entry = CALC_REGISTRY[id];
+  if (!entry) return;
+  const panel = document.getElementById('av-panel-' + id);
+  if (!entry.mounted) {
+    entry.mounted = mountCalc(entry.cfgsFactory(), panel);
+  }
+  history.replaceState(null, '', '#calc=' + id + (location.hash.includes('&') ? location.hash.slice(location.hash.indexOf('&')) : ''));
+}
+
+function buildStudioShell(container, defaultId) {
+  const picker = document.createElement('div');
+  picker.className = 'av-picker';
+  const pills = document.createElement('div');
+  pills.className = 'av-pills';
+  picker.append(pills);
+  const panels = document.createElement('div');
+  Object.keys(CALC_REGISTRY).forEach(id => {
+    const entry = CALC_REGISTRY[id];
+    const btn = document.createElement('button');
+    btn.type = 'button'; btn.className = 'av-pill'; btn.dataset.id = id;
+    btn.innerHTML = '<i>' + entry.icon + '</i> ' + entry.label;
+    btn.addEventListener('click', () => switchStudioCalc(id));
+    pills.append(btn);
+    const panel = document.createElement('div');
+    panel.className = 'av-calc-panel av-studio'; panel.id = 'av-panel-' + id; panel.dataset.id = id; panel.hidden = true;
+    panels.append(panel);
+  });
+  container.append(picker, panels);
+  const sticky = document.createElement('div');
+  sticky.className = 'av-sticky';
+  sticky.innerHTML = '<div class="t"><div class="l"></div><div class="v"></div></div><button type="button">See Full Detail</button>';
+  sticky.querySelector('button').addEventListener('click', () => { document.querySelector('.av-calc-panel:not([hidden])').scrollIntoView({ behavior: 'smooth' }); });
+  document.body.append(sticky);
+
+  let startId = defaultId;
+  if (location.hash.startsWith('#calc=')) {
+    const m = location.hash.match(/calc=([a-z]+)/);
+    if (m && CALC_REGISTRY[m[1]]) startId = m[1];
+  }
+  switchStudioCalc(startId);
+}
+
+
+/* ===== calc_sip_swp.js ===== */
+/* ── SIP ── */
+function sipFields(withStepUp) {
+  const f = [
+    F.money('monthly', 'Monthly SIP Amount', { min: 500, max: 500000, step: 500, def: 5000 }),
+    F.pct('retPct', 'Expected Annual Return', { min: 1, max: 30, step: 0.5, def: 12 }),
+    F.yrs('years', 'Investment Duration', { min: 1, max: 40, def: 10 }),
+  ];
+  if (withStepUp) f.push(F.pct('stepPct', 'Annual Step-Up', { min: 0, max: 30, step: 1, def: 10, hint: 'Increase your SIP by this % every year — matches typical salary growth.' }));
+  f.push(F.money('lump', 'Starting Lumpsum (optional)', { min: 0, max: 10000000, step: 10000, def: 0, zeroOk: true }));
+  return f;
+}
+
+function sipCompute(v) {
+  const r = E.sipGrow({ monthly: v.monthly, retPct: v.retPct, years: v.years, stepPct: v.stepPct || 0, lump: v.lump || 0 });
+  const mult = r.invested > 0 ? r.fv / r.invested : 0;
+  return {
+    hero: { label: 'Total Value at the End', value: r.fv, fmt: fmtC, sub: 'Over ' + v.years + ' years' },
+    tiles: [
+      { k: 'Total Invested', v: fmtC(r.invested) },
+      { k: 'Wealth Gained', v: fmtC(r.gain), tone: 'good' },
+      { k: 'Growth Multiple', v: round1(mult) + '×' },
+    ],
+    split: [{ label: 'Invested', value: r.invested, color: '#5b6b9e' }, { label: 'Returns', value: r.gain, color: 'var(--gold)' }],
+    chart: {
+      title: 'How Your Money Grows', xs: r.yearly.map(y => y.year), xTitle: 'Year', xFmt: (x) => 'Y' + x,
+      series: [
+        { name: 'Invested', color: '#5b6b9e', values: r.yearly.map(y => y.invested) },
+        { name: 'Value', color: '#e8c878', values: r.yearly.map(y => y.value), fill: true },
+      ]
+    },
+    insights: [
+      mult >= 2.5 ? ins('✨', 'good', 'Your money more than doubles here — compounding is doing most of the work in the later years, not the early ones.') : ins('ℹ️', 'info', 'Longer durations let compounding do more of the heavy lifting — even a few extra years can meaningfully change this number.')
+    ],
+    method: 'Assumes monthly contributions at the start of each month, compounding at the annualised return you set. ' + (v.stepPct ? 'Your SIP amount increases by ' + v.stepPct + '% every 12 months.' : ''),
+    _raw: r
+  };
+}
+
+registerCalc('sip', 'SIP Calculator', '📈', () => [
+  { id: 'sip', title: 'SIP Calculator', blurb: 'See how a monthly investment grows over time with compounding.', fields: sipFields(false), compute: sipCompute },
+  swpCfg('SIP'),
+]);
+registerCalc('stepup', 'Step-Up SIP', '🚀', () => [
+  { id: 'stepup', title: 'Step-Up SIP Calculator', blurb: 'Increase your SIP every year in line with your income — see the real difference it makes.', fields: sipFields(true), compute: sipCompute },
+  swpCfg('StepUp'),
+]);
+
+/* ── Lumpsum ── */
+function lumpCompute(v) {
+  const r = E.lumpGrow({ amount: v.amount, retPct: v.retPct, years: v.years });
+  const mult = r.fv / r.invested;
+  return {
+    hero: { label: 'Total Value at the End', value: r.fv, fmt: fmtC, sub: 'Over ' + v.years + ' years' },
+    tiles: [{ k: 'Invested', v: fmtC(r.invested) }, { k: 'Gains', v: fmtC(r.gain), tone: 'good' }, { k: 'Multiple', v: round1(mult) + '×' }],
+    split: [{ label: 'Invested', value: r.invested, color: '#5b6b9e' }, { label: 'Returns', value: r.gain, color: 'var(--gold)' }],
+    chart: {
+      title: 'Growth Over Time', xs: r.yearly.map(y => y.year), xTitle: 'Year', xFmt: (x) => 'Y' + x,
+      series: [{ name: 'Invested', color: '#5b6b9e', values: r.yearly.map(y => y.invested) }, { name: 'Value', color: '#e8c878', values: r.yearly.map(y => y.value), fill: true }]
+    },
+    insights: [],
+    method: 'A one-time amount invested and left to compound at the annualised return you set — no further contributions.',
+    _raw: r
+  };
+}
+registerCalc('lumpsum', 'Lumpsum', '💰', () => [
+  { id: 'lumpsum', title: 'Lumpsum Calculator', blurb: 'See what a one-time investment grows into over time.', fields: [
+    F.money('amount', 'Investment Amount', { min: 10000, max: 50000000, step: 10000, def: 500000 }),
+    F.pct('retPct', 'Expected Annual Return', { min: 1, max: 30, step: 0.5, def: 12 }),
+    F.yrs('years', 'Investment Duration', { min: 1, max: 40, def: 10 }),
+  ], compute: lumpCompute },
+  swpCfg('Lump'),
+]);
+
+/* ── SWP (linked, corpus auto-fed from the calculator above) ── */
+function swpCfg(parentKey) {
+  return {
+    id: 'swp_' + parentKey, title: 'Now Withdraw From This — SWP', blurb: 'See how long your money actually lasts if you start withdrawing from it.',
+    linkable: true,
+    deriveFromParent: (parentRes) => ({ corpus: parentRes._raw ? parentRes._raw.fv : parentRes.fv }),
+    fields: [
+      F.money('corpus', 'Starting Corpus', { min: 100000, max: 100000000, step: 50000, def: 1000000 }),
+      F.money('monthly', 'Monthly Withdrawal', { min: 1000, max: 1000000, step: 1000, def: 10000 }),
+      F.pct('retPct', 'Return During Withdrawal', { min: 2, max: 18, step: 0.5, def: 8 }),
+    ],
+    adv: [F.pct('stepPct', 'Annual Step-Up on Withdrawal (Inflation)', { min: 0, max: 12, step: 0.5, def: 5 })],
+    advTitle: 'Adjust for inflation',
+    compute: (v) => {
+      const r = E.swp({ corpus: v.corpus, monthly: v.monthly, retPct: v.retPct, stepPct: v.stepPct || 0, maxYears: 60 });
+      return {
+        verdict: r.depleted
+          ? (r.yearsLasted < 15 ? { icon: '⚠️', tone: 'warn', title: 'Depletes relatively fast — ', text: 'lasts ' + fmtYrs(r.yearsLasted) + ' at this withdrawal rate.' }
+            : { icon: 'ℹ️', tone: 'info', title: 'Lasts a good while — ', text: 'depletes after ' + fmtYrs(r.yearsLasted) + '.' })
+          : { icon: '✅', tone: 'good', title: 'Sustainable — ', text: 'your corpus outlasts 60 years at this rate.' },
+        hero: { label: 'Your Money Lasts', value: r.depleted ? r.yearsLasted : 60, fmt: (x) => r.depleted ? fmtYrs(x) : '60+ years' },
+        tiles: [{ k: 'Total Withdrawn', v: fmtC(r.totalWithdrawn) }, { k: r.depleted ? 'Ending Balance' : 'Balance at Year 60', v: fmtC(r.endBalance) }],
+        chart: {
+          title: 'Corpus Over Time', xs: r.yearly.map(y => y.year), xTitle: 'Year', xFmt: (x) => 'Y' + Math.round(x),
+          series: [{ name: 'Balance', color: '#e8c878', values: r.yearly.map(y => y.balance), fill: true }]
+        },
+        insights: [], method: 'Corpus grows at your chosen return each month, minus that month\'s withdrawal. Withdrawal amount steps up annually if you set an inflation adjustment.'
+      };
+    }
+  };
+}
+
+
+/* ===== calc_retirement_fire_goal.js ===== */
+/* ── Retirement ── */
+registerCalc('retirement', 'Retirement', '🏖️', () => [{
+  id: 'retirement', title: 'Retirement Calculator', blurb: 'Find out exactly how much you need to invest today to live comfortably after retirement.',
+  fields: [
+    F.yrs('age', 'Current Age', { min: 18, max: 60, def: 30, hardMin: 18, hardMax: 65 }),
+    F.yrs('retAge', 'Retirement Age', { min: 40, max: 70, def: 60 }),
+    F.money('expense', 'Monthly Expenses Today', { min: 10000, max: 1000000, step: 5000, def: 50000 }),
+    F.pct('preRetPct', 'Expected Return (Before Retirement)', { min: 5, max: 20, step: 0.5, def: 12 }),
+  ],
+  adv: [
+    F.pct('infPct', 'Inflation Rate', { min: 3, max: 12, step: 0.5, def: 6 }),
+    F.pct('postRetPct', 'Expected Return (After Retirement)', { min: 3, max: 14, step: 0.5, def: 8 }),
+    F.yrs('lifeAge', 'Life Expectancy', { min: 70, max: 100, def: 85 }),
+    F.money('savings', 'Current Retirement Savings', { min: 0, max: 50000000, step: 50000, def: 200000, zeroOk: true }),
+    F.money('pensionToday', 'Any Guaranteed Pension (Today\'s Value)', { min: 0, max: 500000, step: 5000, def: 0, zeroOk: true }),
+  ],
+  compute: (v) => {
+    const r = E.retirement(v);
+    return {
+      hero: { label: 'Corpus You Need at Retirement', value: r.corpusNeeded, fmt: fmtC, sub: fmtYrs(r.yearsToRetire) + ' from now' },
+      tiles: [
+        { k: 'Monthly SIP Needed', v: fmtC(r.sip) + '/mo', hl: true },
+        { k: 'Expense at Retirement', v: fmtC(r.expenseAtRetirement) + '/mo' },
+        { k: 'From Current Savings', v: fmtC(r.fvSavings) },
+        { k: 'Remaining Gap', v: fmtC(r.gap) },
+      ],
+      chart: {
+        title: 'Accumulation, Then Drawdown', xs: r.path.map(p => Math.round(p.age)), xTitle: 'Age', xFmt: (x) => x,
+        series: [{ name: 'Portfolio Balance', color: '#e8c878', values: r.path.map(p => p.balance), fill: true }]
+      },
+      insights: [
+        r.gap > 0 ? ins('🎯', 'info', 'Investing ' + fmtC(r.sip) + '/month from now gets you to your target — starting later means a meaningfully higher monthly number.') : ins('✅', 'good', 'Your current savings alone are projected to cover this goal.')
+      ],
+      method: 'Corpus needed is the present value of all your inflation-adjusted withdrawals through your expected lifespan, discounted at your post-retirement return. Monthly SIP is solved to close the gap after your current savings grow at your pre-retirement return.'
+    };
+  }
+}]);
+
+/* ── FIRE ── */
+registerCalc('fire', 'FIRE Number', '🔥', () => [{
+  id: 'fire', title: 'FIRE Number Calculator', blurb: 'Find your financial independence number, and how many years of investing it takes to get there.',
+  fields: [
+    F.money('expense', 'Current Monthly Expenses', { min: 10000, max: 1000000, step: 5000, def: 50000 }),
+    F.pct('swrPct', 'Safe Withdrawal Rate', { min: 2.5, max: 6, step: 0.25, def: 4, hint: 'Lower = more conservative. 4% is the commonly-cited starting point; genuinely early retirements often use 3-3.5%.' }),
+    F.money('monthly', 'Monthly Investment', { min: 1000, max: 500000, step: 1000, def: 25000 }),
+    F.pct('retPct', 'Expected Annual Return', { min: 5, max: 20, step: 0.5, def: 12 }),
+  ],
+  adv: [
+    F.money('current', 'Current Investments', { min: 0, max: 50000000, step: 100000, def: 500000, zeroOk: true }),
+    F.pct('infPct', 'Inflation Rate', { min: 2, max: 10, step: 0.5, def: 6 }),
+  ],
+  compute: (v) => {
+    const r = E.fire(v);
+    return {
+      hero: { label: 'Your FIRE Number', value: r.number, fmt: fmtC },
+      tiles: [
+        { k: 'Years to Reach It', v: r.yearsToFI == null ? '60+' : round1(r.yearsToFI), hl: true },
+        { k: 'Lean FIRE', v: fmtC(r.lean) },
+        { k: 'Fat FIRE', v: fmtC(r.fat) },
+      ],
+      chart: {
+        title: 'Your Portfolio vs a Rising Target', xs: r.yearly.map(y => y.year), xTitle: 'Year', xFmt: (x) => 'Y' + x,
+        series: [
+          { name: 'Portfolio', color: '#e8c878', values: r.yearly.map(y => y.portfolio), fill: true },
+          { name: 'Target (inflating)', color: '#8899aa', values: r.yearly.map(y => y.target), dash: true },
+        ]
+      },
+      insights: [ins('ℹ️', 'info', 'Based on the 25×-expenses rule (the inverse of your safe withdrawal rate). Your target line rises with inflation — that\'s deliberate, and why the gap matters more than the raw number.')],
+      method: 'FIRE number = annual expenses ÷ safe withdrawal rate. The target keeps inflating each year, so "years to FI" is when your portfolio actually catches the moving target, not the number at today\'s prices.'
+    };
+  }
+}]);
+
+/* ── Goal Planner ── */
+registerCalc('goal', 'Goal Planner', '🎯', () => [{
+  id: 'goal', title: 'Financial Goal Planner', blurb: 'Enter your income and expenses to see your real savings rate — then how many years to hit any target.',
+  fields: [
+    F.money('income', 'Monthly Take-Home Income', { min: 15000, max: 2000000, step: 5000, def: 80000 }),
+    F.money('expense', 'Monthly Expenses', { min: 5000, max: 2000000, step: 5000, def: 50000 }),
+    F.money('target', 'Target Amount', { min: 100000, max: 100000000, step: 100000, def: 5000000 }),
+    F.pct('retPct', 'Expected Annual Return', { min: 4, max: 20, step: 0.5, def: 12 }),
+  ],
+  adv: [
+    F.money('current', 'Current Savings Already Invested', { min: 0, max: 20000000, step: 50000, def: 100000, zeroOk: true }),
+    F.pct('infPct', 'Inflation on Target', { min: 0, max: 10, step: 0.5, def: 6 }),
+  ],
+  compute: (v) => {
+    const r = E.goal(v);
+    const noSurplus = r.firstSave <= 0;
+    return {
+      verdict: noSurplus ? { icon: '⚠️', tone: 'warn', title: 'No surplus yet — ', text: 'expenses meet or exceed income, so there\'s nothing left to invest toward this goal.' } : null,
+      hero: { label: 'Years to Reach Your Target', value: r.yearsToGoal, fmt: (x) => x == null ? '—' : fmtYrs(x) },
+      tiles: [{ k: 'Monthly Savings', v: fmtC(Math.max(r.firstSave, 0)) }, { k: 'Savings Rate', v: round1(r.savingsRatePct) + '%' }],
+      chart: r.yearly.length > 1 ? {
+        title: 'Portfolio vs Target', xs: r.yearly.map(y => y.year), xTitle: 'Year', xFmt: (x) => 'Y' + x,
+        series: [{ name: 'Portfolio', color: '#e8c878', values: r.yearly.map(y => y.portfolio), fill: true }, { name: 'Target', color: '#8899aa', values: r.yearly.map(y => y.target), dash: true }]
+      } : null,
+      insights: [], method: 'Your monthly surplus (income minus expenses) is invested at your chosen return each month. The target inflates over time if you set an inflation rate above zero.'
+    };
+  }
+}]);
+
+
+/* ===== calc_comparisons.js ===== */
+/* ── Loan vs Cash (shared logic, different ranges for home vs car) ── */
+function loanVsCashCfg(kind) {
+  const isHome = kind === 'home';
+  return {
+    id: kind + 'loan', title: (isHome ? 'Home' : 'Car') + ' Loan vs Cash — Which Actually Wins',
+    blurb: 'If you have the cash to buy outright, is it actually better to take a loan and invest the money instead? Includes how inflation quietly reduces your real EMI burden.',
+    fields: [
+      F.money(isHome ? 'price' : 'carPrice', isHome ? 'Home Price' : 'Car Price', isHome
+        ? { min: 1000000, max: 100000000, step: 500000, def: 8000000 }
+        : { min: 300000, max: 10000000, step: 50000, def: 1000000 }),
+      F.pct('downPct', 'Down Payment %', { min: 0, max: 80, step: 5, def: 20, hardMax: 100 }),
+      F.pct('ratePct', 'Loan Interest Rate', isHome ? { min: 6, max: 15, step: 0.1, def: 8.5 } : { min: 8, max: 16, step: 0.1, def: 9.5 }),
+      F.yrs('tenure', 'Loan Tenure', isHome ? { min: 5, max: 30, def: 20 } : { min: 1, max: 8, def: 5 }),
+      F.pct('retPct', 'Expected Investment Return', { min: 4, max: 20, step: 0.5, def: 12 }),
+    ],
+    adv: [
+      F.pct('infPct', 'Expected Inflation', { min: 2, max: 10, step: 0.5, def: 6 }),
+      F.pct('regPct', 'Registration/Transaction Cost %', { min: 0, max: 10, step: 0.5, def: isHome ? 6 : 2 }),
+      isHome ? F.tog('claimTax', 'Claim Home Loan Interest Tax Benefit (24b)', true) : null,
+      isHome ? F.pct('slabPct', 'Your Income Tax Slab', { min: 0, max: 30, step: 5, def: 30, showIf: (val) => val.claimTax }) : null,
+    ].filter(Boolean),
+    compute: (v) => {
+      const price = isHome ? v.price : v.carPrice;
+      const r = E.loanVsCash({ price, downPct: v.downPct, tenure: v.tenure, ratePct: v.ratePct, retPct: v.retPct, infPct: v.infPct, regPct: v.regPct, claimTax: v.claimTax, slabPct: v.slabPct, fundType: 'equity', cgtPct: 12.5 });
+      if (r.noLoan) return { verdict: { icon: 'ℹ️', tone: 'info', title: '', text: 'With 0% down payment or 0-year tenure, there\'s no loan to compare — adjust the sliders.' }, hero: { label: '—', value: 0, fmt: () => '—' }, tiles: [] };
+      const diff = r.diff;
+      return {
+        verdict: Math.abs(diff) < price * 0.01
+          ? { icon: 'ℹ️', tone: 'info', title: 'Very close — ', text: 'the decision may come down to comfort with debt, not pure math.' }
+          : diff > 0
+            ? { icon: '📈', tone: 'good', title: 'Loan + invest projects ahead — ', text: 'by ' + fmtC(diff) + ', assuming your return holds. That\'s never guaranteed the way loan math is.' }
+            : { icon: '💵', tone: 'info', title: 'Cash + SIP projects ahead — ', text: 'by ' + fmtC(-diff) + ' at these numbers.' },
+        hero: { label: 'Cash + SIP vs Loan + Invest', value: r.diff, fmt: (x) => (x >= 0 ? '+' : '') + fmtC(x) },
+        tiles: [
+          { k: 'Pay Cash, SIP the EMI', v: fmtC(r.finalA) },
+          { k: 'Take Loan, Invest Lumpsum', v: fmtC(r.finalB) },
+          { k: 'Monthly EMI', v: fmtC(r.emi) + '/mo' },
+          { k: 'Break-Even Return', v: r.breakeven == null ? '—' : round1(r.breakeven) + '%', s: 'Investment return needed for the loan route to just tie' },
+        ],
+        chart: {
+          title: 'Two Paths Over Time', xs: r.yearly.map(y => y.year), xTitle: 'Year', xFmt: (x) => 'Y' + x,
+          series: [{ name: 'Cash + SIP', color: '#5b6b9e', values: r.yearly.map(y => y.A) }, { name: 'Loan + Invest', color: '#e8c878', values: r.yearly.map(y => y.B) }]
+        },
+        insights: [
+          r.inflationEasePct > 15
+            ? ins('📉', 'good', 'Inflation genuinely matters here — your EMI feels ' + Math.round(r.inflationEasePct) + '% lighter in today\'s-money terms by the time you finish paying, since you\'re repaying with progressively cheaper future rupees.')
+            : ins('ℹ️', 'info', 'Inflation\'s effect on your real EMI burden is modest here (' + Math.round(r.inflationEasePct) + '%) — not the deciding factor.'),
+          isHome && v.claimTax ? ins('🧾', 'info', 'This includes the Section 24(b) interest deduction (up to ₹2L/year) in the loan route\'s numbers.') : null,
+        ].filter(Boolean),
+        table: {
+          cols: ['Year', 'Cash + SIP', 'Loan + Invest'],
+          rows: r.yearly.filter((y, i) => i % Math.max(1, Math.round(r.yearly.length / 8)) === 0 || i === r.yearly.length - 1).map(y => [y.year, fmtC(y.A), fmtC(y.B)])
+        },
+        method: 'Cash route: you buy outright, then SIP an amount equal to the EMI you would have paid. Loan route: you invest the loan amount as a lumpsum today, then separately pay EMI from income. Both are taxed on capital gains at exit.'
+      };
+    }
+  };
+}
+registerCalc('homeloan', 'Loan vs Cash (Home)', '🏦', () => [loanVsCashCfg('home')]);
+registerCalc('carloan', 'Loan vs Cash (Car)', '🚗', () => [loanVsCashCfg('car')]);
+
+/* ── Rent vs Buy ── */
+registerCalc('rentbuy', 'Rent vs Buy', '🏡', () => [{
+  id: 'rentbuy', title: 'Rent vs Buy Calculator', blurb: 'Same monthly budget, two paths — see which actually builds more net worth over your timeline.',
+  fields: [
+    F.money('price', 'Home Price if Buying', { min: 1000000, max: 100000000, step: 500000, def: 8000000 }),
+    F.money('rent', 'Current Monthly Rent for Equivalent Home', { min: 3000, max: 500000, step: 1000, def: 25000 }),
+    F.pct('ratePct', 'Loan Interest Rate (if Buying)', { min: 6, max: 14, step: 0.1, def: 8.5 }),
+    F.yrs('horizon', 'Time Horizon', { min: 3, max: 30, def: 15 }),
+    F.pct('apprPct', 'Expected Home Appreciation', { min: 0, max: 15, step: 0.5, def: 6 }),
+    F.pct('retPct', 'Expected Investment Return (if Renting)', { min: 4, max: 20, step: 0.5, def: 12 }),
+    F.pct('regPct', 'Registration Cost % (Stamp Duty, Registration)', { min: 0, max: 10, step: 0.5, def: 6, hint: 'Telangana: roughly 6% urban, 7.5% rural. A real, sunk cost from day one of buying.' }),
+  ],
+  adv: [
+    F.pct('downPct', 'Down Payment %', { min: 5, max: 80, step: 5, def: 20 }),
+    F.yrs('tenure', 'Loan Tenure', { min: 5, max: 30, def: 20 }),
+    F.pct('rentGrowthPct', 'Annual Rent Increase', { min: 0, max: 12, step: 0.5, def: 5 }),
+    F.pct('maintPct', 'Annual Maintenance % (of home value)', { min: 0, max: 3, step: 0.1, def: 1 }),
+    F.pct('sellPct', 'Selling Cost % (brokerage etc.)', { min: 0, max: 10, step: 0.5, def: 2 }),
+    F.tog('claimTax', 'Claim Home Loan Interest Tax Benefit (24b)', true),
+    F.pct('slabPct', 'Your Income Tax Slab', { min: 0, max: 30, step: 5, def: 30 }),
+  ],
+  compute: (v) => {
+    const r = E.rentVsBuy(Object.assign({}, v, { cgtPct: 12.5 }));
+    const diff = r.diff;
+    return {
+      verdict: Math.abs(diff) < r.homeEnd * 0.03
+        ? { icon: 'ℹ️', tone: 'info', title: 'Close call — ', text: 'the decision may come down to lifestyle and stability, not pure math.' }
+        : diff > 0 ? { icon: '🏠', tone: 'good', title: 'Buying projects ahead — ', text: 'by ' + fmtC(diff) + ', mainly from home appreciation.' }
+          : { icon: '📊', tone: 'good', title: 'Renting + investing projects ahead — ', text: 'by ' + fmtC(-diff) + '.' },
+      hero: { label: 'Net Worth Difference (Buy − Rent)', value: r.diff, fmt: (x) => (x >= 0 ? '+' : '') + fmtC(x) },
+      tiles: [
+        { k: 'Net Worth if Buying', v: fmtC(r.buyFinal) },
+        { k: 'Net Worth if Renting', v: fmtC(r.rentFinal) },
+        { k: 'Break-Even Appreciation', v: r.breakevenAppr == null || !isFinite(r.breakevenAppr) ? '—' : round1(r.breakevenAppr) + '%', s: 'Appreciation rate at which both tie' },
+      ],
+      chart: {
+        title: 'Net Worth Over Time', xs: r.yearly.map(y => y.year), xTitle: 'Year', xFmt: (x) => 'Y' + x,
+        series: [{ name: 'Buy', color: '#e8c878', values: r.yearly.map(y => y.buy) }, { name: 'Rent + Invest', color: '#5b6b9e', values: r.yearly.map(y => y.rent) }]
+      },
+      insights: [ins('ℹ️', 'info', 'Both paths spend the same total monthly budget — whichever of EMI+maintenance or rent is higher sets the budget, and the leftover goes into investment in both scenarios. This keeps the comparison fair.')],
+      method: 'Both scenarios commit the same monthly cash outflow. Buying builds home equity plus appreciation; renting invests the surplus over the higher of the two costs. Excludes property tax and brokerage on purchase — real decisions should factor these in too.'
+    };
+  }
+}]);
+
+/* ── Mutual Fund vs Real Estate ── */
+registerCalc('mfre', 'MF vs Real Estate', '🏘️', () => [{
+  id: 'mfre', title: 'Mutual Fund vs Real Estate (Rental)', blurb: 'Buying a property to rent out, or investing the same money in mutual funds — which actually builds more wealth, after real costs and taxes?',
+  fields: [
+    F.money('price', 'Property Price', { min: 1000000, max: 200000000, step: 500000, def: 8000000 }),
+    F.pct('yieldPct', 'Gross Rental Yield (Annual)', { min: 1, max: 8, step: 0.1, def: 3, hint: 'Typical Indian residential rental yields run 2-4% of property value per year.' }),
+    F.pct('apprPct', 'Expected Property Appreciation', { min: 0, max: 15, step: 0.5, def: 6 }),
+    F.pct('retPct', 'Expected Mutual Fund Return', { min: 4, max: 20, step: 0.5, def: 12 }),
+    F.yrs('horizon', 'Time Horizon', { min: 3, max: 30, def: 15 }),
+    F.pct('regPct', 'Registration Cost % (Stamp Duty, Registration)', { min: 0, max: 10, step: 0.5, def: 6, hint: 'Telangana: roughly 6% urban, 7.5% rural. A real, sunk cost on day one, same as the down payment.' }),
+    F.pct('brokPct', 'Brokerage on Purchase %', { min: 0, max: 3, step: 0.25, def: 1 }),
+  ],
+  adv: [
+    F.pct('downPct', 'Down Payment % (if financing the property)', { min: 0, max: 100, step: 5, def: 100, hint: 'Set to 100% if buying the property with cash, no loan.' }),
+    F.pct('ratePct', 'Loan Interest Rate (if financing)', { min: 6, max: 15, step: 0.1, def: 8.5 }),
+    F.yrs('tenure', 'Loan Tenure (if financing)', { min: 5, max: 30, def: 20 }),
+    F.pct('vacancyPct', 'Vacancy Allowance % (months unrented)', { min: 0, max: 25, step: 1, def: 8 }),
+    F.pct('rentGrowthPct', 'Annual Rent Growth', { min: 0, max: 12, step: 0.5, def: 5 }),
+    F.pct('maintPct', 'Annual Maintenance % (of property value)', { min: 0, max: 3, step: 0.1, def: 1 }),
+    F.pct('sellPct', 'Selling Cost % on Exit', { min: 0, max: 10, step: 0.5, def: 2 }),
+    F.pct('slabPct', 'Your Income Tax Slab (for rental income tax)', { min: 0, max: 30, step: 5, def: 30 }),
+  ],
+  compute: (v) => {
+    const r = E.mfVsRe(Object.assign({}, v, { cgtPct: 12.5 }));
+    const diff = r.diff;
+    return {
+      verdict: Math.abs(diff) < r.upfront * 0.05
+        ? { icon: 'ℹ️', tone: 'info', title: 'Close call — ', text: 'the decision may come down to how much you value direct property ownership vs liquidity.' }
+        : diff > 0 ? { icon: '🏘️', tone: 'good', title: 'Real estate projects ahead — ', text: 'by ' + fmtC(diff) + ', assuming appreciation holds.' }
+          : { icon: '📈', tone: 'good', title: 'Mutual funds project ahead — ', text: 'by ' + fmtC(-diff) + ', with far more liquidity along the way.' },
+      hero: { label: 'Net Worth Difference (RE − MF)', value: r.diff, fmt: (x) => (x >= 0 ? '+' : '') + fmtC(x) },
+      tiles: [
+        { k: 'Real Estate — Final', v: fmtC(r.reFinal) },
+        { k: 'Mutual Fund — Final', v: fmtC(r.mfFinal) },
+        { k: 'Net Rental Yield (after costs)', v: round1(r.netYieldPct) + '%', s: 'vs ' + round1(r.grossYieldPct) + '% gross' },
+        { k: 'Break-Even Appreciation', v: r.breakevenAppr == null || !isFinite(r.breakevenAppr) ? '—' : round1(r.breakevenAppr) + '%' },
+      ],
+      chart: {
+        title: 'Net Worth Over Time', xs: r.yearly.map(y => y.year), xTitle: 'Year', xFmt: (x) => 'Y' + x,
+        series: [{ name: 'Real Estate', color: '#e8c878', values: r.yearly.map(y => y.re) }, { name: 'Mutual Fund', color: '#5b6b9e', values: r.yearly.map(y => y.mf) }]
+      },
+      insights: [
+        ins('💧', 'info', 'Mutual funds can be sold in days; a property sale typically takes months and depends on finding a buyer at your price — a real, non-financial difference this chart can\'t show.'),
+        r.netYieldPct < 2 ? ins('⚠️', 'warn', 'After vacancy, maintenance, and tax on rental income, your net yield is quite thin — most of this comparison\'s outcome rides on appreciation actually happening.') : null,
+      ].filter(Boolean),
+      table: {
+        cols: ['Year', 'Real Estate', 'Mutual Fund'],
+        rows: r.yearly.filter((y, i) => i % Math.max(1, Math.round(r.yearly.length / 8)) === 0 || i === r.yearly.length - 1).map(y => [y.year, fmtC(y.re), fmtC(y.mf)])
+      },
+      method: 'Real estate path: rental income (after vacancy and tax) minus maintenance and EMI, invested as surplus or funded as shortfall, plus property appreciation and eventual sale. Mutual fund path: the same upfront cash grows at your chosen return, funding the same shortfalls the property would need. Registration and brokerage costs are real, sunk costs from day one — exactly like the down payment.'
+    };
+  }
+}]);
+
+/* ── FD vs Mutual Fund ── */
+registerCalc('fdmf', 'FD vs Mutual Fund', '🏦', () => [{
+  id: 'fdmf', title: 'FD vs Mutual Fund Calculator', blurb: 'Guaranteed but taxed every year, or market-linked with tax only when you sell — the real after-tax numbers.',
+  fields: [
+    F.money('amount', 'Amount to Invest', { min: 10000, max: 50000000, step: 10000, def: 500000 }),
+    F.pct('fdPct', 'FD Interest Rate', { min: 4, max: 10, step: 0.1, def: 7 }),
+    F.pct('mfPct', 'Expected Mutual Fund Return', { min: 4, max: 20, step: 0.5, def: 12 }),
+    F.yrs('years', 'Investment Duration', { min: 1, max: 30, def: 5 }),
+    F.pct('slabPct', 'Your Income Tax Slab', { min: 0, max: 30, step: 5, def: 30 }),
+  ],
+  adv: [F.pct('infPct', 'Inflation Rate', { min: 2, max: 10, step: 0.5, def: 6 })],
+  compute: (v) => {
+    const r = E.fdVsMf(Object.assign({}, v, { cgtPct: 12.5, fundType: 'equity' }));
+    return {
+      verdict: r.diff > 0
+        ? { icon: '📈', tone: 'good', title: 'Mutual fund nets more — ', text: 'by ' + fmtC(r.diff) + ' after tax, with real market risk the FD doesn\'t have.' }
+        : { icon: '🏦', tone: 'info', title: 'FD nets more — ', text: 'by ' + fmtC(-r.diff) + ' after tax — the guaranteed-return trade-off wins here.' },
+      hero: { label: 'After-Tax Difference (MF − FD)', value: r.diff, fmt: (x) => (x >= 0 ? '+' : '') + fmtC(x) },
+      tiles: [
+        { k: 'FD — After Tax', v: fmtC(r.fdFinal) },
+        { k: 'Mutual Fund — After Tax', v: fmtC(r.mfFinal) },
+        { k: 'FD Real Return', v: round1(r.fdReal) + '%', s: 'after inflation' },
+        { k: 'MF Real Return', v: round1(r.mfReal) + '%', s: 'after inflation' },
+      ],
+      chart: {
+        title: 'After-Tax Value Over Time', xs: r.yearly.map(y => y.year), xTitle: 'Year', xFmt: (x) => 'Y' + x,
+        series: [{ name: 'FD', color: '#5b6b9e', values: r.yearly.map(y => y.fd) }, { name: 'Mutual Fund', color: '#e8c878', values: r.yearly.map(y => y.mf), fill: true }]
+      },
+      insights: [
+        ins('🧾', 'info', 'FD interest is taxed every year at your slab rate, whether or not you touch the money. Mutual fund equity LTCG (24+ month holding) is taxed at just 12.5% above a ₹1.25L exemption, and only when you actually redeem.'),
+        r.fdReal < 0 ? ins('📉', 'warn', 'At these numbers, the FD\'s real (inflation-adjusted) return is negative — you\'re losing purchasing power holding it, even before spending a rupee.') : null,
+      ].filter(Boolean),
+      method: 'FD interest compounds annually, taxed each year at your slab rate. Mutual fund grows tax-deferred and is taxed once, at redemption, using long-term capital gains treatment if held 24+ months.'
+    };
+  }
+}]);
+
+
+document.addEventListener('DOMContentLoaded', function() {
+  buildStudioShell(document.getElementById('av-studio-root'), 'sip');
+});
+if (document.readyState !== 'loading') {
+  buildStudioShell(document.getElementById('av-studio-root'), 'sip');
+}
+</script>
 
 <!-- ══════════ PORTFOLIO ANALYZER PAGE ══════════ -->
 
@@ -1667,149 +2592,6 @@ function fmtCr(val) {
   return '₹' + Math.round(val).toLocaleString('en-IN');
 }
 
-// ── SIP ──
-function updateSIP() {
-  const sliders = document.querySelectorAll('#calc-sip input[type=range]');
-  const amt = +sliders[0].value, rate = +sliders[1].value, yrs = +sliders[2].value;
-  document.getElementById('sip-amt-display').textContent = '₹' + amt.toLocaleString('en-IN');
-  document.getElementById('sip-rate-display').textContent = rate + '%';
-  document.getElementById('sip-yr-display').textContent = yrs + ' Year' + (yrs > 1 ? 's' : '');
-  const r = rate / 100 / 12, n = yrs * 12;
-  const fv = amt * ((Math.pow(1 + r, n) - 1) / r);
-  const invested = amt * n;
-  const returns = fv - invested;
-  document.getElementById('sip-total').textContent = fmtCr(fv);
-  document.getElementById('sip-invested').textContent = fmtCr(invested);
-  document.getElementById('sip-returns').textContent = fmtCr(returns);
-  drawDonut('sip-chart', invested, returns);
-}
-
-// ── STEP-UP SIP ──
-function updateStepUp() {
-  const sliders = document.querySelectorAll('#calc-stepup input[type=range]');
-  const startAmt = +sliders[0].value, stepUp = +sliders[1].value / 100;
-  const rate = +sliders[2].value, yrs = +sliders[3].value;
-  document.getElementById('su-amt-display').textContent = '₹' + startAmt.toLocaleString('en-IN');
-  document.getElementById('su-step-display').textContent = (stepUp * 100) + '%';
-  document.getElementById('su-rate-display').textContent = rate + '%';
-  document.getElementById('su-yr-display').textContent = yrs + ' Year' + (yrs > 1 ? 's' : '');
-  const r = rate / 100 / 12;
-  let fv = 0, invested = 0, monthlyAmt = startAmt;
-  for (let y = 0; y < yrs; y++) {
-    for (let m = 0; m < 12; m++) {
-      const remaining = (yrs - y) * 12 - m;
-      fv += monthlyAmt * Math.pow(1 + r, remaining);
-      invested += monthlyAmt;
-    }
-    monthlyAmt *= (1 + stepUp);
-  }
-  const returns = fv - invested;
-  document.getElementById('su-total').textContent = fmtCr(fv);
-  document.getElementById('su-invested').textContent = fmtCr(invested);
-  document.getElementById('su-returns').textContent = fmtCr(returns);
-  drawDonut('su-chart', invested, returns);
-}
-
-// ── LUMPSUM ──
-function updateLumpsum() {
-  const sliders = document.querySelectorAll('#calc-lumpsum input[type=range]');
-  const amt = +sliders[0].value, rate = +sliders[1].value, yrs = +sliders[2].value;
-  document.getElementById('ls-amt-display').textContent = '₹' + amt.toLocaleString('en-IN');
-  document.getElementById('ls-rate-display').textContent = rate + '%';
-  document.getElementById('ls-yr-display').textContent = yrs + ' Year' + (yrs > 1 ? 's' : '');
-  const fv = amt * Math.pow(1 + rate / 100, yrs);
-  const returns = fv - amt;
-  document.getElementById('ls-total').textContent = fmtCr(fv);
-  document.getElementById('ls-invested').textContent = fmtCr(amt);
-  document.getElementById('ls-returns').textContent = fmtCr(returns);
-  drawDonut('ls-chart', amt, returns);
-}
-
-// ── RETIREMENT ──
-function updateRetirement() {
-  const sliders = document.querySelectorAll('#calc-retirement input[type=range]');
-  const curAge = +sliders[0].value, retAge = +sliders[1].value;
-  const curExp = +sliders[2].value, inf = +sliders[3].value / 100;
-  const roi = +sliders[4].value / 100, savings = +sliders[5].value;
-  document.getElementById('ret-age-display').textContent = curAge + ' Years';
-  document.getElementById('ret-retire-display').textContent = retAge + ' Years';
-  document.getElementById('ret-exp-display').textContent = '₹' + curExp.toLocaleString('en-IN');
-  document.getElementById('ret-inf-display').textContent = (inf * 100) + '%';
-  document.getElementById('ret-roi-display').textContent = (roi * 100) + '%';
-  document.getElementById('ret-sav-display').textContent = '₹' + savings.toLocaleString('en-IN');
-  const yrs = Math.max(retAge - curAge, 1);
-  document.getElementById('ret-years').textContent = yrs;
-  const futureExp = curExp * Math.pow(1 + inf, yrs);
-  const lifeExp = 20; // assume 20 years post-retirement
-  const corpusNeeded = futureExp * 12 * lifeExp;
-  const adjustedCorpus = Math.max(corpusNeeded - savings * Math.pow(1 + roi, yrs), 0);
-  const r = roi / 12, n = yrs * 12;
-  const sip = r > 0 ? adjustedCorpus * r / (Math.pow(1 + r, n) - 1) : adjustedCorpus / n;
-  document.getElementById('ret-corpus').textContent = fmtCr(corpusNeeded);
-  document.getElementById('ret-sip').textContent = fmtCr(sip);
-  document.getElementById('ret-future-exp').textContent = fmtCr(futureExp);
-}
-
-// ── HOUSE ──
-function updateHouse() {
-  const sliders = document.querySelectorAll('#calc-house input[type=range]');
-  const price = +sliders[0].value, downPct = +sliders[1].value / 100;
-  const annRate = +sliders[2].value / 100, yrs = +sliders[3].value;
-  document.getElementById('h-price-display').textContent = '₹' + price.toLocaleString('en-IN');
-  document.getElementById('h-down-display').textContent = (downPct * 100) + '%';
-  document.getElementById('h-rate-display').textContent = (annRate * 100).toFixed(1) + '%';
-  document.getElementById('h-tenure-display').textContent = yrs + ' Years';
-  const down = price * downPct;
-  const loan = price - down;
-  const r = annRate / 12, n = yrs * 12;
-  const emi = r > 0 ? loan * r * Math.pow(1 + r, n) / (Math.pow(1 + r, n) - 1) : loan / n;
-  const totalPay = emi * n + down;
-  const interest = emi * n - loan;
-  document.getElementById('h-emi').textContent = fmtCr(emi);
-  document.getElementById('h-downamt').textContent = fmtCr(down);
-  document.getElementById('h-loan').textContent = fmtCr(loan);
-  document.getElementById('h-interest').textContent = fmtCr(interest);
-  document.getElementById('h-total').textContent = fmtCr(totalPay);
-}
-
-// ── PORTFOLIO FILE UPLOAD ──
-function handleFileSelect(input) {
-  if (input.files[0]) {
-    document.getElementById('pf-filename').textContent = '✅ ' + input.files[0].name;
-    document.getElementById('pf-filename').style.display = 'block';
-  }
-}
-
-// ── PORTFOLIO SUBMIT ──
-function submitPortfolio() {
-  const name = document.getElementById('pf-name').value.trim();
-  const phone = document.getElementById('pf-phone').value.trim();
-  const email = document.getElementById('pf-email').value.trim();
-  const type = document.getElementById('pf-type').value;
-  const file = document.getElementById('pf-file').files[0];
-  if (!name || !phone || !email) {
-    alert('Please fill in your name, phone and email.');
-    return;
-  }
-  // Build WhatsApp message with all details
-  const msg = encodeURIComponent(
-    '🔔 *New Portfolio Analysis Request*\n\n' +
-    '👤 Name: ' + name + '\n' +
-    '📱 Phone: ' + phone + '\n' +
-    '📧 Email: ' + email + '\n' +
-    '📊 Type: ' + (type || 'Not specified') + '\n' +
-    '📎 File: ' + (file ? file.name : 'None uploaded') + '\n\n' +
-    'Please review and send portfolio analysis report.'
-  );
-  // Open WhatsApp with the lead details
-  window.open('https://wa.me/918790109022?text=' + msg, '_blank');
-  // Show success message
-  document.getElementById('pf-form').style.display = 'none';
-  document.getElementById('pf-success').style.display = 'block';
-}
-
-// Init calculators on load
-setTimeout(() => { updateSIP(); updateLumpsum(); updateRetirement(); updateHouse(); updateStepUp(); }, 400);
 
 </script>
 </body>
