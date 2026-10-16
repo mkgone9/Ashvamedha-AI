@@ -12,7 +12,7 @@
     LEAD_ENDPOINT: '',  // optional: 'https://formsubmit.co/ajax/YOUR_EMAIL' — emails every callback request
     WA_NUMBER: '918790109022',
     PHONE: '+918790109022',
-    WA_LINK: 'https://wa.link/rwwzd4'
+    WA_LINK: 'https://wa.me/918790109022?text=' + encodeURIComponent('Hi Manoj, I found Ashvamedha Finance online and would like free guidance.')
   };
 
   var path = location.pathname.replace(/\/+$/, '') || '/';
@@ -253,8 +253,13 @@
   }
 
   /* ═══════ INIT ═══════ */
+  function fixWa() {
+    var a = document.querySelectorAll('a[href*="wa.link"]');
+    for (var i = 0; i < a.length; i++) a[i].setAttribute('href', CFG.WA_LINK);
+  }
+
   function init() {
-    buildBar(); addCalcCard(); addGuides(); scrollNudge();
+    fixWa(); buildBar(); addCalcCard(); addGuides(); scrollNudge();
     setTimeout(carouselFix, 400);
     document.addEventListener('click', function (e) {
       var a = e.target.closest && e.target.closest('a[href*="wa.link"],a[href*="wa.me"]');
