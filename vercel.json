@@ -1,8 +1,2516 @@
 {
-  "cleanUrls": true,
-  "trailingSlash": false,
-  "rewrites": [
-    { "source": "/blog", "destination": "/blog.html" },
-    { "source": "/blog/:slug", "destination": "/blog/:slug.html" }
-  ]
+ "cleanUrls": true,
+ "trailingSlash": false,
+ "redirects": [
+  {
+   "source": "/accredited-investor-india-2026",
+   "destination": "/blog/accredited-investor-india-2026",
+   "permanent": true
+  },
+  {
+   "source": "/accredited-investor-india-2026.html",
+   "destination": "/blog/accredited-investor-india-2026",
+   "permanent": true
+  },
+  {
+   "source": "/after-buying-insurance-what-to-do",
+   "destination": "/blog/after-buying-insurance-what-to-do",
+   "permanent": true
+  },
+  {
+   "source": "/after-buying-insurance-what-to-do.html",
+   "destination": "/blog/after-buying-insurance-what-to-do",
+   "permanent": true
+  },
+  {
+   "source": "/aif-category-1-2-3-explained",
+   "destination": "/blog/aif-category-1-2-3-explained",
+   "permanent": true
+  },
+  {
+   "source": "/aif-category-1-2-3-explained.html",
+   "destination": "/blog/aif-category-1-2-3-explained",
+   "permanent": true
+  },
+  {
+   "source": "/aif-category-explained",
+   "destination": "/blog/aif-category-explained",
+   "permanent": true
+  },
+  {
+   "source": "/aif-category-explained.html",
+   "destination": "/blog/aif-category-explained",
+   "permanent": true
+  },
+  {
+   "source": "/aif-for-hnis-private-credit-category-ii",
+   "destination": "/blog/aif-for-hnis-private-credit-category-ii",
+   "permanent": true
+  },
+  {
+   "source": "/aif-for-hnis-private-credit-category-ii.html",
+   "destination": "/blog/aif-for-hnis-private-credit-category-ii",
+   "permanent": true
+  },
+  {
+   "source": "/alternative-investments-for-hni-india-2026",
+   "destination": "/blog/alternative-investments-for-hni-india-2026",
+   "permanent": true
+  },
+  {
+   "source": "/alternative-investments-for-hni-india-2026.html",
+   "destination": "/blog/alternative-investments-for-hni-india-2026",
+   "permanent": true
+  },
+  {
+   "source": "/annuity-plans-india-types-explained",
+   "destination": "/blog/annuity-plans-india-types-explained",
+   "permanent": true
+  },
+  {
+   "source": "/annuity-plans-india-types-explained.html",
+   "destination": "/blog/annuity-plans-india-types-explained",
+   "permanent": true
+  },
+  {
+   "source": "/are-unlisted-shares-risky",
+   "destination": "/blog/are-unlisted-shares-risky",
+   "permanent": true
+  },
+  {
+   "source": "/are-unlisted-shares-risky.html",
+   "destination": "/blog/are-unlisted-shares-risky",
+   "permanent": true
+  },
+  {
+   "source": "/before-buying-insurance-checklist",
+   "destination": "/blog/before-buying-insurance-checklist",
+   "permanent": true
+  },
+  {
+   "source": "/before-buying-insurance-checklist.html",
+   "destination": "/blog/before-buying-insurance-checklist",
+   "permanent": true
+  },
+  {
+   "source": "/best-age-to-buy-term-insurance-real-numbers",
+   "destination": "/blog/best-age-to-buy-term-insurance-real-numbers",
+   "permanent": true
+  },
+  {
+   "source": "/best-age-to-buy-term-insurance-real-numbers.html",
+   "destination": "/blog/best-age-to-buy-term-insurance-real-numbers",
+   "permanent": true
+  },
+  {
+   "source": "/best-financial-advisor-hyderabad-what-best-means",
+   "destination": "/blog/best-financial-advisor-hyderabad-what-best-means",
+   "permanent": true
+  },
+  {
+   "source": "/best-financial-advisor-hyderabad-what-best-means.html",
+   "destination": "/blog/best-financial-advisor-hyderabad-what-best-means",
+   "permanent": true
+  },
+  {
+   "source": "/best-insurance-for-nris-term-and-health",
+   "destination": "/blog/best-insurance-for-nris-term-and-health",
+   "permanent": true
+  },
+  {
+   "source": "/best-insurance-for-nris-term-and-health.html",
+   "destination": "/blog/best-insurance-for-nris-term-and-health",
+   "permanent": true
+  },
+  {
+   "source": "/best-investment-options-for-nris-category-guide",
+   "destination": "/blog/best-investment-options-for-nris-category-guide",
+   "permanent": true
+  },
+  {
+   "source": "/best-investment-options-for-nris-category-guide.html",
+   "destination": "/blog/best-investment-options-for-nris-category-guide",
+   "permanent": true
+  },
+  {
+   "source": "/best-life-insurance-advisors-hyderabad",
+   "destination": "/blog/best-life-insurance-advisors-hyderabad",
+   "permanent": true
+  },
+  {
+   "source": "/best-life-insurance-advisors-hyderabad.html",
+   "destination": "/blog/best-life-insurance-advisors-hyderabad",
+   "permanent": true
+  },
+  {
+   "source": "/best-mutual-funds-hyderabad",
+   "destination": "/blog/best-mutual-funds-hyderabad",
+   "permanent": true
+  },
+  {
+   "source": "/best-mutual-funds-hyderabad.html",
+   "destination": "/blog/best-mutual-funds-hyderabad",
+   "permanent": true
+  },
+  {
+   "source": "/best-nri-investment-advisory-hyderabad",
+   "destination": "/blog/best-nri-investment-advisory-hyderabad",
+   "permanent": true
+  },
+  {
+   "source": "/best-nri-investment-advisory-hyderabad.html",
+   "destination": "/blog/best-nri-investment-advisory-hyderabad",
+   "permanent": true
+  },
+  {
+   "source": "/best-nri-investment-advisory-india",
+   "destination": "/blog/best-nri-investment-advisory-india",
+   "permanent": true
+  },
+  {
+   "source": "/best-nri-investment-advisory-india.html",
+   "destination": "/blog/best-nri-investment-advisory-india",
+   "permanent": true
+  },
+  {
+   "source": "/best-pension-plans-invest-india",
+   "destination": "/blog/best-pension-plans-invest-india",
+   "permanent": true
+  },
+  {
+   "source": "/best-pension-plans-invest-india.html",
+   "destination": "/blog/best-pension-plans-invest-india",
+   "permanent": true
+  },
+  {
+   "source": "/best-platforms-indians-invest-us-stocks",
+   "destination": "/blog/best-platforms-indians-invest-us-stocks",
+   "permanent": true
+  },
+  {
+   "source": "/best-platforms-indians-invest-us-stocks.html",
+   "destination": "/blog/best-platforms-indians-invest-us-stocks",
+   "permanent": true
+  },
+  {
+   "source": "/best-stock-broker-india-what-actually-matters",
+   "destination": "/blog/best-stock-broker-india-what-actually-matters",
+   "permanent": true
+  },
+  {
+   "source": "/best-stock-broker-india-what-actually-matters.html",
+   "destination": "/blog/best-stock-broker-india-what-actually-matters",
+   "permanent": true
+  },
+  {
+   "source": "/best-stock-brokers-brokerage-fees-hni-traders",
+   "destination": "/blog/best-stock-brokers-brokerage-fees-hni-traders",
+   "permanent": true
+  },
+  {
+   "source": "/best-stock-brokers-brokerage-fees-hni-traders.html",
+   "destination": "/blog/best-stock-brokers-brokerage-fees-hni-traders",
+   "permanent": true
+  },
+  {
+   "source": "/best-stocks-short-term-india-2025",
+   "destination": "/blog/best-stocks-short-term-india-2025",
+   "permanent": true
+  },
+  {
+   "source": "/best-stocks-short-term-india-2025.html",
+   "destination": "/blog/best-stocks-short-term-india-2025",
+   "permanent": true
+  },
+  {
+   "source": "/best-tax-saving-investments-india-comparison",
+   "destination": "/blog/best-tax-saving-investments-india-comparison",
+   "permanent": true
+  },
+  {
+   "source": "/best-tax-saving-investments-india-comparison.html",
+   "destination": "/blog/best-tax-saving-investments-india-comparison",
+   "permanent": true
+  },
+  {
+   "source": "/best-term-insurance-2026",
+   "destination": "/blog/best-term-insurance-2026",
+   "permanent": true
+  },
+  {
+   "source": "/best-term-insurance-2026.html",
+   "destination": "/blog/best-term-insurance-2026",
+   "permanent": true
+  },
+  {
+   "source": "/best-term-insurance-for-nris-criteria",
+   "destination": "/blog/best-term-insurance-for-nris-criteria",
+   "permanent": true
+  },
+  {
+   "source": "/best-term-insurance-for-nris-criteria.html",
+   "destination": "/blog/best-term-insurance-for-nris-criteria",
+   "permanent": true
+  },
+  {
+   "source": "/best-unlisted-shares-to-buy-2025",
+   "destination": "/blog/best-unlisted-shares-to-buy-2025",
+   "permanent": true
+  },
+  {
+   "source": "/best-unlisted-shares-to-buy-2025.html",
+   "destination": "/blog/best-unlisted-shares-to-buy-2025",
+   "permanent": true
+  },
+  {
+   "source": "/can-i-buy-term-insurance-with-pre-existing-condition",
+   "destination": "/blog/can-i-buy-term-insurance-with-pre-existing-condition",
+   "permanent": true
+  },
+  {
+   "source": "/can-i-buy-term-insurance-with-pre-existing-condition.html",
+   "destination": "/blog/can-i-buy-term-insurance-with-pre-existing-condition",
+   "permanent": true
+  },
+  {
+   "source": "/can-i-buy-term-insurance-without-medical-test",
+   "destination": "/blog/can-i-buy-term-insurance-without-medical-test",
+   "permanent": true
+  },
+  {
+   "source": "/can-i-buy-term-insurance-without-medical-test.html",
+   "destination": "/blog/can-i-buy-term-insurance-without-medical-test",
+   "permanent": true
+  },
+  {
+   "source": "/can-i-get-pension-plan-and-term-insurance-together",
+   "destination": "/blog/can-i-get-pension-plan-and-term-insurance-together",
+   "permanent": true
+  },
+  {
+   "source": "/can-i-get-pension-plan-and-term-insurance-together.html",
+   "destination": "/blog/can-i-get-pension-plan-and-term-insurance-together",
+   "permanent": true
+  },
+  {
+   "source": "/can-i-have-two-term-insurance-policies",
+   "destination": "/blog/can-i-have-two-term-insurance-policies",
+   "permanent": true
+  },
+  {
+   "source": "/can-i-have-two-term-insurance-policies.html",
+   "destination": "/blog/can-i-have-two-term-insurance-policies",
+   "permanent": true
+  },
+  {
+   "source": "/can-i-increase-term-insurance-cover-later",
+   "destination": "/blog/can-i-increase-term-insurance-cover-later",
+   "permanent": true
+  },
+  {
+   "source": "/can-i-increase-term-insurance-cover-later.html",
+   "destination": "/blog/can-i-increase-term-insurance-cover-later",
+   "permanent": true
+  },
+  {
+   "source": "/can-i-take-term-insurance-part-time-worker-us",
+   "destination": "/blog/can-i-take-term-insurance-part-time-worker-us",
+   "permanent": true
+  },
+  {
+   "source": "/can-i-take-term-insurance-part-time-worker-us.html",
+   "destination": "/blog/can-i-take-term-insurance-part-time-worker-us",
+   "permanent": true
+  },
+  {
+   "source": "/can-nris-buy-term-insurance-in-india",
+   "destination": "/blog/can-nris-buy-term-insurance-in-india",
+   "permanent": true
+  },
+  {
+   "source": "/can-nris-buy-term-insurance-in-india.html",
+   "destination": "/blog/can-nris-buy-term-insurance-in-india",
+   "permanent": true
+  },
+  {
+   "source": "/can-nris-gift-mutual-funds-investments-to-family",
+   "destination": "/blog/can-nris-gift-mutual-funds-investments-to-family",
+   "permanent": true
+  },
+  {
+   "source": "/can-nris-gift-mutual-funds-investments-to-family.html",
+   "destination": "/blog/can-nris-gift-mutual-funds-investments-to-family",
+   "permanent": true
+  },
+  {
+   "source": "/can-nris-invest-in-india-direct-answer",
+   "destination": "/blog/can-nris-invest-in-india-direct-answer",
+   "permanent": true
+  },
+  {
+   "source": "/can-nris-invest-in-india-direct-answer.html",
+   "destination": "/blog/can-nris-invest-in-india-direct-answer",
+   "permanent": true
+  },
+  {
+   "source": "/can-nris-invest-in-ppf-real-current-rules",
+   "destination": "/blog/can-nris-invest-in-ppf-real-current-rules",
+   "permanent": true
+  },
+  {
+   "source": "/can-nris-invest-in-ppf-real-current-rules.html",
+   "destination": "/blog/can-nris-invest-in-ppf-real-current-rules",
+   "permanent": true
+  },
+  {
+   "source": "/capital-gains-tax-us-stocks-indian-residents",
+   "destination": "/blog/capital-gains-tax-us-stocks-indian-residents",
+   "permanent": true
+  },
+  {
+   "source": "/capital-gains-tax-us-stocks-indian-residents.html",
+   "destination": "/blog/capital-gains-tax-us-stocks-indian-residents",
+   "permanent": true
+  },
+  {
+   "source": "/car-loan-vs-cash-calculator",
+   "destination": "/blog/car-loan-vs-cash-calculator",
+   "permanent": true
+  },
+  {
+   "source": "/car-loan-vs-cash-calculator.html",
+   "destination": "/blog/car-loan-vs-cash-calculator",
+   "permanent": true
+  },
+  {
+   "source": "/childrens-insurance-plans-do-you-need-one",
+   "destination": "/blog/childrens-insurance-plans-do-you-need-one",
+   "permanent": true
+  },
+  {
+   "source": "/childrens-insurance-plans-do-you-need-one.html",
+   "destination": "/blog/childrens-insurance-plans-do-you-need-one",
+   "permanent": true
+  },
+  {
+   "source": "/choosing-nri-specific-financial-advisor",
+   "destination": "/blog/choosing-nri-specific-financial-advisor",
+   "permanent": true
+  },
+  {
+   "source": "/choosing-nri-specific-financial-advisor.html",
+   "destination": "/blog/choosing-nri-specific-financial-advisor",
+   "permanent": true
+  },
+  {
+   "source": "/commodity-exchange-investing-india-ncdex-mcx",
+   "destination": "/blog/commodity-exchange-investing-india-ncdex-mcx",
+   "permanent": true
+  },
+  {
+   "source": "/commodity-exchange-investing-india-ncdex-mcx.html",
+   "destination": "/blog/commodity-exchange-investing-india-ncdex-mcx",
+   "permanent": true
+  },
+  {
+   "source": "/common-mistakes-indians-investing-us-stocks",
+   "destination": "/blog/common-mistakes-indians-investing-us-stocks",
+   "permanent": true
+  },
+  {
+   "source": "/common-mistakes-indians-investing-us-stocks.html",
+   "destination": "/blog/common-mistakes-indians-investing-us-stocks",
+   "permanent": true
+  },
+  {
+   "source": "/common-term-insurance-riders-explained",
+   "destination": "/blog/common-term-insurance-riders-explained",
+   "permanent": true
+  },
+  {
+   "source": "/common-term-insurance-riders-explained.html",
+   "destination": "/blog/common-term-insurance-riders-explained",
+   "permanent": true
+  },
+  {
+   "source": "/corporate-demat-account",
+   "destination": "/blog/corporate-demat-account",
+   "permanent": true
+  },
+  {
+   "source": "/corporate-demat-account.html",
+   "destination": "/blog/corporate-demat-account",
+   "permanent": true
+  },
+  {
+   "source": "/defence-sector-unlisted-shares-india",
+   "destination": "/blog/defence-sector-unlisted-shares-india",
+   "permanent": true
+  },
+  {
+   "source": "/defence-sector-unlisted-shares-india.html",
+   "destination": "/blog/defence-sector-unlisted-shares-india",
+   "permanent": true
+  },
+  {
+   "source": "/difference-pms-aif-mutual-funds",
+   "destination": "/blog/difference-pms-aif-mutual-funds",
+   "permanent": true
+  },
+  {
+   "source": "/difference-pms-aif-mutual-funds.html",
+   "destination": "/blog/difference-pms-aif-mutual-funds",
+   "permanent": true
+  },
+  {
+   "source": "/direct-us-stocks-vs-indian-funds-us-exposure",
+   "destination": "/blog/direct-us-stocks-vs-indian-funds-us-exposure",
+   "permanent": true
+  },
+  {
+   "source": "/direct-us-stocks-vs-indian-funds-us-exposure.html",
+   "destination": "/blog/direct-us-stocks-vs-indian-funds-us-exposure",
+   "permanent": true
+  },
+  {
+   "source": "/discount-broker-vs-full-service-broker",
+   "destination": "/blog/discount-broker-vs-full-service-broker",
+   "permanent": true
+  },
+  {
+   "source": "/discount-broker-vs-full-service-broker.html",
+   "destination": "/blog/discount-broker-vs-full-service-broker",
+   "permanent": true
+  },
+  {
+   "source": "/do-i-need-separate-retirement-plan-if-i-have-nps",
+   "destination": "/blog/do-i-need-separate-retirement-plan-if-i-have-nps",
+   "permanent": true
+  },
+  {
+   "source": "/do-i-need-separate-retirement-plan-if-i-have-nps.html",
+   "destination": "/blog/do-i-need-separate-retirement-plan-if-i-have-nps",
+   "permanent": true
+  },
+  {
+   "source": "/do-you-actually-need-a-financial-advisor",
+   "destination": "/blog/do-you-actually-need-a-financial-advisor",
+   "permanent": true
+  },
+  {
+   "source": "/do-you-actually-need-a-financial-advisor.html",
+   "destination": "/blog/do-you-actually-need-a-financial-advisor",
+   "permanent": true
+  },
+  {
+   "source": "/does-pms-avoid-pfic-for-nris",
+   "destination": "/blog/does-pms-avoid-pfic-for-nris",
+   "permanent": true
+  },
+  {
+   "source": "/does-pms-avoid-pfic-for-nris.html",
+   "destination": "/blog/does-pms-avoid-pfic-for-nris",
+   "permanent": true
+  },
+  {
+   "source": "/employer-employee-insurance-scheme-india",
+   "destination": "/blog/employer-employee-insurance-scheme-india",
+   "permanent": true
+  },
+  {
+   "source": "/employer-employee-insurance-scheme-india.html",
+   "destination": "/blog/employer-employee-insurance-scheme-india",
+   "permanent": true
+  },
+  {
+   "source": "/employer-employee-insurance",
+   "destination": "/blog/employer-employee-insurance",
+   "permanent": true
+  },
+  {
+   "source": "/employer-employee-insurance.html",
+   "destination": "/blog/employer-employee-insurance",
+   "permanent": true
+  },
+  {
+   "source": "/endowment-plans-for-nris-taxation-repatriation",
+   "destination": "/blog/endowment-plans-for-nris-taxation-repatriation",
+   "permanent": true
+  },
+  {
+   "source": "/endowment-plans-for-nris-taxation-repatriation.html",
+   "destination": "/blog/endowment-plans-for-nris-taxation-repatriation",
+   "permanent": true
+  },
+  {
+   "source": "/endowment-vs-term-vs-ppf-long-term-savings",
+   "destination": "/blog/endowment-vs-term-vs-ppf-long-term-savings",
+   "permanent": true
+  },
+  {
+   "source": "/endowment-vs-term-vs-ppf-long-term-savings.html",
+   "destination": "/blog/endowment-vs-term-vs-ppf-long-term-savings",
+   "permanent": true
+  },
+  {
+   "source": "/family-office-india-2026",
+   "destination": "/blog/family-office-india-2026",
+   "permanent": true
+  },
+  {
+   "source": "/family-office-india-2026.html",
+   "destination": "/blog/family-office-india-2026",
+   "permanent": true
+  },
+  {
+   "source": "/family-office-vs-wealth-manager-india-2026",
+   "destination": "/blog/family-office-vs-wealth-manager-india-2026",
+   "permanent": true
+  },
+  {
+   "source": "/family-office-vs-wealth-manager-india-2026.html",
+   "destination": "/blog/family-office-vs-wealth-manager-india-2026",
+   "permanent": true
+  },
+  {
+   "source": "/fd-alternatives-debt-mf",
+   "destination": "/blog/fd-alternatives-debt-mf",
+   "permanent": true
+  },
+  {
+   "source": "/fd-alternatives-debt-mf.html",
+   "destination": "/blog/fd-alternatives-debt-mf",
+   "permanent": true
+  },
+  {
+   "source": "/fd-vs-mutual-fund-calculator",
+   "destination": "/blog/fd-vs-mutual-fund-calculator",
+   "permanent": true
+  },
+  {
+   "source": "/fd-vs-mutual-fund-calculator.html",
+   "destination": "/blog/fd-vs-mutual-fund-calculator",
+   "permanent": true
+  },
+  {
+   "source": "/financial-advisor-vs-doing-it-yourself",
+   "destination": "/blog/financial-advisor-vs-doing-it-yourself",
+   "permanent": true
+  },
+  {
+   "source": "/financial-advisor-vs-doing-it-yourself.html",
+   "destination": "/blog/financial-advisor-vs-doing-it-yourself",
+   "permanent": true
+  },
+  {
+   "source": "/financial-advisor-vs-investment-apps",
+   "destination": "/blog/financial-advisor-vs-investment-apps",
+   "permanent": true
+  },
+  {
+   "source": "/financial-advisor-vs-investment-apps.html",
+   "destination": "/blog/financial-advisor-vs-investment-apps",
+   "permanent": true
+  },
+  {
+   "source": "/financial-plan-salaried-employees",
+   "destination": "/blog/financial-plan-salaried-employees",
+   "permanent": true
+  },
+  {
+   "source": "/financial-plan-salaried-employees.html",
+   "destination": "/blog/financial-plan-salaried-employees",
+   "permanent": true
+  },
+  {
+   "source": "/financial-planner-vs-advisor",
+   "destination": "/blog/financial-planner-vs-advisor",
+   "permanent": true
+  },
+  {
+   "source": "/financial-planner-vs-advisor.html",
+   "destination": "/blog/financial-planner-vs-advisor",
+   "permanent": true
+  },
+  {
+   "source": "/financial-planning-after-marriage",
+   "destination": "/blog/financial-planning-after-marriage",
+   "permanent": true
+  },
+  {
+   "source": "/financial-planning-after-marriage.html",
+   "destination": "/blog/financial-planning-after-marriage",
+   "permanent": true
+  },
+  {
+   "source": "/financial-planning-for-beginners-where-to-start",
+   "destination": "/blog/financial-planning-for-beginners-where-to-start",
+   "permanent": true
+  },
+  {
+   "source": "/financial-planning-for-beginners-where-to-start.html",
+   "destination": "/blog/financial-planning-for-beginners-where-to-start",
+   "permanent": true
+  },
+  {
+   "source": "/financial-planning-for-it-employees-hyderabad",
+   "destination": "/blog/financial-planning-for-it-employees-hyderabad",
+   "permanent": true
+  },
+  {
+   "source": "/financial-planning-for-it-employees-hyderabad.html",
+   "destination": "/blog/financial-planning-for-it-employees-hyderabad",
+   "permanent": true
+  },
+  {
+   "source": "/financial-planning-it-employees",
+   "destination": "/blog/financial-planning-it-employees",
+   "permanent": true
+  },
+  {
+   "source": "/financial-planning-it-employees.html",
+   "destination": "/blog/financial-planning-it-employees",
+   "permanent": true
+  },
+  {
+   "source": "/financial-planning-telugu-families-hyderabad",
+   "destination": "/blog/financial-planning-telugu-families-hyderabad",
+   "permanent": true
+  },
+  {
+   "source": "/financial-planning-telugu-families-hyderabad.html",
+   "destination": "/blog/financial-planning-telugu-families-hyderabad",
+   "permanent": true
+  },
+  {
+   "source": "/financial-planning-tips-for-nris-checklist",
+   "destination": "/blog/financial-planning-tips-for-nris-checklist",
+   "permanent": true
+  },
+  {
+   "source": "/financial-planning-tips-for-nris-checklist.html",
+   "destination": "/blog/financial-planning-tips-for-nris-checklist",
+   "permanent": true
+  },
+  {
+   "source": "/fire-for-nris-what-is-different",
+   "destination": "/blog/fire-for-nris-what-is-different",
+   "permanent": true
+  },
+  {
+   "source": "/fire-for-nris-what-is-different.html",
+   "destination": "/blog/fire-for-nris-what-is-different",
+   "permanent": true
+  },
+  {
+   "source": "/first-time-home-buyer-loan-guide-step-by-step",
+   "destination": "/blog/first-time-home-buyer-loan-guide-step-by-step",
+   "permanent": true
+  },
+  {
+   "source": "/first-time-home-buyer-loan-guide-step-by-step.html",
+   "destination": "/blog/first-time-home-buyer-loan-guide-step-by-step",
+   "permanent": true
+  },
+  {
+   "source": "/first-us-paycheck-financial-checklist",
+   "destination": "/blog/first-us-paycheck-financial-checklist",
+   "permanent": true
+  },
+  {
+   "source": "/first-us-paycheck-financial-checklist.html",
+   "destination": "/blog/first-us-paycheck-financial-checklist",
+   "permanent": true
+  },
+  {
+   "source": "/fixed-vs-floating-home-loan-interest-rate",
+   "destination": "/blog/fixed-vs-floating-home-loan-interest-rate",
+   "permanent": true
+  },
+  {
+   "source": "/fixed-vs-floating-home-loan-interest-rate.html",
+   "destination": "/blog/fixed-vs-floating-home-loan-interest-rate",
+   "permanent": true
+  },
+  {
+   "source": "/garuda-aerospace-drone-as-a-service-model-explained",
+   "destination": "/blog/garuda-aerospace-drone-as-a-service-model-explained",
+   "permanent": true
+  },
+  {
+   "source": "/garuda-aerospace-drone-as-a-service-model-explained.html",
+   "destination": "/blog/garuda-aerospace-drone-as-a-service-model-explained",
+   "permanent": true
+  },
+  {
+   "source": "/garuda-aerospace-pre-ipo",
+   "destination": "/blog/garuda-aerospace-pre-ipo",
+   "permanent": true
+  },
+  {
+   "source": "/garuda-aerospace-pre-ipo.html",
+   "destination": "/blog/garuda-aerospace-pre-ipo",
+   "permanent": true
+  },
+  {
+   "source": "/garuda-aerospace-revenue-deceleration-what-it-means",
+   "destination": "/blog/garuda-aerospace-revenue-deceleration-what-it-means",
+   "permanent": true
+  },
+  {
+   "source": "/garuda-aerospace-revenue-deceleration-what-it-means.html",
+   "destination": "/blog/garuda-aerospace-revenue-deceleration-what-it-means",
+   "permanent": true
+  },
+  {
+   "source": "/garuda-aerospace-vs-ideaforge-drone-sector-comparison",
+   "destination": "/blog/garuda-aerospace-vs-ideaforge-drone-sector-comparison",
+   "permanent": true
+  },
+  {
+   "source": "/garuda-aerospace-vs-ideaforge-drone-sector-comparison.html",
+   "destination": "/blog/garuda-aerospace-vs-ideaforge-drone-sector-comparison",
+   "permanent": true
+  },
+  {
+   "source": "/gift-city-investing-for-nris-complete-guide",
+   "destination": "/blog/gift-city-investing-for-nris-complete-guide",
+   "permanent": true
+  },
+  {
+   "source": "/gift-city-investing-for-nris-complete-guide.html",
+   "destination": "/blog/gift-city-investing-for-nris-complete-guide",
+   "permanent": true
+  },
+  {
+   "source": "/gift-city-vs-nre-nro-which-for-what",
+   "destination": "/blog/gift-city-vs-nre-nro-which-for-what",
+   "permanent": true
+  },
+  {
+   "source": "/gift-city-vs-nre-nro-which-for-what.html",
+   "destination": "/blog/gift-city-vs-nre-nro-which-for-what",
+   "permanent": true
+  },
+  {
+   "source": "/group-employer-insurance-abroad-vs-nri-term-insurance",
+   "destination": "/blog/group-employer-insurance-abroad-vs-nri-term-insurance",
+   "permanent": true
+  },
+  {
+   "source": "/group-employer-insurance-abroad-vs-nri-term-insurance.html",
+   "destination": "/blog/group-employer-insurance-abroad-vs-nri-term-insurance",
+   "permanent": true
+  },
+  {
+   "source": "/guaranteed-return-insurance-plans-worth-it",
+   "destination": "/blog/guaranteed-return-insurance-plans-worth-it",
+   "permanent": true
+  },
+  {
+   "source": "/guaranteed-return-insurance-plans-worth-it.html",
+   "destination": "/blog/guaranteed-return-insurance-plans-worth-it",
+   "permanent": true
+  },
+  {
+   "source": "/gulf-nri-investing-in-india-telugu-families",
+   "destination": "/blog/gulf-nri-investing-in-india-telugu-families",
+   "permanent": true
+  },
+  {
+   "source": "/gulf-nri-investing-in-india-telugu-families.html",
+   "destination": "/blog/gulf-nri-investing-in-india-telugu-families",
+   "permanent": true
+  },
+  {
+   "source": "/health-insurance-for-nri-parents-in-india",
+   "destination": "/blog/health-insurance-for-nri-parents-in-india",
+   "permanent": true
+  },
+  {
+   "source": "/health-insurance-for-nri-parents-in-india.html",
+   "destination": "/blog/health-insurance-for-nri-parents-in-india",
+   "permanent": true
+  },
+  {
+   "source": "/health-insurance-vs-critical-illness-rider",
+   "destination": "/blog/health-insurance-vs-critical-illness-rider",
+   "permanent": true
+  },
+  {
+   "source": "/health-insurance-vs-critical-illness-rider.html",
+   "destination": "/blog/health-insurance-vs-critical-illness-rider",
+   "permanent": true
+  },
+  {
+   "source": "/hidden-stock-broker-charges-explained",
+   "destination": "/blog/hidden-stock-broker-charges-explained",
+   "permanent": true
+  },
+  {
+   "source": "/hidden-stock-broker-charges-explained.html",
+   "destination": "/blog/hidden-stock-broker-charges-explained",
+   "permanent": true
+  },
+  {
+   "source": "/hni-portfolio-management-india-2026",
+   "destination": "/blog/hni-portfolio-management-india-2026",
+   "permanent": true
+  },
+  {
+   "source": "/hni-portfolio-management-india-2026.html",
+   "destination": "/blog/hni-portfolio-management-india-2026",
+   "permanent": true
+  },
+  {
+   "source": "/hnuhni-wealth-management-hyderabad",
+   "destination": "/blog/hnuhni-wealth-management-hyderabad",
+   "permanent": true
+  },
+  {
+   "source": "/hnuhni-wealth-management-hyderabad.html",
+   "destination": "/blog/hnuhni-wealth-management-hyderabad",
+   "permanent": true
+  },
+  {
+   "source": "/home-loan-balance-transfer-when-makes-sense",
+   "destination": "/blog/home-loan-balance-transfer-when-makes-sense",
+   "permanent": true
+  },
+  {
+   "source": "/home-loan-balance-transfer-when-makes-sense.html",
+   "destination": "/blog/home-loan-balance-transfer-when-makes-sense",
+   "permanent": true
+  },
+  {
+   "source": "/home-loan-documents-checklist",
+   "destination": "/blog/home-loan-documents-checklist",
+   "permanent": true
+  },
+  {
+   "source": "/home-loan-documents-checklist.html",
+   "destination": "/blog/home-loan-documents-checklist",
+   "permanent": true
+  },
+  {
+   "source": "/home-loan-emi-calculator-how-to-use",
+   "destination": "/blog/home-loan-emi-calculator-how-to-use",
+   "permanent": true
+  },
+  {
+   "source": "/home-loan-emi-calculator-how-to-use.html",
+   "destination": "/blog/home-loan-emi-calculator-how-to-use",
+   "permanent": true
+  },
+  {
+   "source": "/home-loan-for-self-employed-vs-salaried",
+   "destination": "/blog/home-loan-for-self-employed-vs-salaried",
+   "permanent": true
+  },
+  {
+   "source": "/home-loan-for-self-employed-vs-salaried.html",
+   "destination": "/blog/home-loan-for-self-employed-vs-salaried",
+   "permanent": true
+  },
+  {
+   "source": "/home-loan-foreclosure-charges-process",
+   "destination": "/blog/home-loan-foreclosure-charges-process",
+   "permanent": true
+  },
+  {
+   "source": "/home-loan-foreclosure-charges-process.html",
+   "destination": "/blog/home-loan-foreclosure-charges-process",
+   "permanent": true
+  },
+  {
+   "source": "/home-loan-insurance-do-you-need-it",
+   "destination": "/blog/home-loan-insurance-do-you-need-it",
+   "permanent": true
+  },
+  {
+   "source": "/home-loan-insurance-do-you-need-it.html",
+   "destination": "/blog/home-loan-insurance-do-you-need-it",
+   "permanent": true
+  },
+  {
+   "source": "/home-loan-interest-rates-2026-explained",
+   "destination": "/blog/home-loan-interest-rates-2026-explained",
+   "permanent": true
+  },
+  {
+   "source": "/home-loan-interest-rates-2026-explained.html",
+   "destination": "/blog/home-loan-interest-rates-2026-explained",
+   "permanent": true
+  },
+  {
+   "source": "/home-loan-prepayment-does-it-save-money",
+   "destination": "/blog/home-loan-prepayment-does-it-save-money",
+   "permanent": true
+  },
+  {
+   "source": "/home-loan-prepayment-does-it-save-money.html",
+   "destination": "/blog/home-loan-prepayment-does-it-save-money",
+   "permanent": true
+  },
+  {
+   "source": "/home-loan-processing-fees-hidden-charges",
+   "destination": "/blog/home-loan-processing-fees-hidden-charges",
+   "permanent": true
+  },
+  {
+   "source": "/home-loan-processing-fees-hidden-charges.html",
+   "destination": "/blog/home-loan-processing-fees-hidden-charges",
+   "permanent": true
+  },
+  {
+   "source": "/home-loan-tax-benefits-section-24b-80c-80eea",
+   "destination": "/blog/home-loan-tax-benefits-section-24b-80c-80eea",
+   "permanent": true
+  },
+  {
+   "source": "/home-loan-tax-benefits-section-24b-80c-80eea.html",
+   "destination": "/blog/home-loan-tax-benefits-section-24b-80c-80eea",
+   "permanent": true
+  },
+  {
+   "source": "/home-loan-top-up-what-it-is-when-makes-sense",
+   "destination": "/blog/home-loan-top-up-what-it-is-when-makes-sense",
+   "permanent": true
+  },
+  {
+   "source": "/home-loan-top-up-what-it-is-when-makes-sense.html",
+   "destination": "/blog/home-loan-top-up-what-it-is-when-makes-sense",
+   "permanent": true
+  },
+  {
+   "source": "/home-loan-vs-cash-calculator-real-numbers",
+   "destination": "/blog/home-loan-vs-cash-calculator-real-numbers",
+   "permanent": true
+  },
+  {
+   "source": "/home-loan-vs-cash-calculator-real-numbers.html",
+   "destination": "/blog/home-loan-vs-cash-calculator-real-numbers",
+   "permanent": true
+  },
+  {
+   "source": "/home-loan-vs-mutual-funds-prepay-or-invest",
+   "destination": "/blog/home-loan-vs-mutual-funds-prepay-or-invest",
+   "permanent": true
+  },
+  {
+   "source": "/home-loan-vs-mutual-funds-prepay-or-invest.html",
+   "destination": "/blog/home-loan-vs-mutual-funds-prepay-or-invest",
+   "permanent": true
+  },
+  {
+   "source": "/how-can-indians-invest-in-us-stocks-complete-guide",
+   "destination": "/blog/how-can-indians-invest-in-us-stocks-complete-guide",
+   "permanent": true
+  },
+  {
+   "source": "/how-can-indians-invest-in-us-stocks-complete-guide.html",
+   "destination": "/blog/how-can-indians-invest-in-us-stocks-complete-guide",
+   "permanent": true
+  },
+  {
+   "source": "/how-much-does-a-financial-advisor-cost-in-india",
+   "destination": "/blog/how-much-does-a-financial-advisor-cost-in-india",
+   "permanent": true
+  },
+  {
+   "source": "/how-much-does-a-financial-advisor-cost-in-india.html",
+   "destination": "/blog/how-much-does-a-financial-advisor-cost-in-india",
+   "permanent": true
+  },
+  {
+   "source": "/how-much-home-loan-can-i-get-eligibility",
+   "destination": "/blog/how-much-home-loan-can-i-get-eligibility",
+   "permanent": true
+  },
+  {
+   "source": "/how-much-home-loan-can-i-get-eligibility.html",
+   "destination": "/blog/how-much-home-loan-can-i-get-eligibility",
+   "permanent": true
+  },
+  {
+   "source": "/how-much-should-you-save-for-retirement-by-age",
+   "destination": "/blog/how-much-should-you-save-for-retirement-by-age",
+   "permanent": true
+  },
+  {
+   "source": "/how-much-should-you-save-for-retirement-by-age.html",
+   "destination": "/blog/how-much-should-you-save-for-retirement-by-age",
+   "permanent": true
+  },
+  {
+   "source": "/how-retirement-corpus-taxed-india",
+   "destination": "/blog/how-retirement-corpus-taxed-india",
+   "permanent": true
+  },
+  {
+   "source": "/how-retirement-corpus-taxed-india.html",
+   "destination": "/blog/how-retirement-corpus-taxed-india",
+   "permanent": true
+  },
+  {
+   "source": "/how-term-insurance-premiums-calculated",
+   "destination": "/blog/how-term-insurance-premiums-calculated",
+   "permanent": true
+  },
+  {
+   "source": "/how-term-insurance-premiums-calculated.html",
+   "destination": "/blog/how-term-insurance-premiums-calculated",
+   "permanent": true
+  },
+  {
+   "source": "/how-to-avoid-high-tax",
+   "destination": "/blog/how-to-avoid-high-tax",
+   "permanent": true
+  },
+  {
+   "source": "/how-to-avoid-high-tax.html",
+   "destination": "/blog/how-to-avoid-high-tax",
+   "permanent": true
+  },
+  {
+   "source": "/how-to-buy-garuda-aerospace-unlisted-shares",
+   "destination": "/blog/how-to-buy-garuda-aerospace-unlisted-shares",
+   "permanent": true
+  },
+  {
+   "source": "/how-to-buy-garuda-aerospace-unlisted-shares.html",
+   "destination": "/blog/how-to-buy-garuda-aerospace-unlisted-shares",
+   "permanent": true
+  },
+  {
+   "source": "/how-to-buy-good-luck-defence-unlisted-shares",
+   "destination": "/blog/how-to-buy-good-luck-defence-unlisted-shares",
+   "permanent": true
+  },
+  {
+   "source": "/how-to-buy-good-luck-defence-unlisted-shares.html",
+   "destination": "/blog/how-to-buy-good-luck-defence-unlisted-shares",
+   "permanent": true
+  },
+  {
+   "source": "/how-to-buy-msei-unlisted-shares",
+   "destination": "/blog/how-to-buy-msei-unlisted-shares",
+   "permanent": true
+  },
+  {
+   "source": "/how-to-buy-msei-unlisted-shares.html",
+   "destination": "/blog/how-to-buy-msei-unlisted-shares",
+   "permanent": true
+  },
+  {
+   "source": "/how-to-buy-nse-unlisted-shares",
+   "destination": "/blog/how-to-buy-nse-unlisted-shares",
+   "permanent": true
+  },
+  {
+   "source": "/how-to-buy-nse-unlisted-shares.html",
+   "destination": "/blog/how-to-buy-nse-unlisted-shares",
+   "permanent": true
+  },
+  {
+   "source": "/how-to-buy-pre-ipo-shares",
+   "destination": "/blog/how-to-buy-pre-ipo-shares",
+   "permanent": true
+  },
+  {
+   "source": "/how-to-buy-pre-ipo-shares.html",
+   "destination": "/blog/how-to-buy-pre-ipo-shares",
+   "permanent": true
+  },
+  {
+   "source": "/how-to-buy-sterlite-electric-unlisted-shares",
+   "destination": "/blog/how-to-buy-sterlite-electric-unlisted-shares",
+   "permanent": true
+  },
+  {
+   "source": "/how-to-buy-sterlite-electric-unlisted-shares.html",
+   "destination": "/blog/how-to-buy-sterlite-electric-unlisted-shares",
+   "permanent": true
+  },
+  {
+   "source": "/how-to-buy-unlisted-shares-in-hyderabad-local-process",
+   "destination": "/blog/how-to-buy-unlisted-shares-in-hyderabad-local-process",
+   "permanent": true
+  },
+  {
+   "source": "/how-to-buy-unlisted-shares-in-hyderabad-local-process.html",
+   "destination": "/blog/how-to-buy-unlisted-shares-in-hyderabad-local-process",
+   "permanent": true
+  },
+  {
+   "source": "/how-to-buy-unlisted-shares-in-india-complete-process",
+   "destination": "/blog/how-to-buy-unlisted-shares-in-india-complete-process",
+   "permanent": true
+  },
+  {
+   "source": "/how-to-buy-unlisted-shares-in-india-complete-process.html",
+   "destination": "/blog/how-to-buy-unlisted-shares-in-india-complete-process",
+   "permanent": true
+  },
+  {
+   "source": "/how-to-buy-unlisted-shares",
+   "destination": "/blog/how-to-buy-unlisted-shares",
+   "permanent": true
+  },
+  {
+   "source": "/how-to-buy-unlisted-shares.html",
+   "destination": "/blog/how-to-buy-unlisted-shares",
+   "permanent": true
+  },
+  {
+   "source": "/how-to-buy-us-stocks-apple-tesla-nvidia-from-india",
+   "destination": "/blog/how-to-buy-us-stocks-apple-tesla-nvidia-from-india",
+   "permanent": true
+  },
+  {
+   "source": "/how-to-buy-us-stocks-apple-tesla-nvidia-from-india.html",
+   "destination": "/blog/how-to-buy-us-stocks-apple-tesla-nvidia-from-india",
+   "permanent": true
+  },
+  {
+   "source": "/how-to-calculate-fire-number",
+   "destination": "/blog/how-to-calculate-fire-number",
+   "permanent": true
+  },
+  {
+   "source": "/how-to-calculate-fire-number.html",
+   "destination": "/blog/how-to-calculate-fire-number",
+   "permanent": true
+  },
+  {
+   "source": "/how-to-choose-home-loan-advisor",
+   "destination": "/blog/how-to-choose-home-loan-advisor",
+   "permanent": true
+  },
+  {
+   "source": "/how-to-choose-home-loan-advisor.html",
+   "destination": "/blog/how-to-choose-home-loan-advisor",
+   "permanent": true
+  },
+  {
+   "source": "/how-to-choose-stock-broker-as-beginner",
+   "destination": "/blog/how-to-choose-stock-broker-as-beginner",
+   "permanent": true
+  },
+  {
+   "source": "/how-to-choose-stock-broker-as-beginner.html",
+   "destination": "/blog/how-to-choose-stock-broker-as-beginner",
+   "permanent": true
+  },
+  {
+   "source": "/how-to-choose-term-insurance",
+   "destination": "/blog/how-to-choose-term-insurance",
+   "permanent": true
+  },
+  {
+   "source": "/how-to-choose-term-insurance.html",
+   "destination": "/blog/how-to-choose-term-insurance",
+   "permanent": true
+  },
+  {
+   "source": "/how-to-find-multibagger-stocks-real-criteria",
+   "destination": "/blog/how-to-find-multibagger-stocks-real-criteria",
+   "permanent": true
+  },
+  {
+   "source": "/how-to-find-multibagger-stocks-real-criteria.html",
+   "destination": "/blog/how-to-find-multibagger-stocks-real-criteria",
+   "permanent": true
+  },
+  {
+   "source": "/how-to-get-better-home-loan-interest-rate",
+   "destination": "/blog/how-to-get-better-home-loan-interest-rate",
+   "permanent": true
+  },
+  {
+   "source": "/how-to-get-better-home-loan-interest-rate.html",
+   "destination": "/blog/how-to-get-better-home-loan-interest-rate",
+   "permanent": true
+  },
+  {
+   "source": "/how-to-invest-in-india-from-us",
+   "destination": "/blog/how-to-invest-in-india-from-us",
+   "permanent": true
+  },
+  {
+   "source": "/how-to-invest-in-india-from-us.html",
+   "destination": "/blog/how-to-invest-in-india-from-us",
+   "permanent": true
+  },
+  {
+   "source": "/how-to-open-nri-demat-account",
+   "destination": "/blog/how-to-open-nri-demat-account",
+   "permanent": true
+  },
+  {
+   "source": "/how-to-open-nri-demat-account.html",
+   "destination": "/blog/how-to-open-nri-demat-account",
+   "permanent": true
+  },
+  {
+   "source": "/how-to-plan-retirement",
+   "destination": "/blog/how-to-plan-retirement",
+   "permanent": true
+  },
+  {
+   "source": "/how-to-plan-retirement.html",
+   "destination": "/blog/how-to-plan-retirement",
+   "permanent": true
+  },
+  {
+   "source": "/how-to-save-tax-huf",
+   "destination": "/blog/how-to-save-tax-huf",
+   "permanent": true
+  },
+  {
+   "source": "/how-to-save-tax-huf.html",
+   "destination": "/blog/how-to-save-tax-huf",
+   "permanent": true
+  },
+  {
+   "source": "/how-to-select-growth-stocks-long-term",
+   "destination": "/blog/how-to-select-growth-stocks-long-term",
+   "permanent": true
+  },
+  {
+   "source": "/how-to-select-growth-stocks-long-term.html",
+   "destination": "/blog/how-to-select-growth-stocks-long-term",
+   "permanent": true
+  },
+  {
+   "source": "/how-to-start-investing-with-low-irregular-income",
+   "destination": "/blog/how-to-start-investing-with-low-irregular-income",
+   "permanent": true
+  },
+  {
+   "source": "/how-to-start-investing-with-low-irregular-income.html",
+   "destination": "/blog/how-to-start-investing-with-low-irregular-income",
+   "permanent": true
+  },
+  {
+   "source": "/how-unlisted-share-valuations-are-calculated",
+   "destination": "/blog/how-unlisted-share-valuations-are-calculated",
+   "permanent": true
+  },
+  {
+   "source": "/how-unlisted-share-valuations-are-calculated.html",
+   "destination": "/blog/how-unlisted-share-valuations-are-calculated",
+   "permanent": true
+  },
+  {
+   "source": "/indias-stock-exchanges-explained-nse-bse-msei-mcx-ncdex",
+   "destination": "/blog/indias-stock-exchanges-explained-nse-bse-msei-mcx-ncdex",
+   "permanent": true
+  },
+  {
+   "source": "/indias-stock-exchanges-explained-nse-bse-msei-mcx-ncdex.html",
+   "destination": "/blog/indias-stock-exchanges-explained-nse-bse-msei-mcx-ncdex",
+   "permanent": true
+  },
+  {
+   "source": "/insolare-energy-unlisted-shares-financials",
+   "destination": "/blog/insolare-energy-unlisted-shares-financials",
+   "permanent": true
+  },
+  {
+   "source": "/insolare-energy-unlisted-shares-financials.html",
+   "destination": "/blog/insolare-energy-unlisted-shares-financials",
+   "permanent": true
+  },
+  {
+   "source": "/insurance-mistakes-to-avoid-india",
+   "destination": "/blog/insurance-mistakes-to-avoid-india",
+   "permanent": true
+  },
+  {
+   "source": "/insurance-mistakes-to-avoid-india.html",
+   "destination": "/blog/insurance-mistakes-to-avoid-india",
+   "permanent": true
+  },
+  {
+   "source": "/investing-in-india-part-time-us-income",
+   "destination": "/blog/investing-in-india-part-time-us-income",
+   "permanent": true
+  },
+  {
+   "source": "/investing-in-india-part-time-us-income.html",
+   "destination": "/blog/investing-in-india-part-time-us-income",
+   "permanent": true
+  },
+  {
+   "source": "/investment-advisor-hyderabad",
+   "destination": "/blog/investment-advisor-hyderabad",
+   "permanent": true
+  },
+  {
+   "source": "/investment-advisor-hyderabad.html",
+   "destination": "/blog/investment-advisor-hyderabad",
+   "permanent": true
+  },
+  {
+   "source": "/investment-advisors-near-me",
+   "destination": "/blog/investment-advisors-near-me",
+   "permanent": true
+  },
+  {
+   "source": "/investment-advisors-near-me.html",
+   "destination": "/blog/investment-advisors-near-me",
+   "permanent": true
+  },
+  {
+   "source": "/is-hyderabad-real-estate-going-to-crash",
+   "destination": "/blog/is-hyderabad-real-estate-going-to-crash",
+   "permanent": true
+  },
+  {
+   "source": "/is-hyderabad-real-estate-going-to-crash.html",
+   "destination": "/blog/is-hyderabad-real-estate-going-to-crash",
+   "permanent": true
+  },
+  {
+   "source": "/is-it-okay-to-buy-home-in-hyderabad-now",
+   "destination": "/blog/is-it-okay-to-buy-home-in-hyderabad-now",
+   "permanent": true
+  },
+  {
+   "source": "/is-it-okay-to-buy-home-in-hyderabad-now.html",
+   "destination": "/blog/is-it-okay-to-buy-home-in-hyderabad-now",
+   "permanent": true
+  },
+  {
+   "source": "/is-my-indian-term-insurance-valid-if-i-move-abroad",
+   "destination": "/blog/is-my-indian-term-insurance-valid-if-i-move-abroad",
+   "permanent": true
+  },
+  {
+   "source": "/is-my-indian-term-insurance-valid-if-i-move-abroad.html",
+   "destination": "/blog/is-my-indian-term-insurance-valid-if-i-move-abroad",
+   "permanent": true
+  },
+  {
+   "source": "/is-term-insurance-better-than-pension-plan-retirement",
+   "destination": "/blog/is-term-insurance-better-than-pension-plan-retirement",
+   "permanent": true
+  },
+  {
+   "source": "/is-term-insurance-better-than-pension-plan-retirement.html",
+   "destination": "/blog/is-term-insurance-better-than-pension-plan-retirement",
+   "permanent": true
+  },
+  {
+   "source": "/joint-home-loan-benefits-tax-implications",
+   "destination": "/blog/joint-home-loan-benefits-tax-implications",
+   "permanent": true
+  },
+  {
+   "source": "/joint-home-loan-benefits-tax-implications.html",
+   "destination": "/blog/joint-home-loan-benefits-tax-implications",
+   "permanent": true
+  },
+  {
+   "source": "/keyman-insurance-explained-india",
+   "destination": "/blog/keyman-insurance-explained-india",
+   "permanent": true
+  },
+  {
+   "source": "/keyman-insurance-explained-india.html",
+   "destination": "/blog/keyman-insurance-explained-india",
+   "permanent": true
+  },
+  {
+   "source": "/land-investment-vs-mutual-funds-comparison",
+   "destination": "/blog/land-investment-vs-mutual-funds-comparison",
+   "permanent": true
+  },
+  {
+   "source": "/land-investment-vs-mutual-funds-comparison.html",
+   "destination": "/blog/land-investment-vs-mutual-funds-comparison",
+   "permanent": true
+  },
+  {
+   "source": "/life-insurance-for-senior-citizens-india",
+   "destination": "/blog/life-insurance-for-senior-citizens-india",
+   "permanent": true
+  },
+  {
+   "source": "/life-insurance-for-senior-citizens-india.html",
+   "destination": "/blog/life-insurance-for-senior-citizens-india",
+   "permanent": true
+  },
+  {
+   "source": "/lrs-limit-tcs-investing-us-stocks",
+   "destination": "/blog/lrs-limit-tcs-investing-us-stocks",
+   "permanent": true
+  },
+  {
+   "source": "/lrs-limit-tcs-investing-us-stocks.html",
+   "destination": "/blog/lrs-limit-tcs-investing-us-stocks",
+   "permanent": true
+  },
+  {
+   "source": "/ltcg-stcg-taxation",
+   "destination": "/blog/ltcg-stcg-taxation",
+   "permanent": true
+  },
+  {
+   "source": "/ltcg-stcg-taxation.html",
+   "destination": "/blog/ltcg-stcg-taxation",
+   "permanent": true
+  },
+  {
+   "source": "/minor-demat-account",
+   "destination": "/blog/minor-demat-account",
+   "permanent": true
+  },
+  {
+   "source": "/minor-demat-account.html",
+   "destination": "/blog/minor-demat-account",
+   "permanent": true
+  },
+  {
+   "source": "/missed-nse-unlisted-shares-rally-what-to-know-now",
+   "destination": "/blog/missed-nse-unlisted-shares-rally-what-to-know-now",
+   "permanent": true
+  },
+  {
+   "source": "/missed-nse-unlisted-shares-rally-what-to-know-now.html",
+   "destination": "/blog/missed-nse-unlisted-shares-rally-what-to-know-now",
+   "permanent": true
+  },
+  {
+   "source": "/money-management-tips-for-nris",
+   "destination": "/blog/money-management-tips-for-nris",
+   "permanent": true
+  },
+  {
+   "source": "/money-management-tips-for-nris.html",
+   "destination": "/blog/money-management-tips-for-nris",
+   "permanent": true
+  },
+  {
+   "source": "/msei-2026-turnaround-real-trading-volumes",
+   "destination": "/blog/msei-2026-turnaround-real-trading-volumes",
+   "permanent": true
+  },
+  {
+   "source": "/msei-2026-turnaround-real-trading-volumes.html",
+   "destination": "/blog/msei-2026-turnaround-real-trading-volumes",
+   "permanent": true
+  },
+  {
+   "source": "/msei-vs-nse-vs-bse-can-smaller-exchange-compete",
+   "destination": "/blog/msei-vs-nse-vs-bse-can-smaller-exchange-compete",
+   "permanent": true
+  },
+  {
+   "source": "/msei-vs-nse-vs-bse-can-smaller-exchange-compete.html",
+   "destination": "/blog/msei-vs-nse-vs-bse-can-smaller-exchange-compete",
+   "permanent": true
+  },
+  {
+   "source": "/mutual-fund-vs-real-estate-calculator",
+   "destination": "/blog/mutual-fund-vs-real-estate-calculator",
+   "permanent": true
+  },
+  {
+   "source": "/mutual-fund-vs-real-estate-calculator.html",
+   "destination": "/blog/mutual-fund-vs-real-estate-calculator",
+   "permanent": true
+  },
+  {
+   "source": "/ncdex-revenue-growth-losses-narrowing-fy27",
+   "destination": "/blog/ncdex-revenue-growth-losses-narrowing-fy27",
+   "permanent": true
+  },
+  {
+   "source": "/ncdex-revenue-growth-losses-narrowing-fy27.html",
+   "destination": "/blog/ncdex-revenue-growth-losses-narrowing-fy27",
+   "permanent": true
+  },
+  {
+   "source": "/ncdex-shares-what-is-it-how-to-buy",
+   "destination": "/blog/ncdex-shares-what-is-it-how-to-buy",
+   "permanent": true
+  },
+  {
+   "source": "/ncdex-shares-what-is-it-how-to-buy.html",
+   "destination": "/blog/ncdex-shares-what-is-it-how-to-buy",
+   "permanent": true
+  },
+  {
+   "source": "/nps-withdrawal-rules-complete-guide",
+   "destination": "/blog/nps-withdrawal-rules-complete-guide",
+   "permanent": true
+  },
+  {
+   "source": "/nps-withdrawal-rules-complete-guide.html",
+   "destination": "/blog/nps-withdrawal-rules-complete-guide",
+   "permanent": true
+  },
+  {
+   "source": "/nre-fd-vs-nro-fd-vs-fcnr-fd",
+   "destination": "/blog/nre-fd-vs-nro-fd-vs-fcnr-fd",
+   "permanent": true
+  },
+  {
+   "source": "/nre-fd-vs-nro-fd-vs-fcnr-fd.html",
+   "destination": "/blog/nre-fd-vs-nro-fd-vs-fcnr-fd",
+   "permanent": true
+  },
+  {
+   "source": "/nri-financial-mistakes-to-avoid",
+   "destination": "/blog/nri-financial-mistakes-to-avoid",
+   "permanent": true
+  },
+  {
+   "source": "/nri-financial-mistakes-to-avoid.html",
+   "destination": "/blog/nri-financial-mistakes-to-avoid",
+   "permanent": true
+  },
+  {
+   "source": "/nri-financial-planner-india",
+   "destination": "/blog/nri-financial-planner-india",
+   "permanent": true
+  },
+  {
+   "source": "/nri-financial-planner-india.html",
+   "destination": "/blog/nri-financial-planner-india",
+   "permanent": true
+  },
+  {
+   "source": "/nri-home-loan-in-india-eligibility-process",
+   "destination": "/blog/nri-home-loan-in-india-eligibility-process",
+   "permanent": true
+  },
+  {
+   "source": "/nri-home-loan-in-india-eligibility-process.html",
+   "destination": "/blog/nri-home-loan-in-india-eligibility-process",
+   "permanent": true
+  },
+  {
+   "source": "/nri-investing-in-india-guide",
+   "destination": "/blog/nri-investing-in-india-guide",
+   "permanent": true
+  },
+  {
+   "source": "/nri-investing-in-india-guide.html",
+   "destination": "/blog/nri-investing-in-india-guide",
+   "permanent": true
+  },
+  {
+   "source": "/nri-investment-from-singapore-india",
+   "destination": "/blog/nri-investment-from-singapore-india",
+   "permanent": true
+  },
+  {
+   "source": "/nri-investment-from-singapore-india.html",
+   "destination": "/blog/nri-investment-from-singapore-india",
+   "permanent": true
+  },
+  {
+   "source": "/nri-investment-from-uae-india",
+   "destination": "/blog/nri-investment-from-uae-india",
+   "permanent": true
+  },
+  {
+   "source": "/nri-investment-from-uae-india.html",
+   "destination": "/blog/nri-investment-from-uae-india",
+   "permanent": true
+  },
+  {
+   "source": "/nri-investment-from-uk-india",
+   "destination": "/blog/nri-investment-from-uk-india",
+   "permanent": true
+  },
+  {
+   "source": "/nri-investment-from-uk-india.html",
+   "destination": "/blog/nri-investment-from-uk-india",
+   "permanent": true
+  },
+  {
+   "source": "/nri-investment-from-usa-india",
+   "destination": "/blog/nri-investment-from-usa-india",
+   "permanent": true
+  },
+  {
+   "source": "/nri-investment-from-usa-india.html",
+   "destination": "/blog/nri-investment-from-usa-india",
+   "permanent": true
+  },
+  {
+   "source": "/nri-investment-in-india-complete-guide-2026",
+   "destination": "/blog/nri-investment-in-india-complete-guide-2026",
+   "permanent": true
+  },
+  {
+   "source": "/nri-investment-in-india-complete-guide-2026.html",
+   "destination": "/blog/nri-investment-in-india-complete-guide-2026",
+   "permanent": true
+  },
+  {
+   "source": "/nri-life-insurance-nominee-claim-documentation",
+   "destination": "/blog/nri-life-insurance-nominee-claim-documentation",
+   "permanent": true
+  },
+  {
+   "source": "/nri-life-insurance-nominee-claim-documentation.html",
+   "destination": "/blog/nri-life-insurance-nominee-claim-documentation",
+   "permanent": true
+  },
+  {
+   "source": "/nri-mutual-funds-taxation-india",
+   "destination": "/blog/nri-mutual-funds-taxation-india",
+   "permanent": true
+  },
+  {
+   "source": "/nri-mutual-funds-taxation-india.html",
+   "destination": "/blog/nri-mutual-funds-taxation-india",
+   "permanent": true
+  },
+  {
+   "source": "/nri-portfolio-investment-scheme-pis-explained",
+   "destination": "/blog/nri-portfolio-investment-scheme-pis-explained",
+   "permanent": true
+  },
+  {
+   "source": "/nri-portfolio-investment-scheme-pis-explained.html",
+   "destination": "/blog/nri-portfolio-investment-scheme-pis-explained",
+   "permanent": true
+  },
+  {
+   "source": "/nri-real-estate-vs-mutual-funds-india",
+   "destination": "/blog/nri-real-estate-vs-mutual-funds-india",
+   "permanent": true
+  },
+  {
+   "source": "/nri-real-estate-vs-mutual-funds-india.html",
+   "destination": "/blog/nri-real-estate-vs-mutual-funds-india",
+   "permanent": true
+  },
+  {
+   "source": "/nri-retirement-pension-plan-types-comparison",
+   "destination": "/blog/nri-retirement-pension-plan-types-comparison",
+   "permanent": true
+  },
+  {
+   "source": "/nri-retirement-pension-plan-types-comparison.html",
+   "destination": "/blog/nri-retirement-pension-plan-types-comparison",
+   "permanent": true
+  },
+  {
+   "source": "/nri-retirement-planning-india",
+   "destination": "/blog/nri-retirement-planning-india",
+   "permanent": true
+  },
+  {
+   "source": "/nri-retirement-planning-india.html",
+   "destination": "/blog/nri-retirement-planning-india",
+   "permanent": true
+  },
+  {
+   "source": "/nri-returning-to-india-investment-planning",
+   "destination": "/blog/nri-returning-to-india-investment-planning",
+   "permanent": true
+  },
+  {
+   "source": "/nri-returning-to-india-investment-planning.html",
+   "destination": "/blog/nri-returning-to-india-investment-planning",
+   "permanent": true
+  },
+  {
+   "source": "/nri-taxation-in-india-rates-and-rules",
+   "destination": "/blog/nri-taxation-in-india-rates-and-rules",
+   "permanent": true
+  },
+  {
+   "source": "/nri-taxation-in-india-rates-and-rules.html",
+   "destination": "/blog/nri-taxation-in-india-rates-and-rules",
+   "permanent": true
+  },
+  {
+   "source": "/nri-term-insurance-application-process-step-by-step",
+   "destination": "/blog/nri-term-insurance-application-process-step-by-step",
+   "permanent": true
+  },
+  {
+   "source": "/nri-term-insurance-application-process-step-by-step.html",
+   "destination": "/blog/nri-term-insurance-application-process-step-by-step",
+   "permanent": true
+  },
+  {
+   "source": "/nri-term-insurance-claims-death-abroad",
+   "destination": "/blog/nri-term-insurance-claims-death-abroad",
+   "permanent": true
+  },
+  {
+   "source": "/nri-term-insurance-claims-death-abroad.html",
+   "destination": "/blog/nri-term-insurance-claims-death-abroad",
+   "permanent": true
+  },
+  {
+   "source": "/nri-term-insurance-premium-payment-nre-nro-foreign-currency",
+   "destination": "/blog/nri-term-insurance-premium-payment-nre-nro-foreign-currency",
+   "permanent": true
+  },
+  {
+   "source": "/nri-term-insurance-premium-payment-nre-nro-foreign-currency.html",
+   "destination": "/blog/nri-term-insurance-premium-payment-nre-nro-foreign-currency",
+   "permanent": true
+  },
+  {
+   "source": "/nse-ipo-2026-complete-guide",
+   "destination": "/blog/nse-ipo-2026-complete-guide",
+   "permanent": true
+  },
+  {
+   "source": "/nse-ipo-2026-complete-guide.html",
+   "destination": "/blog/nse-ipo-2026-complete-guide",
+   "permanent": true
+  },
+  {
+   "source": "/nse-ipo-2026-risk-reward-analysis",
+   "destination": "/blog/nse-ipo-2026-risk-reward-analysis",
+   "permanent": true
+  },
+  {
+   "source": "/nse-ipo-2026-risk-reward-analysis.html",
+   "destination": "/blog/nse-ipo-2026-risk-reward-analysis",
+   "permanent": true
+  },
+  {
+   "source": "/nse-ipo-analysis",
+   "destination": "/blog/nse-ipo-analysis",
+   "permanent": true
+  },
+  {
+   "source": "/nse-ipo-analysis.html",
+   "destination": "/blog/nse-ipo-analysis",
+   "permanent": true
+  },
+  {
+   "source": "/nse-ipo-vs-buying-unlisted-shares-now",
+   "destination": "/blog/nse-ipo-vs-buying-unlisted-shares-now",
+   "permanent": true
+  },
+  {
+   "source": "/nse-ipo-vs-buying-unlisted-shares-now.html",
+   "destination": "/blog/nse-ipo-vs-buying-unlisted-shares-now",
+   "permanent": true
+  },
+  {
+   "source": "/nse-unlisted-share-price-2025",
+   "destination": "/blog/nse-unlisted-share-price-2025",
+   "permanent": true
+  },
+  {
+   "source": "/nse-unlisted-share-price-2025.html",
+   "destination": "/blog/nse-unlisted-share-price-2025",
+   "permanent": true
+  },
+  {
+   "source": "/nse-vs-bse-comparing-indias-exchange-giants",
+   "destination": "/blog/nse-vs-bse-comparing-indias-exchange-giants",
+   "permanent": true
+  },
+  {
+   "source": "/nse-vs-bse-comparing-indias-exchange-giants.html",
+   "destination": "/blog/nse-vs-bse-comparing-indias-exchange-giants",
+   "permanent": true
+  },
+  {
+   "source": "/online-vs-local-unlisted-share-brokers-hyderabad",
+   "destination": "/blog/online-vs-local-unlisted-share-brokers-hyderabad",
+   "permanent": true
+  },
+  {
+   "source": "/online-vs-local-unlisted-share-brokers-hyderabad.html",
+   "destination": "/blog/online-vs-local-unlisted-share-brokers-hyderabad",
+   "permanent": true
+  },
+  {
+   "source": "/oyo-ipo-analysis-2025",
+   "destination": "/blog/oyo-ipo-analysis-2025",
+   "permanent": true
+  },
+  {
+   "source": "/oyo-ipo-analysis-2025.html",
+   "destination": "/blog/oyo-ipo-analysis-2025",
+   "permanent": true
+  },
+  {
+   "source": "/pension-vs-mutual-fund-swp-retirement-income",
+   "destination": "/blog/pension-vs-mutual-fund-swp-retirement-income",
+   "permanent": true
+  },
+  {
+   "source": "/pension-vs-mutual-fund-swp-retirement-income.html",
+   "destination": "/blog/pension-vs-mutual-fund-swp-retirement-income",
+   "permanent": true
+  },
+  {
+   "source": "/pms-aif-taxation",
+   "destination": "/blog/pms-aif-taxation",
+   "permanent": true
+  },
+  {
+   "source": "/pms-aif-taxation.html",
+   "destination": "/blog/pms-aif-taxation",
+   "permanent": true
+  },
+  {
+   "source": "/pms-for-nri-minimum-investment-how-to-open",
+   "destination": "/blog/pms-for-nri-minimum-investment-how-to-open",
+   "permanent": true
+  },
+  {
+   "source": "/pms-for-nri-minimum-investment-how-to-open.html",
+   "destination": "/blog/pms-for-nri-minimum-investment-how-to-open",
+   "permanent": true
+  },
+  {
+   "source": "/pms-minimum-investment",
+   "destination": "/blog/pms-minimum-investment",
+   "permanent": true
+  },
+  {
+   "source": "/pms-minimum-investment.html",
+   "destination": "/blog/pms-minimum-investment",
+   "permanent": true
+  },
+  {
+   "source": "/pms-vs-aif-for-hni-2026",
+   "destination": "/blog/pms-vs-aif-for-hni-2026",
+   "permanent": true
+  },
+  {
+   "source": "/pms-vs-aif-for-hni-2026.html",
+   "destination": "/blog/pms-vs-aif-for-hni-2026",
+   "permanent": true
+  },
+  {
+   "source": "/pms-vs-aif-india",
+   "destination": "/blog/pms-vs-aif-india",
+   "permanent": true
+  },
+  {
+   "source": "/pms-vs-aif-india.html",
+   "destination": "/blog/pms-vs-aif-india",
+   "permanent": true
+  },
+  {
+   "source": "/pms-vs-aif-vs-mutual-funds-hni-guide",
+   "destination": "/blog/pms-vs-aif-vs-mutual-funds-hni-guide",
+   "permanent": true
+  },
+  {
+   "source": "/pms-vs-aif-vs-mutual-funds-hni-guide.html",
+   "destination": "/blog/pms-vs-aif-vs-mutual-funds-hni-guide",
+   "permanent": true
+  },
+  {
+   "source": "/power-of-attorney-for-nri-investing",
+   "destination": "/blog/power-of-attorney-for-nri-investing",
+   "permanent": true
+  },
+  {
+   "source": "/power-of-attorney-for-nri-investing.html",
+   "destination": "/blog/power-of-attorney-for-nri-investing",
+   "permanent": true
+  },
+  {
+   "source": "/private-equity-india-guide",
+   "destination": "/blog/private-equity-india-guide",
+   "permanent": true
+  },
+  {
+   "source": "/private-equity-india-guide.html",
+   "destination": "/blog/private-equity-india-guide",
+   "permanent": true
+  },
+  {
+   "source": "/pure-term-vs-term-ulip",
+   "destination": "/blog/pure-term-vs-term-ulip",
+   "permanent": true
+  },
+  {
+   "source": "/pure-term-vs-term-ulip.html",
+   "destination": "/blog/pure-term-vs-term-ulip",
+   "permanent": true
+  },
+  {
+   "source": "/questions-to-ask-unlisted-share-broker-hyderabad",
+   "destination": "/blog/questions-to-ask-unlisted-share-broker-hyderabad",
+   "permanent": true
+  },
+  {
+   "source": "/questions-to-ask-unlisted-share-broker-hyderabad.html",
+   "destination": "/blog/questions-to-ask-unlisted-share-broker-hyderabad",
+   "permanent": true
+  },
+  {
+   "source": "/real-estate-vs-mutual-funds-india",
+   "destination": "/blog/real-estate-vs-mutual-funds-india",
+   "permanent": true
+  },
+  {
+   "source": "/real-estate-vs-mutual-funds-india.html",
+   "destination": "/blog/real-estate-vs-mutual-funds-india",
+   "permanent": true
+  },
+  {
+   "source": "/real-estate-vs-stock-market-which-builds-wealth-faster",
+   "destination": "/blog/real-estate-vs-stock-market-which-builds-wealth-faster",
+   "permanent": true
+  },
+  {
+   "source": "/real-estate-vs-stock-market-which-builds-wealth-faster.html",
+   "destination": "/blog/real-estate-vs-stock-market-which-builds-wealth-faster",
+   "permanent": true
+  },
+  {
+   "source": "/renewable-energy-unlisted-shares-india",
+   "destination": "/blog/renewable-energy-unlisted-shares-india",
+   "permanent": true
+  },
+  {
+   "source": "/renewable-energy-unlisted-shares-india.html",
+   "destination": "/blog/renewable-energy-unlisted-shares-india",
+   "permanent": true
+  },
+  {
+   "source": "/rent-vs-buy-calculator-real-numbers",
+   "destination": "/blog/rent-vs-buy-calculator-real-numbers",
+   "permanent": true
+  },
+  {
+   "source": "/rent-vs-buy-calculator-real-numbers.html",
+   "destination": "/blog/rent-vs-buy-calculator-real-numbers",
+   "permanent": true
+  },
+  {
+   "source": "/renting-vs-buying-home-hyderabad",
+   "destination": "/blog/renting-vs-buying-home-hyderabad",
+   "permanent": true
+  },
+  {
+   "source": "/renting-vs-buying-home-hyderabad.html",
+   "destination": "/blog/renting-vs-buying-home-hyderabad",
+   "permanent": true
+  },
+  {
+   "source": "/restricted-countries-nri-term-insurance-myth",
+   "destination": "/blog/restricted-countries-nri-term-insurance-myth",
+   "permanent": true
+  },
+  {
+   "source": "/restricted-countries-nri-term-insurance-myth.html",
+   "destination": "/blog/restricted-countries-nri-term-insurance-myth",
+   "permanent": true
+  },
+  {
+   "source": "/retirement-corpus-calculator-telugu",
+   "destination": "/blog/retirement-corpus-calculator-telugu",
+   "permanent": true
+  },
+  {
+   "source": "/retirement-corpus-calculator-telugu.html",
+   "destination": "/blog/retirement-corpus-calculator-telugu",
+   "permanent": true
+  },
+  {
+   "source": "/retirement-planning-for-parents-adult-children-help",
+   "destination": "/blog/retirement-planning-for-parents-adult-children-help",
+   "permanent": true
+  },
+  {
+   "source": "/retirement-planning-for-parents-adult-children-help.html",
+   "destination": "/blog/retirement-planning-for-parents-adult-children-help",
+   "permanent": true
+  },
+  {
+   "source": "/retirement-plans-for-parents-pension-annuity-swp",
+   "destination": "/blog/retirement-plans-for-parents-pension-annuity-swp",
+   "permanent": true
+  },
+  {
+   "source": "/retirement-plans-for-parents-pension-annuity-swp.html",
+   "destination": "/blog/retirement-plans-for-parents-pension-annuity-swp",
+   "permanent": true
+  },
+  {
+   "source": "/sbi-fund-management-unlisted-shares",
+   "destination": "/blog/sbi-fund-management-unlisted-shares",
+   "permanent": true
+  },
+  {
+   "source": "/sbi-fund-management-unlisted-shares.html",
+   "destination": "/blog/sbi-fund-management-unlisted-shares",
+   "permanent": true
+  },
+  {
+   "source": "/should-you-buy-flat-hyderabad-or-invest-mutual-funds",
+   "destination": "/blog/should-you-buy-flat-hyderabad-or-invest-mutual-funds",
+   "permanent": true
+  },
+  {
+   "source": "/should-you-buy-flat-hyderabad-or-invest-mutual-funds.html",
+   "destination": "/blog/should-you-buy-flat-hyderabad-or-invest-mutual-funds",
+   "permanent": true
+  },
+  {
+   "source": "/should-you-diversify-into-us-stocks-framework",
+   "destination": "/blog/should-you-diversify-into-us-stocks-framework",
+   "permanent": true
+  },
+  {
+   "source": "/should-you-diversify-into-us-stocks-framework.html",
+   "destination": "/blog/should-you-diversify-into-us-stocks-framework",
+   "permanent": true
+  },
+  {
+   "source": "/sip-stepup-calculator-guide",
+   "destination": "/blog/sip-stepup-calculator-guide",
+   "permanent": true
+  },
+  {
+   "source": "/sip-stepup-calculator-guide.html",
+   "destination": "/blog/sip-stepup-calculator-guide",
+   "permanent": true
+  },
+  {
+   "source": "/sterlite-electric-unlisted-shares-drhp-governance",
+   "destination": "/blog/sterlite-electric-unlisted-shares-drhp-governance",
+   "permanent": true
+  },
+  {
+   "source": "/sterlite-electric-unlisted-shares-drhp-governance.html",
+   "destination": "/blog/sterlite-electric-unlisted-shares-drhp-governance",
+   "permanent": true
+  },
+  {
+   "source": "/sterlite-electric-vs-indigrid-sponsor-relationship",
+   "destination": "/blog/sterlite-electric-vs-indigrid-sponsor-relationship",
+   "permanent": true
+  },
+  {
+   "source": "/sterlite-electric-vs-indigrid-sponsor-relationship.html",
+   "destination": "/blog/sterlite-electric-vs-indigrid-sponsor-relationship",
+   "permanent": true
+  },
+  {
+   "source": "/swp-calculator-how-long-money-lasts",
+   "destination": "/blog/swp-calculator-how-long-money-lasts",
+   "permanent": true
+  },
+  {
+   "source": "/swp-calculator-how-long-money-lasts.html",
+   "destination": "/blog/swp-calculator-how-long-money-lasts",
+   "permanent": true
+  },
+  {
+   "source": "/taxation-on-unlisted-shares",
+   "destination": "/blog/taxation-on-unlisted-shares",
+   "permanent": true
+  },
+  {
+   "source": "/taxation-on-unlisted-shares.html",
+   "destination": "/blog/taxation-on-unlisted-shares",
+   "permanent": true
+  },
+  {
+   "source": "/term-insurance-beginners-how-much-cover-needed",
+   "destination": "/blog/term-insurance-beginners-how-much-cover-needed",
+   "permanent": true
+  },
+  {
+   "source": "/term-insurance-beginners-how-much-cover-needed.html",
+   "destination": "/blog/term-insurance-beginners-how-much-cover-needed",
+   "permanent": true
+  },
+  {
+   "source": "/term-insurance-for-self-employed-what-is-different",
+   "destination": "/blog/term-insurance-for-self-employed-what-is-different",
+   "permanent": true
+  },
+  {
+   "source": "/term-insurance-for-self-employed-what-is-different.html",
+   "destination": "/blog/term-insurance-for-self-employed-what-is-different",
+   "permanent": true
+  },
+  {
+   "source": "/term-insurance-return-of-premium-worth-it",
+   "destination": "/blog/term-insurance-return-of-premium-worth-it",
+   "permanent": true
+  },
+  {
+   "source": "/term-insurance-return-of-premium-worth-it.html",
+   "destination": "/blog/term-insurance-return-of-premium-worth-it",
+   "permanent": true
+  },
+  {
+   "source": "/term-insurance-riders-worth-adding-when-you-have-kids",
+   "destination": "/blog/term-insurance-riders-worth-adding-when-you-have-kids",
+   "permanent": true
+  },
+  {
+   "source": "/term-insurance-riders-worth-adding-when-you-have-kids.html",
+   "destination": "/blog/term-insurance-riders-worth-adding-when-you-have-kids",
+   "permanent": true
+  },
+  {
+   "source": "/term-insurance-vs-ulip-for-nris",
+   "destination": "/blog/term-insurance-vs-ulip-for-nris",
+   "permanent": true
+  },
+  {
+   "source": "/term-insurance-vs-ulip-for-nris.html",
+   "destination": "/blog/term-insurance-vs-ulip-for-nris",
+   "permanent": true
+  },
+  {
+   "source": "/term-insurance-vs-ulip-which-is-best",
+   "destination": "/blog/term-insurance-vs-ulip-which-is-best",
+   "permanent": true
+  },
+  {
+   "source": "/term-insurance-vs-ulip-which-is-best.html",
+   "destination": "/blog/term-insurance-vs-ulip-which-is-best",
+   "permanent": true
+  },
+  {
+   "source": "/top-5-ai-companies-by-market-cap",
+   "destination": "/blog/top-5-ai-companies-by-market-cap",
+   "permanent": true
+  },
+  {
+   "source": "/top-5-ai-companies-by-market-cap.html",
+   "destination": "/blog/top-5-ai-companies-by-market-cap",
+   "permanent": true
+  },
+  {
+   "source": "/top-5-energy-companies-by-market-cap",
+   "destination": "/blog/top-5-energy-companies-by-market-cap",
+   "permanent": true
+  },
+  {
+   "source": "/top-5-energy-companies-by-market-cap.html",
+   "destination": "/blog/top-5-energy-companies-by-market-cap",
+   "permanent": true
+  },
+  {
+   "source": "/top-5-semiconductor-companies-by-market-cap",
+   "destination": "/blog/top-5-semiconductor-companies-by-market-cap",
+   "permanent": true
+  },
+  {
+   "source": "/top-5-semiconductor-companies-by-market-cap.html",
+   "destination": "/blog/top-5-semiconductor-companies-by-market-cap",
+   "permanent": true
+  },
+  {
+   "source": "/top-performing-pms-india",
+   "destination": "/blog/top-performing-pms-india",
+   "permanent": true
+  },
+  {
+   "source": "/top-performing-pms-india.html",
+   "destination": "/blog/top-performing-pms-india",
+   "permanent": true
+  },
+  {
+   "source": "/top-trending-unlisted-shares-2025",
+   "destination": "/blog/top-trending-unlisted-shares-2025",
+   "permanent": true
+  },
+  {
+   "source": "/top-trending-unlisted-shares-2025.html",
+   "destination": "/blog/top-trending-unlisted-shares-2025",
+   "permanent": true
+  },
+  {
+   "source": "/uk-nri-investing-in-india-vs-us-rules",
+   "destination": "/blog/uk-nri-investing-in-india-vs-us-rules",
+   "permanent": true
+  },
+  {
+   "source": "/uk-nri-investing-in-india-vs-us-rules.html",
+   "destination": "/blog/uk-nri-investing-in-india-vs-us-rules",
+   "permanent": true
+  },
+  {
+   "source": "/ulip-for-nris-us-tax-story-different",
+   "destination": "/blog/ulip-for-nris-us-tax-story-different",
+   "permanent": true
+  },
+  {
+   "source": "/ulip-for-nris-us-tax-story-different.html",
+   "destination": "/blog/ulip-for-nris-us-tax-story-different",
+   "permanent": true
+  },
+  {
+   "source": "/unlisted-share-broker-red-flags-hyderabad",
+   "destination": "/blog/unlisted-share-broker-red-flags-hyderabad",
+   "permanent": true
+  },
+  {
+   "source": "/unlisted-share-broker-red-flags-hyderabad.html",
+   "destination": "/blog/unlisted-share-broker-red-flags-hyderabad",
+   "permanent": true
+  },
+  {
+   "source": "/unlisted-share-brokers-hyderabad-how-to-choose",
+   "destination": "/blog/unlisted-share-brokers-hyderabad-how-to-choose",
+   "permanent": true
+  },
+  {
+   "source": "/unlisted-share-brokers-hyderabad-how-to-choose.html",
+   "destination": "/blog/unlisted-share-brokers-hyderabad-how-to-choose",
+   "permanent": true
+  },
+  {
+   "source": "/unlisted-shares-broker-hyderabad",
+   "destination": "/blog/unlisted-shares-broker-hyderabad",
+   "permanent": true
+  },
+  {
+   "source": "/unlisted-shares-broker-hyderabad.html",
+   "destination": "/blog/unlisted-shares-broker-hyderabad",
+   "permanent": true
+  },
+  {
+   "source": "/unlisted-shares-hyderabad-local-investor-interest",
+   "destination": "/blog/unlisted-shares-hyderabad-local-investor-interest",
+   "permanent": true
+  },
+  {
+   "source": "/unlisted-shares-hyderabad-local-investor-interest.html",
+   "destination": "/blog/unlisted-shares-hyderabad-local-investor-interest",
+   "permanent": true
+  },
+  {
+   "source": "/us-nri-investing-in-india-pfic-tax-trap",
+   "destination": "/blog/us-nri-investing-in-india-pfic-tax-trap",
+   "permanent": true
+  },
+  {
+   "source": "/us-nri-investing-in-india-pfic-tax-trap.html",
+   "destination": "/blog/us-nri-investing-in-india-pfic-tax-trap",
+   "permanent": true
+  },
+  {
+   "source": "/us-stock-broker-india-comparison-guide",
+   "destination": "/blog/us-stock-broker-india-comparison-guide",
+   "permanent": true
+  },
+  {
+   "source": "/us-stock-broker-india-comparison-guide.html",
+   "destination": "/blog/us-stock-broker-india-comparison-guide",
+   "permanent": true
+  },
+  {
+   "source": "/us-stock-dividends-tax-w8ben-25-percent",
+   "destination": "/blog/us-stock-dividends-tax-w8ben-25-percent",
+   "permanent": true
+  },
+  {
+   "source": "/us-stock-dividends-tax-w8ben-25-percent.html",
+   "destination": "/blog/us-stock-dividends-tax-w8ben-25-percent",
+   "permanent": true
+  },
+  {
+   "source": "/us-stock-investment-advisor-india",
+   "destination": "/blog/us-stock-investment-advisor-india",
+   "permanent": true
+  },
+  {
+   "source": "/us-stock-investment-advisor-india.html",
+   "destination": "/blog/us-stock-investment-advisor-india",
+   "permanent": true
+  },
+  {
+   "source": "/us-stock-reporting-itr-schedule-fa",
+   "destination": "/blog/us-stock-reporting-itr-schedule-fa",
+   "permanent": true
+  },
+  {
+   "source": "/us-stock-reporting-itr-schedule-fa.html",
+   "destination": "/blog/us-stock-reporting-itr-schedule-fa",
+   "permanent": true
+  },
+  {
+   "source": "/us-stocks-indian-tax-reporting-guide-2026",
+   "destination": "/blog/us-stocks-indian-tax-reporting-guide-2026",
+   "permanent": true
+  },
+  {
+   "source": "/us-stocks-indian-tax-reporting-guide-2026.html",
+   "destination": "/blog/us-stocks-indian-tax-reporting-guide-2026",
+   "permanent": true
+  },
+  {
+   "source": "/us-stocks-lrs-tcs-india-2026",
+   "destination": "/blog/us-stocks-lrs-tcs-india-2026",
+   "permanent": true
+  },
+  {
+   "source": "/us-stocks-lrs-tcs-india-2026.html",
+   "destination": "/blog/us-stocks-lrs-tcs-india-2026",
+   "permanent": true
+  },
+  {
+   "source": "/what-are-bonds-how-to-invest",
+   "destination": "/blog/what-are-bonds-how-to-invest",
+   "permanent": true
+  },
+  {
+   "source": "/what-are-bonds-how-to-invest.html",
+   "destination": "/blog/what-are-bonds-how-to-invest",
+   "permanent": true
+  },
+  {
+   "source": "/what-are-nse-unlisted-shares-explained",
+   "destination": "/blog/what-are-nse-unlisted-shares-explained",
+   "permanent": true
+  },
+  {
+   "source": "/what-are-nse-unlisted-shares-explained.html",
+   "destination": "/blog/what-are-nse-unlisted-shares-explained",
+   "permanent": true
+  },
+  {
+   "source": "/what-happens-if-i-stop-paying-term-insurance-premium",
+   "destination": "/blog/what-happens-if-i-stop-paying-term-insurance-premium",
+   "permanent": true
+  },
+  {
+   "source": "/what-happens-if-i-stop-paying-term-insurance-premium.html",
+   "destination": "/blog/what-happens-if-i-stop-paying-term-insurance-premium",
+   "permanent": true
+  },
+  {
+   "source": "/what-is-mwp-act-term-insurance",
+   "destination": "/blog/what-is-mwp-act-term-insurance",
+   "permanent": true
+  },
+  {
+   "source": "/what-is-mwp-act-term-insurance.html",
+   "destination": "/blog/what-is-mwp-act-term-insurance",
+   "permanent": true
+  },
+  {
+   "source": "/what-to-do-with-your-first-salary",
+   "destination": "/blog/what-to-do-with-your-first-salary",
+   "permanent": true
+  },
+  {
+   "source": "/what-to-do-with-your-first-salary.html",
+   "destination": "/blog/what-to-do-with-your-first-salary",
+   "permanent": true
+  },
+  {
+   "source": "/where-to-invest-lumpsum-50l-1cr-2cr",
+   "destination": "/blog/where-to-invest-lumpsum-50l-1cr-2cr",
+   "permanent": true
+  },
+  {
+   "source": "/where-to-invest-lumpsum-50l-1cr-2cr.html",
+   "destination": "/blog/where-to-invest-lumpsum-50l-1cr-2cr",
+   "permanent": true
+  },
+  {
+   "source": "/who-owns-msei-shareholding-after-groww-zerodha",
+   "destination": "/blog/who-owns-msei-shareholding-after-groww-zerodha",
+   "permanent": true
+  },
+  {
+   "source": "/who-owns-msei-shareholding-after-groww-zerodha.html",
+   "destination": "/blog/who-owns-msei-shareholding-after-groww-zerodha",
+   "permanent": true
+  },
+  {
+   "source": "/who-owns-ncdex-shareholding-ipo-plans",
+   "destination": "/blog/who-owns-ncdex-shareholding-ipo-plans",
+   "permanent": true
+  },
+  {
+   "source": "/who-owns-ncdex-shareholding-ipo-plans.html",
+   "destination": "/blog/who-owns-ncdex-shareholding-ipo-plans",
+   "permanent": true
+  },
+  {
+   "source": "/whole-life-insurance-vs-term-insurance",
+   "destination": "/blog/whole-life-insurance-vs-term-insurance",
+   "permanent": true
+  },
+  {
+   "source": "/whole-life-insurance-vs-term-insurance.html",
+   "destination": "/blog/whole-life-insurance-vs-term-insurance",
+   "permanent": true
+  },
+  {
+   "source": "/why-best-penny-stocks-content-is-dangerous",
+   "destination": "/blog/why-best-penny-stocks-content-is-dangerous",
+   "permanent": true
+  },
+  {
+   "source": "/why-best-penny-stocks-content-is-dangerous.html",
+   "destination": "/blog/why-best-penny-stocks-content-is-dangerous",
+   "permanent": true
+  },
+  {
+   "source": "/why-indian-households-prefer-real-estate-gold-over-stocks",
+   "destination": "/blog/why-indian-households-prefer-real-estate-gold-over-stocks",
+   "permanent": true
+  },
+  {
+   "source": "/why-indian-households-prefer-real-estate-gold-over-stocks.html",
+   "destination": "/blog/why-indian-households-prefer-real-estate-gold-over-stocks",
+   "permanent": true
+  },
+  {
+   "source": "/why-next-nvidia-content-is-a-red-flag",
+   "destination": "/blog/why-next-nvidia-content-is-a-red-flag",
+   "permanent": true
+  },
+  {
+   "source": "/why-next-nvidia-content-is-a-red-flag.html",
+   "destination": "/blog/why-next-nvidia-content-is-a-red-flag",
+   "permanent": true
+  },
+  {
+   "source": "/why-term-insurance-from-india-cheaper-for-nris",
+   "destination": "/blog/why-term-insurance-from-india-cheaper-for-nris",
+   "permanent": true
+  },
+  {
+   "source": "/why-term-insurance-from-india-cheaper-for-nris.html",
+   "destination": "/blog/why-term-insurance-from-india-cheaper-for-nris",
+   "permanent": true
+  },
+  {
+   "source": "/zerodha-vs-groww-vs-angel-one-vs-upstox-comparison",
+   "destination": "/blog/zerodha-vs-groww-vs-angel-one-vs-upstox-comparison",
+   "permanent": true
+  },
+  {
+   "source": "/zerodha-vs-groww-vs-angel-one-vs-upstox-comparison.html",
+   "destination": "/blog/zerodha-vs-groww-vs-angel-one-vs-upstox-comparison",
+   "permanent": true
+  }
+ ],
+ "rewrites": [
+  {
+   "source": "/blog",
+   "destination": "/blog.html"
+  },
+  {
+   "source": "/blog/:slug",
+   "destination": "/blog/:slug.html"
+  }
+ ]
 }
