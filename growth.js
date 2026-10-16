@@ -7,8 +7,8 @@
 
   /* ═══════ CONFIG — paste your IDs here, nothing else needs editing ═══════ */
   var CFG = {
-    GA_ID: '',          // e.g. 'G-XXXXXXXXXX'  (Google Analytics 4)
-    CLARITY_ID: '',     // e.g. 'abcd1234ef'    (Microsoft Clarity — free heatmaps)
+    GA_ID: 'G-5ZBHBCGEY8',          // e.g. 'G-XXXXXXXXXX'  (Google Analytics 4)
+    CLARITY_ID: 'yypuz6uvxo',     // e.g. 'abcd1234ef'    (Microsoft Clarity — free heatmaps)
     LEAD_ENDPOINT: '',  // optional: 'https://formsubmit.co/ajax/YOUR_EMAIL' — emails every callback request
     WA_NUMBER: '918790109022',
     PHONE: '+918790109022',
