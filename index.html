@@ -703,7 +703,7 @@ function fmtCr(val) {
 
 // ── SIP ──
 function updateSIP() {
-  const sliders = document.querySelectorAll('#calc-sip input[type=range]');
+  const sliders = document.querySelectorAll('#calc-sip input[type=range]'); if(!sliders.length) return;
   const amt = +sliders[0].value, rate = +sliders[1].value, yrs = +sliders[2].value;
   document.getElementById('sip-amt-display').textContent = '₹' + amt.toLocaleString('en-IN');
   document.getElementById('sip-rate-display').textContent = rate + '%';
@@ -720,7 +720,7 @@ function updateSIP() {
 
 // ── STEP-UP SIP ──
 function updateStepUp() {
-  const sliders = document.querySelectorAll('#calc-stepup input[type=range]');
+  const sliders = document.querySelectorAll('#calc-stepup input[type=range]'); if(!sliders.length) return;
   const startAmt = +sliders[0].value, stepUp = +sliders[1].value / 100;
   const rate = +sliders[2].value, yrs = +sliders[3].value;
   document.getElementById('su-amt-display').textContent = '₹' + startAmt.toLocaleString('en-IN');
@@ -746,7 +746,7 @@ function updateStepUp() {
 
 // ── LUMPSUM ──
 function updateLumpsum() {
-  const sliders = document.querySelectorAll('#calc-lumpsum input[type=range]');
+  const sliders = document.querySelectorAll('#calc-lumpsum input[type=range]'); if(!sliders.length) return;
   const amt = +sliders[0].value, rate = +sliders[1].value, yrs = +sliders[2].value;
   document.getElementById('ls-amt-display').textContent = '₹' + amt.toLocaleString('en-IN');
   document.getElementById('ls-rate-display').textContent = rate + '%';
@@ -761,7 +761,7 @@ function updateLumpsum() {
 
 // ── RETIREMENT ──
 function updateRetirement() {
-  const sliders = document.querySelectorAll('#calc-retirement input[type=range]');
+  const sliders = document.querySelectorAll('#calc-retirement input[type=range]'); if(!sliders.length) return;
   const curAge = +sliders[0].value, retAge = +sliders[1].value;
   const curExp = +sliders[2].value, inf = +sliders[3].value / 100;
   const roi = +sliders[4].value / 100, savings = +sliders[5].value;
@@ -786,7 +786,7 @@ function updateRetirement() {
 
 // ── HOUSE ──
 function updateHouse() {
-  const sliders = document.querySelectorAll('#calc-house input[type=range]');
+  const sliders = document.querySelectorAll('#calc-house input[type=range]'); if(!sliders.length) return;
   const price = +sliders[0].value, downPct = +sliders[1].value / 100;
   const annRate = +sliders[2].value / 100, yrs = +sliders[3].value;
   document.getElementById('h-price-display').textContent = '₹' + price.toLocaleString('en-IN');
@@ -846,5 +846,5 @@ function submitPortfolio() {
 setTimeout(() => { updateSIP(); updateLumpsum(); updateRetirement(); updateHouse(); updateStepUp(); }, 400);
 
 </script>
-</body>
+<script defer src="/growth.js"></script></body>
 </html>
