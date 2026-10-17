@@ -78,6 +78,16 @@
     '.t-card{min-width:100%!important;max-width:100%!important;flex:0 0 100%!important;box-sizing:border-box;padding:24px 20px!important}' +
     '.t-text{font-size:14px!important}' +
     '}';
+  if (document.getElementById('avl-theme')) css +=
+    '#avg-bar{background:rgba(255,255,255,.97);border-top:1px solid #e6e9f0;box-shadow:0 -6px 24px rgba(15,23,42,.08)}' +
+    '#avg-bar .avg-wa{background:#16a34a;color:#fff;border-radius:999px}#avg-bar .avg-call{background:#fff;color:#0f172a;border:1px solid #cbd5e1;border-radius:999px}#avg-bar .avg-cb{background:#2563eb;color:#fff;border-radius:999px}' +
+    '@media(min-width:861px){#avg-bar{border:1px solid #e6e9f0;border-radius:999px;box-shadow:0 10px 36px rgba(15,23,42,.18)}}' +
+    '#avg-ov{background:rgba(15,23,42,.55)}#avg-box{background:#fff;border:1px solid #e6e9f0;color:#0f172a;box-shadow:0 24px 70px rgba(15,23,42,.3)}' +
+    '#avg-box h3{font-family:Outfit,Inter,system-ui,sans-serif;font-weight:800;color:#0f172a}#avg-box p{color:#475569}#avg-box label{color:#2563eb}' +
+    '#avg-box input,#avg-box select{background:#f8fafc;border:1px solid #dbe1ec;color:#0f172a}#avg-go{background:#2563eb;color:#fff;border-radius:999px}' +
+    '#avg-x{color:#64748b}#avg-err{color:#dc2626}#avg-fine{color:#94a3b8}#avg-wa2{background:#16a34a!important;color:#fff!important;border-radius:999px!important}' +
+    '.avg-calc{border:1px solid #bcd0fb;background:#eaf1fe}.avg-calc b{color:#2563eb}.avg-calc h4{color:#0f172a;font-family:Outfit,Inter,system-ui,sans-serif;font-weight:800}.avg-calc p{color:#475569}.avg-calc a.go{background:#2563eb;color:#fff;border-radius:999px}' +
+    '.avg-guides h3{color:#0f172a;font-family:Outfit,Inter,system-ui,sans-serif;font-weight:800}.avg-guides p.s{color:#64748b}.avg-gl a{background:#fff;border:1px solid #e6e9f0;color:#0f172a}.avg-gl a:hover{border-color:#2563eb}';
   var st = document.createElement('style'); st.id = 'avg-style'; st.textContent = css;
   document.head.appendChild(st);
 

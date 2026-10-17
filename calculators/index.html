@@ -42,7 +42,7 @@
   "priceRange": "₹₹",
   "serviceType": ["Unlisted Shares", "Mutual Fund Advisory", "Insurance Advisory", "Wealth Management", "Portfolio Management"]
 }</script>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What financial calculators are available on Ashvamedha Finance website?","acceptedAnswer":{"@type":"Answer","text":"We offer 5 free calculators: SIP Calculator, Step-Up SIP Calculator, Lumpsum Investment Calculator, Retirement Corpus Calculator, and Home Buying EMI Calculator."}},{"@type":"Question","name":"How accurate is the SIP calculator?","acceptedAnswer":{"@type":"Answer","text":"Our SIP calculator uses the exact compound interest formula used by Zerodha and Groww. For example, \u20b95,000/month at 12% for 10 years = \u20b911,50,193 \u2014 verified accurate."}},{"@type":"Question","name":"How much SIP do I need for retirement?","acceptedAnswer":{"@type":"Answer","text":"Use our free Retirement Calculator. As a benchmark: to retire at 60 with current expenses of \u20b950,000/month, you typically need \u20b95\u20138 crore corpus. A \u20b915,000\u201320,000/month SIP started at 30 can achieve this at 12% returns."}}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What financial calculators are available on Ashvamedha Finance website?","acceptedAnswer":{"@type":"Answer","text":"We offer 11 free calculators: SIP (with SWP), Step-Up SIP, Lumpsum, Retirement Corpus, FIRE Number, Goal Planner, Home Loan vs Investing, Car Loan vs Cash, Rent vs Buy, Mutual Funds vs Real Estate, and FD vs Mutual Fund. Every calculator can be downloaded as a PDF report."}},{"@type":"Question","name":"How accurate is the SIP calculator?","acceptedAnswer":{"@type":"Answer","text":"Our SIP calculator uses the standard compound-interest formula with an effective monthly rate. For example, \u20b95,000/month at 12% p.a. for 10 years grows to roughly \u20b911.6 lakh on this basis. Actual mutual fund returns are market-linked and not guaranteed."}},{"@type":"Question","name":"How much SIP do I need for retirement?","acceptedAnswer":{"@type":"Answer","text":"Use our free Retirement Calculator. As a benchmark: to retire at 60 with current expenses of \u20b950,000/month, you typically need \u20b95\u20138 crore corpus. A \u20b915,000\u201320,000/month SIP started at 30 can achieve this at 12% returns."}}]}</script>
 
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,600;0,700;1,400&family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
@@ -356,7 +356,7 @@ footer{background:#060e1a;padding:56px 5% 28px;border-top:1px solid rgba(255,255
   </ul>
   <button class="hamburger" onclick="toggleNav()"><span></span><span></span><span></span></button>
 </nav>
-<section style="background:var(--navy);padding:120px 5% 80px;min-height:100vh;">
+<section style="background:#f3f5f9;padding:120px 5% 40px;">
   <div style="text-align:center;max-width:700px;margin:0 auto 50px;">
     <div class="sec-label" style="justify-content:center">Free Tools</div>
     <h1 style="font-family:'Cormorant Garamond',serif;font-size:clamp(36px,4.5vw,58px);font-weight:300;line-height:1.1;margin-bottom:14px;">Financial <em style="font-style:italic;color:var(--gold)">Calculators</em></h1>
@@ -571,6 +571,97 @@ footer{background:#060e1a;padding:56px 5% 28px;border-top:1px solid rgba(255,255
 .av-calc-panel[hidden]{display:none}
 
   </style>
+<style id="avl-theme">/* Ashvamedha light theme: calculators */
+:root{--navy:#f3f5f9;--navy-mid:#ffffff;--navy-light:#e6e9f0;--gold:#2563eb;--gold-light:#3b82f6;--cream:#faf7f2;--white:#0f172a;--muted:#64748b;--ink:#0f172a;--slate:#334155;--line:#e6e9f0;--blue:#2563eb;--blue-soft:#eaf1fe;--green:#12915a;--green-soft:#ecfdf3;--brand:#b8893a}
+html body{background:#f3f5f9;color:var(--ink);-webkit-font-smoothing:antialiased}
+nav{background:rgba(255,255,255,.95)!important;border-bottom:1px solid var(--line)!important}
+.nav-brand b{color:var(--ink)!important}.nav-brand span{color:var(--brand)!important}
+.nav-links a{color:#475569!important}.nav-links a:hover,.nav-links a.active{color:var(--blue)!important;border-bottom-color:var(--blue)!important}
+.nav-links a.nav-highlight,.nav-links a.nav-highlight.active{background:var(--blue)!important;color:#fff!important;border-radius:999px!important;padding:8px 16px!important}
+.hamburger span{background:var(--ink)!important}
+@media(max-width:900px){.nav-links{background:#fff!important;border-top:1px solid var(--line)}}
+section{background:transparent}
+section[style*="060e1a"],section[style*="--navy"]{background:#f3f5f9!important}
+section h1,section h2{font-family:'Outfit',system-ui,sans-serif!important;color:var(--ink)!important;letter-spacing:-.02em;font-weight:800!important}
+section h1 em,.av-hero h1 em{color:var(--blue)!important;font-style:normal!important}
+section p{color:#475569!important}
+.sec-label,.av-eyebrow{color:var(--blue)!important}.av-eyebrow::before,.av-eyebrow::after{background:var(--blue)!important}
+div[style*="rgba(201,168,76,.1)"]{background:var(--blue-soft)!important;border-color:#cddffc!important;color:var(--blue)!important}
+div[style*="border-bottom:1px solid rgba(255,255,255,.08)"]{border-bottom-color:var(--line)!important}
+div[style*="padding-left:24px"]{color:#475569!important}
+span[style*="#c9a84c"]{color:var(--blue)!important}
+.av-studio{background:transparent;padding-top:20px}
+.av-studio::before{display:none}
+.av-hero h1{font-family:'Outfit',system-ui,sans-serif;font-weight:800;letter-spacing:-.02em;color:var(--ink)}
+.av-hero p,.av-trust{color:#64748b}
+.av-trust span::before{color:var(--green)}
+.av-group{color:#64748b}.av-group:hover{color:var(--ink)}.av-group.on{color:var(--blue)}.av-group.on::after{background:var(--blue)}
+.av-pill{background:#fff;border:1px solid #dbe1ec;color:#334155;box-shadow:0 1px 2px rgba(15,23,42,.04)}
+.av-pill:hover{border-color:var(--blue);color:var(--blue)}
+.av-pill.on{background:var(--blue-soft);border-color:var(--blue);color:var(--blue)}
+.av-card{background:#fff;border:1px solid var(--line);border-radius:22px;box-shadow:0 1px 2px rgba(15,23,42,.04),0 10px 34px rgba(15,23,42,.05)}
+.av-title{font-family:'Outfit',system-ui,sans-serif;font-weight:800;color:var(--ink);letter-spacing:-.02em}
+.av-blurb{color:#64748b}
+.av-preset{background:#fff;border:1px solid #dbe1ec;color:#334155}.av-preset:hover{background:var(--blue-soft);border-color:var(--blue);color:var(--blue)}
+.av-lab label{color:var(--ink)}
+.av-inp{background:#f8fafc;border:1px solid #dbe1ec}
+.av-inp:focus-within{border-color:var(--blue);box-shadow:0 0 0 3px rgba(37,99,235,.14);background:#fff}
+.av-inp b{color:var(--blue)}.av-inp input{color:var(--ink)}
+.av-range{background:linear-gradient(90deg,var(--blue) var(--p,0%),#dbe1ec var(--p,0%))}
+.av-range::-webkit-slider-thumb{background:#fff;border:3px solid var(--blue);box-shadow:0 2px 8px rgba(37,99,235,.35)}
+.av-range::-moz-range-thumb{background:#fff;border:3px solid var(--blue)}
+.av-range:focus-visible{box-shadow:0 0 0 3px rgba(37,99,235,.25)}
+.av-seg{background:#f1f5f9;border:1px solid var(--line)}
+.av-seg button{color:#475569}
+.av-seg button.on{background:#fff;color:var(--blue);box-shadow:0 1px 4px rgba(15,23,42,.12)}
+.av-tog{color:var(--ink)}.av-tog .sw{background:#cbd5e1}.av-tog input:checked+.sw{background:var(--blue)}.av-tog input:checked+.sw::after{background:#fff}
+.av-sel{background:#f8fafc;border:1px solid #dbe1ec;color:var(--ink)}.av-sel option{background:#fff;color:var(--ink)}
+.av-adv{border-top:1px dashed #cbd5e1}.av-adv summary{color:var(--blue)}
+.av-verdict b{color:var(--ink)}
+.av-verdict.good{background:var(--green-soft);border-color:#b7e4cc;color:#14532d}
+.av-verdict.warn{background:#fffbeb;border-color:#fde68a;color:#78350f}
+.av-verdict.bad{background:#fef2f2;border-color:#fecaca;color:#7f1d1d}
+.av-verdict.info{background:var(--blue-soft);border-color:#bcd0fb;color:#1e3a8a}
+.av-hero-num{border-bottom:1px solid var(--line)}
+.av-hl{color:#64748b}
+.av-hv{font-family:'Outfit',system-ui,sans-serif;font-weight:800;letter-spacing:-.03em;background:none;-webkit-background-clip:initial;background-clip:initial;color:var(--green)}
+.av-hv.neg{color:#dc2626}
+.av-hs{color:#64748b}
+.av-tile{background:#f8fafc;border:1px solid var(--line)}
+.av-tile.hl{background:var(--blue-soft);border-color:#bcd0fb}
+.av-tile .k{color:#64748b}.av-tile .v{color:var(--ink)}.av-tile .v.g{color:var(--green)}.av-tile .v.r{color:#dc2626}.av-tile .v.y{color:#b45309}
+.av-splitbar{background:#e2e8f0}.av-legend{color:#475569}.av-ctitle{color:#64748b}
+.av-ins{background:#f8fafc;border:1px solid var(--line);border-left:3px solid var(--blue);color:#334155}
+.av-ins b{color:var(--ink)}.av-ins.good{border-left-color:var(--green)}.av-ins.warn{border-left-color:#f59e0b}.av-ins.bad{border-left-color:#dc2626}
+.av-more{border:1px solid var(--line);background:#fff}.av-more summary{color:var(--ink)}.av-more summary::after{color:var(--blue)}.av-more .in{color:#475569}
+.av-tbl th{background:#f1f5f9;color:#475569;border-bottom:1px solid #dbe1ec}
+.av-tbl td{color:#334155;border-bottom:1px solid #eef1f6}
+.av-btn.pri{background:var(--blue);color:#fff;border-radius:999px}.av-btn.pri:hover{box-shadow:0 10px 26px rgba(37,99,235,.28)}
+.av-btn.sec{background:#fff;border-color:#bcd0fb;color:var(--blue);border-radius:999px}.av-btn.sec:hover{background:var(--blue-soft)}
+.av-btn.wa{background:#16a34a;color:#fff;border-radius:999px}
+.av-btn.ghost{border-color:#dbe1ec;color:#475569;border-radius:999px}
+.av-phasehd .n{background:var(--blue);color:#fff}
+.av-phasehd h3,.av-mcard h3{font-family:'Outfit',system-ui,sans-serif;font-weight:800;color:var(--ink)}
+.av-link{color:var(--blue)}
+.av-sticky{background:rgba(255,255,255,.97);border:1px solid #bcd0fb;box-shadow:0 8px 30px rgba(15,23,42,.18)}
+.av-sticky .l{color:#64748b}.av-sticky .v{font-family:'Outfit',system-ui,sans-serif;font-weight:800;color:var(--green)}
+.av-sticky button{background:var(--blue);color:#fff;border-radius:999px}
+.av-modal{background:rgba(15,23,42,.55)}
+.av-mcard{background:#fff;border:1px solid var(--line);box-shadow:0 30px 80px rgba(15,23,42,.3)}
+.av-x{background:#f1f5f9;color:var(--ink)}
+.av-mcard p.s{color:#475569}
+.av-mf .box,.av-txt{background:#f8fafc;border:1px solid #dbe1ec;color:var(--ink)}
+.av-mf .box:focus-within,.av-txt:focus{border-color:var(--blue);background:#fff}
+.av-mf .box span{color:var(--blue)}.av-mf input{color:var(--ink)}.av-txt::placeholder{color:#94a3b8}
+.av-err{color:#dc2626}
+.av-spin{border-color:#dbe1ec;border-top-color:var(--blue)}
+.av-toast{background:#0f172a;border-color:#0f172a;color:#fff}
+.av-mcard p[style]{color:#475569!important}.av-mcard button[style]{color:#64748b!important}.av-mcard [style*="#e08080"]{color:#dc2626!important}.av-mcard [style*="rgba(255,255,255,.4)"]{color:#94a3b8!important}
+footer{background:#fff!important;border-top:1px solid var(--line)!important}
+footer .nav-brand b{color:var(--ink)!important}.foot-desc,.foot-links a,.foot-links span,.foot-bottom p{color:#64748b!important}.foot-h{color:var(--blue)!important}.foot-links a:hover,.foot-links span:hover{color:var(--blue)!important}.foot-bottom{border-top:1px solid var(--line)!important}
+.foot-bottom a{color:var(--blue)!important}
+@media(max-width:480px){nav{padding:10px 4%!important}.nav-brand b{font-size:13px}}
+</style>
   <div class="av-studio-page" id="av-studio-root"></div>
 </section>
 <script>
@@ -1149,8 +1240,8 @@ window.AVS = (function () {
       <style>
         *{-webkit-print-color-adjust:exact;print-color-adjust:exact;box-sizing:border-box;}
         body{font-family:Georgia,'Times New Roman',serif;color:#111;max-width:760px;margin:0 auto;padding:40px 32px;line-height:1.5;}
-        .phead{border-bottom:3px solid #c9a84c;padding-bottom:18px;margin-bottom:28px;}
-        .pbrand{font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:#c9a84c;font-weight:700;}
+        .phead{border-bottom:3px solid #2563eb;padding-bottom:18px;margin-bottom:28px;}
+        .pbrand{font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:#2563eb;font-weight:700;}
         .ptitle{font-size:26px;margin:6px 0 4px;}
         .pfor{font-size:14px;color:#555;}
         .psec{margin-bottom:36px;page-break-inside:avoid;}
@@ -1340,9 +1431,9 @@ function buildField(f, sec) {
     const labelText = typeof f.label === 'function' ? f.label(V()) : f.label;
     wrap.append(
       h('div', { class: 'av-lab' }, h('label', { for: id }, labelText, f.sub ? h('small', null, f.sub) : null), box),
-      rng, h('div', { class: 'av-rl' }, h('span', null, rangeLabel(f, 'min')), h('span', null, rangeLabel(f, 'max'))),
-      f.hint ? h('div', { class: 'av-hint' }, f.hint) : null
+      rng, h('div', { class: 'av-rl' }, h('span', null, rangeLabel(f, 'min')), h('span', null, rangeLabel(f, 'max')))
     );
+    if (f.hint) wrap.append(h('div', { class: 'av-hint' }, f.hint));
     rng.addEventListener('input', () => { const v = posToVal(f, +rng.value); inp.value = fmtInput(f, v); box.classList.remove('bad'); paint(); sec.set(f.k, v, 'slider'); });
     inp.addEventListener('focus', () => raf(() => inp.select()));
     inp.addEventListener('input', () => {
@@ -1373,7 +1464,7 @@ function drawChart(canvas, o) {
   canvas.width = Math.round(W * dpr); canvas.height = Math.round(H * dpr);
   if (!o.width) canvas.style.height = H + 'px';
   const c = canvas.getContext('2d'); c.setTransform(dpr, 0, 0, dpr, 0, 0); c.clearRect(0, 0, W, H);
-  const light = o.theme === 'light';
+  const light = o.theme !== 'dark';
   const th = light ? { grid: 'rgba(10,22,40,.11)', axis: '#6b778c', bg: '#fff', tipBg: '#0a1628', tipTx: '#fff' } : { grid: 'rgba(255,255,255,.08)', axis: 'rgba(255,255,255,.55)', bg: '#112240', tipBg: '#0a1628', tipTx: '#fff' };
   const fontB = light ? '600 ' + (o.fs || 12) + 'px Outfit, Arial, sans-serif' : '500 11px Outfit, Arial, sans-serif';
   c.font = fontB;
@@ -1402,16 +1493,16 @@ function drawChart(canvas, o) {
   if (ymin < 0) { const y = Math.round(Y(0)) + .5; c.strokeStyle = th.axis; c.beginPath(); c.moveTo(padL, y); c.lineTo(W - padR, y); c.stroke(); }
   if (o.hover != null && !light) {
     const i = o.hover, x = X(xs[i]);
-    c.strokeStyle = 'rgba(232,200,120,.6)'; c.setLineDash([4, 4]); c.beginPath(); c.moveTo(x, padT); c.lineTo(x, padT + ih); c.stroke(); c.setLineDash([]);
-    o.series.forEach(s => { c.fillStyle = s.color; c.beginPath(); c.arc(x, Y(s.values[i]), 4.5, 0, 7); c.fill(); c.strokeStyle = '#0a1628'; c.lineWidth = 2; c.stroke(); });
+    c.strokeStyle = 'rgba(37,99,235,.55)'; c.setLineDash([4, 4]); c.beginPath(); c.moveTo(x, padT); c.lineTo(x, padT + ih); c.stroke(); c.setLineDash([]);
+    o.series.forEach(s => { c.fillStyle = s.color; c.beginPath(); c.arc(x, Y(s.values[i]), 4.5, 0, 7); c.fill(); c.strokeStyle = '#fff'; c.lineWidth = 2; c.stroke(); });
     const lines = [(o.xTitle || '') + ' ' + (o.xFmt || String)(xs[i])].concat(o.series.map(s => s.name + ': ' + (o.tipFmt || fmtC)(s.values[i])));
     c.font = '600 12px Outfit, Arial, sans-serif';
     const tw = Math.max(...lines.map(l => c.measureText(l).width)) + 22, th2 = lines.length * 18 + 12;
     let tx = x + 12; if (tx + tw > W - 4) tx = x - tw - 12; if (tx < 4) tx = 4; const ty = padT + 4;
-    c.fillStyle = 'rgba(10,22,40,.96)'; c.strokeStyle = 'rgba(201,168,76,.6)'; c.lineWidth = 1;
+    c.fillStyle = 'rgba(10,22,40,.96)'; c.strokeStyle = 'rgba(37,99,235,.6)'; c.lineWidth = 1;
     c.beginPath(); c.roundRect ? c.roundRect(tx, ty, tw, th2, 8) : c.rect(tx, ty, tw, th2); c.fill(); c.stroke();
     c.textAlign = 'left'; c.textBaseline = 'top';
-    lines.forEach((l, k) => { c.fillStyle = k === 0 ? '#e8c878' : '#fff'; c.font = (k === 0 ? '700 ' : '500 ') + '12px Outfit, Arial, sans-serif'; c.fillText(l, tx + 11, ty + 8 + k * 18); });
+    lines.forEach((l, k) => { c.fillStyle = k === 0 ? '#93c5fd' : '#fff'; c.font = (k === 0 ? '700 ' : '500 ') + '12px Outfit, Arial, sans-serif'; c.fillText(l, tx + 11, ty + 8 + k * 18); });
   }
   return { X, Y, padL, padR, iw };
 }
@@ -1500,7 +1591,7 @@ function renderResult(sec, r) {
   s.verdict.innerHTML = '';
   if (r.verdict) s.verdict.append(h('div', { class: 'av-verdict ' + (r.verdict.tone || 'info'), role: 'status' }, h('span', { class: 'ic' }, r.verdict.icon || 'ℹ️'), h('div', null, h('b', null, r.verdict.title), r.verdict.text)));
   s.hl.textContent = r.hero.label;
-  animateHero(s.hv, r.hero.value, r.hero.fmt || String); s.hs.textContent = r.hero.sub || '';
+  s.hv.classList.toggle('neg', r.hero.value < 0); animateHero(s.hv, r.hero.value, r.hero.fmt || String); s.hs.textContent = r.hero.sub || '';
   s.tiles.innerHTML = ''; (r.tiles || []).forEach(t => s.tiles.append(h('div', { class: 'av-tile' + (t.hl ? ' hl' : '') }, h('div', { class: 'k' }, t.k), h('div', { class: 'v ' + (t.tone || '') }, t.v), t.s ? h('div', { class: 's' }, t.s) : null)));
   s.split.innerHTML = '';
   if (r.split) { const tot = r.split.reduce((a, b) => a + Math.max(b.value, 0), 0) || 1;
@@ -1626,12 +1717,12 @@ function sipCompute(v) {
       { k: 'Wealth Gained', v: fmtC(r.gain), tone: 'good' },
       { k: 'Growth Multiple', v: round1(mult) + '×' },
     ],
-    split: [{ label: 'Invested', value: r.invested, color: '#5b6b9e' }, { label: 'Returns', value: r.gain, color: 'var(--gold)' }],
+    split: [{ label: 'Invested', value: r.invested, color: '#94a3b8' }, { label: 'Returns', value: r.gain, color: 'var(--gold)' }],
     chart: {
       title: 'How Your Money Grows', xs: r.yearly.map(y => y.year), xTitle: 'Year', xFmt: (x) => 'Y' + x,
       series: [
-        { name: 'Invested', color: '#5b6b9e', values: r.yearly.map(y => y.invested) },
-        { name: 'Value', color: '#e8c878', values: r.yearly.map(y => y.value), fill: true },
+        { name: 'Invested', color: '#94a3b8', values: r.yearly.map(y => y.invested) },
+        { name: 'Value', color: '#2563eb', values: r.yearly.map(y => y.value), fill: true },
       ]
     },
     insights: [
@@ -1658,10 +1749,10 @@ function lumpCompute(v) {
   return {
     hero: { label: 'Total Value at the End', value: r.fv, fmt: fmtC, sub: 'Over ' + v.years + ' years' },
     tiles: [{ k: 'Invested', v: fmtC(r.invested) }, { k: 'Gains', v: fmtC(r.gain), tone: 'good' }, { k: 'Multiple', v: round1(mult) + '×' }],
-    split: [{ label: 'Invested', value: r.invested, color: '#5b6b9e' }, { label: 'Returns', value: r.gain, color: 'var(--gold)' }],
+    split: [{ label: 'Invested', value: r.invested, color: '#94a3b8' }, { label: 'Returns', value: r.gain, color: 'var(--gold)' }],
     chart: {
       title: 'Growth Over Time', xs: r.yearly.map(y => y.year), xTitle: 'Year', xFmt: (x) => 'Y' + x,
-      series: [{ name: 'Invested', color: '#5b6b9e', values: r.yearly.map(y => y.invested) }, { name: 'Value', color: '#e8c878', values: r.yearly.map(y => y.value), fill: true }]
+      series: [{ name: 'Invested', color: '#94a3b8', values: r.yearly.map(y => y.invested) }, { name: 'Value', color: '#2563eb', values: r.yearly.map(y => y.value), fill: true }]
     },
     insights: [],
     method: 'A one-time amount invested and left to compound at the annualised return you set — no further contributions.',
@@ -1701,7 +1792,7 @@ function swpCfg(parentKey) {
         tiles: [{ k: 'Total Withdrawn', v: fmtC(r.totalWithdrawn) }, { k: r.depleted ? 'Ending Balance' : 'Balance at Year 60', v: fmtC(r.endBalance) }],
         chart: {
           title: 'Corpus Over Time', xs: r.yearly.map(y => y.year), xTitle: 'Year', xFmt: (x) => 'Y' + Math.round(x),
-          series: [{ name: 'Balance', color: '#e8c878', values: r.yearly.map(y => y.balance), fill: true }]
+          series: [{ name: 'Balance', color: '#2563eb', values: r.yearly.map(y => y.balance), fill: true }]
         },
         insights: [], method: 'Corpus grows at your chosen return each month, minus that month\'s withdrawal. Withdrawal amount steps up annually if you set an inflation adjustment.'
       };
@@ -1739,7 +1830,7 @@ registerCalc('retirement', 'Retirement', '🏖️', () => [{
       ],
       chart: {
         title: 'Accumulation, Then Drawdown', xs: r.path.map(p => Math.round(p.age)), xTitle: 'Age', xFmt: (x) => x,
-        series: [{ name: 'Portfolio Balance', color: '#e8c878', values: r.path.map(p => p.balance), fill: true }]
+        series: [{ name: 'Portfolio Balance', color: '#2563eb', values: r.path.map(p => p.balance), fill: true }]
       },
       insights: [
         r.gap > 0 ? ins('🎯', 'info', 'Investing ' + fmtC(r.sip) + '/month from now gets you to your target — starting later means a meaningfully higher monthly number.') : ins('✅', 'good', 'Your current savings alone are projected to cover this goal.')
@@ -1774,7 +1865,7 @@ registerCalc('fire', 'FIRE Number', '🔥', () => [{
       chart: {
         title: 'Your Portfolio vs a Rising Target', xs: r.yearly.map(y => y.year), xTitle: 'Year', xFmt: (x) => 'Y' + x,
         series: [
-          { name: 'Portfolio', color: '#e8c878', values: r.yearly.map(y => y.portfolio), fill: true },
+          { name: 'Portfolio', color: '#2563eb', values: r.yearly.map(y => y.portfolio), fill: true },
           { name: 'Target (inflating)', color: '#8899aa', values: r.yearly.map(y => y.target), dash: true },
         ]
       },
@@ -1806,7 +1897,7 @@ registerCalc('goal', 'Goal Planner', '🎯', () => [{
       tiles: [{ k: 'Monthly Savings', v: fmtC(Math.max(r.firstSave, 0)) }, { k: 'Savings Rate', v: round1(r.savingsRatePct) + '%' }],
       chart: r.yearly.length > 1 ? {
         title: 'Portfolio vs Target', xs: r.yearly.map(y => y.year), xTitle: 'Year', xFmt: (x) => 'Y' + x,
-        series: [{ name: 'Portfolio', color: '#e8c878', values: r.yearly.map(y => y.portfolio), fill: true }, { name: 'Target', color: '#8899aa', values: r.yearly.map(y => y.target), dash: true }]
+        series: [{ name: 'Portfolio', color: '#2563eb', values: r.yearly.map(y => y.portfolio), fill: true }, { name: 'Target', color: '#8899aa', values: r.yearly.map(y => y.target), dash: true }]
       } : null,
       insights: [], method: 'Your monthly surplus (income minus expenses) is invested at your chosen return each month. The target inflates over time if you set an inflation rate above zero.'
     };
@@ -1856,7 +1947,7 @@ function loanVsCashCfg(kind) {
         ],
         chart: {
           title: 'Two Paths Over Time', xs: r.yearly.map(y => y.year), xTitle: 'Year', xFmt: (x) => 'Y' + x,
-          series: [{ name: 'Cash + SIP', color: '#5b6b9e', values: r.yearly.map(y => y.A) }, { name: 'Loan + Invest', color: '#e8c878', values: r.yearly.map(y => y.B) }]
+          series: [{ name: 'Cash + SIP', color: '#94a3b8', values: r.yearly.map(y => y.A) }, { name: 'Loan + Invest', color: '#2563eb', values: r.yearly.map(y => y.B) }]
         },
         insights: [
           r.inflationEasePct > 15
@@ -1913,7 +2004,7 @@ registerCalc('rentbuy', 'Rent vs Buy', '🏡', () => [{
       ],
       chart: {
         title: 'Net Worth Over Time', xs: r.yearly.map(y => y.year), xTitle: 'Year', xFmt: (x) => 'Y' + x,
-        series: [{ name: 'Buy', color: '#e8c878', values: r.yearly.map(y => y.buy) }, { name: 'Rent + Invest', color: '#5b6b9e', values: r.yearly.map(y => y.rent) }]
+        series: [{ name: 'Buy', color: '#2563eb', values: r.yearly.map(y => y.buy) }, { name: 'Rent + Invest', color: '#94a3b8', values: r.yearly.map(y => y.rent) }]
       },
       insights: [ins('ℹ️', 'info', 'Both paths spend the same total monthly budget — whichever of EMI+maintenance or rent is higher sets the budget, and the leftover goes into investment in both scenarios. This keeps the comparison fair.')],
       method: 'Both scenarios commit the same monthly cash outflow. Buying builds home equity plus appreciation; renting invests the surplus over the higher of the two costs. Excludes property tax and brokerage on purchase — real decisions should factor these in too.'
@@ -1960,7 +2051,7 @@ registerCalc('mfre', 'MF vs Real Estate', '🏘️', () => [{
       ],
       chart: {
         title: 'Net Worth Over Time', xs: r.yearly.map(y => y.year), xTitle: 'Year', xFmt: (x) => 'Y' + x,
-        series: [{ name: 'Real Estate', color: '#e8c878', values: r.yearly.map(y => y.re) }, { name: 'Mutual Fund', color: '#5b6b9e', values: r.yearly.map(y => y.mf) }]
+        series: [{ name: 'Real Estate', color: '#2563eb', values: r.yearly.map(y => y.re) }, { name: 'Mutual Fund', color: '#94a3b8', values: r.yearly.map(y => y.mf) }]
       },
       insights: [
         ins('💧', 'info', 'Mutual funds can be sold in days; a property sale typically takes months and depends on finding a buyer at your price — a real, non-financial difference this chart can\'t show.'),
@@ -2001,7 +2092,7 @@ registerCalc('fdmf', 'FD vs Mutual Fund', '🏦', () => [{
       ],
       chart: {
         title: 'After-Tax Value Over Time', xs: r.yearly.map(y => y.year), xTitle: 'Year', xFmt: (x) => 'Y' + x,
-        series: [{ name: 'FD', color: '#5b6b9e', values: r.yearly.map(y => y.fd) }, { name: 'Mutual Fund', color: '#e8c878', values: r.yearly.map(y => y.mf), fill: true }]
+        series: [{ name: 'FD', color: '#94a3b8', values: r.yearly.map(y => y.fd) }, { name: 'Mutual Fund', color: '#2563eb', values: r.yearly.map(y => y.mf), fill: true }]
       },
       insights: [
         ins('🧾', 'info', 'FD interest is taxed every year at your slab rate, whether or not you touch the money. Mutual fund equity LTCG (24+ month holding) is taxed at just 12.5% above a ₹1.25L exemption, and only when you actually redeem.'),
@@ -2023,7 +2114,7 @@ if (document.readyState !== 'loading') {
 
 <!-- ══════════ PORTFOLIO ANALYZER PAGE ══════════ -->
 
-<section style="padding:70px 5%;background:#060e1a;">
+<section style="padding:50px 5% 80px;background:#f3f5f9;">
   <div style="max-width:860px;margin:0 auto;">
     <div style="text-align:center;margin-bottom:40px;">
       <div style="display:inline-flex;background:rgba(201,168,76,.1);border:1px solid rgba(201,168,76,.3);padding:5px 18px;border-radius:100px;font-size:10px;font-weight:700;color:#c9a84c;letter-spacing:.18em;text-transform:uppercase;margin-bottom:14px;">Frequently Asked Questions</div>
@@ -2034,13 +2125,13 @@ if (document.readyState !== 'loading') {
       <div style="font-size:16px;font-weight:600;color:#fff;margin-bottom:10px;cursor:pointer" onclick="this.nextElementSibling.style.display=this.nextElementSibling.style.display==='none'?'block':'none'">
         <span style="color:#c9a84c;margin-right:10px">Q.</span>What financial calculators are available on Ashvamedha Finance website?
       </div>
-      <div style="font-size:14px;color:rgba(255,255,255,.65);line-height:1.8;padding-left:24px">We offer 5 free calculators: SIP Calculator, Step-Up SIP Calculator, Lumpsum Investment Calculator, Retirement Corpus Calculator, and Home Buying EMI Calculator.</div>
+      <div style="font-size:14px;color:rgba(255,255,255,.65);line-height:1.8;padding-left:24px">We offer 11 free calculators: SIP (with SWP), Step-Up SIP, Lumpsum, Retirement Corpus, FIRE Number, Goal Planner, Home Loan vs Investing, Car Loan vs Cash, Rent vs Buy, Mutual Funds vs Real Estate, and FD vs Mutual Fund. Every calculator can be downloaded as a PDF report.</div>
     </div>
     <div style="border-bottom:1px solid rgba(255,255,255,.08);padding:20px 0;">
       <div style="font-size:16px;font-weight:600;color:#fff;margin-bottom:10px;cursor:pointer" onclick="this.nextElementSibling.style.display=this.nextElementSibling.style.display==='none'?'block':'none'">
         <span style="color:#c9a84c;margin-right:10px">Q.</span>How accurate is the SIP calculator?
       </div>
-      <div style="font-size:14px;color:rgba(255,255,255,.65);line-height:1.8;padding-left:24px">Our SIP calculator uses the exact compound interest formula used by Zerodha and Groww. For example, ₹5,000/month at 12% for 10 years = ₹11,50,193 — verified accurate.</div>
+      <div style="font-size:14px;color:rgba(255,255,255,.65);line-height:1.8;padding-left:24px">Our SIP calculator uses the standard compound-interest formula with an effective monthly rate. For example, ₹5,000/month at 12% p.a. for 10 years grows to roughly ₹11.6 lakh on this basis. Actual mutual fund returns are market-linked and not guaranteed.</div>
     </div>
     <div style="border-bottom:1px solid rgba(255,255,255,.08);padding:20px 0;">
       <div style="font-size:16px;font-weight:600;color:#fff;margin-bottom:10px;cursor:pointer" onclick="this.nextElementSibling.style.display=this.nextElementSibling.style.display==='none'?'block':'none'">
@@ -2111,7 +2202,7 @@ window.addEventListener('scroll', () => {
 function toggleNav() {
   const ul = document.getElementById('navlinks');
   const open = ul.style.display === 'flex';
-  ul.style.cssText = open ? '' : 'display:flex;flex-direction:column;position:fixed;top:68px;left:0;right:0;background:rgba(6,14,26,.98);padding:20px 5%;gap:16px;border-bottom:1px solid rgba(201,168,76,.15);z-index:899;';
+  ul.style.cssText = open ? '' : 'display:flex;flex-direction:column;position:fixed;top:68px;left:0;right:0;background:rgba(255,255,255,.99);padding:20px 5%;gap:16px;border-bottom:1px solid rgba(201,168,76,.15);z-index:899;';
 }
 function openModal(id) {
   document.getElementById('modal-' + id).classList.add('open');
@@ -2581,8 +2672,8 @@ function drawDonut(canvasId, invested, returns) {
   const investedAngle = (invested / total) * (2 * Math.PI - gap * 2);
   const returnsAngle = (returns / total) * (2 * Math.PI - gap * 2);
   ctx.lineCap = 'round';
-  draw(-Math.PI / 2 + gap, -Math.PI / 2 + gap + investedAngle, '#2B3AAE');
-  draw(-Math.PI / 2 + gap + investedAngle + gap, -Math.PI / 2 + 2 * Math.PI - gap, '#c9a84c');
+  draw(-Math.PI / 2 + gap, -Math.PI / 2 + gap + investedAngle, '#94a3b8');
+  draw(-Math.PI / 2 + gap + investedAngle + gap, -Math.PI / 2 + 2 * Math.PI - gap, '#2563eb');
 }
 
 function fmtCr(val) {
@@ -2594,5 +2685,5 @@ function fmtCr(val) {
 
 
 </script>
-</body>
+<script defer src="/growth.js"></script></body>
 </html>
