@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Insurance Check-up — Is Your Family Covered?</title>
+<meta name="description" content="A 2-minute insurance check-up: see if your life and health cover is enough, what your old LIC or endowment policy really returns, and what a guaranteed income plan could pay you.">
+<link rel="canonical" href="https://www.ashvamedhaai.com/insurance/check-up">
+<meta property="og:title" content="Is your family really covered? Take the 2-minute check-up">
+<meta property="og:description" content="Life cover gap, health cover, the real return of your old policy. No sign-up.">
+<meta property="og:url" content="https://www.ashvamedhaai.com/insurance/check-up">
+<meta property="og:type" content="website"><meta property="og:site_name" content="Ashvamedha Finance"><meta property="og:locale" content="en_IN">
+<meta name="theme-color" content="#ffffff">
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#0a1628;--sub:#5b6676;--line:#e6e9ef;--bg:#f4f6fa;--card:#fff;--blue:#1f6feb;--blue-bg:#eaf2ff;--green:#14955b;--green-bg:#e7f7ee;--amber:#a76300;--amber-bg:#fff4e2;--red:#c23a2b;--red-bg:#fdecea;--gold:#b8902f}
+*{margin:0;padding:0;box-sizing:border-box}
+[hidden]{display:none!important}
+body{font-family:'Outfit',system-ui,sans-serif;background:var(--bg);color:var(--ink);-webkit-font-smoothing:antialiased;font-size:16px;line-height:1.5}
+button,input{font-family:inherit;color:inherit;font-size:inherit}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--blue);outline-offset:2px}
+.top{position:sticky;top:0;z-index:20;background:#fff;border-bottom:1px solid var(--line)}
+.top-in{max-width:600px;margin:0 auto;padding:10px max(16px,env(safe-area-inset-right));padding-left:max(16px,env(safe-area-inset-left));display:flex;align-items:center;justify-content:space-between;gap:10px}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none}
+.logo{width:36px;height:36px;border-radius:8px;background:var(--ink);color:#e8c878;display:grid;place-items:center;font-weight:800;font-size:15px}
+.brand b{display:block;font-size:14px;letter-spacing:.03em}
+.brand span{display:block;font-size:10.5px;color:var(--gold);letter-spacing:.12em;text-transform:uppercase;font-weight:600}
+.restart{font-size:13px;font-weight:600;color:var(--blue);background:none;border:1.5px solid var(--blue);border-radius:100px;padding:7px 12px;cursor:pointer}
+.wrap{max-width:600px;margin:0 auto;padding:18px max(16px,env(safe-area-inset-right)) 24px max(16px,env(safe-area-inset-left))}
+.intro h1{font-size:clamp(24px,6.4vw,30px);line-height:1.2;font-weight:800;letter-spacing:-.01em}
+.intro h1 span{color:var(--green)}
+.intro p{color:var(--sub);margin-top:6px;font-size:15px}
+.pills{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
+.pills span{font-size:12.5px;font-weight:600;background:#fff;border:1px solid var(--line);border-radius:100px;padding:4px 10px;color:var(--sub)}
+/* chat */
+.thread{display:flex;flex-direction:column;gap:10px;margin-top:18px}
+.msg{max-width:88%;padding:11px 14px;border-radius:18px;font-size:15.5px;line-height:1.45;animation:in .25s ease both}
+.bot{align-self:flex-start;background:#fff;border:1px solid var(--line);border-bottom-left-radius:6px}
+.me{align-self:flex-end;background:var(--ink);color:#fff;border-bottom-right-radius:6px}
+.bot small{display:block;color:var(--sub);font-size:13px;margin-top:4px}
+@keyframes in{from{opacity:.0;transform:translateY(6px)}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){.msg{animation:none}}
+/* composer */
+.composer{background:#fff;border:1px solid var(--line);border-radius:18px;padding:14px;margin-top:12px;display:grid;gap:10px}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{background:#fff;border:1.5px solid var(--line);border-radius:100px;padding:9px 14px;font-weight:600;font-size:14.5px;cursor:pointer}
+.chip:hover{border-color:var(--blue)}
+.chip[aria-pressed=true]{background:var(--ink);border-color:var(--ink);color:#fff}
+.row{display:flex;gap:8px;align-items:center}
+.field{display:grid;gap:4px}
+.field label{font-size:13px;font-weight:600;color:var(--sub)}
+.field input{width:100%;border:1.5px solid var(--line);border-radius:12px;padding:11px 12px;font-size:16px;background:#fff;outline:none}
+.field input:focus{border-color:var(--blue)}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.grid2>*{min-width:0}
+.go{background:var(--green);color:#fff;border:0;border-radius:12px;padding:12px 18px;font-weight:700;font-size:15px;cursor:pointer}
+.go:disabled{opacity:.45;cursor:default}
+.err{color:var(--red);font-size:13px}
+.note{font-size:12.5px;color:var(--sub)}
+/* report */
+.report{margin-top:20px;display:grid;gap:12px}
+.report h2{font-size:22px;font-weight:800;letter-spacing:-.01em}
+.rc{background:#fff;border:1px solid var(--line);border-radius:18px;padding:16px;display:grid;gap:8px;border-left:5px solid var(--line)}
+.rc.red{border-left-color:var(--red)} .rc.amber{border-left-color:var(--amber)} .rc.green{border-left-color:var(--green)} .rc.blue{border-left-color:var(--blue)}
+.rc-h{display:flex;justify-content:space-between;align-items:center;gap:10px}
+.rc-h b{font-size:16px}
+.st{font-size:11.5px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:3px 9px;border-radius:100px;white-space:nowrap}
+.red .st{background:var(--red-bg);color:var(--red)} .amber .st{background:var(--amber-bg);color:var(--amber)} .green .st{background:var(--green-bg);color:var(--green)} .blue .st{background:var(--blue-bg);color:var(--blue)}
+.big{font-size:24px;font-weight:800;font-variant-numeric:tabular-nums;letter-spacing:-.01em}
+.rc p{font-size:14.5px;color:#2c3747}
+.bar{height:10px;background:#eef1f6;border-radius:10px;overflow:hidden}
+.bar i{display:block;height:100%;border-radius:10px}
+.red .bar i{background:var(--red)} .amber .bar i{background:var(--amber)} .green .bar i{background:var(--green)}
+.kv{display:grid;grid-template-columns:1fr auto;gap:4px 12px;font-size:14px;font-variant-numeric:tabular-nums}
+.kv span{color:var(--sub)} .kv b{text-align:right}
+.lead{background:var(--ink);color:#fff;border-radius:18px;padding:18px;display:grid;gap:10px}
+.lead h3{font-size:19px}
+.lead p{font-size:14px;color:#c9d2e0}
+.lead .field label{color:#c9d2e0}
+.lead .field input{background:#fff;color:var(--ink);border-color:transparent}
+.consent{display:flex;gap:8px;align-items:flex-start;font-size:13px;color:#c9d2e0}
+.consent input{margin-top:3px;width:18px;height:18px;flex:none}
+.wa{display:flex;align-items:center;justify-content:center;gap:8px;background:#25d366;color:#06301a;font-weight:800;border-radius:12px;padding:14px;text-decoration:none;font-size:16px;border:0;cursor:pointer}
+.wa[aria-disabled=true]{opacity:.5;pointer-events:none}
+.disc{font-size:11.5px;color:var(--sub);line-height:1.6;margin-top:6px}
+.links{display:flex;gap:14px;flex-wrap:wrap;font-size:14px;font-weight:600}
+.links a{color:var(--blue);text-decoration:none}
+@media (max-width:380px){.grid2{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<header class="top"><div class="top-in">
+  <a class="brand" href="/"><div class="logo">AF</div><div><b>MANOJ KUMAR</b><span>Ashvamedha Finance</span></div></a>
+  <button class="restart" id="restart" type="button" hidden>Start over</button>
+</div></header>
+
+<main class="wrap">
+  <div class="intro">
+    <h1>Is your family <span>really covered?</span></h1>
+    <p>Answer a few quick questions. See your cover gap, your health cover and what your old policy really earns.</p>
+    <div class="pills"><span>⏱ 2 minutes</span><span>🔒 Stays on your phone</span><span>No sign-up</span></div>
+  </div>
+  <div class="thread" id="thread" aria-live="polite"></div>
+  <div class="composer" id="composer"></div>
+  <section class="report" id="report" hidden></section>
+</main>
+
+<script>
+(function(){
+const $=id=>document.getElementById(id), WA='918790109022';
+const inr=n=>'₹'+Math.round(n).toLocaleString('en-IN');
+const L=n=>n>=1e7?'₹'+(n/1e7).toFixed(2).replace(/\.?0+$/,'')+' Crore':'₹'+(n/1e5).toFixed(1).replace(/\.0$/,'')+' Lakh';
+const A={};          // answers
+let i=0;
+
+/* Guaranteed income model: same numbers as /insurance/guaranteed-income/10-pay-30-year-income */
+const GIP={points:[[100000,109.59],[250000,111.26],[500000,112.09]],refAge:40,ageStep:0.3,clamp:[18,60]};
+function gipIncome(age,amt){const p=GIP.points,x=Math.log(amt);let r=p[0][1];
+  for(let k=0;k<p.length-1;k++){const[a,ra]=p[k],[b,rb]=p[k+1];if(amt<=b||k===p.length-2){const t=Math.min(1,Math.max(0,(x-Math.log(a))/(Math.log(b)-Math.log(a))));r=amt<a?ra:ra+(rb-ra)*t;break}}
+  const e=Math.min(Math.max(age,GIP.clamp[0]),GIP.clamp[1]);return Math.round(amt*(r+(GIP.refAge-e)*GIP.ageStep)/100/10)*10}
+/* IRR of: premium P for n years (start of year), lump sum M at end of year T */
+function irr(P,n,M,T){let lo=-0.5,hi=0.5;for(let k=0;k<200;k++){const m=(lo+hi)/2;let v=M/Math.pow(1+m,T);for(let t=0;t<n;t++)v-=P/Math.pow(1+m,t);(v>0)?lo=m:hi=m}return(lo+hi)/2}
+
+/* ── Questions ── */
+const Q=[
+ {id:'age',ask:'First, how old are you?',type:'num',min:18,max:65,ph:'e.g. 34',fmt:v=>v+' years'},
+ {id:'income',ask:'Roughly how much do you earn in a year?',sub:'Take-home is fine. A range is enough.',type:'chips',opts:[['Under ₹5 Lakh',400000],['₹5–10 Lakh',750000],['₹10–20 Lakh',1500000],['₹20–35 Lakh',2750000],['₹35 Lakh+',4500000]]},
+ {id:'deps',ask:'Who depends on your income?',type:'multi',opts:['Spouse','Children','Parents','No one'],none:'No one'},
+ {id:'loans',ask:'How much do you still owe on loans?',sub:'Home, car, personal. Total outstanding.',type:'chips',opts:[['No loans',0],['Under ₹10 Lakh',500000],['₹10–30 Lakh',2000000],['₹30–60 Lakh',4500000],['₹60 Lakh+',7500000]]},
+ {id:'life',ask:'How much life cover do you have in total?',sub:'Add up all term and life policies. Don’t count cover from your employer.',type:'chips',opts:[['None',0],['₹25 Lakh',2500000],['₹50 Lakh',5000000],['₹1 Crore',10000000],['₹1.5 Crore',15000000],['₹2 Crore+',20000000]]},
+ {id:'health',ask:'What health insurance do you have?',type:'chips',opts:[['None','none'],['Only from employer','emp'],['₹5 Lakh','5'],['₹10 Lakh','10'],['₹25 Lakh+','25']]},
+ {id:'hasSav',ask:'Do you pay for any savings policy? Like LIC endowment, money-back or a "guaranteed" plan.',type:'chips',opts:[['Yes','yes'],['No','no']]},
+ {id:'sav',ask:'Let’s check what it really earns. Pick up the policy bond or app, and fill these in:',type:'sav',when:()=>A.hasSav==='yes'},
+ {id:'goal',ask:'Last one. What matters most to you right now?',type:'chips',opts:[['Protect my family','protect'],['Fixed income later in life','income'],['Grow money + life cover','grow'],['Regular income for my parents','parents']]},
+ {id:'amt',ask:'How much could you set aside every year, for 10 years?',type:'chips',opts:[['₹1 Lakh',100000],['₹2.5 Lakh',250000],['₹5 Lakh',500000]],when:()=>A.goal!=='protect'}
+];
+
+function bot(html,sub){const d=document.createElement('div');d.className='msg bot';d.innerHTML=html+(sub?`<small>${sub}</small>`:'');$('thread').appendChild(d)}
+function me(t){const d=document.createElement('div');d.className='msg me';d.textContent=t;$('thread').appendChild(d)}
+function scroll(){requestAnimationFrame(()=>$('composer').scrollIntoView({behavior:'smooth',block:'end'}))}
+
+function next(){
+  while(i<Q.length&&Q[i].when&&!Q[i].when())i++;
+  if(i>=Q.length){$('composer').hidden=true;return report()}
+  const q=Q[i];bot(q.ask,q.sub);render(q);scroll();
+}
+function answer(q,val,label){A[q.id]=val;me(label);i++;$('restart').hidden=false;next()}
+
+function render(q){
+  const c=$('composer');c.hidden=false;c.innerHTML='';
+  if(q.type==='chips'){const w=el('div','chips');q.opts.forEach(([t,v])=>{const b=el('button','chip',t);b.type='button';b.onclick=()=>answer(q,v,t);w.appendChild(b)});c.appendChild(w)}
+  if(q.type==='multi'){const w=el('div','chips'),sel=new Set(),go=el('button','go','Continue');go.type='button';go.disabled=true;
+    q.opts.forEach(t=>{const b=el('button','chip',t);b.type='button';b.setAttribute('aria-pressed','false');b.onclick=()=>{
+      if(t===q.none){sel.clear();sel.add(t)}else{sel.delete(q.none);sel.has(t)?sel.delete(t):sel.add(t)}
+      w.querySelectorAll('.chip').forEach(x=>x.setAttribute('aria-pressed',sel.has(x.textContent)));go.disabled=!sel.size};w.appendChild(b)});
+    go.onclick=()=>answer(q,[...sel],[...sel].join(', '));c.append(w,go)}
+  if(q.type==='num'){const r=el('div','row'),f=el('div','field');f.style.flex='1';const inp=document.createElement('input');inp.type='number';inp.inputMode='numeric';inp.id='q_'+q.id;inp.placeholder=q.ph;inp.setAttribute('aria-label',q.ask);f.appendChild(inp);
+    const go=el('button','go','Next');go.type='button';const er=el('div','err');er.hidden=true;
+    const sub=()=>{const v=+inp.value;if(!v||v<q.min||v>q.max){er.textContent=`Please enter an age between ${q.min} and ${q.max}.`;er.hidden=false;return}answer(q,v,q.fmt(v))};
+    go.onclick=sub;inp.onkeydown=e=>{if(e.key==='Enter')sub()};r.append(f,go);c.append(r,er);setTimeout(()=>inp.focus(),50)}
+  if(q.type==='sav'){
+    c.innerHTML=`<div class="grid2">
+      <div class="field"><label for="sv_p">Yearly premium (₹)</label><input id="sv_p" type="number" inputmode="numeric" placeholder="50000"></div>
+      <div class="field"><label for="sv_n">Years you pay</label><input id="sv_n" type="number" inputmode="numeric" placeholder="15"></div>
+      <div class="field"><label for="sv_t">Policy ends after (years)</label><input id="sv_t" type="number" inputmode="numeric" placeholder="20"></div>
+      <div class="field"><label for="sv_m">Maturity amount (₹)</label><input id="sv_m" type="number" inputmode="numeric" placeholder="1200000"></div></div>
+      <div class="note">Use the maturity amount the agent showed you, including bonus. If it pays money every few years (money-back), add those payouts to the maturity amount.</div>
+      <div class="err" id="sv_e" hidden></div>
+      <div class="row"><button class="go" id="sv_go" type="button">Check it</button><button class="chip" id="sv_skip" type="button">Skip, I don’t have the details</button></div>`;
+    $('sv_go').onclick=()=>{const P=+$('sv_p').value,n=+$('sv_n').value,T=+$('sv_t').value,M=+$('sv_m').value;
+      if(!(P>0&&n>0&&T>=n&&T<=60&&M>0)){$('sv_e').textContent='Please fill all four boxes. The policy should end on or after the last premium year.';$('sv_e').hidden=false;return}
+      answer(q,{P,n,T,M},`${inr(P)}/yr for ${n} yrs → ${L(M)} after ${T} yrs`)};
+    $('sv_skip').onclick=()=>answer(q,null,'Skip for now')}
+}
+function el(t,c,txt){const e=document.createElement(t);if(c)e.className=c;if(txt!=null)e.textContent=txt;return e}
+
+/* ── Report ── */
+function report(){
+  bot('Done. Here is your check-up. 👇');
+  const R=[],sum=[],age=A.age,inc=A.income,deps=A.deps||[],noDeps=deps.includes('No one');
+  /* 1. Life cover: rule of thumb 10–15× yearly income + loans */
+  const lo=noDeps?A.loans:inc*10+A.loans, hi=noDeps?A.loans:inc*15+A.loans, have=A.life, gap=Math.max(0,lo-have);
+  let lc;
+  if(noDeps&&!A.loans) lc={c:'green',s:'Low need',h:`No one depends on your income and you have no loans, so a big life cover isn't urgent yet. Buying a term plan while you're young and healthy keeps the premium low for later.`};
+  else if(have>=lo) lc={c:'green',s:'Looks enough',h:`You have ${L(have)}. A common guide is ${L(lo)}–${L(hi)} for your income${A.loans?' and loans':''}.`};
+  else lc={c:have>=lo*0.5?'amber':'red',s:have>=lo*0.5?'Short':'Big gap',h:`If something happened to you, your family would get ${have?L(have):'nothing from insurance'}. A common guide is <b>${L(lo)}–${L(hi)}</b>: about 10–15 years of your income${A.loans?', plus your loans so the family isn\'t left with EMIs':''}.`};
+  R.push(`<div class="rc ${lc.c}"><div class="rc-h"><b>Life cover</b><span class="st">${lc.s}</span></div>
+    ${gap&&!(noDeps&&!A.loans)?`<div class="big">${L(gap)} short</div>`:''}
+    <div class="bar" aria-hidden="true"><i style="width:${lo?Math.min(100,Math.round(have/lo*100)):100}%"></i></div>
+    <p>${lc.h}</p></div>`);
+  sum.push(`Life cover: ${have?L(have):'none'} (guide ${L(lo)}–${L(hi)})`);
+  /* 2. Health */
+  const fam=deps.some(d=>d==='Spouse'||d==='Children'||d==='Parents'),need=fam?10:5,h=A.health;
+  let hc;
+  if(h==='none')hc={c:'red',s:'Not covered',t:'No health cover',p:`One hospital stay can cost ₹3–8 Lakh. ${fam?'For a family, at least ₹10 Lakh is a common starting point':'At least ₹5 Lakh is a common starting point'}, plus a low-cost super top-up for big bills.`};
+  else if(h==='emp')hc={c:'amber',s:'Risky',t:'Employer cover only',p:'This stops the day you leave or change your job, and it\'s hardest to buy new cover later when you\'re older. A personal policy of your own, even a small one, keeps you covered for life.'};
+  else if(+h<need)hc={c:'amber',s:'Low',t:`₹${h} Lakh cover`,p:`For ${fam?'a family':'one person'} in a city like Hyderabad, ₹${need} Lakh or more is a common guide. A super top-up is a cheap way to raise it.`};
+  else hc={c:'green',s:'Looks good',t:`₹${h} Lakh cover`,p:'Check two things in your policy: room-rent limits and co-payment. These quietly reduce what you get at claim time.'};
+  R.push(`<div class="rc ${hc.c}"><div class="rc-h"><b>Health cover</b><span class="st">${hc.s}</span></div><div class="big">${hc.t}</div><p>${hc.p}</p></div>`);
+  sum.push(`Health: ${hc.t}`);
+  /* 3. Savings policy real return */
+  if(A.sav){const{P,n,T,M}=A.sav,r=irr(P,n,M,T)*100,paid=P*n;
+    const c=r<6?'red':r<7?'amber':'green';
+    R.push(`<div class="rc ${c}"><div class="rc-h"><b>Your savings policy</b><span class="st">${r<6?'Low return':r<7?'Average':'Decent'}</span></div>
+      <div class="big">${r.toFixed(1)}% a year</div>
+      <div class="kv"><span>You pay in total</span><b>${L(paid)}</b><span>You get back</span><b>${L(M)}</b><span>Government PPF pays today</span><b>7.1% a year</b></div>
+      <p>${r<7?'Your money is growing slower than in PPF, which is also safe and tax-free.':'This is a reasonable return for a guaranteed product.'} <b>Don't stop paying on your own:</b> stopping early can mean a big loss. Ask Manoj to check your surrender value and options first.</p></div>`);
+    sum.push(`Savings policy return: ${r.toFixed(1)}% a year (${inr(P)}/yr for ${n} yrs → ${L(M)} after ${T} yrs)`)}
+  /* 4. Goal */
+  const g=A.goal;
+  if(g==='income'||g==='parents'){
+    if(age>60){R.push(`<div class="rc blue"><div class="rc-h"><b>Fixed income plan</b><span class="st">Ask Manoj</span></div><p>At ${age}, most guaranteed income plans have stopped accepting new buyers. For regular income now, Senior Citizens Savings Scheme (8.2%) and Post Office Monthly Income Scheme (7.4%) are worth a look. Manoj can walk you through them.</p></div>`)}
+    else{const amt=A.amt,y=gipIncome(age,amt);
+      R.push(`<div class="rc blue"><div class="rc-h"><b>${g==='parents'?'Income for your parents':'Your fixed income plan'}</b><span class="st">Sample</span></div>
+        <div class="big">${inr(y)} a year</div>
+        <div class="kv"><span>You pay</span><b>${L(amt)} a year × 10 years</b><span>Income</span><b>Age ${age+13} to ${age+42}</b><span>Back at the end</span><b>${L(amt*10)}</b><span>Monthly, roughly</span><b>${inr(y/12)}</b></div>
+        <p>${g==='parents'?'Pay from your salary now; the income takes over your monthly support to your parents later. ':''}Fixed by contract, whatever the markets do. Sample for a healthy non-smoker; the exact figure comes from the insurer.</p>
+        <div class="links"><a href="/insurance/guaranteed-income/10-pay-30-year-income">Try other amounts →</a></div></div>`);
+      sum.push(`Interested in: guaranteed income, ${L(amt)}/yr → sample ${inr(y)}/yr`)}}
+  if(g==='grow'){const amt=A.amt;
+    R.push(`<div class="rc blue"><div class="rc-h"><b>Grow money + life cover</b><span class="st">Next step</span></div>
+      <p>A <b>term + ULIP plan</b> gives a large life cover and invests the rest in market funds, paid for 10 years. Its value depends on markets, so the insurer shows it at two growth rates, 4% and 8%. Manoj will share your personalised illustration for <b>${L(amt)} a year</b> on WhatsApp.</p></div>`);
+    sum.push(`Interested in: term + ULIP, ${L(amt)}/yr`)}
+  if(g==='protect') sum.push('Main goal: protect my family');
+
+  R.push(`<div class="lead"><h3>Want Manoj to go through this with you?</h3>
+    <p>He'll explain each point, answer questions and share exact quotes. On WhatsApp, in Telugu or English.</p>
+    <div class="grid2"><div class="field"><label for="ld_n">Your name</label><input id="ld_n" autocomplete="name" placeholder="Your name"></div>
+    <div class="field"><label for="ld_c">City</label><input id="ld_c" autocomplete="address-level2" placeholder="Hyderabad"></div></div>
+    <label class="consent"><input type="checkbox" id="ld_ok"> I agree to share these answers with Manoj Kumar (Ashvamedha Finance) on WhatsApp so he can contact me.</label>
+    <a class="wa" id="ld_wa" href="#" target="_blank" rel="noopener" aria-disabled="true">Send my check-up on WhatsApp</a>
+    <p style="font-size:12px">Nothing is stored on this website. Your answers go only to Manoj's WhatsApp, and only when you tap send.</p></div>
+    <p class="disc">This check-up uses general rules of thumb and your own answers. It is for information only and is not a recommendation to buy, continue or stop any policy. Sample figures are illustrations for a healthy non-smoker and vary by insurer, age, health and premium. Insurance is the subject matter of solicitation.</p>`);
+  const rep=$('report');rep.innerHTML='<h2>Your insurance check-up</h2>'+R.join('');rep.hidden=false;
+  const upd=()=>{const ok=$('ld_ok').checked&&$('ld_n').value.trim();const a=$('ld_wa');a.setAttribute('aria-disabled',ok?'false':'true');
+    const t=['Hi Manoj 👋 I did the insurance check-up on your website.','',`Name: ${$('ld_n').value.trim()}`,`City: ${$('ld_c').value.trim()||'-'}`,`Age: ${age}`,`Income: ${Q[1].opts.find(o=>o[1]===inc)[0]} a year`,`Dependents: ${deps.join(', ')}`,`Loans: ${Q[3].opts.find(o=>o[1]===A.loans)[0]}`,'',...sum,'','Please help me understand my results. [check-up]'].join('\n');
+    a.href=`https://wa.me/${WA}?text=${encodeURIComponent(t)}`};
+  ['ld_n','ld_c'].forEach(k=>$(k).oninput=upd);$('ld_ok').onchange=upd;upd();
+  setTimeout(()=>rep.scrollIntoView({behavior:'smooth',block:'start'}),150);
+  try{window.gtag&&gtag('event','checkup_complete',{goal:g})}catch(e){}
+}
+$('restart').onclick=()=>{for(const k in A)delete A[k];i=0;$('thread').innerHTML='';$('report').hidden=true;$('report').innerHTML='';$('restart').hidden=true;next();window.scrollTo({top:0})};
+bot('Hi 👋 I’ll ask about 9 quick questions. Most are just one tap.','Your answers stay on your phone. Nothing is sent unless you choose to.');
+next();
+})();
+</script>
+</body>
+</html>
