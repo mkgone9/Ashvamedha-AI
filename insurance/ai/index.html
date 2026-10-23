@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,interactive-widget=resizes-content">
+<title>Ashvamedha AI — Insurance Guide</title>
+<meta name="description" content="Chat with Ashvamedha AI: check your life cover, health cover and old policies in a few minutes, in English or Telugu. Then talk to Manoj Kumar on WhatsApp.">
+<link rel="canonical" href="https://www.ashvamedhaai.com/insurance/ai">
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#ffffff">
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#0a1628;--sub:#5b6676;--line:#e6e9ef;--bg:#f4f6fa;--card:#fff;--blue:#1f6feb;--blue-bg:#eaf2ff;--green:#14955b;--green-bg:#e7f7ee;--amber:#a76300;--amber-bg:#fff4e2;--red:#c23a2b;--red-bg:#fdecea;--gold:#b8902f}
+*{margin:0;padding:0;box-sizing:border-box}
+[hidden]{display:none!important}
+html,body{height:100%}
+body{font-family:'Outfit',system-ui,sans-serif;background:var(--bg);color:var(--ink);-webkit-font-smoothing:antialiased;font-size:16px;line-height:1.5;display:flex;flex-direction:column}
+button,input,textarea{font-family:inherit;color:inherit;font-size:inherit}
+:focus-visible{outline:2px solid var(--blue);outline-offset:2px}
+.top{background:#fff;border-bottom:1px solid var(--line);flex:none}
+.top-in{max-width:640px;margin:0 auto;padding:10px max(16px,env(safe-area-inset-right)) 10px max(16px,env(safe-area-inset-left));display:flex;align-items:center;justify-content:space-between;gap:10px}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none;color:inherit}
+.logo{width:36px;height:36px;border-radius:10px;background:var(--ink);color:#e8c878;display:grid;place-items:center;font-weight:800;font-size:14px;position:relative}
+.logo::after{content:"";position:absolute;right:-2px;bottom:-2px;width:11px;height:11px;border-radius:50%;background:#2fbf71;border:2px solid #fff}
+.brand b{display:block;font-size:15px}
+.brand span{display:block;font-size:12px;color:var(--sub)}
+.new{font-size:13px;font-weight:600;color:var(--blue);background:none;border:1.5px solid var(--blue);border-radius:100px;padding:7px 12px;cursor:pointer}
+#scroll{flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch}
+.thread{max-width:640px;margin:0 auto;padding:16px max(16px,env(safe-area-inset-right)) 12px max(16px,env(safe-area-inset-left));display:flex;flex-direction:column;gap:10px}
+.msg{max-width:86%;padding:10px 14px;border-radius:18px;font-size:15.5px;line-height:1.45;white-space:pre-wrap;word-wrap:break-word}
+.bot{align-self:flex-start;background:#fff;border:1px solid var(--line);border-bottom-left-radius:6px}
+.me{align-self:flex-end;background:var(--ink);color:#fff;border-bottom-right-radius:6px}
+.err{align-self:center;font-size:13.5px;color:var(--red);background:var(--red-bg);border-radius:12px;padding:8px 12px;text-align:center}
+.typing{align-self:flex-start;background:#fff;border:1px solid var(--line);border-radius:18px;padding:12px 16px;display:flex;gap:5px}
+.typing i{width:7px;height:7px;border-radius:50%;background:#a8b1c0;animation:b 1.2s infinite}
+.typing i:nth-child(2){animation-delay:.15s}.typing i:nth-child(3){animation-delay:.3s}
+@keyframes b{0%,60%,100%{transform:none;opacity:.5}30%{transform:translateY(-4px);opacity:1}}
+@media (prefers-reduced-motion:reduce){.typing i{animation:none}}
+/* cards */
+.rc{align-self:stretch;background:#fff;border:1px solid var(--line);border-left:5px solid var(--line);border-radius:16px;padding:14px;display:grid;gap:8px}
+.rc.red{border-left-color:var(--red)}.rc.amber{border-left-color:var(--amber)}.rc.green{border-left-color:var(--green)}.rc.blue{border-left-color:var(--blue)}
+.rc-h{display:flex;justify-content:space-between;align-items:center;gap:10px}
+.rc-h b{font-size:15px}
+.st{font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:3px 9px;border-radius:100px;white-space:nowrap}
+.red .st{background:var(--red-bg);color:var(--red)}.amber .st{background:var(--amber-bg);color:var(--amber)}.green .st{background:var(--green-bg);color:var(--green)}.blue .st{background:var(--blue-bg);color:var(--blue)}
+.big{font-size:22px;font-weight:800;font-variant-numeric:tabular-nums;letter-spacing:-.01em}
+.barx{height:9px;background:#eef1f6;border-radius:9px;overflow:hidden}.barx i{display:block;height:100%;border-radius:9px}
+.red .barx i{background:var(--red)}.amber .barx i{background:var(--amber)}.green .barx i{background:var(--green)}
+.kv{display:grid;grid-template-columns:1fr auto;gap:3px 12px;font-size:14px;font-variant-numeric:tabular-nums}.kv span{color:var(--sub)}.kv b{text-align:right}
+.rc p{font-size:13.5px;color:#2c3747}
+.rc a{color:var(--blue);font-weight:600;font-size:14px;text-decoration:none}
+/* lead */
+.lead{align-self:stretch;background:var(--ink);color:#fff;border-radius:18px;padding:16px;display:grid;gap:10px}
+.lead h3{font-size:18px}.lead p{font-size:13.5px;color:#c9d2e0}
+.lead input[type=text]{width:100%;border:0;border-radius:12px;padding:11px 12px;font-size:16px;color:var(--ink)}
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:8px}.g2>*{min-width:0}
+.consent{display:flex;gap:8px;font-size:13px;color:#c9d2e0}.consent input{margin-top:3px;width:18px;height:18px;flex:none}
+.wa{display:flex;align-items:center;justify-content:center;gap:8px;background:#25d366;color:#06301a;font-weight:800;border-radius:12px;padding:13px;text-decoration:none}
+.wa[aria-disabled=true]{opacity:.45;pointer-events:none}
+/* composer */
+.dock{flex:none;background:#fff;border-top:1px solid var(--line);padding-bottom:env(safe-area-inset-bottom,0px)}
+.dock-in{max-width:640px;margin:0 auto;padding:10px max(16px,env(safe-area-inset-right)) 10px max(16px,env(safe-area-inset-left));display:grid;gap:8px}
+.chips{display:flex;gap:8px;overflow-x:auto;scrollbar-width:none;padding-bottom:2px}
+.chips::-webkit-scrollbar{display:none}
+.chip{flex:none;background:var(--blue-bg);color:var(--blue);border:0;border-radius:100px;padding:8px 13px;font-weight:600;font-size:14px;cursor:pointer;white-space:nowrap}
+form{display:flex;gap:8px;align-items:flex-end}
+textarea{flex:1;min-width:0;resize:none;border:1.5px solid var(--line);border-radius:14px;padding:10px 12px;font-size:16px;max-height:120px;outline:none;line-height:1.4}
+textarea:focus{border-color:var(--blue)}
+.send{flex:none;width:46px;height:46px;border-radius:14px;border:0;background:var(--green);color:#fff;display:grid;place-items:center;cursor:pointer}
+.send:disabled{opacity:.4}
+.fine{font-size:11px;color:var(--sub);text-align:center}
+@media (max-width:380px){.g2{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<header class="top"><div class="top-in">
+  <a class="brand" href="/"><div class="logo">AI</div><div><b>Ashvamedha AI</b><span>Insurance guide · English / తెలుగు</span></div></a>
+  <button class="new" id="new" type="button">New chat</button>
+</div></header>
+
+<div id="scroll"><div class="thread" id="thread" aria-live="polite"></div></div>
+
+<div class="dock"><div class="dock-in">
+  <div class="chips" id="chips"></div>
+  <form id="f"><textarea id="t" rows="1" placeholder="Type your answer…" aria-label="Your message" maxlength="1200"></textarea>
+    <button class="send" id="sendBtn" type="submit" aria-label="Send"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M3.4 20.4 21 12 3.4 3.6 3.3 10l12.6 2-12.6 2z"/></svg></button></form>
+  <div class="fine">AI can make mistakes. Don't share PAN, Aadhaar or policy numbers. Insurance is the subject matter of solicitation.</div>
+</div></div>
+
+<script>
+(function(){
+const $=id=>document.getElementById(id),WA='918790109022',KEY='ashv-ai-chat-v1';
+let S={history:[],view:[],done:null,cards:[]};   // history = API messages; view = what we render
+let busy=false;
+const GREET="Hi 👋 I'm Ashvamedha AI. In about 3 minutes I'll check your life cover, health cover and any old policies, and show you what's working and what isn't.\n\nYou can type in English or Telugu. Shall we start?";
+const START=['Start my check-up','Is my LIC policy good?','Income for my parents','What is a TULIP plan?'];
+
+function save(){try{localStorage.setItem(KEY,JSON.stringify(S))}catch(e){}}
+function load(){try{const d=JSON.parse(localStorage.getItem(KEY)||'null');if(d&&Array.isArray(d.view))S=d}catch(e){}}
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+
+function addView(item){S.view.push(item);draw(item);save()}
+function draw(it){
+  const th=$('thread');let el;
+  if(it.t==='bot'||it.t==='me'){el=document.createElement('div');el.className='msg '+it.t;el.textContent=it.text}
+  else if(it.t==='err'){el=document.createElement('div');el.className='err';el.textContent=it.text}
+  else if(it.t==='card'){const c=it.card;el=document.createElement('div');el.className='rc '+c.status;
+    const label={red:'Needs attention',amber:'Check this',green:'Looks good',blue:'Sample'}[c.status]||'';
+    el.innerHTML=`<div class="rc-h"><b>${esc(c.title)}</b><span class="st">${label}</span></div><div class="big">${esc(c.big)}</div>`+
+      (c.bar!=null&&c.status!=='green'?`<div class="barx"><i style="width:${+c.bar}%"></i></div>`:'')+
+      (c.rows&&c.rows.length?`<div class="kv">${c.rows.map(([k,v])=>`<span>${esc(k)}</span><b>${esc(v)}</b>`).join('')}</div>`:'')+
+      (c.note?`<p>${esc(c.note)}</p>`:'')+(c.link?`<a href="${esc(c.link[1])}">${esc(c.link[0])} →</a>`:'')}
+  else if(it.t==='lead'){el=leadBox()}
+  th.appendChild(el);toBottom();
+}
+function toBottom(){requestAnimationFrame(()=>{$('scroll').scrollTop=$('scroll').scrollHeight})}
+function chips(list){const c=$('chips');c.innerHTML='';(list||[]).forEach(t=>{const b=document.createElement('button');b.type='button';b.className='chip';b.textContent=t;b.onclick=()=>send(t);c.appendChild(b)})}
+
+function leadBox(){
+  const d=document.createElement('div');d.className='lead';
+  d.innerHTML=`<h3>Your check-up is ready ✅</h3><p>Send it to Manoj. He'll explain each point and share exact quotes on WhatsApp, in Telugu or English.</p>
+  <div class="g2"><input type="text" id="ld_n" placeholder="Your name" autocomplete="name" aria-label="Your name"><input type="text" id="ld_c" placeholder="City" autocomplete="address-level2" aria-label="City"></div>
+  <label class="consent"><input type="checkbox" id="ld_ok"> I agree to share this check-up with Manoj Kumar (Ashvamedha Finance) on WhatsApp so he can contact me.</label>
+  <a class="wa" id="ld_wa" href="#" target="_blank" rel="noopener" aria-disabled="true">Send to Manoj on WhatsApp</a>`;
+  setTimeout(()=>{const n=$('ld_n');if(S.done&&S.done.name&&!n.value)n.value=S.done.name;
+    const upd=()=>{const ok=$('ld_ok').checked&&$('ld_n').value.trim();const a=$('ld_wa');a.setAttribute('aria-disabled',ok?'false':'true');
+      const D=S.done||{},lines=['Hi Manoj 👋 I did the insurance check-up with Ashvamedha AI.','',`Name: ${$('ld_n').value.trim()}`,`City: ${$('ld_c').value.trim()||'-'}`];
+      if(D.age)lines.push('Age: '+D.age);if(D.income)lines.push('Income: '+D.income);if(D.dependents)lines.push('Dependents: '+D.dependents);if(D.loans)lines.push('Loans: '+D.loans);
+      if(S.cards.length){lines.push('','Results:');S.cards.forEach(c=>lines.push(`• ${c.title}: ${c.big}`))}
+      if(D.goal)lines.push('','Goal: '+D.goal);if(D.summary)lines.push('',D.summary);
+      lines.push('','Please help me with this. [ai-checkup]');a.href=`https://wa.me/${WA}?text=${encodeURIComponent(lines.join('\n'))}`};
+    ['ld_n','ld_c'].forEach(k=>$(k).oninput=upd);$('ld_ok').onchange=upd;upd()},0);
+  return d;
+}
+
+async function send(text){
+  text=String(text||'').trim();if(!text||busy)return;
+  busy=true;$('sendBtn').disabled=true;chips([]);
+  addView({t:'me',text});S.history.push({role:'user',content:text});save();
+  const ty=document.createElement('div');ty.className='typing';ty.innerHTML='<i></i><i></i><i></i>';$('thread').appendChild(ty);toBottom();
+  try{
+    const r=await fetch('/api/chat',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({messages:S.history})});
+    const d=await r.json().catch(()=>({}));ty.remove();
+    if(!r.ok){addView({t:'err',text:d.error||'Something went wrong. Please try again.'});S.history.pop();chips([text]);return}
+    S.history.push(...(d.messages||[]));
+    (d.cards||[]).forEach(c=>{S.cards.push(c);addView({t:'card',card:c})});
+    if(d.reply)addView({t:'bot',text:d.reply});
+    if(d.done&&!S.done){S.done=d.done;addView({t:'lead'})}
+    chips(d.options);save();
+    try{window.gtag&&gtag('event',d.done?'ai_checkup_done':'ai_message')}catch(e){}
+  }catch(e){ty.remove();addView({t:'err',text:'No connection. Please check your internet and try again.'});S.history.pop();chips([text])}
+  finally{busy=false;$('sendBtn').disabled=false}
+}
+$('f').onsubmit=e=>{e.preventDefault();const v=$('t').value;$('t').value='';$('t').style.height='';send(v)};
+$('t').addEventListener('keydown',e=>{if(e.key==='Enter'&&!e.shiftKey&&window.matchMedia('(pointer:fine)').matches){e.preventDefault();$('f').requestSubmit()}});
+$('t').addEventListener('input',e=>{const t=e.target;t.style.height='auto';t.style.height=Math.min(120,t.scrollHeight)+'px'});
+function reset(){S={history:[],view:[],done:null,cards:[]};$('thread').innerHTML='';addView({t:'bot',text:GREET});chips(START)}
+$('new').onclick=()=>{try{localStorage.removeItem(KEY)}catch(e){}reset()};
+load();
+if(S.view.length){S.view.forEach(draw);chips(S.done?[]:['Continue'])}else reset();
+})();
+</script>
+</body>
+</html>
