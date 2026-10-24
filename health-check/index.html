@@ -288,7 +288,7 @@ main{padding-bottom:60px}
   <section id="view-q"></section>
   <section id="view-r" hidden><div class="sheets" id="sheets"></div></section>
 </main>
-<footer class="site-foot"><p>© Ashvamedha Finance · Manoj Kumar · Banjara Hills, Hyderabad · <a href="/contact">Contact</a>. Ashvamedha Finance's SEBI Research Analyst registration is currently in application. This check-up is for learning only and is not investment advice.</p></footer>
+<footer class="site-foot"><p>© Ashvamedha Finance · Manoj Kumar · Banjara Hills, Hyderabad · <a href="/contact">Contact</a>. This check-up is for learning only and is not investment advice.</p></footer>
 
 <script>
 (function(){
@@ -408,7 +408,7 @@ function steps(R){ const L=[];
   const order={"This week":0,"This month":1,"This year":2}; return L.sort((a,b)=>order[a.w]-order[b.w]).slice(0,5); }
 
 /* ---------- report ---------- */
-const DISC=`Based only on the numbers you entered. For learning only: not investment, tax or insurance advice, and no product is recommended. Ashvamedha Finance's SEBI Research Analyst registration is currently in application. Investment in securities market are subject to market risks. Read all the related documents carefully before investing. Ashvamedha Finance · Manoj Kumar · Banjara Hills, Hyderabad · ashvamedhaa.in@gmail.com`;
+const DISC=`Based only on the numbers you entered. For learning only: not investment, tax or insurance advice, and no product is recommended. Investment in securities market are subject to market risks. Read all the related documents carefully before investing. Ashvamedha Finance · Manoj Kumar · Banjara Hills, Hyderabad · ashvamedhaa.in@gmail.com`;
 function head(){ return `<div class="sh"><div class="brand"><div class="mark">A</div><b>Ashvamedha Finance</b></div><span>${esc(S.name||"Your")} Money Check-up</span></div>`; }
 function foot(n){ return `<div class="sf"><span>Questions? WhatsApp <b>+91 87901 09022</b> · <b>ashvamedhaai.com</b></span><span>Page ${n} of 4</span></div>`; }
 function renderReport(){
