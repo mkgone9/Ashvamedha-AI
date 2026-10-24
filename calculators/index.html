@@ -973,6 +973,10 @@ footer .nav-brand b{color:var(--ink)!important}.foot-desc,.foot-links a,.foot-li
     const sched = loan > 0 ? E.loanMonthly(loan, o.ratePct, o.tenure) : { emi: 0, bal: [0], int: [0] };
     const nn = sched.bal.length - 1, emi = sched.emi, appr = o.apprPct / 100;
     const sellF = o.sellPct / 100, cgt = o.cgtPct, slab = o.slabPct || 0;
+    // Leftover rent: 'mf' grows at the fund return (taxed as equity on sale), 'fd' at the FD rate with
+    // interest taxed at slab every year, 'none' is kept as cash with no growth.
+    const rentInvest = o.rentInvest || 'mf';
+    const sideM = rentInvest === 'fd' ? E.mRate((o.fdPct != null ? o.fdPct : 7) * (1 - slab / 100)) : rentInvest === 'none' ? 0 : m;
 
     const mfPot = new Array(H + 1), invMF = new Array(H + 1), side = new Array(H + 1), invSide = new Array(H + 1);
     mfPot[0] = C0; invMF[0] = C0; side[0] = 0; invSide[0] = 0;
@@ -992,7 +996,7 @@ footer .nav-brand b{color:var(--ink)!important}.foot-desc,.foot-links a,.foot-li
       const topUp = Math.max(-cash, 0), surplus = Math.max(cash, 0);
       if (k === 1) { rent1 = rentGross; rentTax1 = rentTax; maint1 = maint; }
       mfPot[k] = (mfPot[k - 1] + topUp) * (1 + m); invMF[k] = invMF[k - 1] + topUp;
-      side[k] = (side[k - 1] + surplus) * (1 + m); invSide[k] = invSide[k - 1] + surplus;
+      side[k] = (side[k - 1] + surplus) * (1 + sideM); invSide[k] = invSide[k - 1] + surplus;
       flowsRE.push(cash); flowsMF.push(-topUp);
       totalTopUp += topUp; totalSurplus += surplus; totalRentNet += rentNet; totalRentTax += rentTax; totalEmi += emiK; totalMaint += maint;
       if (!yr[yi + 1]) yr[yi + 1] = { rentNet: 0, emi: 0, maint: 0, topUp: 0, surplus: 0 };
@@ -1005,7 +1009,7 @@ footer .nav-brand b{color:var(--ink)!important}.foot-desc,.foot-links a,.foot-li
       const gain = hv - sellCost - (price + acq);
       const propTax = y > 2 ? Math.max(gain, 0) * cgt / 100 : Math.max(gain, 0) * slab / 100;
       const lb = k <= nn ? sched.bal[k] : 0;
-      const sideTax = E.taxEquity(side[k] - invSide[k], y, cgt);
+      const sideTax = rentInvest === 'mf' ? E.taxEquity(side[k] - invSide[k], y, cgt) : 0;
       const mfTax = E.taxEquity(mfPot[k] - invMF[k], y, cgt);
       const netSale = hv - sellCost - propTax - lb;
       return { hv, sellCost, propTax, lb, netSale, side: side[k], sideTax, mfPot: mfPot[k], mfTax,
@@ -1046,7 +1050,7 @@ footer .nav-brand b{color:var(--ink)!important}.foot-desc,.foot-links a,.foot-li
 
     const ownMoney = C0 + totalTopUp;               // identical for both paths by construction
     return {
-      upfront: C0, down, loan, reg, brok, acq, emi, netSale: fin.netSale, fin, reFinal, mfFinal, diff: reFinal - mfFinal,
+      upfront: C0, down, loan, reg, brok, acq, rentInvest, emi, netSale: fin.netSale, fin, reFinal, mfFinal, diff: reFinal - mfFinal,
       ownMoney, totalTopUp, totalSurplus, totalRentNet, totalRentTax, totalEmi, totalMaint, rent1, rentTax1, maint1,
       reIRR: irr(flowsRE), mfIRR: irr(flowsMF), breakevenAppr: be, breakevenRet: beRet, yearly, grossYieldPct: o.yieldPct,
       netYieldPct: (price * o.yieldPct / 100 * (1 - o.vacancyPct / 100) * (1 - 0.7 * slab / 100) - price * o.maintPct / 100) / price * 100
@@ -2101,12 +2105,14 @@ registerCalc('mfre', 'MF vs Real Estate', '🏘️', () => [{
     F.yrs('horizon', 'Time Horizon', { min: 3, max: 30, def: 15 }),
     F.pct('regPct', 'Registration Cost % (Stamp Duty, Registration)', { min: 0, max: 10, step: 0.5, def: 6, hint: 'Telangana: roughly 6% urban, 7.5% rural. Paid on top of the property price, on day one.' }),
     F.pct('brokPct', 'Brokerage on Purchase %', { min: 0, max: 3, step: 0.25, def: 1 }),
+    F.seg('rentInvest', 'Where does leftover rent go?', [{ v: 'mf', label: 'Mutual fund' }, { v: 'fd', label: 'FD' }, { v: 'none', label: 'Not invested' }], 'mf'),
+    F.pct('fdPct', 'FD Interest Rate (for leftover rent)', { min: 3, max: 10, step: 0.25, def: 7, showIf: (v) => v.rentInvest === 'fd', hint: 'FD interest is taxed at your slab every year.' }),
   ],
   adv: [
     F.pct('downPct', 'Down Payment % (if financing the property)', { min: 0, max: 100, step: 5, def: 100, hint: 'Set to 100% if buying the property with cash, no loan.' }),
     F.pct('ratePct', 'Loan Interest Rate (if financing)', { min: 6, max: 15, step: 0.1, def: 8.5 }),
     F.yrs('tenure', 'Loan Tenure (if financing)', { min: 5, max: 30, def: 20 }),
-    F.pct('vacancyPct', 'Vacancy Allowance % (months unrented)', { min: 0, max: 25, step: 1, def: 8 }),
+    F.pct('vacancyPct', 'Vacancy — % of the Year the Flat Is Empty', { min: 0, max: 25, step: 1, def: 8, hint: '8% ≈ 1 month a year between tenants. Set 0 if you expect it rented every month.' }),
     F.pct('rentGrowthPct', 'Annual Rent Growth', { min: 0, max: 12, step: 0.5, def: 5 }),
     F.pct('maintPct', 'Annual Maintenance % (of property value)', { min: 0, max: 3, step: 0.1, def: 1 }),
     F.pct('sellPct', 'Selling Cost % on Exit', { min: 0, max: 10, step: 0.5, def: 2 }),
@@ -2120,6 +2126,11 @@ registerCalc('mfre', 'MF vs Real Estate', '🏘️', () => [{
     const gainRE = r.reFinal - r.ownMoney, gainMF = r.mfFinal - r.ownMoney;
     const row = (k, val, cls) => '<tr' + (cls ? ' class="' + cls + '"' : '') + '><td>' + k + '</td><td>' + val + '</td></tr>';
     const neg = (x) => '− ' + fmtC(x);
+    const leftWhere = r.rentInvest === 'fd' ? 'The real estate investor keeps the leftover rent in an FD at ' + round1(v.fdPct) + '%, with interest taxed at ' + round1(v.slabPct) + '% every year.'
+      : r.rentInvest === 'none' ? 'The real estate investor keeps the leftover rent as cash — it is counted, but it does not grow.'
+        : 'The real estate investor puts the leftover rent into a mutual fund at the same ' + round1(v.retPct) + '% return.';
+    const leftLabel = r.rentInvest === 'fd' ? 'Leftover rent in FD' : r.rentInvest === 'none' ? 'Leftover rent (cash)' : 'Leftover rent in fund, after tax';
+    const rentPart = f.side - f.sideTax, salePart = r.reFinal - rentPart;
 
     const method =
       '<p>We follow two investors who spend <b>exactly the same money at exactly the same time</b>. One buys the property and rents it out. The other puts every one of those rupees into a mutual fund. Numbers below are from your inputs.</p>' +
@@ -2137,14 +2148,14 @@ registerCalc('mfre', 'MF vs Real Estate', '🏘️', () => [{
         'Tax on rent is your ' + round1(v.slabPct) + '% slab on 70% of rent (30% standard deduction)' + (hasLoan ? ' minus loan interest' : '') + (r.rentTax1 > 0.5 ? ' — about ' + fmtC(r.rentTax1) + '/month in year 1. ' : ' — nil in year 1' + (hasLoan ? ', because loan interest is larger than the taxable rent. ' : '. ')) +
         'Costs are maintenance (' + fmtC(r.maint1) + '/month in year 1)' + (hasLoan ? ' and the EMI of ' + fmtC(r.emi) + '/month' : '') + '.' +
         '<div class="av-vs"><div><i>If costs are more than rent</i>You top up the difference from your pocket. The mutual fund investor puts that same top-up into the fund. Total over ' + yrs + ' years: <b>' + fmtC(r.totalTopUp) + '</b>.</div>' +
-        '<div><i>If rent is more than costs</i>The real estate investor puts the surplus into a mutual fund at the same return. Total over ' + yrs + ' years: <b>' + fmtC(r.totalSurplus) + '</b>.</div></div></li>' +
+        '<div><i>If rent is more than costs</i>' + leftWhere + ' Total over ' + yrs + ' years: <b>' + fmtC(r.totalSurplus) + '</b>.</div></div></li>' +
       '<li><b>Growth.</b> The property grows at ' + round1(v.apprPct) + '% a year; the fund at ' + round1(v.retPct) + '% a year, compounded monthly.</li>' +
       '<li><b>After ' + yrs + ' years: sell everything and pay tax.</b>' +
         '<div class="av-vs"><div><i>🏘️ Real Estate</i><table class="av-calc">' +
           row('Property value', fmtC(f.hv)) + row('Selling cost (' + round1(v.sellPct) + '%)', neg(f.sellCost)) +
           row('Capital gains tax' + (yrs > 2 ? ' (12.5%)' : ' (slab)'), neg(f.propTax)) +
           (hasLoan && f.lb > 1 ? row('Loan still owed', neg(f.lb)) : '') +
-          (f.side > 0 ? row('Surplus-rent fund, after tax', fmtC(f.side - f.sideTax)) : '') +
+          (f.side > 0 ? row(leftLabel, fmtC(f.side - f.sideTax)) : '') +
           row('Real estate final', fmtC(r.reFinal), 'tot') + '</table></div>' +
         '<div><i>📈 Mutual Fund</i><table class="av-calc">' +
           row('Fund value', fmtC(f.mfPot)) + row('Capital gains tax', neg(f.mfTax)) +
@@ -2154,7 +2165,7 @@ registerCalc('mfre', 'MF vs Real Estate', '🏘️', () => [{
       '</ol>' +
       '<p><b>Not included:</b> property tax and society charges beyond your maintenance %, indexation for property bought before 23 July 2024, rental losses set off against salary, home-loan principal deductions, and the LTCG exemption being used every year. Returns are assumptions, not guarantees.</p>';
 
-    const cols = ['Year', 'Property value'].concat(hasLoan ? ['Loan left'] : [], ['Rent after tax', 'Cash you put in'], r.totalSurplus > 0 ? ['Surplus invested'] : [], ['Real Estate (after tax)', 'Mutual Fund (after tax)']);
+    const cols = ['Year', 'Property value'].concat(hasLoan ? ['Loan left'] : [], ['Rent after tax', 'Cash you put in'], r.totalSurplus > 0 ? ['Leftover rent'] : [], ['Real Estate (after tax)', 'Mutual Fund (after tax)']);
     const rows = r.yearly.map(y => [y.year, fmtC(y.prop)].concat(hasLoan ? [fmtC(y.loan)] : [], [y.year ? fmtC(y.rentNet) : '—', fmtC(y.topUp)], r.totalSurplus > 0 ? [fmtC(y.surplus)] : [], [fmtC(y.re), fmtC(y.mf)]));
 
     return {
@@ -2173,12 +2184,15 @@ registerCalc('mfre', 'MF vs Real Estate', '🏘️', () => [{
         { k: 'Property Growth Needed to Match MF', v: pctOr(r.breakevenAppr, 'any', '> 25%'), s: 'you assumed ' + round1(v.apprPct) + '%' },
         { k: 'MF Return Needed to Match Property', v: pctOr(r.breakevenRet, '< 0%', '> 30%'), s: 'you assumed ' + round1(v.retPct) + '%' },
       ],
+      split: rentPart > 0 && salePart > 0 ? [
+        { label: 'Real estate: property sale', value: salePart, color: '#2563eb' },
+        { label: 'Real estate: leftover rent', value: rentPart, color: '#93c5fd' }] : null,
       chart: {
         title: 'Net Worth Over Time (after tax)', xs: r.yearly.map(y => y.year), xTitle: 'Year', xFmt: (x) => 'Y' + x,
         series: [{ name: 'Real Estate', color: '#2563eb', values: r.yearly.map(y => y.re) }, { name: 'Mutual Fund', color: '#c9a84c', values: r.yearly.map(y => y.mf) }]
       },
       insights: [
-        ins('🏠', 'info', 'Net rental yield after vacancy, maintenance and tax: <b>' + round1(r.netYieldPct) + '%</b> (vs ' + round1(r.grossYieldPct) + '% gross). Over ' + yrs + ' years the property earns ' + fmtC(r.totalRentNet) + ' in rent after tax.'),
+        ins('🏠', 'info', 'Net rental yield after vacancy, maintenance and tax: <b>' + round1(r.netYieldPct) + '%</b> (vs ' + round1(r.grossYieldPct) + '% gross). Over ' + yrs + ' years the property earns ' + fmtC(r.totalRentNet) + ' in rent after tax' + (r.totalSurplus > 0 ? '; ' + fmtC(r.totalSurplus) + ' is left after costs and goes to ' + (r.rentInvest === 'fd' ? 'an FD' : r.rentInvest === 'none' ? 'cash (not invested)' : 'a mutual fund') + '.' : '.')),
         r.netYieldPct < 2 ? ins('⚠️', 'warn', 'With a net yield this thin, most of the real estate result depends on appreciation actually happening.') : null,
         hasLoan ? ins('🏦', 'info', 'EMI of <b>' + fmtC(r.emi) + '/month</b> for ' + v.tenure + ' years on a ' + fmtC(r.loan) + ' loan. Interest is deducted from rent before tax.') : null,
         ins('💧', 'info', 'Mutual funds can be sold in days; a property sale typically takes months and depends on finding a buyer at your price — a real, non-financial difference this chart can\'t show.'),
