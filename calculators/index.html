@@ -938,57 +938,88 @@ footer .nav-brand b{color:var(--ink)!important}.foot-desc,.foot-links a,.foot-li
     return { emi, upfront: C0, reg, homeEnd, sellCost, propTax, loanOut, buyFinal, rentFinal, diff: buyFinal - rentFinal, breakevenAppr: be, yearly };
   };
 
-  /* ───────── mutual fund vs investment property ───────── */
+  /* ───────── mutual fund vs investment property ─────────
+     Cash-flow matched. Both paths start with the same cash (down payment + registration + brokerage).
+     Each month, the property's cash need (EMI + maintenance, less rent after vacancy and tax) is either
+     a shortfall you pay (the mutual fund path invests that amount instead) or a surplus you receive
+     (the real estate path invests it). Every net worth figure is shown after tax, as if sold at that point,
+     so the chart's last point always equals the headline result. */
   E.mfVsRe = (o) => {
     const price = o.price, down = price * o.downPct / 100, loan = price - down;
     const acq = price * (o.regPct + o.brokPct) / 100, C0 = down + acq;
     const H = E.nMonths(o.horizon), m = E.mRate(o.retPct);
     const sched = loan > 0 ? E.loanMonthly(loan, o.ratePct, o.tenure) : { emi: 0, bal: [0], int: [0] };
     const nn = sched.bal.length - 1, emi = sched.emi, appr = o.apprPct / 100;
-    let mf = C0, invMF = C0, side = 0, invSide = 0;
+    const sellF = o.sellPct / 100, cgt = o.cgtPct, slab = o.slabPct || 0;
+
+    // Month-by-month balances for both paths.
+    const mfPot = new Array(H + 1), invMF = new Array(H + 1), side = new Array(H + 1), invSide = new Array(H + 1);
+    mfPot[0] = C0; invMF[0] = C0; side[0] = 0; invSide[0] = 0;
     const flowsRE = [-C0], flowsMF = [-C0];
-    const yearly = [{ year: 0, re: price - loan - acq, mf: C0 }];
-    let cumInflow = 0;
+    let totalRent = 0, totalOwnCost = 0;
     for (let k = 1; k <= H; k++) {
       const yi = Math.floor((k - 1) / 12);
       const rentGross = price * o.yieldPct / 100 / 12 * Math.pow(1 + o.rentGrowthPct / 100, yi) * (1 - o.vacancyPct / 100);
-      const rentTax = rentGross * 0.7 * (o.slabPct || 0) / 100;
-      const homePrev = price * Math.pow(1 + appr, (k - 1) / 12);
-      const cost = homePrev * o.maintPct / 100 / 12;
+      const intK = k <= nn ? sched.int[k] : 0;
+      const taxable = Math.max(rentGross * 0.7 - intK, 0);           // 30% standard deduction + loan interest; losses not set off against salary
+      const rentNet = rentGross - taxable * slab / 100;
+      const cost = price * Math.pow(1 + appr, (k - 1) / 12) * o.maintPct / 100 / 12;
       const emiK = k <= nn ? emi : 0;
-      const cash = rentGross - rentTax - cost - emiK;
+      const cash = rentNet - cost - emiK;                               // + surplus received, − shortfall paid
+      totalRent += rentNet; totalOwnCost += cost + emiK;
       const shortfall = Math.max(-cash, 0), surplus = Math.max(cash, 0);
-      mf = (mf + shortfall) * (1 + m); invMF += shortfall;
-      side = (side + surplus) * (1 + m); invSide += surplus;
+      mfPot[k] = (mfPot[k - 1] + shortfall) * (1 + m); invMF[k] = invMF[k - 1] + shortfall;
+      side[k] = (side[k - 1] + surplus) * (1 + m); invSide[k] = invSide[k - 1] + surplus;
       flowsRE.push(cash); flowsMF.push(-shortfall);
-      if (k % 12 === 0) {
-        const hv = price * Math.pow(1 + appr, k / 12), lb = k <= nn ? sched.bal[k] : 0;
-        yearly.push({ year: k / 12, re: hv * (1 - o.sellPct / 100) - lb + side, mf });
-      }
     }
-    const homeEnd = price * Math.pow(1 + appr, H / 12), sellCost = homeEnd * o.sellPct / 100;
-    const propGain = homeEnd - sellCost - (price + acq);
-    const propTax = H / 12 > 2 ? Math.max(propGain, 0) * o.cgtPct / 100 : Math.max(propGain, 0) * (o.slabPct || 0) / 100;
-    const loanOut = H <= nn ? sched.bal[H] : 0;
-    const tx = (port, inv) => E.taxEquity(port - inv, H / 12, o.cgtPct);
-    const netSale = homeEnd - sellCost - propTax - loanOut;
-    const reFinal = netSale + side - tx(side, invSide);
-    const mfFinal = mf - tx(mf, invMF);
-    flowsRE[H] += netSale; flowsMF[H] += mfFinal - 0;   // MF path: only its own contributions vs final
+
+    // Both paths at month k, after tax, as if everything were liquidated then.
+    const snap = (k) => {
+      const y = k / 12, hv = price * Math.pow(1 + appr, y), sellCost = hv * sellF;
+      const gain = hv - sellCost - (price + acq);
+      const propTax = y > 2 ? Math.max(gain, 0) * cgt / 100 : Math.max(gain, 0) * slab / 100;
+      const lb = k <= nn ? sched.bal[k] : 0;
+      const re = hv - sellCost - propTax - lb + side[k] - E.taxEquity(side[k] - invSide[k], y, cgt);
+      const mf = mfPot[k] - E.taxEquity(mfPot[k] - invMF[k], y, cgt);
+      return { re, mf, hv, sellCost, propTax, lb };
+    };
+
+    const yearly = [];
+    for (let k = 0; k <= H; k += 12) { const s = snap(k); yearly.push({ year: k / 12, re: s.re, mf: s.mf }); }
+    if (yearly[yearly.length - 1].year !== H / 12) { const s = snap(H); yearly.push({ year: H / 12, re: s.re, mf: s.mf }); }
+
+    const fin = snap(H);
+    const reFinal = fin.re, mfFinal = fin.mf;
+    const netSale = fin.hv - fin.sellCost - fin.propTax - fin.lb;
     const irr = (flows) => {
       const npv = (r) => { let s = 0; for (let k = 0; k < flows.length; k++) s += flows[k] / Math.pow(1 + r, k); return s; };
       let lo = -0.02, hi = 0.05; if (npv(lo) * npv(hi) > 0) return null;
       for (let i = 0; i < 80; i++) { const mid = (lo + hi) / 2; if (npv(lo) * npv(mid) <= 0) hi = mid; else lo = mid; }
       return (Math.pow(1 + (lo + hi) / 2, 12) - 1) * 100;
     };
-    // MF path flows: initial C0 out, shortfalls out, final in
-    const f = (ap) => { const q = E.mfVsRe(Object.assign({}, o, { apprPct: ap, _noSolve: true })); return q.reFinal - q.mfFinal; };
-    let be = null;
+    flowsRE[H] += netSale; flowsMF[H] += mfFinal;
+
+    // Property growth needed for real estate to match the mutual fund (and vice versa).
+    let be = null, beRet = null;
     if (!o._noSolve) {
-      if (f(-5) >= 0) be = -Infinity; else if (f(25) < 0) be = Infinity;
-      else { let lo = -5, hi = 25; for (let i = 0; i < 50; i++) { const mid = (lo + hi) / 2; if (f(mid) < 0) lo = mid; else hi = mid; } be = (lo + hi) / 2; }
+      const fa = (ap) => { const q = E.mfVsRe(Object.assign({}, o, { apprPct: ap, _noSolve: true })); return q.reFinal - q.mfFinal; };
+      if (fa(-5) >= 0) be = -Infinity; else if (fa(25) < 0) be = Infinity;
+      else { let lo = -5, hi = 25; for (let i = 0; i < 50; i++) { const mid = (lo + hi) / 2; if (fa(mid) < 0) lo = mid; else hi = mid; } be = (lo + hi) / 2; }
+
+      const fr = (rp) => { const q = E.mfVsRe(Object.assign({}, o, { retPct: rp, _noSolve: true })); return q.mfFinal - q.reFinal; };
+      let lo = 4, hi = 30;
+      if (fr(lo) * fr(hi) < 0) {
+        for (let i = 0; i < 50; i++) { const mid = (lo + hi) / 2; if (fr(mid) * fr(lo) > 0) lo = mid; else hi = mid; }
+        beRet = (lo + hi) / 2;
+      }
     }
-    return { upfront: C0, acq, emi, netSale, reFinal, mfFinal, diff: reFinal - mfFinal, reIRR: irr(flowsRE), mfIRR: irr(flowsMF), breakevenAppr: be, yearly, grossYieldPct: o.yieldPct, netYieldPct: (price * o.yieldPct / 100 * (1 - o.vacancyPct / 100) * (1 - 0.7 * (o.slabPct || 0) / 100) - price * o.maintPct / 100) / price * 100 };
+
+    return {
+      upfront: C0, acq, emi, netSale, reFinal, mfFinal, diff: reFinal - mfFinal,
+      reIRR: irr(flowsRE), mfIRR: irr(flowsMF), breakevenAppr: be, breakevenRet: beRet,
+      totalRent, totalOwnCost, yearly, grossYieldPct: o.yieldPct,
+      netYieldPct: (price * o.yieldPct / 100 * (1 - o.vacancyPct / 100) * (1 - 0.7 * slab / 100) - price * o.maintPct / 100) / price * 100
+    };
   };
 
   /* ───────── FD vs mutual fund ───────── */
@@ -2055,14 +2086,18 @@ registerCalc('mfre', 'MF vs Real Estate', '🏘️', () => [{
         series: [{ name: 'Real Estate', color: '#2563eb', values: r.yearly.map(y => y.re) }, { name: 'Mutual Fund', color: '#94a3b8', values: r.yearly.map(y => y.mf) }]
       },
       insights: [
+        ins('🎯', 'info', r.breakevenRet != null
+          ? 'A mutual fund return of about ' + round1(r.breakevenRet) + '% a year would match this property. You have assumed ' + round1(v.retPct) + '%.'
+          : (r.diff > 0 ? 'Real estate stays ahead even if the fund returned 30% a year.' : 'Mutual funds stay ahead even if they returned only 4% a year.')),
         ins('💧', 'info', 'Mutual funds can be sold in days; a property sale typically takes months and depends on finding a buyer at your price — a real, non-financial difference this chart can\'t show.'),
         r.netYieldPct < 2 ? ins('⚠️', 'warn', 'After vacancy, maintenance, and tax on rental income, your net yield is quite thin — most of this comparison\'s outcome rides on appreciation actually happening.') : null,
+        ins('🧾', 'info', 'Rent is taxed at your slab on the rent left after the 30% standard deduction and loan interest. Property sold after 2 years is taxed at 12.5% on the gain, with no indexation.'),
       ].filter(Boolean),
       table: {
         cols: ['Year', 'Real Estate', 'Mutual Fund'],
         rows: r.yearly.filter((y, i) => i % Math.max(1, Math.round(r.yearly.length / 8)) === 0 || i === r.yearly.length - 1).map(y => [y.year, fmtC(y.re), fmtC(y.mf)])
       },
-      method: 'Real estate path: rental income (after vacancy and tax) minus maintenance and EMI, invested as surplus or funded as shortfall, plus property appreciation and eventual sale. Mutual fund path: the same upfront cash grows at your chosen return, funding the same shortfalls the property would need. Registration and brokerage costs are real, sunk costs from day one — exactly like the down payment.'
+      method: 'Both paths start with the same cash: the down payment plus registration and brokerage. Each month, the property\'s cash needs (loan EMI and maintenance) are set against the rent you receive after vacancy and tax. Where the property costs you money, the mutual fund path invests that amount instead. Where it pays you, the real estate path invests the surplus. Real estate is valued at market price less selling costs, minus the loan balance. Both sides are taxed as if sold at the end: property at 12.5% without indexation (slab rate if held 2 years or less), and fund gains at 12.5% above ₹1.25 L (20% if held under a year). Not included: property tax, society charges, indexation, and losses set off against salary.'
     };
   }
 }]);
