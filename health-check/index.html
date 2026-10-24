@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Free Money Health Check-up | Ashvamedha Finance</title>
+<meta name="description" content="Answer 4 short steps and get a free, simple money report: your money score, savings, emergency fund, loans, insurance and goals, with 5 clear next steps. Your numbers stay on your phone.">
+<meta name="robots" content="index,follow">
+<meta name="author" content="Manoj Kumar, Ashvamedha Finance">
+<link rel="canonical" href="https://www.ashvamedhaai.com/health-check">
+<meta property="og:title" content="Free Money Health Check-up | Ashvamedha Finance">
+<meta property="og:description" content="4 short steps. A simple report with your money score and 5 clear next steps. Free, and your numbers stay on your phone.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://www.ashvamedhaai.com/health-check">
+<meta property="og:site_name" content="Ashvamedha Finance">
+<meta property="og:locale" content="en_IN">
+<meta property="og:image" content="https://www.ashvamedhaai.com/og/default.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://www.ashvamedhaai.com/og/default.jpg">
+<link rel="icon" href="/assets/logo.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap">
+<style>
+/* Layout: the "in between" check-up. 4 short screens of questions, then a 3-page report:
+   1) score + report card + key numbers, 2) four picture cards (every ₹100, emergency months, EMI meter, own vs owe),
+   3) protection, goals and 5 next steps. Pages are fluid cards on phones and fixed A4 sheets on wide screens and in print.
+   Single light theme on purpose: it mirrors the printed PDF. */
+:root{
+  color-scheme:light;
+  --bg:#eef1f7; --paper:#ffffff; --ink:#101828; --muted:#667085; --line:#eaecf0; --navy:#0f2347; --btn:#2f6bff; --btn-s:#eef3ff; --grad:#2f6bff;
+  --good:#067647; --good-s:#e7f7ef; --ok:#b54708; --ok-s:#fff4e0; --bad:#b42318; --bad-s:#fee4e2;
+  --g:#1f9d63; --g-s:#e7f6ee; --b:#2563eb; --b-s:#e8f0ff; --o:#e8730f; --o-s:#fff1e2; --p:#7b4ddb; --p-s:#f1ebff; --t:#0e9488; --t-s:#e1f5f2; --r:#d6457a; --r-s:#fdeaf1; --n:#0f2347; --n-s:#e9edf5;
+  --font:"Plus Jakarta Sans", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+html{-webkit-text-size-adjust:100%}
+body{margin:0}
+body{background:var(--bg);color:var(--ink);font-family:var(--font);font-size:15px;line-height:1.5}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--paper)}
+.wrap{max-width:900px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+h1,h2,h3,h4{margin:0;line-height:1.2;text-wrap:balance}
+p{margin:0}
+button{font:inherit;cursor:pointer}
+:focus-visible{outline:3px solid var(--btn);outline-offset:2px}
+
+.top{background:var(--paper);border-bottom:1px solid var(--line)}
+.top .wrap{display:flex;align-items:center;justify-content:space-between;gap:12px;padding-block:12px;flex-wrap:wrap}
+.brand{display:flex;align-items:center;gap:10px}
+.mark{width:34px;height:34px;border-radius:10px;background:var(--grad);display:grid;place-items:center;color:#fff;font-weight:800;font-size:17px;flex:none}
+.brand b{display:block;font-size:1rem}
+.brand span{font-size:.8rem;color:var(--muted)}
+.toplinks{display:flex;gap:16px;font-size:.9rem;font-weight:600}
+.toplinks a{color:var(--muted);text-decoration:none}
+.toplinks a:hover{color:var(--btn)}
+@media (max-width:420px){.toplinks{gap:10px;font-size:.84rem}}
+.intro{background:#fff;border-radius:18px;padding:18px 20px;max-width:760px;margin:0 auto 14px;box-shadow:0 1px 3px rgba(16,24,40,.06)}
+.intro h1{font-size:1.5rem;font-weight:800}
+.intro p{color:var(--muted);margin-top:4px}
+.intro .bul{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
+.intro .bul span{font-size:.8rem;font-weight:700;color:var(--btn);background:var(--btn-s);border-radius:99px;padding:4px 10px}
+.actions{max-width:210mm;margin:0 auto;width:100%;background:#fff;border-radius:18px;padding:18px;box-shadow:0 1px 3px rgba(16,24,40,.06);display:grid;gap:12px}
+.actions h3{font-size:1.1rem;font-weight:800}
+.actions .row{display:flex;gap:10px;flex-wrap:wrap}
+.btn.wa{background:#1fa855;border-color:#1fa855;color:#fff;text-decoration:none;display:inline-flex;align-items:center}
+.modal{position:fixed;inset:0;background:rgba(16,24,40,.5);display:grid;place-items:center;padding:16px;z-index:50}
+.modal .box{background:#fff;border-radius:18px;padding:20px;max-width:420px;width:100%;display:grid;gap:12px}
+.modal h3{font-size:1.2rem;font-weight:800}
+.modal input{width:100%;font:inherit;padding:12px;border-radius:12px;border:1.5px solid var(--line);background:#f7f9fc}
+.modal .err2{color:var(--bad);font-size:.86rem;font-weight:600;min-height:1.1em}
+.qr svg{width:100%;height:100%;display:block}
+.chip{font-size:.72rem;font-weight:700;letter-spacing:.04em;text-transform:uppercase;padding:4px 10px;border-radius:99px;background:var(--ok-s);color:#9a6200}
+.tabs{position:sticky;top:env(safe-area-inset-top,0px);z-index:9;background:var(--bg);padding-block:12px 8px}
+.tabbar{display:flex;gap:6px;background:var(--paper);border:1px solid var(--line);border-radius:12px;padding:4px}
+.tab{flex:1 1 0;border:0;background:transparent;color:var(--muted);padding:10px 6px;border-radius:9px;font-weight:700;font-size:.92rem}
+.tab[aria-selected="true"]{background:var(--grad);color:#fff}
+.banner{margin-top:8px;font-size:.86rem;color:var(--muted)}
+.linkbtn{border:0;background:none;color:var(--btn);font-weight:700;padding:0;text-decoration:underline}
+main{padding-bottom:60px}
+.site-foot{max-width:900px;margin:0 auto;padding:0 16px 40px;font-size:.8rem;color:var(--muted)}
+.site-foot a{color:var(--btn)}
+
+/* ---------- questions ---------- */
+.qcard{background:#fff;border:1px solid var(--line);border-radius:18px;padding:20px;max-width:760px;margin:0 auto}
+.progress{display:flex;gap:6px;margin-bottom:10px}
+.progress i{flex:1;height:7px;border-radius:9px;background:var(--line)}
+.progress i.on{background:var(--grad)}
+.stepname{font-size:.8rem;font-weight:700;color:var(--btn);letter-spacing:.04em;text-transform:uppercase}
+.qcard h2{font-size:1.4rem;font-weight:800;margin-top:4px}
+.qcard .sub{color:var(--muted);margin-top:2px}
+.fields{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px 18px;margin-top:18px}
+@media (max-width:640px){.fields{grid-template-columns:1fr}}
+.field{display:grid;gap:5px;align-content:start;min-width:0}
+.field.full{grid-column:1/-1}
+.field label,.field .fl{font-weight:700;font-size:.95rem}
+.opt{font-weight:400;color:var(--muted);font-size:.8rem}
+.help{font-size:.8rem;color:var(--muted)}
+.inp{position:relative}
+.inp input,.inp select{width:100%;font:inherit;font-size:1rem;color:var(--ink);background:#f7f9fc;border:1.5px solid var(--line);border-radius:12px;padding:11px 13px}
+.inp.money input{padding-left:30px}
+.inp.money::before{content:"₹";position:absolute;left:13px;top:50%;transform:translateY(-50%);color:var(--muted)}
+.echo{font-size:.78rem;color:var(--btn);min-height:1.1em}
+.chips{display:flex;gap:8px;flex-wrap:wrap}
+.chips button{border:1.5px solid var(--line);background:#f7f9fc;color:var(--ink);padding:9px 14px;border-radius:12px;font-size:.92rem;font-weight:600}
+.chips button[aria-pressed="true"]{border-color:var(--btn);background:var(--btn-s);color:var(--btn)}
+.formnav{display:flex;justify-content:space-between;gap:10px;margin-top:22px;align-items:center}
+.btn{border:1.5px solid var(--line);background:#fff;color:var(--ink);padding:12px 20px;border-radius:12px;font-weight:800;font-size:1rem}
+.btn.primary{background:var(--grad);border-color:transparent;color:#fff}
+.btn:disabled{opacity:.4;cursor:not-allowed}
+.privacy{font-size:.8rem;color:var(--muted);background:#f7f9fc;border-radius:12px;padding:10px 12px;margin-top:16px}
+
+/* ---------- report pages: fluid on phones ---------- */
+.sheets{display:grid;gap:18px;justify-content:center}
+.sheet{--pad:16px;background:#f6f8fc;border-radius:20px;padding:var(--pad);display:flex;flex-direction:column;gap:14px;box-shadow:0 4px 20px rgba(16,24,40,.08);overflow:hidden;min-width:0}
+.sh{display:flex;justify-content:space-between;align-items:center;gap:10px;font-size:.78rem;color:var(--muted)}
+.sh .brand .mark{width:26px;height:26px;font-size:13px;border-radius:7px}
+.sh .brand b{font-size:.86rem}
+.pg-title h2{font-size:1.45rem;font-weight:800;color:var(--navy)}
+.pg-title p{color:var(--muted);font-size:.95rem}
+.sf{margin-top:auto;display:flex;justify-content:space-between;gap:10px;font-size:.74rem;color:var(--muted);border-top:1px solid var(--line);padding-top:8px;flex-wrap:wrap}
+.sf b{color:var(--navy)}
+.grid2{display:grid;grid-template-columns:1fr;gap:12px}
+.chip2{font-size:.74rem;background:#fff;color:var(--muted);box-shadow:0 1px 3px rgba(16,24,40,.08);border-radius:99px;padding:5px 11px;font-weight:600}
+.hero{background:#fff;color:var(--ink);border-radius:24px;padding:20px;display:grid;grid-template-columns:auto 1fr;gap:18px;align-items:center;box-shadow:0 6px 24px rgba(47,107,255,.10)}
+.hero .hi{color:var(--muted);font-weight:600}
+.hero h1{font-size:1.7rem;font-weight:800;margin-top:2px}
+.hero .verdict{color:#475467;font-size:.98rem;margin-top:6px;max-width:40ch}
+.hero .verdict b{color:var(--ink)}
+.hero h1 span{color:var(--btn)}
+.sample{display:inline-block;margin-top:10px;font-size:.66rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;border:1px solid var(--line);color:var(--muted);border-radius:99px;padding:3px 10px}
+.ringbox svg{width:132px;height:132px;display:block}
+@media (max-width:520px){.hero{grid-template-columns:1fr;text-align:center}.ringbox svg{margin:0 auto}.hero .verdict{margin-inline:auto}}
+.sec-h{font-size:1.05rem;font-weight:800}
+.rcard{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+@media (max-width:520px){.rcard{grid-template-columns:1fr}}
+.rc{background:#fff;border:1px solid transparent;box-shadow:0 1px 3px rgba(16,24,40,.06);border-radius:18px;padding:13px 14px;display:grid;gap:2px;align-content:start}
+.rc .top2{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:6px}
+.rc .ic{width:38px;height:38px;border-radius:12px;display:grid;place-items:center;background:var(--btn-s);color:var(--btn)}
+.rc .ic svg{width:21px;height:21px}
+.rc .what{font-size:.8rem;font-weight:600;color:var(--muted)}
+.rc .val{font-size:1rem;font-weight:800;line-height:1.3}
+.pill{display:inline-flex;align-items:center;gap:6px;font-weight:700;font-size:.74rem;padding:4px 10px;border-radius:99px;white-space:nowrap}
+.pill i{width:7px;height:7px;border-radius:50%}
+.pill.s-good{background:var(--good-s);color:var(--good)} .pill.s-good i{background:var(--good)}
+.pill.s-ok{background:var(--ok-s);color:#9a6200} .pill.s-ok i{background:var(--ok)}
+.pill.s-bad{background:var(--bad-s);color:var(--bad)} .pill.s-bad i{background:var(--bad)}
+.keys{display:grid;grid-template-columns:repeat(2,1fr);gap:8px}
+.key{background:#fff;border:1px solid transparent;box-shadow:0 1px 3px rgba(16,24,40,.06);border-radius:16px;padding:11px 13px;display:grid;gap:1px}
+.key span{font-size:.78rem;color:var(--muted);font-weight:600}
+.key b{font-size:1.25rem;font-weight:800;font-variant-numeric:tabular-nums}
+.key.hl{background:var(--btn);color:#fff;border:0}.key.hl span{color:#dbe4ff}
+/* picture cards */
+.card{background:#fff;border:1px solid transparent;box-shadow:0 1px 3px rgba(16,24,40,.06);border-radius:18px;overflow:hidden;display:flex;flex-direction:column;min-width:0}
+.card .ch{display:flex;align-items:center;gap:10px;padding:12px 14px 4px}
+.card .ch .ic{width:34px;height:34px;border-radius:11px;background:var(--btn-s);color:var(--btn);display:grid;place-items:center;flex:none}
+.card .ch .ic svg{width:20px;height:20px}
+.card .ch h3{font-size:1rem;font-weight:800;flex:1}
+.card .cb{padding:8px 14px 14px;display:grid;gap:8px;flex:1;align-content:start}
+.big{font-size:1.7rem;font-weight:800;line-height:1.1;color:var(--btn);font-variant-numeric:tabular-nums}
+.big small{font-size:.85rem;font-weight:600;color:var(--ink)}
+.says{font-size:.9rem}
+.says strong{font-weight:800}
+.aim{font-size:.84rem;background:#f2f5ff;border-radius:10px;padding:7px 11px}
+.aim b{color:var(--btn)}
+.alert{display:flex;gap:8px;align-items:flex-start;background:var(--bad-s);border-radius:9px;padding:7px 10px;font-size:.82rem}
+.alert svg{width:18px;height:18px;flex:none;color:var(--bad);margin-top:1px}
+.viz svg{display:block;width:100%;height:auto}
+.legend{display:grid;gap:4px;font-size:.84rem}
+.legend div{display:grid;grid-template-columns:12px 1fr auto;gap:8px;align-items:center}
+.legend i{width:12px;height:12px;border-radius:3px}
+.legend b{font-variant-numeric:tabular-nums}
+.waf{display:grid;grid-template-columns:120px 1fr;gap:12px;align-items:center}
+.wide .cb{gap:12px}
+.wide .waf{grid-template-columns:minmax(0,220px) 1fr;gap:22px}
+.wide .legend{font-size:.95rem;gap:8px}
+.wide .legend i{width:14px;height:14px}
+.pbar{height:12px;background:#e9eef8;border-radius:99px;position:relative}
+.pbar i{position:absolute;inset:0 auto 0 0;border-radius:99px}
+.pbar u{position:absolute;top:-5px;bottom:-5px;width:2px;background:var(--good)}
+.prow{display:grid;gap:6px}
+.prow .lbl{display:flex;justify-content:space-between;font-size:.84rem;color:var(--muted)}
+.prow .lbl b{color:var(--ink)}
+.note{display:flex;gap:10px;align-items:flex-start;background:#fff;border-radius:16px;padding:12px 14px;box-shadow:0 1px 3px rgba(16,24,40,.06);font-size:.88rem;color:#475467}
+.note b{color:var(--ink)}
+.note .ic{width:30px;height:30px;border-radius:9px;background:#fff4e0;color:#b54708;display:grid;place-items:center;flex:none}
+.note .ic svg{width:18px;height:18px}
+@media (max-width:520px){.wide .waf{grid-template-columns:1fr}.wide .waf .viz{max-width:200px}}
+.t-g{--c:var(--g);--cs:var(--g-s)} .t-b{--c:var(--b);--cs:var(--b-s)} .t-o{--c:var(--o);--cs:var(--o-s)} .t-p{--c:var(--p);--cs:var(--p-s)} .t-t{--c:var(--t);--cs:var(--t-s)} .t-r{--c:var(--r);--cs:var(--r-s)} .t-n{--c:var(--n);--cs:var(--n-s)}
+.shields{display:grid;gap:6px}
+.shield{display:grid;grid-template-columns:26px 1fr auto;gap:9px;align-items:center;background:#f6f8fc;border-radius:10px;padding:6px 9px}
+.shield svg{width:24px;height:24px}
+.shield b{font-size:.88rem}
+.shield p{font-size:.76rem;color:var(--muted)}
+.tag{font-size:.7rem;font-weight:800;padding:2px 8px;border-radius:99px;white-space:nowrap}
+.tag.s-good{background:var(--good-s);color:var(--good)} .tag.s-ok{background:var(--ok-s);color:#9a6200} .tag.s-bad{background:var(--bad-s);color:var(--bad)}
+.jars{display:grid;gap:8px;grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}
+.jar{display:grid;grid-template-columns:42px 1fr;gap:10px;align-items:center;background:#f6f8fc;border-radius:12px;padding:7px 9px}
+.jar svg{width:42px;height:56px}
+.jar b{display:block;font-size:.9rem}
+.jar span{display:block;font-size:.76rem;color:var(--muted)}
+.jar em{display:block;font-style:normal;font-weight:800;color:var(--t);font-size:.88rem}
+.acts{display:grid;gap:7px}
+.act{display:grid;grid-template-columns:34px 1fr;gap:12px;align-items:center;border-radius:16px;padding:9px 12px;background:#fff;box-shadow:0 1px 3px rgba(16,24,40,.06)}
+.act b.n{width:34px;height:34px;border-radius:11px;background:var(--btn);color:#fff;display:grid;place-items:center;font-size:1rem}
+.act .when{font-size:.66rem;font-weight:800;letter-spacing:.05em;text-transform:uppercase;color:var(--btn)}
+.act p{font-size:.88rem}
+.act p strong{font-weight:800}
+.call{background:var(--grad);color:#fff;border-radius:20px;box-shadow:0 8px 22px rgba(47,107,255,.22);padding:14px 16px;display:grid;grid-template-columns:1fr auto;gap:14px;align-items:center}
+.call h3{font-size:1.1rem;font-weight:800}
+.call p{color:#dbe4ff;font-size:.86rem;margin-top:2px}
+.call .wa{font-weight:800;color:#fff;margin-top:6px}
+.qr{width:76px;height:76px;background:#fff;border-radius:10px;display:grid;place-items:center;text-align:center;font-size:.6rem;color:var(--muted);padding:5px}
+.fine{font-size:.8rem;color:var(--muted);line-height:1.45;display:grid;gap:3px}
+.optin{background:#fff;border:2px solid var(--btn);border-radius:16px;padding:18px;display:grid;gap:10px;max-width:210mm;margin:0 auto;width:100%}
+.optin h3{font-size:1.1rem;font-weight:800}
+.optin input[type=tel]{width:100%;font:inherit;padding:12px;border-radius:12px;border:1.5px solid var(--line);background:#f7f9fc}
+.check{display:flex;gap:10px;align-items:flex-start;font-size:.92rem}
+.check input{margin-top:3px;width:18px;height:18px;accent-color:var(--btn)}
+.msg{font-size:.86rem;color:var(--good);min-height:1.2em;font-weight:600}
+
+/* ---------- fixed A4 on wide screens and in print ---------- */
+@media print, screen and (min-width:840px){
+  .sheet{--pad:12mm;width:210mm;height:297mm;padding:11mm 12mm 9mm;border-radius:4px;gap:3.6mm;font-size:10pt}
+  .grid2{grid-template-columns:1fr 1fr;gap:4mm}
+  .keys{grid-template-columns:repeat(4,1fr)}
+  .sheet>*{flex-shrink:0}
+  .fine{font-size:7.6pt}
+  .sheet .disc{font-size:10pt;line-height:1.25}
+  .act{padding:7px 12px}
+  .call{padding:10px 14px}
+  .qr{width:60px;height:60px}
+  .t-t .cb{gap:6px}
+  .jar{padding:5px 9px}
+  .jar svg{width:36px;height:48px}
+  .acts{gap:6px}
+  .wide .big{font-size:26pt}
+  .wide .says{font-size:11pt}
+  .wide .aim{font-size:10pt}
+  .wide .ch h3{font-size:13pt}
+  .wide .ch .ic{width:40px;height:40px}
+  .wide .ch .ic svg{width:23px;height:23px}
+  .shields.two-col{grid-template-columns:1fr 1fr}
+  .hero h1{font-size:21pt}
+  .hero{padding:7mm}
+  .ringbox svg{width:150px;height:150px}
+  .rcard{gap:9px}
+  .rc{padding:14px 15px}
+  .rc .ic{width:42px;height:42px}
+  .rc .ic svg{width:23px;height:23px}
+  .rc .what{font-size:8.8pt}
+  .rc .val{font-size:12pt}
+  .pill{font-size:8pt}
+  .key{padding:12px 14px}
+  .key b{font-size:15pt}
+  .sec-h{font-size:13pt}
+}
+@media print{
+  @page{size:A4;margin:0}
+  body{background:#fff!important}
+  body::before,.top,.tabs,#view-q,.actions,.modal,.site-foot{display:none!important}
+  #view-r{display:block!important}
+  main,.wrap{padding:0!important;max-width:none!important}
+  .sheets{display:block}
+  .sheet{box-shadow:none;border-radius:0;break-after:page;page-break-after:always;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+}
+</style>
+</head>
+<body>
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="/" style="text-decoration:none;color:inherit"><img src="/assets/logo.jpg" alt="Ashvamedha Finance" style="width:36px;height:36px;border-radius:9px;object-fit:cover"><div><b>Manoj Kumar</b><span>Ashvamedha Finance</span></div></a>
+    <nav class="toplinks" aria-label="Site"><a href="/">Home</a><a href="/calculators">Calculators</a><a href="/contact">Contact</a></nav>
+  </div>
+</header>
+<div class="tabs">
+  <div class="wrap">
+    <div class="tabbar" role="tablist">
+      <button class="tab" role="tab" id="tab-q" aria-selected="false" data-view="q">1 · Questions</button>
+      <button class="tab" role="tab" id="tab-r" aria-selected="true" data-view="r">2 · My report</button>
+    </div>
+    <p class="banner" id="banner-q">Want to see what you'll get first? <button class="linkbtn" id="example">See an example report</button></p>
+    <p class="banner" id="banner" hidden>This is an example for a made-up person. <button class="linkbtn" id="mine">Start your own check-up</button></p>
+  </div>
+</div>
+<main class="wrap">
+  <section id="view-q"></section>
+  <section id="view-r" hidden><div class="sheets" id="sheets"></div></section>
+</main>
+<footer class="site-foot"><p>© Ashvamedha Finance · Manoj Kumar · Banjara Hills, Hyderabad · <a href="/contact">Contact</a>. Ashvamedha Finance's SEBI Research Analyst registration is currently in application. This check-up is for learning only and is not investment advice.</p></footer>
+
+<script>
+(function(){
+"use strict";
+const NOW=new Date(), YEAR=NOW.getFullYear();
+const EXAMPLE={name:"Ravi",age:34,deps:2,income:145000,spend:78000,wants:20000,emi:48000,sips:15000,
+  bank:540000,invest:1070000,retire:980000,gold:400000,property:8500000,homeLoan:5200000,otherLoans:450000,card:35000,
+  health:500000,office:"Yes",term:10000000,nominees:"Partly",will:"No",retireAge:60,retSpend:60000,epf:12000,goal:"Child's education",goalAmt:2500000,goalYear:YEAR+14};
+const BLANK=Object.fromEntries(Object.keys(EXAMPLE).map(k=>[k,null]));
+window.__hc={get S(){return S;}};
+let S={...BLANK}, sample=false, step=0, done=false;
+const v=x=>(x==null||x===""||isNaN(x))?0:Number(x), has=x=>x!=null&&x!==""&&!isNaN(x);
+function inr(n){ if(!isFinite(n)) return "—"; const s=n<0?"−":""; n=Math.abs(n);
+  if(n>=1e7) return s+"₹"+(n/1e7).toFixed(2).replace(/\.?0+$/,"")+" Cr";
+  if(n>=1e5) return s+"₹"+(n/1e5).toFixed(1).replace(/\.0$/,"")+" lakh";
+  if(n>=1000) return s+"₹"+(Math.round(n/100)*100).toLocaleString("en-IN");
+  return s+"₹"+Math.round(n).toLocaleString("en-IN"); }
+const esc=s=>String(s==null?"":s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const WORD={good:"Good",ok:"Okay",bad:"Fix this"};
+
+/* ---------- maths ---------- */
+function compute(){
+  const inc=v(S.income), spend=v(S.spend), emi=v(S.emi), out=spend+emi, surplus=inc-out;
+  const invested=Math.min(v(S.sips),Math.max(surplus,0)), left=Math.max(surplus-v(S.sips),0);
+  const save100=inc>0?Math.round(surplus/inc*100):0, emi100=inc>0?Math.round(emi/inc*100):0;
+  const must=Math.max(spend-v(S.wants),0)+emi, months=must>0?v(S.bank)/must:0;
+  const own=[{k:"Property",v:v(S.property),c:"#8a94a7"},{k:"Bank & FDs",v:v(S.bank),c:"#2563eb"},{k:"Mutual funds & shares",v:v(S.invest),c:"#1f9d63"},{k:"EPF, PPF, NPS",v:v(S.retire),c:"#7b4ddb"},{k:"Gold",v:v(S.gold),c:"#d9a300"}];
+  const assets=own.reduce((a,o)=>a+o.v,0), debt=v(S.homeLoan)+v(S.otherLoans)+v(S.card), net=assets-debt;
+  const cc=v(S.card)>0;
+  /* goals */
+  const G=[]; let ret=null;
+  if(has(S.age)&&has(S.retireAge)&&S.retireAge>S.age&&v(S.retSpend)>0){
+    const n=S.retireAge-S.age, m=n*12, N=Math.max(85-S.retireAge,1), g=.06, rp=.07, r=.08, i=Math.pow(1+r,1/12)-1;
+    const atRet=S.retSpend*Math.pow(1+g,n); let f=0; for(let k=0;k<N;k++) f+=Math.pow((1+g)/(1+rp),k);
+    const corpus=atRet*12*f, have=v(S.retire)*Math.pow(1+r,n)+v(S.epf)*(Math.pow(1+i,m)-1)/i, gap=Math.max(corpus-have,0), sip=gap>0?gap*i/(Math.pow(1+i,m)-1):0;
+    ret={n,year:YEAR+n,atRet,corpus}; G.push({name:`Retirement at ${S.retireAge}`,year:YEAR+n,cost:corpus,funded:Math.min(have/corpus*100,100),sip});
+  }
+  if(v(S.goalAmt)>0&&has(S.goalYear)){
+    const n=Math.max(v(S.goalYear)-YEAR,1), m=n*12, infl=/education/i.test(S.goal||"")?.08:.06, r=n<=5?.06:.08, i=Math.pow(1+r,1/12)-1;
+    const cost=S.goalAmt*Math.pow(1+infl,n), have=v(S.invest)*Math.pow(1+r,n), gap=Math.max(cost-have,0), sip=gap>0?gap*i/(Math.pow(1+i,m)-1):0;
+    G.push({name:S.goal||"Your goal",year:S.goalYear,cost,funded:Math.min(have/cost*100,100),sip,usesInvest:true});
+  }
+  const need=G.reduce((a,g)=>a+g.sip,0), room=v(S.sips)+left;
+  /* statuses */
+  const st={};
+  st.save = surplus<0||save100<10?"bad":save100<20?"ok":"good";
+  st.safe = months>=6?"good":months>=3?"ok":"bad";
+  st.emi = emi100<=30?"good":emi100<=40?"ok":"bad"; if(cc&&st.emi==="good") st.emi="ok";
+  st.ins = v(S.health)<=0&&S.office!=="Yes"?"bad": (v(S.deps)>0&&v(S.term)<=0)?"bad": v(S.health)<=0?"ok":"good";
+  st.goal = !G.length?"ok": need<=room?"good": need<=room*1.5?"ok":"bad";
+  st.fam = S.nominees==="Yes"&&S.will==="Yes"?"good": (S.nominees==="Yes"||S.will==="Yes")?"ok":"bad";
+  const pts={good:1,ok:.6,bad:.2}, score=Math.round(Object.values(st).reduce((a,s)=>a+pts[s],0)/6*100);
+  return {inc,spend,emi,out,surplus,invested,left,save100,emi100,must,months,own,assets,debt,net,cc,G,ret,need,room,st,score};
+}
+function verdict(sc,st){ const bad=Object.values(st).filter(x=>x==="bad").length, things=`${bad} thing${bad>1?"s need":" needs"} fixing`;
+  if(sc>=80) return "<b>Great shape.</b> Small tweaks will make it even better.";
+  if(bad===0) return "<b>Doing okay.</b> Nothing urgent, but a few things to improve.";
+  if(sc>=50) return `<b>Doing okay, but ${things}.</b> Your next steps are on page 4.`;
+  return `<b>Needs attention: ${things}.</b> Start with the steps on page 4, one at a time.`; }
+
+/* ---------- icons & pictures ---------- */
+const I=d=>`<svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${d}</svg>`;
+const ICON={
+  piggy:I(`<path d="M12 33c0-10 9-16 21-16s20 6 20 15c0 5-3 9-7 12v7h-7v-4H27v4h-7v-7c-5-3-8-7-8-11z"/><circle cx="44" cy="29" r="1.5" fill="currentColor"/><path d="M27 24h11"/>`),
+  umbrella:I(`<path d="M8 32a24 24 0 0 1 48 0z"/><path d="M32 32v16a6 6 0 0 1-12 0"/>`),
+  gauge:I(`<path d="M9 46a23 23 0 1 1 46 0"/><path d="M32 46l11-13"/><circle cx="32" cy="46" r="3"/>`),
+  shield:I(`<path d="M32 6l20 8v14c0 14-9 24-20 30C21 52 12 42 12 28V14z"/><path d="M23 32l6 6 12-13"/>`),
+  flag:I(`<path d="M15 58V8"/><path d="M15 10h31l-7 9 7 9H15"/>`),
+  home:I(`<path d="M9 31L32 12l23 19"/><path d="M15 27v25h34V27"/><circle cx="32" cy="36" r="5"/><path d="M24 52c0-5 4-8 8-8s8 3 8 8"/>`),
+  scale:I(`<path d="M32 8v46"/><path d="M14 16h36"/><path d="M14 16L7 32h14z"/><path d="M50 16l-7 16h14z"/><path d="M22 56h20"/>`),
+  coins:I(`<ellipse cx="26" cy="18" rx="15" ry="6"/><path d="M11 18v9c0 3 7 6 15 6s15-3 15-6v-9"/><ellipse cx="39" cy="38" rx="15" ry="6"/><path d="M24 38v9c0 3 7 6 15 6s15-3 15-6v-9"/>`),
+  warn:I(`<path d="M32 8L58 54H6z"/><path d="M32 26v12"/><circle cx="32" cy="46" r="1.5" fill="currentColor"/>`),
+  heart:I(`<path d="M32 54S8 40 8 23a12 12 0 0 1 24-4 12 12 0 0 1 24 4c0 17-24 31-24 31z"/>`),
+  brief:I(`<rect x="8" y="20" width="48" height="32" rx="5"/><path d="M24 20v-6h16v6"/>`),
+  life:I(`<circle cx="32" cy="20" r="9"/><path d="M14 56c0-10 8-18 18-18s18 8 18 18"/>`),
+  users:I(`<circle cx="24" cy="22" r="8"/><circle cx="44" cy="25" r="6"/><path d="M8 52c0-9 7-15 16-15s16 6 16 15"/><path d="M40 40c8 0 16 4 16 12"/>`),
+  doc:I(`<path d="M16 6h22l12 12v40H16z"/><path d="M38 6v12h12"/><path d="M23 32h20"/><path d="M23 42h20"/>`)
+};
+const pill=s=>`<span class="pill s-${s}"><i></i>${WORD[s]}</span>`;
+function ring(sc){ const r=56, C=2*Math.PI*r, col="#2f6bff";
+  return `<svg viewBox="0 0 140 140" role="img" aria-label="Money score ${sc} out of 100"><circle cx="70" cy="70" r="${r}" fill="none" stroke="#e7edff" stroke-width="13"/><circle cx="70" cy="70" r="${r}" fill="none" stroke="${col}" stroke-width="13" stroke-linecap="round" stroke-dasharray="${C*sc/100} ${C}" transform="rotate(-90 70 70)"/><text x="70" y="76" text-anchor="middle" font-size="42" font-weight="800" fill="#101828" font-family="Plus Jakarta Sans,system-ui,sans-serif">${sc}</text><text x="70" y="97" text-anchor="middle" font-size="12" fill="#667085" font-family="Plus Jakarta Sans,system-ui,sans-serif">out of 100</text></svg>`; }
+function waffle(R){
+  const parts=[{k:"Needs",v:Math.max(R.spend-v(S.wants),0),c:"#8a94a7"},{k:"Wants",v:v(S.wants),c:"#d9a300"},{k:"Loan EMIs",v:R.emi,c:"#e8730f"},{k:"Invested",v:R.invested,c:"#1f9d63"},{k:"Left over",v:R.left,c:"#2563eb"}].filter(p=>p.v>0);
+  const base=Math.max(R.inc,R.out); if(base<=0) return "";
+  const raw=parts.map(p=>p.v/base*100), fl=raw.map(Math.floor); let rem=100-fl.reduce((a,b)=>a+b,0);
+  raw.map((x,i)=>({i,f:x-fl[i]})).sort((a,b)=>b.f-a.f).slice(0,Math.max(rem,0)).forEach(o=>fl[o.i]++);
+  let k=0,sq=""; parts.forEach((p,j)=>{for(let n=0;n<fl[j];n++,k++) sq+=`<rect x="${(k%10)*12}" y="${Math.floor(k/10)*12}" width="10" height="10" rx="2.5" fill="${p.c}"/>`;});
+  return `<div class="waf"><div class="viz"><svg viewBox="0 0 118 118" role="img" aria-label="Each square is one rupee of every hundred">${sq}</svg></div><div class="legend">${parts.map((p,j)=>`<div><i style="background:${p.c}"></i><span><b>₹${fl[j]}</b> ${p.k}</span><b>${inr(p.v)}</b></div>`).join("")}</div></div>`;
+}
+function months(m){ const box=30,gap=5; let s="";
+  for(let i=0;i<12;i++){ const x=i*(box+gap), f=Math.max(0,Math.min(1,m-i)); s+=`<rect x="${x}" y="14" width="${box}" height="28" rx="6" fill="#e8f0ff" stroke="#c6d6fb"/>`; if(f>0) s+=`<rect x="${x}" y="14" width="${box*f}" height="28" rx="6" fill="#2563eb"/>`; s+=`<text x="${x+box/2}" y="54" text-anchor="middle" font-size="9.5" fill="#5f6c84">${i+1}</text>`; }
+  const tx=6*(box+gap)-gap/2; s+=`<line x1="${tx}" x2="${tx}" y1="8" y2="46" stroke="#1f9d63" stroke-width="2.5" stroke-dasharray="4 3"/><text x="${tx+5}" y="9" font-size="10" font-weight="700" fill="#1f9d63">Aim: 6 months</text>`;
+  return `<svg viewBox="0 0 ${12*(box+gap)} 58" role="img" aria-label="Months your savings would last">${s}</svg>`; }
+function gauge(val){ const cx=110,cy=100,r=80,sw=20, ang=x=>Math.PI*(1-Math.min(Math.max(x,0),60)/60), P=a=>[cx+r*Math.cos(a),cy-r*Math.sin(a)];
+  const arc=(a0,a1,c)=>{const [x0,y0]=P(ang(a0)),[x1,y1]=P(ang(a1)); return `<path d="M${x0} ${y0} A${r} ${r} 0 0 1 ${x1} ${y1}" stroke="${c}" stroke-width="${sw}" fill="none"/>`;};
+  const a=ang(val), nx=cx+(r-6)*Math.cos(a), ny=cy-(r-6)*Math.sin(a), [lx,ly]=P(ang(30));
+  return `<svg viewBox="0 0 220 122" role="img" aria-label="EMI meter">${arc(0,30,"#bfe6d1")+arc(30,40,"#ffe2a3")+arc(40,60,"#f8c4bc")}<line x1="${cx}" y1="${cy}" x2="${nx}" y2="${ny}" stroke="#14213d" stroke-width="5" stroke-linecap="round"/><circle cx="${cx}" cy="${cy}" r="8" fill="#14213d"/><text x="${cx-r}" y="${cy+18}" text-anchor="middle" font-size="11" fill="#5f6c84">₹0</text><text x="${cx+r}" y="${cy+18}" text-anchor="middle" font-size="11" fill="#5f6c84">₹60</text><text x="${lx}" y="${ly-15}" text-anchor="middle" font-size="11" font-weight="700" fill="#1f9d63">₹30</text></svg>`; }
+function ownOwe(R){ const W=300, max=Math.max(R.assets,R.debt,1), wo=R.assets/max*W, wl=R.debt/max*W;
+  return `<svg viewBox="0 0 ${W} 96" role="img" aria-label="What you own versus what you owe"><text x="0" y="12" font-size="11" font-weight="700" fill="#14213d">You own</text><text x="${W}" y="12" text-anchor="end" font-size="11" font-weight="800" fill="#14213d">${inr(R.assets)}</text><rect x="0" y="17" width="${wo}" height="20" rx="6" fill="#2563eb"/>
+    <text x="0" y="56" font-size="11" font-weight="700" fill="#14213d">You owe</text><text x="${W}" y="56" text-anchor="end" font-size="11" font-weight="800" fill="#e0503f">${inr(R.debt)}</text><rect x="0" y="61" width="${Math.max(wl,2)}" height="20" rx="6" fill="#e0503f"/>
+    ${R.net>0?`<rect x="${wl}" y="61" width="${wo-wl}" height="20" rx="6" fill="#e3f5eb" stroke="#1f9d63" stroke-dasharray="4 3"/><text x="${wl+(wo-wl)/2}" y="75" text-anchor="middle" font-size="10" font-weight="800" fill="#1f9d63">Gap = what you're worth</text>`:""}</svg>`; }
+function jar(p,id){ const f=Math.max(0,Math.min(100,p))/100*58, path="M12 12h32c3 0 5 3 5 6v52c0 4-3 7-7 7H14c-4 0-7-3-7-7V18c0-3 2-6 5-6z";
+  return `<svg viewBox="0 0 56 80" aria-hidden="true"><rect x="16" y="2" width="24" height="8" rx="3" fill="#0e9488"/><path d="${path}" fill="#e1f5f2" stroke="#0e9488" stroke-width="2.5"/><clipPath id="jar${id}"><path d="${path}"/></clipPath><rect x="0" y="${77-f}" width="56" height="${f}" fill="#0e9488" clip-path="url(#jar${id})"/><text x="28" y="48" text-anchor="middle" font-size="13" font-weight="800" fill="${p>40?"#fff":"#0b5f58"}">${Math.round(p)}%</text></svg>`; }
+const shield=(icon,t,d,s)=>`<div class="shield"><span style="color:${{good:"var(--good)",ok:"var(--ok)",bad:"var(--bad)"}[s]}">${ICON[icon]}</span><div><b>${t}</b><p>${d}</p></div><span class="tag s-${s}">${WORD[s]}</span></div>`;
+
+/* ---------- next steps ---------- */
+function steps(R){ const L=[];
+  if(R.cc) L.push({c:"o",w:"This week",t:`<strong>Clear your ${inr(v(S.card))} card dues.</strong> Card interest is about ₹3 per ₹100 every month, around ${inr(v(S.card)*.035)} for you.`});
+  if(R.surplus<0) L.push({c:"g",w:"This month",t:`<strong>Cut ${inr(-R.surplus)} a month</strong> from spending. You're spending more than you earn.`});
+  if(v(S.health)<=0) L.push({c:"p",w:"This month",t:`<strong>Get your own health insurance.</strong> ${S.office==="Yes"?"Office cover usually stops when you leave the job.":"One hospital stay can wipe out your savings."}`});
+  if(v(S.deps)>0&&v(S.term)<=0) L.push({c:"p",w:"This month",t:`<strong>Get term life insurance.</strong> It looks after your family if something happens to you.`});
+  if(S.nominees!=="Yes") L.push({c:"r",w:"This week",t:`<strong>Add nominees to every account:</strong> bank, mutual funds, demat, EPF, insurance. Most take 10 minutes online.`});
+  if(R.st.goal!=="good"&&R.need>0) L.push({c:"t",w:"This month",t:`<strong>Plan your goals.</strong> They need about ${inr(R.need)} a month; you set aside ${inr(R.room)} today. Decide what comes first.`});
+  if(R.months<6) L.push({c:"b",w:"This year",t:`<strong>Grow your emergency money by ${inr(6*R.must-v(S.bank))}</strong> and keep it in a savings account or FD.`});
+  if(S.will!=="Yes") L.push({c:"r",w:"This year",t:`<strong>Write a simple Will.</strong> It saves your family months of paperwork.`});
+  if(R.st.save!=="good"&&R.surplus>=0) L.push({c:"g",w:"This year",t:`<strong>Save ${inr(R.inc*.2-R.surplus)} more a month</strong> to reach ₹20 of every ₹100.`});
+  const order={"This week":0,"This month":1,"This year":2}; return L.sort((a,b)=>order[a.w]-order[b.w]).slice(0,5); }
+
+/* ---------- report ---------- */
+const DISC=`Based only on the numbers you entered. For learning only: not investment, tax or insurance advice, and no product is recommended. Ashvamedha Finance's SEBI Research Analyst registration is currently in application. Investment in securities market are subject to market risks. Read all the related documents carefully before investing. Ashvamedha Finance · Manoj Kumar · Banjara Hills, Hyderabad · ashvamedhaa.in@gmail.com`;
+function head(){ return `<div class="sh"><div class="brand"><div class="mark">A</div><b>Ashvamedha Finance</b></div><span>${esc(S.name||"Your")} Money Check-up</span></div>`; }
+function foot(n){ return `<div class="sf"><span>Questions? WhatsApp <b>+91 87901 09022</b> · <b>ashvamedhaai.com</b></span><span>Page ${n} of 4</span></div>`; }
+function renderReport(){
+  const R=compute(), st=R.st, date=NOW.toLocaleDateString("en-IN",{day:"numeric",month:"long",year:"numeric"});
+  const rc=(c,icon,what,val,s)=>`<div class="rc t-${c}"><div class="top2"><div class="ic">${ICON[icon]}</div>${pill(s)}</div><p class="what">${what}</p><p class="val">${val}</p></div>`;
+  const insVal = st.ins==="good"?"Health and family covered": v(S.health)<=0&&S.office==="Yes"?"Only office health cover": v(S.health)<=0?"No health insurance":"No term cover for your family";
+  const famVal = S.nominees==="Yes"&&S.will==="Yes"?"Nominees and Will in place":`Nominees: ${(S.nominees||"no").toLowerCase()} · Will: ${(S.will||"no").toLowerCase()}`;
+  const goalVal = !R.G.length?"No goal added": R.need<=R.room?"On track":`Short by ${inr(R.need-R.room)} a month`;
+  const p1=`<div class="sheet">
+    <div class="sh"><div class="brand"><div class="mark">A</div><b>Ashvamedha Finance</b></div><span class="chip2">Money Check-up · ${date}</span></div>
+    <div class="hero"><div class="ringbox">${ring(R.score)}</div><div><p class="hi">Hi ${esc(S.name||"there")}</p><h1>Your money score is <span>${R.score}</span></h1><p class="verdict">${verdict(R.score,st)}</p>${sample?'<span class="sample">Example · not a real person</span>':""}</div></div>
+    <h2 class="sec-h">Your report card</h2>
+    <div class="rcard">
+      ${rc("g","piggy","Saving",R.surplus<0?`Spending ${inr(-R.surplus)} more than you earn`:`₹${R.save100} of every ₹100 saved`,st.save)}
+      ${rc("b","umbrella","Emergency money",`Lasts ${R.months.toFixed(1)} months if income stops`,st.safe)}
+      ${rc("o","gauge","Loans",`₹${R.emi100} of every ₹100 goes to EMIs${R.cc?" + card dues":""}`,st.emi)}
+      ${rc("p","shield","Insurance",insVal,st.ins)}
+      ${rc("t","flag","Goals",goalVal,st.goal)}
+      ${rc("r","home","Family safety",famVal,st.fam)}
+    </div>
+    <h2 class="sec-h">Your numbers</h2>
+    <div class="keys"><div class="key"><span>You're worth</span><b>${inr(R.net)}</b></div><div class="key"><span>Comes in monthly</span><b>${inr(R.inc)}</b></div><div class="key"><span>Goes out monthly</span><b>${inr(R.out)}</b></div><div class="key hl"><span>Left each month</span><b>${inr(R.surplus)}</b></div></div>
+    <p class="fine"><b>How the score works:</b> each of the 6 areas counts equally. Good = full marks, Okay = 60%, Fix this = 20%.</p>
+    ${foot(1)}</div>`;
+  const leftPct=Math.round(R.left/Math.max(R.inc,1)*100), sp=Math.max(R.save100,0);
+  const p2=`<div class="sheet">${head()}<div class="pg-title"><h2>Your monthly money</h2><p>Where your salary goes, and how long you could manage without it.</p></div>
+      <div class="card wide"><div class="ch"><div class="ic">${ICON.coins}</div><h3>Every ₹100 you earn</h3>${pill(st.save)}</div><div class="cb">${waffle(R)}
+        <p class="says">${R.surplus<0?`You spend <strong>${inr(-R.surplus)} more than you earn</strong> each month, so this shows where every ₹100 you <em>spend</em> goes.`:`Each square is ₹1. You save <strong>₹${sp} of every ₹100</strong>.${R.left>0?` Out of that, <strong>₹${leftPct}</strong> sits in the bank with no job to do.`:""}`}</p>
+        <div class="prow"><div class="lbl"><span>You save <b>₹${sp}</b></span><span>Aim: <b>₹20</b> of every ₹100</span></div><div class="pbar"><i style="width:${Math.min(sp/40*100,100)}%;background:${st.save==="good"?"#12b76a":st.save==="ok"?"#f5a524":"#f04438"}"></i><u style="left:50%"></u></div></div></div></div>
+      <div class="card wide"><div class="ch"><div class="ic">${ICON.umbrella}</div><h3>If your income stopped tomorrow</h3>${pill(st.safe)}</div><div class="cb"><p class="big">${R.months.toFixed(1)} <small>months your home could keep running</small></p><div class="viz">${months(R.months)}</div>
+        <p class="says">You have <strong>${inr(v(S.bank))}</strong> in bank and FDs. Your must-pay bills are <strong>${inr(R.must)}</strong> a month.</p>
+        <p class="aim"><b>Aim:</b> 6 months of must-pay bills${R.months<6?`, which is <b>${inr(6*R.must-v(S.bank))}</b> more`:""}. Keep it in a savings account or FD.</p></div></div>
+      <div class="note"><div class="ic">${ICON.warn}</div><p><b>Why not count mutual funds or gold?</b> Their value can fall just when you need the money. Emergency money should be something you can withdraw in a day.</p></div>
+    ${foot(2)}</div>`;
+  const p3=`<div class="sheet">${head()}<div class="pg-title"><h2>Loans, worth and protection</h2><p>How heavy your loans are, what you're worth, and whether your family is safe.</p></div>
+    <div class="grid2">
+      <div class="card t-o"><div class="ch"><div class="ic">${ICON.gauge}</div><h3>How heavy your EMIs are</h3>${pill(st.emi)}</div><div class="cb"><div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;align-items:center"><div class="viz">${gauge(R.emi100)}</div><p class="big">₹${R.emi100} <small>of every ₹100</small></p></div><p class="aim"><b>Aim:</b> keep EMIs under ₹30 of every ₹100.</p>${R.cc?`<div class="alert">${ICON.warn}<span><strong>${inr(v(S.card))} card dues</strong> is your costliest loan. Clear it first.</span></div>`:""}</div></div>
+      <div class="card t-n"><div class="ch"><div class="ic">${ICON.scale}</div><h3>What you own vs owe</h3></div><div class="cb"><div class="viz">${ownOwe(R)}</div><p class="says">You're worth <strong>${inr(R.net)}</strong>.${v(S.property)>0?` Leaving out property and the home loan, it's <strong>${inr(R.net-v(S.property)+v(S.homeLoan))}</strong>.`:""}</p><p class="aim"><b>Worth</b> = what you'd have left if you sold everything and cleared every loan.</p></div></div>
+    </div>
+      <div class="card t-p"><div class="ch"><div class="ic">${ICON.shield}</div><h3>Family protection</h3></div><div class="cb"><div class="shields two-col">
+        ${shield("heart","Your own health cover", v(S.health)>0?`${inr(v(S.health))}. Stays with you in any job.`:"None.", v(S.health)>0?"good":"bad")}
+        ${S.office==="Yes"?shield("brief","Office health cover","Usually stops when you leave the job.","ok"):""}
+        ${shield("life","Term life cover", v(S.term)>0?`${inr(v(S.term))} for your family.`: v(S.deps)>0?"None, and your family depends on you.":"Not needed yet.", v(S.term)>0||v(S.deps)===0?"good":"bad")}
+        ${shield("users","Nominees", S.nominees==="Yes"?"Added everywhere.":S.nominees==="Partly"?"Only on some accounts.":"Not added yet.", S.nominees==="Yes"?"good":"bad")}
+        ${shield("doc","Will", S.will==="Yes"?"In place.":"Not written yet.", S.will==="Yes"?"good":"bad")}
+      </div></div></div>
+    <div class="note"><div class="ic">${ICON.warn}</div><p><b>Good to know:</b> health and term insurance cost less the younger you buy them. Office cover usually ends when you leave the job; your own policy stays with you.</p></div>
+    <div class="note"><div class="ic">${ICON.warn}</div><p><b>Why nominees matter:</b> money in an account without a nominee can take months of paperwork for your family to claim.</p></div>
+    ${foot(3)}</div>`;
+  const jars=R.G.map((g,i)=>`<div class="jar">${jar(g.funded,i)}<div><b>${esc(g.name)}</b><span>${g.year} · will cost about ${inr(g.cost)}</span><em>Save ${inr(g.sip)} a month</em></div></div>`).join("");
+  const p4=`<div class="sheet">${head()}<div class="pg-title"><h2>Your goals and next steps</h2><p>Are your dreams on track, and what to do next.</p></div>
+      <div class="card t-t"><div class="ch"><div class="ic">${ICON.flag}</div><h3>Your goals</h3>${pill(st.goal)}</div><div class="cb">${jars?`<div class="jars">${jars}</div>`:`<p class="says">No goals added.</p>`}
+        ${R.ret?`<p class="says">Prices rise every year. <strong>${inr(v(S.retSpend))}</strong> a month today will be about <strong>${inr(R.ret.atRet)}</strong> by ${R.ret.year}.</p>`:""}
+        ${R.G.length?`<p class="aim"><b>Together</b> your goals need ${inr(R.need)} a month. You set aside ${inr(R.room)}.</p><p class="says" style="font-size:.8rem;color:var(--muted)">The % in each jar is how much of the goal your current savings would cover by then, if they grow as assumed. Retirement counts EPF, PPF, NPS and your monthly EPF/NPS contribution; ${esc(S.goal||"your goal")} counts your mutual funds and shares. We assume prices rise 6% a year (education 8%), money grows 8% a year (6% for goals under 5 years, 7% after you retire) and retirement money lasts to age 85. Growth is not guaranteed.</p>`:""}</div></div>
+    <h2 class="sec-h">Do these next</h2>
+    <div class="acts">${steps(R).map((a,i)=>`<div class="act t-${a.c}"><b class="n">${i+1}</b><div><p class="when">${a.w}</p><p>${a.t}</p></div></div>`).join("")}</div>
+    <div class="call"><div><h3>Want a full plan? Talk to us, free.</h3><p>20 minutes to go through this report and answer your questions. No products sold.</p><p class="wa">WhatsApp: +91 87901 09022 · ashvamedhaa.in@gmail.com</p></div><div class="qr" role="img" aria-label="Scan to message Manoj on WhatsApp"><svg width="165" height="165" class="segno"><g transform="scale(3)"><path fill="#fff" d="M0 0h55v55h-55z"/><path class="qrline" stroke="#101828" d="M1 1.5h7m1 0h4m2 0h1m3 0h3m3 0h1m2 0h4m2 0h1m1 0h3m1 0h1m2 0h1m3 0h7m-53 1h1m5 0h1m1 0h1m3 0h1m3 0h3m3 0h1m2 0h3m1 0h8m5 0h2m2 0h1m5 0h1m-53 1h1m1 0h3m1 0h1m2 0h1m1 0h1m1 0h1m1 0h1m1 0h4m1 0h1m2 0h1m2 0h1m3 0h1m1 0h1m3 0h2m3 0h1m2 0h1m1 0h3m1 0h1m-53 1h1m1 0h3m1 0h1m1 0h1m1 0h3m1 0h2m1 0h1m1 0h2m2 0h1m1 0h1m2 0h1m1 0h1m3 0h6m2 0h1m1 0h1m1 0h1m1 0h3m1 0h1m-53 1h1m1 0h3m1 0h1m2 0h5m8 0h1m1 0h6m2 0h2m2 0h1m1 0h1m1 0h1m1 0h1m3 0h1m1 0h3m1 0h1m-53 1h1m5 0h1m2 0h1m1 0h1m3 0h3m3 0h2m1 0h1m3 0h1m1 0h2m1 0h1m4 0h1m1 0h3m3 0h1m5 0h1m-53 1h7m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h7m-45 1h1m3 0h3m2 0h1m1 0h3m1 0h2m3 0h2m2 0h2m2 0h3m1 0h1m2 0h2m-45 1h1m1 0h2m1 0h3m1 0h5m2 0h2m1 0h1m2 0h1m1 0h5m1 0h1m1 0h3m5 0h3m1 0h1m1 0h1m2 0h1m1 0h2m-52 1h3m4 0h4m2 0h1m2 0h2m1 0h1m1 0h1m1 0h2m1 0h2m1 0h1m1 0h1m2 0h2m2 0h1m1 0h3m1 0h1m1 0h1m4 0h1m-53 1h1m4 0h3m1 0h1m1 0h2m3 0h3m1 0h1m1 0h1m1 0h4m2 0h2m2 0h1m2 0h1m2 0h8m2 0h2m-50 1h2m1 0h1m2 0h1m1 0h3m1 0h4m1 0h1m1 0h3m3 0h1m4 0h1m1 0h1m1 0h1m6 0h3m1 0h2m3 0h1m-53 1h2m1 0h2m1 0h1m3 0h1m1 0h1m1 0h3m3 0h1m3 0h3m1 0h3m2 0h5m1 0h1m1 0h1m2 0h1m1 0h1m1 0h1m2 0h2m-45 1h5m2 0h2m1 0h3m1 0h2m2 0h4m1 0h2m2 0h1m2 0h2m1 0h1m1 0h3m1 0h3m2 0h1m-52 1h1m1 0h2m1 0h1m2 0h3m2 0h1m2 0h3m1 0h2m1 0h2m2 0h2m3 0h1m2 0h1m1 0h1m3 0h2m6 0h3m-53 1h5m2 0h1m2 0h1m2 0h2m3 0h4m2 0h2m1 0h2m1 0h3m2 0h1m3 0h4m1 0h1m4 0h1m-50 1h2m1 0h5m1 0h2m3 0h6m1 0h1m3 0h1m3 0h4m1 0h1m3 0h1m5 0h2m5 0h1m-50 1h2m3 0h3m5 0h3m5 0h1m2 0h1m7 0h2m3 0h3m4 0h3m-47 1h1m2 0h2m1 0h1m1 0h3m5 0h3m1 0h1m1 0h1m1 0h1m2 0h1m1 0h1m1 0h1m1 0h2m7 0h1m1 0h4m1 0h1m-51 1h2m1 0h2m1 0h3m3 0h1m1 0h1m2 0h2m2 0h1m3 0h1m2 0h2m5 0h2m1 0h2m3 0h2m1 0h2m1 0h1m1 0h1m-52 1h1m1 0h1m2 0h1m4 0h1m1 0h1m2 0h2m2 0h2m1 0h1m1 0h5m4 0h1m3 0h3m3 0h3m3 0h1m1 0h1m-52 1h1m1 0h2m3 0h1m2 0h4m4 0h1m1 0h1m1 0h1m2 0h2m1 0h2m2 0h1m1 0h1m1 0h1m3 0h3m3 0h3m1 0h2m-52 1h2m1 0h7m6 0h4m1 0h2m1 0h1m1 0h4m1 0h3m2 0h1m1 0h1m1 0h3m2 0h4m1 0h1m-52 1h1m1 0h1m2 0h1m2 0h1m1 0h1m1 0h1m3 0h1m3 0h6m3 0h1m2 0h8m4 0h1m1 0h1m1 0h1m2 0h2m-53 1h1m3 0h7m1 0h5m4 0h1m2 0h7m2 0h1m2 0h2m1 0h1m4 0h5m1 0h1m1 0h1m-53 1h2m2 0h1m3 0h1m1 0h1m2 0h1m3 0h2m3 0h1m1 0h1m3 0h2m1 0h2m5 0h2m1 0h1m1 0h2m3 0h5m-53 1h5m1 0h1m1 0h5m2 0h1m3 0h1m2 0h3m1 0h1m1 0h5m2 0h1m2 0h7m1 0h1m1 0h2m2 0h1m-53 1h1m1 0h3m3 0h1m4 0h1m1 0h1m1 0h2m1 0h5m3 0h1m1 0h2m1 0h1m5 0h2m1 0h1m1 0h1m3 0h2m1 0h2m-52 1h2m1 0h8m1 0h3m1 0h1m1 0h1m4 0h6m2 0h4m3 0h1m3 0h7m-49 1h3m3 0h1m1 0h1m1 0h6m3 0h2m1 0h1m1 0h3m1 0h1m3 0h2m1 0h2m2 0h1m2 0h1m2 0h2m2 0h1m-47 1h4m1 0h1m1 0h1m3 0h1m1 0h1m1 0h2m1 0h1m1 0h6m3 0h3m1 0h2m4 0h1m5 0h1m-50 1h4m3 0h2m1 0h2m3 0h8m4 0h1m2 0h1m4 0h2m1 0h1m4 0h1m2 0h1m1 0h3m-50 1h6m3 0h3m1 0h3m1 0h1m2 0h2m1 0h1m1 0h3m1 0h2m2 0h2m1 0h5m1 0h2m2 0h6m-52 1h3m1 0h1m2 0h1m1 0h1m4 0h1m1 0h2m3 0h3m2 0h1m1 0h1m1 0h1m3 0h1m3 0h1m2 0h2m1 0h6m1 0h1m-52 1h1m1 0h1m2 0h2m1 0h4m4 0h2m3 0h2m4 0h2m1 0h5m1 0h1m4 0h1m1 0h1m2 0h1m3 0h1m-52 1h1m3 0h2m2 0h1m1 0h1m3 0h2m1 0h1m1 0h2m1 0h2m1 0h1m1 0h2m3 0h1m1 0h4m5 0h2m6 0h1m-52 1h1m1 0h2m1 0h2m4 0h1m1 0h2m9 0h2m1 0h1m3 0h1m1 0h1m1 0h4m2 0h2m2 0h3m2 0h1m1 0h1m-53 1h1m1 0h1m1 0h1m4 0h1m3 0h1m1 0h2m2 0h1m1 0h2m1 0h2m3 0h1m1 0h2m2 0h5m4 0h1m1 0h2m2 0h3m-53 1h1m2 0h2m1 0h1m6 0h1m3 0h1m1 0h2m1 0h1m4 0h1m1 0h2m1 0h1m1 0h1m1 0h4m2 0h3m1 0h2m1 0h4m-53 1h3m1 0h1m2 0h1m2 0h1m3 0h1m2 0h4m3 0h1m2 0h1m1 0h5m1 0h1m3 0h5m1 0h4m-48 1h1m2 0h3m1 0h2m5 0h1m3 0h2m3 0h4m1 0h1m2 0h2m1 0h1m3 0h1m8 0h2m1 0h1m-52 1h5m5 0h2m3 0h1m1 0h1m1 0h5m1 0h4m2 0h2m1 0h1m8 0h2m2 0h1m1 0h2m1 0h1m-53 1h2m1 0h5m2 0h1m1 0h2m2 0h3m2 0h1m2 0h2m2 0h1m5 0h1m2 0h3m5 0h1m2 0h1m-48 1h2m4 0h1m1 0h2m3 0h1m1 0h2m2 0h1m1 0h6m1 0h1m1 0h1m1 0h1m1 0h2m1 0h1m1 0h2m1 0h5m2 0h1m-48 1h1m2 0h7m1 0h1m1 0h3m2 0h2m1 0h5m1 0h2m1 0h2m5 0h1m2 0h8m1 0h1m-45 1h1m4 0h3m1 0h1m3 0h4m3 0h1m1 0h1m2 0h1m2 0h1m2 0h6m3 0h2m2 0h1m-53 1h7m1 0h1m1 0h4m2 0h1m3 0h5m1 0h1m1 0h1m1 0h1m1 0h3m2 0h1m1 0h2m1 0h3m1 0h1m1 0h1m1 0h1m-51 1h1m5 0h1m1 0h1m2 0h1m1 0h4m1 0h3m3 0h1m3 0h2m1 0h1m4 0h2m1 0h1m1 0h2m1 0h1m3 0h1m2 0h2m-53 1h1m1 0h3m1 0h1m2 0h1m1 0h1m1 0h1m4 0h1m3 0h1m1 0h5m1 0h3m1 0h3m6 0h8m-51 1h1m1 0h3m1 0h1m1 0h2m2 0h2m1 0h2m1 0h2m6 0h3m8 0h2m4 0h1m4 0h1m1 0h1m1 0h1m-53 1h1m1 0h3m1 0h1m1 0h3m1 0h1m2 0h2m1 0h2m6 0h2m2 0h1m1 0h1m4 0h3m2 0h1m4 0h1m-48 1h1m5 0h1m5 0h1m1 0h1m1 0h2m2 0h1m1 0h2m1 0h1m4 0h1m1 0h1m3 0h1m3 0h1m1 0h2m3 0h3m1 0h1m-52 1h7m1 0h1m1 0h3m1 0h1m4 0h2m1 0h2m1 0h2m4 0h4m3 0h1m2 0h3m1 0h2m4 0h1"/></g></svg></div></div>
+    <p class="fine disc">${DISC}</p>
+    ${foot(4)}</div>`;
+  document.getElementById("sheets").innerHTML=p1+p2+p3+p4+`<div class="actions" id="actions"><h3>${sample?"Like what you see? Get your own report.":"Keep your report"}</h3>
+    <p class="muted" style="font-size:.92rem">${sample?"It takes about 2 minutes and your numbers stay on your phone.":"Save it as a PDF to keep or share with your family. Want help with your next steps? Message Manoj for a free 20-minute call. No products are sold on the call."}</p>
+    <div class="row">${sample?`<button class="btn primary" id="startown">Start my check-up</button>`:`<button class="btn primary" id="dl">Download my PDF report</button><a class="btn wa" id="walink" target="_blank" rel="noopener" href="${waHref(R)}">Talk to Manoj on WhatsApp</a>`}</div></div>`;
+  const so=document.getElementById("startown"); if(so) so.addEventListener("click",startOwn);
+  const dl=document.getElementById("dl"); if(dl) dl.addEventListener("click",openModal);
+}
+
+/* ---------- questions: 4 short screens ---------- */
+const STEPS=[
+  {n:"Step 1 of 4",h:"Money in and out",d:"Monthly amounts. Rough numbers are fine.",f:[
+    {id:"name",t:"text",l:"Your first name",opt:1},{id:"age",t:"num",l:"Your age"},
+    {id:"income",t:"money",l:"Money that reaches your bank each month",h:"Salary after tax plus other regular income."},
+    {id:"spend",t:"money",l:"Monthly spending (without EMIs)",h:"Rent, food, bills, fees, shopping."},
+    {id:"wants",t:"money",l:"…of which on wants",h:"Eating out, shopping, trips.",opt:1},
+    {id:"emi",t:"money",l:"All loan EMIs each month",h:"Put 0 if none."},
+    {id:"sips",t:"money",l:"Monthly SIPs, RD or PPF",h:"Put 0 if none."},
+    {id:"deps",t:"chips",l:"People who depend on your income",o:["0","1","2","3","4+"]}]},
+  {n:"Step 2 of 4",h:"What you own and owe",d:"Today's rough value. No statements needed.",f:[
+    {id:"bank",t:"money",l:"Bank savings and FDs"},{id:"invest",t:"money",l:"Mutual funds and shares"},
+    {id:"retire",t:"money",l:"EPF, PPF, NPS"},{id:"gold",t:"money",l:"Gold",opt:1},
+    {id:"property",t:"money",l:"Property (house, land)",opt:1},{id:"homeLoan",t:"money",l:"Home loan still to pay",opt:1},
+    {id:"otherLoans",t:"money",l:"Other loans still to pay",h:"Car, personal, education.",opt:1},{id:"card",t:"money",l:"Credit card dues not paid in full",h:"Put 0 if you pay the full bill.",opt:1}]},
+  {n:"Step 3 of 4",h:"Protection",d:"Just the cover amounts. No policy papers.",f:[
+    {id:"health",t:"money",l:"Your own health insurance cover",h:"Put 0 if none."},{id:"office",t:"chips",l:"Do you also have office health cover?",o:["Yes","No"]},
+    {id:"term",t:"money",l:"Term life insurance cover",h:"Put 0 if none."},{id:"nominees",t:"chips",l:"Nominees on all your accounts?",o:["Yes","Partly","No"]},
+    {id:"will",t:"chips",l:"Do you have a Will?",o:["Yes","No"]}]},
+  {n:"Step 4 of 4",h:"Your goals",d:"Use today's prices. We'll add price rise.",f:[
+    {id:"retireAge",t:"num",l:"When do you want to retire?"},{id:"retSpend",t:"money",l:"Monthly spend after retiring",h:"In today's money."},{id:"epf",t:"money",l:"Monthly EPF/NPS (you + employer)",h:"From your payslip. Put 0 if none.",opt:1},
+    {id:"goal",t:"select",opt:1,l:"Your biggest other goal",o:["Child's education","Buying a house","Child's marriage","Car","Business","Other"]},
+    {id:"goalAmt",t:"money",opt:1,l:"What it costs today"},{id:"goalYear",t:"num",opt:1,l:"Year you need it"}]}
+];
+function fieldHTML(f){
+  const val=S[f.id], lab=`<label for="f-${f.id}">${f.l}${f.opt?' <span class="opt">optional</span>':""}</label>`; let c;
+  if(f.t==="chips") c=`<span class="fl">${f.l}</span><div class="chips" role="group" aria-label="${esc(f.l)}">${f.o.map(o=>`<button type="button" data-chip="${f.id}" data-val="${o}" aria-pressed="${f.id==="deps"?(val!=null&&(o==="4+"?v(val)>=4:String(val)===o)):val===o}">${o}</button>`).join("")}</div>`;
+  else if(f.t==="select") c=lab+`<div class="inp"><select id="f-${f.id}" data-k="${f.id}">${["",...f.o].map(o=>`<option value="${o}" ${val===o?"selected":""}>${o||"Choose one"}</option>`).join("")}</select></div>`;
+  else if(f.t==="text") c=lab+`<div class="inp"><input id="f-${f.id}" data-k="${f.id}" value="${esc(val||"")}"></div>`;
+  else if(f.t==="num") c=lab+`<div class="inp"><input id="f-${f.id}" inputmode="numeric" data-k="${f.id}" data-n="1" value="${has(val)?val:""}"></div>`;
+  else c=lab+`<div class="inp money"><input id="f-${f.id}" inputmode="numeric" data-k="${f.id}" data-n="1" data-m="1" value="${has(val)?Number(val).toLocaleString("en-IN"):""}" placeholder="0"></div><div class="echo" data-echo="${f.id}">${has(val)&&val>=1e5?"= "+inr(val):""}</div>`;
+  return `<div class="field">${c}${f.h?`<div class="help">${f.h}</div>`:""}</div>`;
+}
+function renderQ(){
+  const st=STEPS[step];
+  document.getElementById("view-q").innerHTML=(step===0?`<div class="intro"><h1>Free Money Health Check-up</h1><p>Answer 4 short steps and get a simple report: your money score, what's going well, what to fix, and 5 clear next steps.</p><div class="bul"><span>About 2 minutes</span><span>No sign-up</span><span>Numbers stay on your phone</span></div></div>`:"")+`<div class="qcard"><div class="progress">${STEPS.map((_,i)=>`<i class="${i<=step?"on":""}"></i>`).join("")}</div>
+    <p class="stepname">${st.n}</p><h2>${st.h}</h2><p class="sub">${st.d}</p><div class="fields">${st.f.map(fieldHTML).join("")}</div>
+    ${step===0?`<p class="privacy">Your numbers stay on your phone. We never ask for PAN, Aadhaar, passwords or account numbers.</p>`:""}
+    <p class="err" id="qerr" role="alert" style="margin-top:14px;color:var(--bad);font-weight:600;font-size:.9rem"></p>
+    <div class="formnav"><button class="btn" id="back" ${step===0?"disabled":""}>Back</button><button class="btn primary" id="next">${step===STEPS.length-1?"Show my report":"Next"}</button></div></div>`;
+  const root=document.getElementById("view-q");
+  root.querySelectorAll("[data-k]").forEach(el=>el.addEventListener("input",()=>{ const k=el.dataset.k; sample=false;
+    if(el.dataset.n){ const s=el.value.replace(/[^0-9]/g,""); S[k]=s===""?null:Number(s); const e=root.querySelector(`[data-echo="${k}"]`); if(e) e.textContent=S[k]>=1e5?"= "+inr(S[k]):""; } else S[k]=el.value; }));
+  root.querySelectorAll("[data-m]").forEach(el=>el.addEventListener("blur",()=>{ if(has(S[el.dataset.k])) el.value=Number(S[el.dataset.k]).toLocaleString("en-IN"); }));
+  root.querySelectorAll("[data-chip]").forEach(b=>b.addEventListener("click",()=>{ const k=b.dataset.chip; sample=false; S[k]=k==="deps"?(b.dataset.val==="4+"?4:Number(b.dataset.val)):b.dataset.val;
+    root.querySelectorAll(`[data-chip="${k}"]`).forEach(x=>x.setAttribute("aria-pressed",String(x===b))); }));
+  document.getElementById("back").addEventListener("click",()=>{ if(step>0){step--;renderQ();window.scrollTo({top:0});} });
+  document.getElementById("next").addEventListener("click",()=>{
+    const filled=f=>f.t==="text"||f.t==="select"?!!S[f.id]:f.t==="chips"?(S[f.id]!=null&&S[f.id]!==""):has(S[f.id]);
+    const miss=st.f.filter(f=>!f.opt&&!filled(f)).map(f=>f.l.replace(/^…/,""));
+    const errs=[]; if(miss.length) errs.push(`Please fill in: ${miss.join(", ")}.`);
+    if(step===3){ if(has(S.age)&&has(S.retireAge)&&S.retireAge<=S.age) errs.push("Retirement age should be more than your age.");
+      if(v(S.goalAmt)>0&&!(has(S.goalYear)&&S.goalYear>YEAR)) errs.push(`Goal year should be ${YEAR+1} or later.`);
+      if(v(S.goalAmt)>0&&!S.goal) errs.push("Choose what your goal is."); }
+    if(errs.length){ document.getElementById("qerr").textContent=errs.join(" "); return; }
+    if(step<STEPS.length-1){step++;renderQ();window.scrollTo({top:0});} else { done=true; go("r"); } });
+}
+function waHref(R){ const lines=["Hi Manoj, I just did the Money Health Check-up on your website.", S.name?`Name: ${S.name}`:"", S.phone?`Mobile: ${S.phone}`:"", `My money score: ${R.score}/100`, "I'd like to talk through my report."].filter(Boolean);
+  return "https://wa.me/918790109022?text="+encodeURIComponent(lines.join("\n")); }
+function openModal(){
+  const m=document.createElement("div"); m.className="modal"; m.innerHTML=`<div class="box" role="dialog" aria-modal="true" aria-labelledby="m-t"><h3 id="m-t">Download your report</h3>
+    <p class="muted" style="font-size:.9rem">We'll put your name on the report. Your numbers are never sent anywhere.</p>
+    <label for="m-name" style="font-weight:700;font-size:.9rem">Your name</label><input id="m-name" autocomplete="name" value="${esc(S.name||"")}">
+    <label for="m-phone" style="font-weight:700;font-size:.9rem">Mobile number <span class="opt">optional, only if you want a call</span></label><input id="m-phone" type="tel" inputmode="numeric" maxlength="10" autocomplete="tel" value="${esc(S.phone||"")}">
+    <p class="err2" id="m-err" role="alert"></p>
+    <div class="row" style="display:flex;gap:10px;justify-content:flex-end"><button class="btn" id="m-cancel">Cancel</button><button class="btn primary" id="m-ok">Save as PDF</button></div>
+    <p class="muted" style="font-size:.78rem">On your phone, choose "Save as PDF" or "Save to Files" in the print screen that opens.</p></div>`;
+  document.body.append(m);
+  const close=()=>m.remove(); m.addEventListener("click",e=>{ if(e.target===m) close(); }); m.querySelector("#m-cancel").addEventListener("click",close);
+  m.querySelector("#m-phone").addEventListener("input",e=>{ e.target.value=e.target.value.replace(/\D/g,"").slice(0,10); });
+  m.querySelector("#m-ok").addEventListener("click",()=>{ const n=m.querySelector("#m-name").value.trim(), ph=m.querySelector("#m-phone").value.trim();
+    if(n.length<2){ m.querySelector("#m-err").textContent="Please enter your name."; return; }
+    if(ph&&!/^[6-9]\d{9}$/.test(ph)){ m.querySelector("#m-err").textContent="Please enter a valid 10-digit mobile number, or leave it empty."; return; }
+    S.name=n; S.phone=ph; close(); renderReport(); setTimeout(()=>window.print(),300); });
+  setTimeout(()=>m.querySelector("#m-name").focus(),50);
+}
+function startOwn(){ S={...BLANK}; sample=false; done=false; step=0; go("q"); }
+function go(view){
+  ["q","r"].forEach(x=>{document.getElementById("view-"+x).hidden=x!==view; document.getElementById("tab-"+x).setAttribute("aria-selected",String(x===view));});
+  if(view==="r"&&!sample&&!done){ view="q"; }
+  ["q","r"].forEach(x=>{document.getElementById("view-"+x).hidden=x!==view; document.getElementById("tab-"+x).setAttribute("aria-selected",String(x===view));});
+  document.getElementById("banner").hidden=!(sample&&view==="r");
+  document.getElementById("banner-q").hidden=view!=="q";
+  if(view==="q") renderQ(); else renderReport(); window.scrollTo({top:0});
+}
+document.querySelectorAll(".tab").forEach(t=>t.addEventListener("click",()=>go(t.dataset.view)));
+document.getElementById("mine").addEventListener("click",startOwn);
+document.getElementById("example").addEventListener("click",()=>{ S={...EXAMPLE}; sample=true; go("r"); });
+go("q");
+})();
+</script>
+</body>
+</html>
