@@ -258,7 +258,7 @@ main{padding-bottom:60px}
 @media print{
   @page{size:A4;margin:0}
   body{background:#fff!important}
-  body::before,.top,.tabs,#view-q,.actions,.modal,.site-foot{display:none!important}
+  body::before,.top,.tabs,#view-q,#intro,.actions,.modal,.site-foot{display:none!important}
   #view-r{display:block!important}
   main,.wrap{padding:0!important;max-width:none!important}
   .sheets{display:block}
@@ -284,6 +284,7 @@ main{padding-bottom:60px}
   </div>
 </div>
 <main class="wrap">
+  <div class="intro" id="intro"><h1>Free Money Health Check-up</h1><p>Answer 4 short steps and get a simple report: your money score, what's going well, what to fix, and 5 clear next steps.</p><div class="bul"><span>About 2 minutes</span><span>No sign-up</span><span>Numbers stay on your phone</span></div></div>
   <section id="view-q"></section>
   <section id="view-r" hidden><div class="sheets" id="sheets"></div></section>
 </main>
@@ -509,7 +510,8 @@ function fieldHTML(f){
 }
 function renderQ(){
   const st=STEPS[step];
-  document.getElementById("view-q").innerHTML=(step===0?`<div class="intro"><h1>Free Money Health Check-up</h1><p>Answer 4 short steps and get a simple report: your money score, what's going well, what to fix, and 5 clear next steps.</p><div class="bul"><span>About 2 minutes</span><span>No sign-up</span><span>Numbers stay on your phone</span></div></div>`:"")+`<div class="qcard"><div class="progress">${STEPS.map((_,i)=>`<i class="${i<=step?"on":""}"></i>`).join("")}</div>
+  document.getElementById("intro").hidden=step!==0;
+  document.getElementById("view-q").innerHTML=`<div class="qcard"><div class="progress">${STEPS.map((_,i)=>`<i class="${i<=step?"on":""}"></i>`).join("")}</div>
     <p class="stepname">${st.n}</p><h2>${st.h}</h2><p class="sub">${st.d}</p><div class="fields">${st.f.map(fieldHTML).join("")}</div>
     ${step===0?`<p class="privacy">Your numbers stay on your phone. We never ask for PAN, Aadhaar, passwords or account numbers.</p>`:""}
     <p class="err" id="qerr" role="alert" style="margin-top:14px;color:var(--bad);font-weight:600;font-size:.9rem"></p>
@@ -557,6 +559,7 @@ function go(view){
   ["q","r"].forEach(x=>{document.getElementById("view-"+x).hidden=x!==view; document.getElementById("tab-"+x).setAttribute("aria-selected",String(x===view));});
   document.getElementById("banner").hidden=!(sample&&view==="r");
   document.getElementById("banner-q").hidden=view!=="q";
+  document.getElementById("intro").hidden=!(view==="q"&&step===0);
   if(view==="q") renderQ(); else renderReport(); window.scrollTo({top:0});
 }
 document.querySelectorAll(".tab").forEach(t=>t.addEventListener("click",()=>go(t.dataset.view)));
