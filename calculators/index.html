@@ -42,7 +42,7 @@
   "priceRange": "₹₹",
   "serviceType": ["Unlisted Shares", "Mutual Fund Advisory", "Insurance Advisory", "Wealth Management", "Portfolio Management"]
 }</script>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What financial calculators are available on Ashvamedha Finance website?","acceptedAnswer":{"@type":"Answer","text":"We offer 11 free calculators: SIP (with SWP), Step-Up SIP, Lumpsum, Retirement Corpus, FIRE Number, Goal Planner, Home Loan vs Investing, Car Loan vs Cash, Rent vs Buy, Mutual Funds vs Real Estate, and FD vs Mutual Fund. Every calculator can be downloaded as a PDF report."}},{"@type":"Question","name":"How accurate is the SIP calculator?","acceptedAnswer":{"@type":"Answer","text":"Our SIP calculator uses the standard compound-interest formula with an effective monthly rate. For example, \u20b95,000/month at 12% p.a. for 10 years grows to roughly \u20b911.6 lakh on this basis. Actual mutual fund returns are market-linked and not guaranteed."}},{"@type":"Question","name":"How much SIP do I need for retirement?","acceptedAnswer":{"@type":"Answer","text":"Use our free Retirement Calculator. As a benchmark: to retire at 60 with current expenses of \u20b950,000/month, you typically need \u20b95\u20138 crore corpus. A \u20b915,000\u201320,000/month SIP started at 30 can achieve this at 12% returns."}}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What financial calculators are available on Ashvamedha Finance website?","acceptedAnswer":{"@type":"Answer","text":"We offer 11 free calculators: SIP (with SWP), Step-Up SIP, Lumpsum, Retirement Corpus, FIRE Number, Goal Planner, Home Loan vs Investing, Car Loan vs Cash, Rent vs Buy, Mutual Funds vs Real Estate, and FD vs Mutual Fund. Every calculator can be downloaded as a PDF report."}},{"@type":"Question","name":"How accurate is the SIP calculator?","acceptedAnswer":{"@type":"Answer","text":"Our SIP calculator uses the standard SIP formula used by fund houses and investing apps (monthly rate = annual return ÷ 12, invested at the start of each month). For example, \u20b95,000/month at 12% p.a. for 10 years grows to about \u20b911.62 lakh. Actual mutual fund returns are market-linked and not guaranteed."}},{"@type":"Question","name":"How much SIP do I need for retirement?","acceptedAnswer":{"@type":"Answer","text":"Use our free Retirement Calculator. As a benchmark: to retire at 60 with current expenses of \u20b950,000/month, you need roughly \u20b95.5\u20137.5 crore, depending on whether you plan for money to last to age 80 or 90 (6% inflation, 8% return after retirement). Starting at 30 with nothing saved, that takes a SIP of about \u20b915,500\u201321,000/month at 12% returns."}}]}</script>
 
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,600;0,700;1,400&family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
@@ -346,7 +346,7 @@ footer{background:#060e1a;padding:56px 5% 28px;border-top:1px solid rgba(255,255
     <div class="nav-brand"><b>MANOJ KUMAR</b><span>Ashvamedha Finance</span></div>
   </a>
   <ul class="nav-links" id="navlinks">
-    <li><a href="/" data-page="home" class="active">Home</a></li>
+    <li><a href="/" data-page="home">Home</a></li>
     <li><a href="/services" data-page="services">Our Services</a></li>
     <li><a href="/unlisted" data-page="unlisted" class="nav-highlight">Unlisted Shares</a></li>
     <li><a href="/insurance" data-page="insurance">Insurance</a></li>
@@ -521,6 +521,8 @@ footer{background:#060e1a;padding:56px 5% 28px;border-top:1px solid rgba(255,255
 /* sticky mobile result bar */
 .av-sticky{position:fixed;left:12px;right:12px;bottom:12px;z-index:800;display:none;align-items:center;gap:12px;background:rgba(10,22,40,.96);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border:1px solid rgba(201,168,76,.5);border-radius:16px;padding:10px 12px 10px 16px;box-shadow:0 12px 36px rgba(0,0,0,.5);transform:translateY(140%);transition:transform .3s}
 .av-sticky.show{transform:none}
+body.avg-pad .av-sticky{bottom:calc(86px + env(safe-area-inset-bottom, 0px))}
+@media(min-width:481px){.av-tiles:has(> :nth-child(3):last-child){grid-template-columns:repeat(3,minmax(0,1fr))}}
 .av-sticky .t{flex:1;min-width:0}
 .av-sticky .l{font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.55);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .av-sticky .v{font-family:'Cormorant Garamond',serif;font-size:24px;font-weight:700;color:var(--gold-light);line-height:1.1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
@@ -691,8 +693,11 @@ footer .nav-brand b{color:var(--ink)!important}.foot-desc,.foot-links a,.foot-li
 /* ===== engine.js ===== */
 /* Ashvamedha Finance — calculation engine (pure functions, no DOM).
    CONVENTIONS (one set, used everywhere so calculators never contradict each other):
-   • "Expected return" = annualised effective return (CAGR/XIRR style). Monthly rate = (1+R)^(1/12) − 1.
-   • SIP / recurring contributions are made at the START of each month.
+   • SIP, Step-Up SIP, SWP, Retirement, FIRE and Goal use the standard SIP formula used by fund houses and
+     popular Indian apps: monthly rate = annual return ÷ 12, contributions at the START of each month.
+   • Comparison calculators (Loan vs Cash, Rent vs Buy, MF vs Real Estate) treat returns as annual CAGR,
+     monthly rate = (1+R)^(1/12) − 1, so fund growth and property growth are compared like for like.
+   • Bank FDs compound quarterly; interest is taxed every year at the investor's slab.
    • Loan EMIs use the bank convention: nominal annual rate / 12, monthly compounding.
    • Equity/MF gains tax: LTCG 12.5% above ₹1.25L/yr exemption if held > 12 months; STCG 20% otherwise.
      Debt mutual funds and FD interest: taxed at the investor's slab rate.
@@ -704,7 +709,8 @@ footer .nav-brand b{color:var(--ink)!important}.foot-desc,.foot-links a,.foot-li
   const LTCG_EXEMPT = 125000;
 
   /* ───────── helpers ───────── */
-  E.mRate = (pct) => Math.pow(1 + pct / 100, 1 / 12) - 1;
+  E.mRate = (pct) => Math.pow(1 + pct / 100, 1 / 12) - 1;   // CAGR basis (comparisons)
+  E.mStd = (pct) => pct / 1200;                               // standard SIP basis (planning calculators)
   E.clamp = (x, a, b) => Math.min(Math.max(x, a), b);
   E.nMonths = (years) => Math.max(0, Math.round(years * 12));
 
@@ -726,7 +732,7 @@ footer .nav-brand b{color:var(--ink)!important}.foot-desc,.foot-links a,.foot-li
   /* equity-fund tax on a realised gain */
   E.taxEquity = (gain, years, cgtPct) => {
     if (gain <= 0) return 0;
-    if (years > 1 - 1e-9) return Math.max(gain - LTCG_EXEMPT, 0) * cgtPct / 100;   // LTCG
+    if (years > 1 + 1e-9) return Math.max(gain - LTCG_EXEMPT, 0) * cgtPct / 100;   // LTCG: held more than 12 months
     return gain * 0.20;                                                             // STCG
   };
   E.taxDebt = (gain, slabPct) => Math.max(gain, 0) * slabPct / 100;
@@ -761,7 +767,7 @@ footer .nav-brand b{color:var(--ink)!important}.foot-desc,.foot-links a,.foot-li
 
   /* ───────── growth: SIP / step-up / lumpsum ───────── */
   E.sipGrow = (o) => {
-    const m = E.mRate(o.retPct), n = E.nMonths(o.years);
+    const m = E.mStd(o.retPct), n = E.nMonths(o.years);
     let bal = o.lump || 0, inv = o.lump || 0, amt = o.monthly;
     const yearly = [{ year: 0, invested: inv, value: bal }];
     for (let k = 1; k <= n; k++) {
@@ -780,7 +786,7 @@ footer .nav-brand b{color:var(--ink)!important}.foot-desc,.foot-links a,.foot-li
 
   /* ───────── SWP ───────── */
   E.swp = (o) => {
-    const m = E.mRate(o.retPct), N = E.nMonths(o.maxYears || 60);
+    const m = E.mStd(o.retPct), N = E.nMonths(o.maxYears || 60);
     let bal = o.corpus, w = o.monthly, lasted = 0, withdrawn = 0, depleted = false;
     const yearly = [{ year: 0, balance: bal, withdrawn: 0 }];
     for (let k = 1; k <= N; k++) {
@@ -804,19 +810,19 @@ footer .nav-brand b{color:var(--ink)!important}.foot-desc,.foot-links a,.foot-li
   /* ───────── retirement ───────── */
   E.retirement = (o) => {
     const y = Math.max(o.retAge - o.age, 1), N = Math.max((o.lifeAge - o.retAge) * 12, 12);
-    const mPost = E.mRate(o.postRetPct), inf = o.infPct / 100;
+    const mPost = E.mStd(o.postRetPct), inf = o.infPct / 100;
     const eRet = o.expense * Math.pow(1 + inf, y);
     const pension = (o.pensionToday || 0) * Math.pow(1 + inf, y);
     const w0 = Math.max(eRet - pension, 0);
     let corpus = 0;
     for (let k = 0; k < N; k++) corpus += (w0 * Math.pow(1 + inf, Math.floor(k / 12))) / Math.pow(1 + mPost, k);
-    const fvSav = o.savings * Math.pow(1 + o.preRetPct / 100, y);
+    const fvSav = o.savings * Math.pow(1 + E.mStd(o.preRetPct), y * 12);
     const gap = Math.max(corpus - fvSav, 0);
     const unit = E.sipGrow({ monthly: 1, retPct: o.preRetPct, years: y, stepPct: o.stepPct || 0 }).fv;
     const sip = unit > 0 ? gap / unit : 0;
     // path: accumulate then draw down
     const path = [];
-    const mPre = E.mRate(o.preRetPct);
+    const mPre = E.mStd(o.preRetPct);
     let bal = o.savings, amt = sip;
     path.push({ age: o.age, balance: bal });
     for (let k = 1; k <= y * 12; k++) { bal = (bal + amt) * (1 + mPre); if (k % 12 === 0) { path.push({ age: o.age + k / 12, balance: bal }); amt *= (1 + (o.stepPct || 0) / 100); } }
@@ -832,7 +838,7 @@ footer .nav-brand b{color:var(--ink)!important}.foot-desc,.foot-links a,.foot-li
   /* ───────── FIRE ───────── */
   E.fire = (o) => {
     const number = o.expense * 12 / (o.swrPct / 100);
-    const m = E.mRate(o.retPct), inf = o.infPct / 100;
+    const m = E.mStd(o.retPct), inf = o.infPct / 100;
     let bal = o.current, amt = o.monthly, hit = (bal >= number) ? 0 : null;
     const yearly = [{ year: 0, portfolio: bal, target: number }];
     const cap = E.nMonths(o.maxYears || 60);
@@ -855,7 +861,7 @@ footer .nav-brand b{color:var(--ink)!important}.foot-desc,.foot-links a,.foot-li
 
   /* ───────── goal planner (income − expenses → years to target) ───────── */
   E.goal = (o) => {
-    const m = E.mRate(o.retPct), inf = o.infPct / 100, g = (o.incomeGrowthPct || 0) / 100;
+    const m = E.mStd(o.retPct), inf = o.infPct / 100, g = (o.incomeGrowthPct || 0) / 100;
     let bal = o.current, hit = null;
     const cap = E.nMonths(o.maxYears || 60), yearly = [{ year: 0, portfolio: bal, target: o.target }];
     const firstSave = o.income - o.expense;
@@ -892,7 +898,12 @@ footer .nav-brand b{color:var(--ink)!important}.foot-desc,.foot-links a,.foot-li
           if (o.claimTax) { const ben = Math.min(yInt, 200000) * (o.slabPct || 0) / 100; B += ben; Binv += ben; }
           yInt = 0;
         }
-        if (k % 12 === 0) yearly.push({ year: k / 12, A, B: B - sched.bal[k], loan: sched.bal[k], Bport: B });
+        if (k % 12 === 0) {
+          const yy = k / 12, eqF = (o.fundType || 'equity') === 'equity';
+          const tA = eqF ? E.taxEquity(A - Ainv, yy, o.cgtPct) : E.taxDebt(A - Ainv, o.slabPct || 0);
+          const tB = eqF ? E.taxEquity(B - Binv, yy, o.cgtPct) : E.taxDebt(B - Binv, o.slabPct || 0);
+          yearly.push({ year: yy, A: A - tA, B: B - tB - sched.bal[k], loan: sched.bal[k], Bport: B });   // after tax, as if sold that year
+        }
       }
       const gainA = A - Ainv, gainB = B - Binv;
       const isEq = (o.fundType || 'equity') === 'equity';
@@ -924,7 +935,7 @@ footer .nav-brand b{color:var(--ink)!important}.foot-desc,.foot-links a,.foot-li
     const sched = loan > 0 ? E.loanMonthly(loan, o.ratePct, o.tenure) : { emi: 0, bal: [0], int: [0] };
     const nn = sched.bal.length - 1, emi = sched.emi;
     let buyP = 0, rentP = C0, invB = 0, invR = C0, yInt = 0;
-    const yearly = [{ year: 0, buy: price * (1 - o.sellPct / 100) - loan - reg, rent: C0 }];
+    const yearly = [{ year: 0, buy: price * (1 - o.sellPct / 100) - loan, rent: C0 }];
     const appr = o.apprPct / 100;
     for (let k = 1; k <= H; k++) {
       const yi = Math.floor((k - 1) / 12);
@@ -939,8 +950,9 @@ footer .nav-brand b{color:var(--ink)!important}.foot-desc,.foot-links a,.foot-li
       if (k % 12 === 0) {
         if (o.claimTax && k <= nn) { const ben = Math.min(yInt, 200000) * (o.slabPct || 0) / 100; buyP += ben; invB += ben; }
         yInt = 0;
-        const hv = price * Math.pow(1 + appr, k / 12), lb = k <= nn ? sched.bal[k] : 0;
-        yearly.push({ year: k / 12, buy: hv * (1 - o.sellPct / 100) - lb + buyP, rent: rentP });
+        const hv = price * Math.pow(1 + appr, k / 12), lb = k <= nn ? sched.bal[k] : 0, yy = k / 12;
+        const g = hv * (1 - o.sellPct / 100) - (price + reg), pt = yy > 2 ? Math.max(g, 0) * o.cgtPct / 100 : Math.max(g, 0) * (o.slabPct || 0) / 100;
+        yearly.push({ year: yy, buy: hv * (1 - o.sellPct / 100) - pt - lb + buyP - E.taxEquity(buyP - invB, yy, o.cgtPct), rent: rentP - E.taxEquity(rentP - invR, yy, o.cgtPct) });
       }
     }
     const homeEnd = price * Math.pow(1 + appr, H / 12), sellCost = homeEnd * o.sellPct / 100;
@@ -1059,7 +1071,7 @@ footer .nav-brand b{color:var(--ink)!important}.foot-desc,.foot-links a,.foot-li
 
   /* ───────── FD vs mutual fund ───────── */
   E.fdVsMf = (o) => {
-    const yrs = o.years, fdNet = o.fdPct * (1 - o.slabPct / 100);
+    const yrs = o.years, fdEff = (Math.pow(1 + o.fdPct / 400, 4) - 1) * 100, fdNet = fdEff * (1 - o.slabPct / 100);
     const yearly = []; let fd = o.amount;
     const isEq = (o.fundType || 'equity') === 'equity';
     for (let t = 0; t <= yrs; t++) {
@@ -1074,7 +1086,7 @@ footer .nav-brand b{color:var(--ink)!important}.foot-desc,.foot-links a,.foot-li
     let be = null; if (f(0) < 0 && f(60) > 0) { let lo = 0, hi = 60; for (let i = 0; i < 60; i++) { const mid = (lo + hi) / 2; if (f(mid) < 0) lo = mid; else hi = mid; } be = (lo + hi) / 2; }
     return {
       fdFinal, mfFinal, diff: mfFinal - fdFinal, fdCagr: cagr(fdFinal), mfCagr: cagr(mfFinal),
-      fdReal: ((1 + cagr(fdFinal) / 100) / (1 + o.infPct / 100) - 1) * 100, mfReal: ((1 + cagr(mfFinal) / 100) / (1 + o.infPct / 100) - 1) * 100,
+      fdEff, fdReal: ((1 + cagr(fdFinal) / 100) / (1 + o.infPct / 100) - 1) * 100, mfReal: ((1 + cagr(mfFinal) / 100) / (1 + o.infPct / 100) - 1) * 100,
       breakevenMf: be, yearly
     };
   };
@@ -1422,7 +1434,7 @@ const h = (tag, attrs, ...kids) => {
 const fmtC = E.fmtC, fmtIN = E.fmtIN;
 const round1 = (v) => Math.round(v * 10) / 10;
 const fmtPct = (v, d) => (Math.round(v * Math.pow(10, d == null ? 1 : d)) / Math.pow(10, d == null ? 1 : d)) + '%';
-const fmtYrs = (y) => y === null || y === undefined ? '—' : (y >= 60 ? '60+ yrs' : (y < 1 ? Math.round(y * 12) + ' months' : round1(y) + ' yrs'));
+const fmtYrs = (y) => y === null || y === undefined ? '—' : (y >= 60 ? '60+ yrs' : (y < 1 ? Math.round(y * 12) + ' months' : (round1(y) === 1 ? '1 yr' : round1(y) + ' yrs')));
 const fmtAxis = (v) => { const a = Math.abs(v), s = v < 0 ? '-' : ''; if (a >= 1e7) return s + '₹' + +(a / 1e7).toFixed(a >= 1e8 ? 0 : 1) + 'Cr'; if (a >= 1e5) return s + '₹' + +(a / 1e5).toFixed(a >= 1e6 ? 0 : 1) + 'L'; if (a >= 1e3) return s + '₹' + +(a / 1e3).toFixed(0) + 'K'; return s + '₹' + Math.round(a); };
 const niceRound = (v, step, min, max) => {
   if (v <= 0) return 0;
@@ -1472,7 +1484,7 @@ const parseInput = (s) => { const n = parseFloat(String(s).replace(/[^\d.]/g, ''
 const rangeLabel = (f, which) => {
   const v = which === 'min' ? (f.zeroOk ? 0 : f.min) : f.max;
   if (f.type === 'money') return fmtC(v).replace(/\.00 /, ' ');
-  return v + (f.type === 'pct' ? '%' : (f.unit === 'age' ? '' : (f.type === 'yrs' ? ' yrs' : '')));
+  return v + (f.type === 'pct' ? '%' : (f.unit === 'age' ? '' : (f.type === 'yrs' ? (v === 1 ? ' yr' : ' yrs') : '')));
 };
 
 /* ── build one input control; returns {el, set(v), refresh()} ── */
@@ -1805,7 +1817,7 @@ function sipCompute(v) {
     insights: [
       mult >= 2.5 ? ins('✨', 'good', 'Your money more than doubles here — compounding is doing most of the work in the later years, not the early ones.') : ins('ℹ️', 'info', 'Longer durations let compounding do more of the heavy lifting — even a few extra years can meaningfully change this number.')
     ],
-    method: 'Assumes monthly contributions at the start of each month, compounding at the annualised return you set. ' + (v.stepPct ? 'Your SIP amount increases by ' + v.stepPct + '% every 12 months.' : ''),
+    method: 'Uses the standard SIP formula used by fund houses and popular investing apps: FV = P × [(1 + i)<sup>n</sup> − 1] ÷ i × (1 + i), where i is the annual return ÷ 12 and n is the number of months. Each instalment is invested at the start of the month. ' + (v.stepPct ? 'Your SIP amount increases by ' + v.stepPct + '% every 12 months. ' : '') + 'Returns are assumptions, not guarantees.',
     _raw: r
   };
 }
@@ -1832,7 +1844,7 @@ function lumpCompute(v) {
       series: [{ name: 'Invested', color: '#94a3b8', values: r.yearly.map(y => y.invested) }, { name: 'Value', color: '#2563eb', values: r.yearly.map(y => y.value), fill: true }]
     },
     insights: [],
-    method: 'A one-time amount invested and left to compound at the annualised return you set — no further contributions.',
+    method: 'A one-time amount compounding once a year at the return you set: FV = P × (1 + r)<sup>years</sup>. No further contributions.',
     _raw: r
   };
 }
@@ -1871,7 +1883,7 @@ function swpCfg(parentKey) {
           title: 'Corpus Over Time', xs: r.yearly.map(y => y.year), xTitle: 'Year', xFmt: (x) => 'Y' + Math.round(x),
           series: [{ name: 'Balance', color: '#2563eb', values: r.yearly.map(y => y.balance), fill: true }]
         },
-        insights: [], method: 'Corpus grows at your chosen return each month, minus that month\'s withdrawal. Withdrawal amount steps up annually if you set an inflation adjustment.'
+        insights: [], method: 'Each month the withdrawal is taken out first, then the rest grows at your chosen return ÷ 12. If you set an inflation step-up, the withdrawal rises by that % every 12 months. The money lasts until the balance can no longer pay a full month.'
       };
     }
   };
@@ -1896,6 +1908,8 @@ registerCalc('retirement', 'Retirement', '🏖️', () => [{
     F.money('pensionToday', 'Any Guaranteed Pension (Today\'s Value)', { min: 0, max: 500000, step: 5000, def: 0, zeroOk: true }),
   ],
   compute: (v) => {
+    if (v.retAge <= v.age) return { verdict: { icon: '⚠️', tone: 'warn', title: 'Check your ages — ', text: 'retirement age must be more than your current age.' }, hero: { label: 'Corpus You Need at Retirement', value: 0, fmt: () => '—' }, tiles: [] };
+    if (v.lifeAge <= v.retAge) return { verdict: { icon: '⚠️', tone: 'warn', title: 'Check life expectancy — ', text: 'it must be more than your retirement age (open "Advanced assumptions").' }, hero: { label: 'Corpus You Need at Retirement', value: 0, fmt: () => '—' }, tiles: [] };
     const r = E.retirement(v);
     return {
       hero: { label: 'Corpus You Need at Retirement', value: r.corpusNeeded, fmt: fmtC, sub: fmtYrs(r.yearsToRetire) + ' from now' },
@@ -1912,7 +1926,7 @@ registerCalc('retirement', 'Retirement', '🏖️', () => [{
       insights: [
         r.gap > 0 ? ins('🎯', 'info', 'Investing ' + fmtC(r.sip) + '/month from now gets you to your target — starting later means a meaningfully higher monthly number.') : ins('✅', 'good', 'Your current savings alone are projected to cover this goal.')
       ],
-      method: 'Corpus needed is the present value of all your inflation-adjusted withdrawals through your expected lifespan, discounted at your post-retirement return. Monthly SIP is solved to close the gap after your current savings grow at your pre-retirement return.'
+      method: 'Your monthly expenses are grown by inflation to your retirement year. The corpus is what it takes to pay that amount every month (rising with inflation each year) until your life-expectancy age, while the remaining money earns your after-retirement return. Your current savings grow at your before-retirement return, and the monthly SIP closes whatever gap is left. Monthly rates are the annual return ÷ 12, the same as standard SIP calculators.'
     };
   }
 }]);
@@ -2001,7 +2015,7 @@ function loanVsCashCfg(kind) {
     adv: [
       F.pct('infPct', 'Expected Inflation', { min: 2, max: 10, step: 0.5, def: 6 }),
       F.pct('regPct', 'Registration/Transaction Cost %', { min: 0, max: 10, step: 0.5, def: isHome ? 6 : 2 }),
-      isHome ? F.tog('claimTax', 'Claim Home Loan Interest Tax Benefit (24b)', true) : null,
+      isHome ? F.tog('claimTax', 'Claim Home Loan Interest Tax Benefit (24b)', false, { hint: 'Only under the old tax regime (up to ₹2 lakh a year for a home you live in). The new regime, which most people now use, gives no deduction.' }) : null,
       isHome ? F.pct('slabPct', 'Your Income Tax Slab', { min: 0, max: 30, step: 5, def: 30, showIf: (val) => val.claimTax }) : null,
     ].filter(Boolean),
     compute: (v) => {
@@ -2015,7 +2029,7 @@ function loanVsCashCfg(kind) {
           : diff > 0
             ? { icon: '📈', tone: 'good', title: 'Loan + invest projects ahead — ', text: 'by ' + fmtC(diff) + ', assuming your return holds. That\'s never guaranteed the way loan math is.' }
             : { icon: '💵', tone: 'info', title: 'Cash + SIP projects ahead — ', text: 'by ' + fmtC(-diff) + ' at these numbers.' },
-        hero: { label: 'Cash + SIP vs Loan + Invest', value: r.diff, fmt: (x) => (x >= 0 ? '+' : '') + fmtC(x) },
+        hero: { label: diff >= 0 ? 'Taking the loan comes out ahead by' : 'Paying cash comes out ahead by', value: Math.abs(r.diff), fmt: fmtC, sub: 'After tax, at the end of the ' + v.tenure + '-year loan' },
         tiles: [
           { k: 'Pay Cash, SIP the EMI', v: fmtC(r.finalA) },
           { k: 'Take Loan, Invest Lumpsum', v: fmtC(r.finalB) },
@@ -2030,7 +2044,7 @@ function loanVsCashCfg(kind) {
           r.inflationEasePct > 15
             ? ins('📉', 'good', 'Inflation genuinely matters here — your EMI feels ' + Math.round(r.inflationEasePct) + '% lighter in today\'s-money terms by the time you finish paying, since you\'re repaying with progressively cheaper future rupees.')
             : ins('ℹ️', 'info', 'Inflation\'s effect on your real EMI burden is modest here (' + Math.round(r.inflationEasePct) + '%) — not the deciding factor.'),
-          isHome && v.claimTax ? ins('🧾', 'info', 'This includes the Section 24(b) interest deduction (up to ₹2L/year) in the loan route\'s numbers.') : null,
+          isHome && v.claimTax ? ins('🧾', 'info', 'This includes the Section 24(b) interest deduction (up to ₹2 lakh a year, old tax regime only) in the loan route\'s numbers.') : null,
         ].filter(Boolean),
         table: {
           cols: ['Year', 'Cash + SIP', 'Loan + Invest'],
@@ -2062,7 +2076,7 @@ registerCalc('rentbuy', 'Rent vs Buy', '🏡', () => [{
     F.pct('rentGrowthPct', 'Annual Rent Increase', { min: 0, max: 12, step: 0.5, def: 5 }),
     F.pct('maintPct', 'Annual Maintenance % (of home value)', { min: 0, max: 3, step: 0.1, def: 1 }),
     F.pct('sellPct', 'Selling Cost % (brokerage etc.)', { min: 0, max: 10, step: 0.5, def: 2 }),
-    F.tog('claimTax', 'Claim Home Loan Interest Tax Benefit (24b)', true),
+    F.tog('claimTax', 'Claim Home Loan Interest Tax Benefit (24b)', false, { hint: 'Only under the old tax regime (up to ₹2 lakh a year for a home you live in). The new regime gives no deduction.' }),
     F.pct('slabPct', 'Your Income Tax Slab', { min: 0, max: 30, step: 5, def: 30 }),
   ],
   compute: (v) => {
@@ -2073,7 +2087,7 @@ registerCalc('rentbuy', 'Rent vs Buy', '🏡', () => [{
         ? { icon: 'ℹ️', tone: 'info', title: 'Close call — ', text: 'the decision may come down to lifestyle and stability, not pure math.' }
         : diff > 0 ? { icon: '🏠', tone: 'good', title: 'Buying projects ahead — ', text: 'by ' + fmtC(diff) + ', mainly from home appreciation.' }
           : { icon: '📊', tone: 'good', title: 'Renting + investing projects ahead — ', text: 'by ' + fmtC(-diff) + '.' },
-      hero: { label: 'Net Worth Difference (Buy − Rent)', value: r.diff, fmt: (x) => (x >= 0 ? '+' : '') + fmtC(x) },
+      hero: { label: diff >= 0 ? 'Buying comes out ahead by' : 'Renting comes out ahead by', value: Math.abs(r.diff), fmt: fmtC, sub: 'Net worth after selling costs and tax, after ' + v.horizon + ' years' },
       tiles: [
         { k: 'Net Worth if Buying', v: fmtC(r.buyFinal) },
         { k: 'Net Worth if Renting', v: fmtC(r.rentFinal) },
@@ -2173,7 +2187,7 @@ registerCalc('mfre', 'MF vs Real Estate', '🏘️', () => [{
         ? { icon: 'ℹ️', tone: 'info', title: 'Close call — ', text: 'the decision may come down to how much you value direct property ownership vs liquidity.' }
         : reWins ? { icon: '🏘️', tone: 'good', title: 'Real estate projects ahead — ', text: 'by ' + fmtC(diff) + ', assuming appreciation holds.' }
           : { icon: '📈', tone: 'good', title: 'Mutual funds project ahead — ', text: 'by ' + fmtC(-diff) + ', with far more liquidity along the way.' },
-      hero: { label: 'Net Worth Difference (RE − MF)', value: r.diff, fmt: (x) => (x >= 0 ? '+' : '') + fmtC(x), sub: 'After selling costs and tax, at the end of ' + yrs + ' years. Both paths cost you the same ' + fmtC(r.ownMoney) + '.' },
+      hero: { label: reWins ? 'Real estate comes out ahead by' : 'Mutual funds come out ahead by', value: Math.abs(r.diff), fmt: fmtC, sub: 'After selling costs and tax, at the end of ' + yrs + ' years. Both paths cost you the same ' + fmtC(r.ownMoney) + '.' },
       tiles: [
         { k: '🏘️ Real Estate — Final', v: fmtC(r.reFinal), s: 'gain ' + fmtC(gainRE) + ' on your money', hl: reWins },
         { k: '📈 Mutual Fund — Final', v: fmtC(r.mfFinal), s: 'gain ' + fmtC(gainMF) + ' on your money', hl: !reWins },
@@ -2220,7 +2234,7 @@ registerCalc('fdmf', 'FD vs Mutual Fund', '🏦', () => [{
       verdict: r.diff > 0
         ? { icon: '📈', tone: 'good', title: 'Mutual fund nets more — ', text: 'by ' + fmtC(r.diff) + ' after tax, with real market risk the FD doesn\'t have.' }
         : { icon: '🏦', tone: 'info', title: 'FD nets more — ', text: 'by ' + fmtC(-r.diff) + ' after tax — the guaranteed-return trade-off wins here.' },
-      hero: { label: 'After-Tax Difference (MF − FD)', value: r.diff, fmt: (x) => (x >= 0 ? '+' : '') + fmtC(x) },
+      hero: { label: r.diff >= 0 ? 'Mutual fund comes out ahead by' : 'FD comes out ahead by', value: Math.abs(r.diff), fmt: fmtC, sub: 'After tax, after ' + v.years + (v.years === 1 ? ' year' : ' years') },
       tiles: [
         { k: 'FD — After Tax', v: fmtC(r.fdFinal) },
         { k: 'Mutual Fund — After Tax', v: fmtC(r.mfFinal) },
@@ -2232,10 +2246,10 @@ registerCalc('fdmf', 'FD vs Mutual Fund', '🏦', () => [{
         series: [{ name: 'FD', color: '#94a3b8', values: r.yearly.map(y => y.fd) }, { name: 'Mutual Fund', color: '#2563eb', values: r.yearly.map(y => y.mf), fill: true }]
       },
       insights: [
-        ins('🧾', 'info', 'FD interest is taxed every year at your slab rate, whether or not you touch the money. Mutual fund equity LTCG (24+ month holding) is taxed at just 12.5% above a ₹1.25L exemption, and only when you actually redeem.'),
+        ins('🧾', 'info', 'FD interest is taxed every year at your slab rate, even if you don\'t withdraw it. Equity mutual fund gains held more than 12 months are taxed at 12.5% above ₹1.25 lakh, and only when you sell. Sold within 12 months, the gain is taxed at 20%.'),
         r.fdReal < 0 ? ins('📉', 'warn', 'At these numbers, the FD\'s real (inflation-adjusted) return is negative — you\'re losing purchasing power holding it, even before spending a rupee.') : null,
       ].filter(Boolean),
-      method: 'FD interest compounds annually, taxed each year at your slab rate. Mutual fund grows tax-deferred and is taxed once, at redemption, using long-term capital gains treatment if held 24+ months.'
+      method: 'FD: interest compounds quarterly (how Indian banks pay it), so a ' + v.fdPct + '% FD earns ' + round1(r.fdEff) + '% a year before tax; that interest is taxed every year at your ' + v.slabPct + '% slab. Equity mutual fund: grows untaxed and is taxed once when you sell — 12.5% on gains above ₹1.25 lakh if held more than 12 months, otherwise 20%.'
     };
   }
 }]);
@@ -2268,13 +2282,13 @@ if (document.readyState !== 'loading') {
       <div style="font-size:16px;font-weight:600;color:#fff;margin-bottom:10px;cursor:pointer" onclick="this.nextElementSibling.style.display=this.nextElementSibling.style.display==='none'?'block':'none'">
         <span style="color:#c9a84c;margin-right:10px">Q.</span>How accurate is the SIP calculator?
       </div>
-      <div style="font-size:14px;color:rgba(255,255,255,.65);line-height:1.8;padding-left:24px">Our SIP calculator uses the standard compound-interest formula with an effective monthly rate. For example, ₹5,000/month at 12% p.a. for 10 years grows to roughly ₹11.6 lakh on this basis. Actual mutual fund returns are market-linked and not guaranteed.</div>
+      <div style="font-size:14px;color:rgba(255,255,255,.65);line-height:1.8;padding-left:24px">Our SIP calculator uses the standard SIP formula used by fund houses and investing apps (monthly rate = annual return ÷ 12, invested at the start of each month). For example, ₹5,000/month at 12% p.a. for 10 years grows to about ₹11.62 lakh. Actual mutual fund returns are market-linked and not guaranteed.</div>
     </div>
     <div style="border-bottom:1px solid rgba(255,255,255,.08);padding:20px 0;">
       <div style="font-size:16px;font-weight:600;color:#fff;margin-bottom:10px;cursor:pointer" onclick="this.nextElementSibling.style.display=this.nextElementSibling.style.display==='none'?'block':'none'">
         <span style="color:#c9a84c;margin-right:10px">Q.</span>How much SIP do I need for retirement?
       </div>
-      <div style="font-size:14px;color:rgba(255,255,255,.65);line-height:1.8;padding-left:24px">Use our free Retirement Calculator. As a benchmark: to retire at 60 with current expenses of ₹50,000/month, you typically need ₹5–8 crore corpus. A ₹15,000–20,000/month SIP started at 30 can achieve this at 12% returns.</div>
+      <div style="font-size:14px;color:rgba(255,255,255,.65);line-height:1.8;padding-left:24px">Use our free Retirement Calculator. As a benchmark: to retire at 60 with current expenses of ₹50,000/month, you need roughly ₹5.5–7.5 crore, depending on whether you plan for money to last to age 80 or 90 (6% inflation, 8% return after retirement). Starting at 30 with nothing saved, that takes a SIP of about ₹15,500–21,000/month at 12% returns.</div>
     </div></div>
   </div>
 </section>
