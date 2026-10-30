@@ -883,7 +883,15 @@ footer .nav-brand b{color:var(--ink)!important}.foot-desc,.foot-links a,.foot-li
       if (hit !== null && k >= hit + 12) break;
       if (firstSave <= 0 && k >= 24) break;
     }
-    return { firstSave, savingsRatePct: o.income > 0 ? firstSave / o.income * 100 : 0, yearsToGoal: hit === null ? null : hit / 12, yearly };
+    // Starting monthly investment (rising with salary each year) needed to reach the inflated target in `inYears`.
+    let needMonthly = null, targetAt = null;
+    if (o.inYears > 0) {
+      const n = E.nMonths(o.inYears), i = E.mStd(o.retPct); targetAt = o.target * Math.pow(1 + inf, o.inYears);
+      const gap = targetAt - o.current * Math.pow(1 + i, n);
+      const unit = E.sipGrow({ monthly: 1, retPct: o.retPct, years: o.inYears, stepPct: (o.incomeGrowthPct || 0) }).fv;
+      needMonthly = Math.max(gap, 0) / unit;
+    }
+    return { firstSave, savingsRatePct: o.income > 0 ? firstSave / o.income * 100 : 0, yearsToGoal: hit === null ? null : hit / 12, yearly, needMonthly, targetAt };
   };
 
   /* ───────── loan vs cash ───────── */
@@ -1924,16 +1932,17 @@ registerCalc('retirement', 'Retirement', '🏖️', () => [{
   id: 'retirement', title: 'Retirement Calculator', blurb: 'Find out exactly how much you need to invest today to live comfortably after retirement.',
   fields: [
     F.yrs('age', 'Current Age', { min: 18, max: 60, def: 30, hardMin: 18, hardMax: 65 }),
-    F.yrs('retAge', 'Retirement Age', { min: 40, max: 70, def: 60 }),
+    F.yrs('retAge', 'Retirement Age', { min: 40, max: 70, def: 60, hardMax: 80 }),
     F.money('expense', 'Monthly Expenses Today', { min: 10000, max: 1000000, step: 5000, def: 50000 }),
     F.pct('preRetPct', 'Expected Return (Before Retirement)', { min: 5, max: 20, step: 0.5, def: 12 }),
   ],
   adv: [
     F.pct('infPct', 'Inflation Rate', { min: 3, max: 12, step: 0.5, def: 6 }),
     F.pct('postRetPct', 'Expected Return (After Retirement)', { min: 3, max: 14, step: 0.5, def: 8 }),
-    F.yrs('lifeAge', 'Life Expectancy', { min: 70, max: 100, def: 85 }),
+    F.yrs('lifeAge', 'Plan Money to Last Until Age', { min: 70, max: 100, def: 85, hardMax: 105, hint: 'Planning to 85–90 is safer than average life expectancy.' }),
     F.money('savings', 'Current Retirement Savings', { min: 0, max: 50000000, step: 50000, def: 200000, zeroOk: true }),
     F.money('pensionToday', 'Any Guaranteed Pension (Today\'s Value)', { min: 0, max: 500000, step: 5000, def: 0, zeroOk: true }),
+    F.pct('stepPct', 'Increase Your SIP Every Year By', { min: 0, max: 20, step: 1, def: 0, hint: 'Set 10% if you plan to raise the SIP with your salary. The starting SIP needed drops a lot.' }),
   ],
   compute: (v) => {
     if (v.retAge <= v.age) return { verdict: { icon: '⚠️', tone: 'warn', title: 'Check your ages — ', text: 'retirement age must be more than your current age.' }, hero: { label: 'Corpus You Need at Retirement', value: 0, fmt: () => '—' }, tiles: [] };
@@ -1942,7 +1951,7 @@ registerCalc('retirement', 'Retirement', '🏖️', () => [{
     return {
       hero: { label: 'Corpus You Need at Retirement', value: r.corpusNeeded, fmt: fmtC, sub: fmtYrs(r.yearsToRetire) + ' from now' },
       tiles: [
-        { k: 'Monthly SIP Needed', v: fmtC(r.sip) + '/mo', hl: true },
+        { k: v.stepPct ? 'Starting Monthly SIP Needed' : 'Monthly SIP Needed', v: fmtC(r.sip) + '/mo', s: v.stepPct ? 'rising ' + v.stepPct + '% every year' : null, hl: true },
         { k: 'Expense at Retirement', v: fmtC(r.expenseAtRetirement) + '/mo' },
         { k: 'From Current Savings', v: fmtC(r.fvSavings) },
         { k: 'Remaining Gap', v: fmtC(r.gap) },
@@ -1971,13 +1980,14 @@ registerCalc('fire', 'FIRE Number', '🔥', () => [{
   adv: [
     F.money('current', 'Current Investments', { min: 0, max: 50000000, step: 100000, def: 500000, zeroOk: true }),
     F.pct('infPct', 'Inflation Rate', { min: 2, max: 10, step: 0.5, def: 6 }),
+    F.pct('stepPct', 'Increase Your Investment Every Year By', { min: 0, max: 20, step: 1, def: 0, hint: 'Raising your monthly investment with your salary reaches the target much sooner.' }),
   ],
   compute: (v) => {
     const r = E.fire(v);
     return {
       hero: { label: 'Your FIRE Number', value: r.number, fmt: fmtC },
       tiles: [
-        { k: 'Years to Reach It', v: r.yearsToFI == null ? '60+' : round1(r.yearsToFI), hl: true },
+        { k: 'Years to Reach It', v: r.yearsToFI == null ? 'Over 60' : round1(r.yearsToFI), s: v.stepPct ? 'investing ' + fmtC(v.monthly) + '/mo, rising ' + v.stepPct + '% a year' : 'investing ' + fmtC(v.monthly) + '/mo', hl: true },
         { k: 'Lean FIRE', v: fmtC(r.lean) },
         { k: 'Fat FIRE', v: fmtC(r.fat) },
       ],
@@ -1996,29 +2006,38 @@ registerCalc('fire', 'FIRE Number', '🔥', () => [{
 
 /* ── Goal Planner ── */
 registerCalc('goal', 'Goal Planner', '🎯', () => [{
-  id: 'goal', title: 'Financial Goal Planner', blurb: 'Enter your income and expenses to see your real savings rate — then how many years to hit any target.',
+  id: 'goal', title: 'Financial Goal Planner', blurb: 'See how many years your savings take to reach a goal, and how much you need to invest each month to reach it by the year you choose.',
   fields: [
     F.money('income', 'Monthly Take-Home Income', { min: 15000, max: 2000000, step: 5000, def: 80000 }),
     F.money('expense', 'Monthly Expenses', { min: 5000, max: 2000000, step: 5000, def: 50000 }),
-    F.money('target', 'Target Amount', { min: 100000, max: 100000000, step: 100000, def: 5000000 }),
+    F.money('target', 'Goal Amount (Today\'s Price)', { min: 100000, max: 100000000, step: 100000, def: 5000000 }),
+    F.yrs('inYears', 'I Want It In', { min: 1, max: 40, def: 10, hint: 'We\'ll show the monthly investment needed to reach it by then.' }),
     F.pct('retPct', 'Expected Annual Return', { min: 4, max: 20, step: 0.5, def: 12 }),
   ],
   adv: [
     F.money('current', 'Current Savings Already Invested', { min: 0, max: 20000000, step: 50000, def: 100000, zeroOk: true }),
-    F.pct('infPct', 'Inflation on Target', { min: 0, max: 10, step: 0.5, def: 6 }),
+    F.pct('infPct', 'Inflation (prices and expenses)', { min: 0, max: 10, step: 0.5, def: 6 }),
+    F.pct('incomeGrowthPct', 'Yearly Salary Increase', { min: 0, max: 15, step: 0.5, def: 6, hint: 'Your expenses rise with inflation, so your income should too. Set 0 if your income is fixed.' }),
   ],
   compute: (v) => {
     const r = E.goal(v);
-    const noSurplus = r.firstSave <= 0;
+    const noSurplus = r.firstSave <= 0, enough = r.firstSave >= r.needMonthly;
+    const yrsTxt = (x) => x == null ? (noSurplus ? '—' : 'Over 60 yrs') : fmtYrs(x);
     return {
-      verdict: noSurplus ? { icon: '⚠️', tone: 'warn', title: 'No surplus yet — ', text: 'expenses meet or exceed income, so there\'s nothing left to invest toward this goal.' } : null,
-      hero: { label: 'Years to Reach Your Target', value: r.yearsToGoal, fmt: (x) => x == null ? '—' : fmtYrs(x) },
-      tiles: [{ k: 'Monthly Savings', v: fmtC(Math.max(r.firstSave, 0)) }, { k: 'Savings Rate', v: round1(r.savingsRatePct) + '%' }],
+      verdict: noSurplus ? { icon: '⚠️', tone: 'warn', title: 'No surplus yet — ', text: 'expenses meet or exceed income, so there\'s nothing left to invest toward this goal.' }
+        : enough ? { icon: '✅', tone: 'good', title: 'You can reach it in ' + v.inYears + ' years — ', text: 'you need ' + fmtC(r.needMonthly) + '/month and you have ' + fmtC(r.firstSave) + '/month left over.' }
+        : { icon: 'ℹ️', tone: 'info', title: 'To reach it in ' + v.inYears + ' years — ', text: 'you need to start at ' + fmtC(r.needMonthly) + '/month, but only ' + fmtC(r.firstSave) + '/month is left over today. Investing everything you can, it takes ' + yrsTxt(r.yearsToGoal) + '.' },
+      hero: { label: (v.incomeGrowthPct ? 'Start Investing This Much a Month' : 'Invest Every Month') + ' to Reach It in ' + v.inYears + (v.inYears === 1 ? ' Year' : ' Years'), value: r.needMonthly, fmt: (x) => fmtC(x) + '/mo', sub: (v.incomeGrowthPct ? 'Then raise it ' + v.incomeGrowthPct + '% each year with your salary. ' : '') + 'The goal will cost about ' + fmtC(r.targetAt) + ' by then.' },
+      tiles: [
+        { k: 'Left Over Each Month Today', v: fmtC(Math.max(r.firstSave, 0)), s: round1(r.savingsRatePct) + '% of your income' },
+        { k: 'Years If You Invest All of It', v: yrsTxt(r.yearsToGoal), s: v.incomeGrowthPct ? 'income +' + v.incomeGrowthPct + '%, expenses +' + v.infPct + '% a year' : 'income fixed, expenses +' + v.infPct + '% a year', hl: true },
+        { k: 'Goal Cost in ' + v.inYears + (v.inYears === 1 ? ' Year' : ' Years'), v: fmtC(r.targetAt), s: fmtC(v.target) + ' in today\'s prices' },
+      ],
       chart: r.yearly.length > 1 ? {
-        title: 'Portfolio vs Target', xs: r.yearly.map(y => y.year), xTitle: 'Year', xFmt: (x) => 'Y' + x,
-        series: [{ name: 'Portfolio', color: '#2563eb', values: r.yearly.map(y => y.portfolio), fill: true }, { name: 'Target', color: '#8899aa', values: r.yearly.map(y => y.target), dash: true }]
+        title: 'Investing All Your Savings vs the Goal', xs: r.yearly.map(y => y.year), xTitle: 'Year', xFmt: (x) => 'Y' + x,
+        series: [{ name: 'Portfolio', color: '#2563eb', values: r.yearly.map(y => y.portfolio), fill: true }, { name: 'Goal (rising with prices)', color: '#8899aa', values: r.yearly.map(y => y.target), dash: true }]
       } : null,
-      insights: [], method: 'Your monthly surplus (income minus expenses) is invested at your chosen return each month. The target inflates over time if you set an inflation rate above zero.'
+      insights: [], method: 'Monthly investment needed: the goal is grown by inflation to the year you choose; your current savings grow at your return; a monthly SIP (invested at the start of each month, return ÷ 12, raised every year by your salary increase) covers the rest. Years to reach it: everything left over each month is invested; your income rises by your salary increase and expenses by inflation each year.'
     };
   }
 }]);
