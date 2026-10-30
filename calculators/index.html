@@ -792,9 +792,15 @@ footer .nav-brand b{color:var(--ink)!important}.foot-desc,.foot-links a,.foot-li
     for (let k = 1; k <= N; k++) {
       if (bal < w) { lasted = (k - 1) + (w > 0 ? bal / w : 0); withdrawn += bal; bal = 0; depleted = true; yearly.push({ year: lasted / 12, balance: 0, withdrawn }); break; }
       bal -= w; withdrawn += w; bal *= (1 + m); lasted = k;
-      if (k % 12 === 0) { yearly.push({ year: k / 12, balance: bal, withdrawn }); w *= (1 + (o.stepPct || 0) / 100); }
+      if (k % 12 === 0) { yearly.push({ year: k / 12, balance: bal, withdrawn, monthlyNow: w }); w *= (1 + (o.stepPct || 0) / 100); }
     }
     return { depleted, monthsLasted: lasted, yearsLasted: lasted / 12, endBalance: bal, totalWithdrawn: withdrawn, yearly, firstWithdrawal: o.monthly };
+  };
+  // Exact starting corpus needed to pay the withdrawals for `years` years (balance reaches ₹0 at the end).
+  E.swpCorpusNeeded = (o) => {
+    const i = E.mStd(o.retPct), N = E.nMonths(o.years); let pv = 0;
+    for (let k = 0; k < N; k++) pv += o.monthly * Math.pow(1 + (o.stepPct || 0) / 100, Math.floor(k / 12)) / Math.pow(1 + i, k);
+    return pv;
   };
   // Largest starting monthly withdrawal that lasts `years` years.
   E.swpSustainable = (o) => {
@@ -1864,26 +1870,48 @@ function swpCfg(parentKey) {
     linkable: true,
     deriveFromParent: (parentRes) => ({ corpus: parentRes._raw ? parentRes._raw.fv : parentRes.fv }),
     fields: [
-      F.money('corpus', 'Starting Corpus', { min: 100000, max: 100000000, step: 50000, def: 1000000 }),
-      F.money('monthly', 'Monthly Withdrawal', { min: 1000, max: 1000000, step: 1000, def: 10000 }),
+      F.money('corpus', 'Starting Corpus', { min: 100000, max: 500000000, step: 50000, def: 1000000 }),
+      F.money('monthly', 'Monthly Withdrawal', { min: 1000, max: 2500000, step: 1000, def: 10000 }),
+      F.yrs('years', 'Withdraw For', { min: 1, max: 50, def: 30, hint: 'How many years you want the monthly income to run, e.g. 30 years after retiring.' }),
       F.pct('retPct', 'Return During Withdrawal', { min: 2, max: 18, step: 0.5, def: 8 }),
     ],
-    adv: [F.pct('stepPct', 'Annual Step-Up on Withdrawal (Inflation)', { min: 0, max: 12, step: 0.5, def: 5 })],
+    adv: [F.pct('stepPct', 'Annual Step-Up on Withdrawal (Inflation)', { min: 0, max: 12, step: 0.5, def: 5, hint: 'Raises the monthly amount every year so it keeps up with prices. Set 0 for a fixed amount.' })],
     advTitle: 'Adjust for inflation',
     compute: (v) => {
-      const r = E.swp({ corpus: v.corpus, monthly: v.monthly, retPct: v.retPct, stepPct: v.stepPct || 0, maxYears: 60 });
+      const Y = v.years || 30, st = v.stepPct || 0;
+      const r = E.swp({ corpus: v.corpus, monthly: v.monthly, retPct: v.retPct, stepPct: st, maxYears: Y });
+      const life = E.swp({ corpus: v.corpus, monthly: v.monthly, retPct: v.retPct, stepPct: st, maxYears: 100 });
+      const safe = E.swpSustainable({ corpus: v.corpus, retPct: v.retPct, stepPct: st, years: Y });
+      const need = E.swpCorpusNeeded({ monthly: v.monthly, retPct: v.retPct, stepPct: st, years: Y });
+      const lastW = v.monthly * Math.pow(1 + st / 100, Math.max(Y - 1, 0));
+      const lastsTxt = life.depleted ? 'In total, the money would last ' + fmtYrs(life.yearsLasted) + '.' : 'At this rate the money would last more than 100 years.';
+      const ok = !r.depleted;
+      let prev = 0;
+      const rows = r.yearly.slice(1).map(y => { const yr = y.withdrawn - prev; prev = y.withdrawn; return [Math.ceil(y.year - 1e-9), y.monthlyNow ? fmtC(y.monthlyNow) : '—', fmtC(yr), fmtC(y.balance)]; });
       return {
-        verdict: r.depleted
-          ? (r.yearsLasted < 15 ? { icon: '⚠️', tone: 'warn', title: 'Depletes relatively fast — ', text: 'lasts ' + fmtYrs(r.yearsLasted) + ' at this withdrawal rate.' }
-            : { icon: 'ℹ️', tone: 'info', title: 'Lasts a good while — ', text: 'depletes after ' + fmtYrs(r.yearsLasted) + '.' })
-          : { icon: '✅', tone: 'good', title: 'Sustainable — ', text: 'your corpus outlasts 60 years at this rate.' },
-        hero: { label: 'Your Money Lasts', value: r.depleted ? r.yearsLasted : 60, fmt: (x) => r.depleted ? fmtYrs(x) : '60+ years' },
-        tiles: [{ k: 'Total Withdrawn', v: fmtC(r.totalWithdrawn) }, { k: r.depleted ? 'Ending Balance' : 'Balance at Year 60', v: fmtC(r.endBalance) }],
+        verdict: ok
+          ? { icon: '✅', tone: 'good', title: 'Lasts the full ' + Y + ' years — ', text: fmtC(r.endBalance) + ' is still left at the end. ' + lastsTxt }
+          : { icon: '⚠️', tone: 'warn', title: 'Runs out after ' + fmtYrs(r.yearsLasted) + ' — ', text: 'about ' + fmtYrs(Y - r.yearsLasted) + ' short of your ' + Y + ' years. You need ' + fmtC(need) + ' to start, or a lower monthly amount (see below).' },
+        hero: ok ? { label: 'Money Left After ' + Y + ' Years', value: r.endBalance, fmt: fmtC, sub: 'After withdrawing ' + fmtC(r.totalWithdrawn) + ' in total' }
+                 : { label: 'Your Money Runs Out After', value: r.yearsLasted, fmt: fmtYrs, sub: 'You wanted ' + Y + ' years' },
+        tiles: [
+          { k: 'Total Withdrawn in ' + (ok ? Y + ' Years' : fmtYrs(r.yearsLasted)), v: fmtC(r.totalWithdrawn) },
+          { k: ok ? 'Left After ' + Y + ' Years' : 'Shortfall in Starting Corpus', v: ok ? fmtC(r.endBalance) : fmtC(Math.max(need - v.corpus, 0)), tone: ok ? 'g' : 'r' },
+          { k: 'Max Monthly Withdrawal for ' + Y + ' Years', v: fmtC(safe) + '/mo', s: st ? 'starting amount, rising ' + round1(st) + '% a year' : 'fixed every month', hl: true },
+          { k: 'Corpus Needed for ' + fmtC(v.monthly) + '/mo', v: fmtC(need), s: 'to last exactly ' + Y + ' years' },
+          st ? { k: 'Monthly Withdrawal in Year ' + Y, v: fmtC(lastW) + '/mo', s: 'after ' + round1(st) + '% yearly step-ups' } : null,
+        ].filter(Boolean),
         chart: {
-          title: 'Corpus Over Time', xs: r.yearly.map(y => y.year), xTitle: 'Year', xFmt: (x) => 'Y' + Math.round(x),
+          title: 'Balance Over ' + Y + ' Years', xs: r.yearly.map(y => y.year), xTitle: 'Year', xFmt: (x) => 'Y' + Math.round(x),
           series: [{ name: 'Balance', color: '#2563eb', values: r.yearly.map(y => y.balance), fill: true }]
         },
-        insights: [], method: 'Each month the withdrawal is taken out first, then the rest grows at your chosen return ÷ 12. If you set an inflation step-up, the withdrawal rises by that % every 12 months. The money lasts until the balance can no longer pay a full month.'
+        insights: [
+          ok && r.endBalance > v.corpus ? ins('📈', 'good', 'Your balance ends higher than you started, because the return is more than you take out. You could withdraw up to <b>' + fmtC(safe) + '/month</b> and still last ' + Y + ' years.') : null,
+          !ok ? ins('💡', 'info', 'To make it last ' + Y + ' years: start with <b>' + fmtC(need) + '</b>, or withdraw <b>' + fmtC(safe) + '/month</b> from your current ' + fmtC(v.corpus) + '.') : null,
+          ins('🧾', 'info', 'Figures are before tax. Each SWP withdrawal is partly your own money and partly gains; only the gains part is taxed.'),
+        ].filter(Boolean),
+        table: { cols: ['Year', 'Monthly withdrawal', 'Withdrawn that year', 'Balance at year end'], rows },
+        method: 'Each month the withdrawal is taken out first, then the rest grows at your chosen return ÷ 12. If you set an inflation step-up, the withdrawal rises by that % every 12 months. We run this for the number of years you choose and show what is left. "Corpus needed" is the exact starting amount that pays every withdrawal and reaches ₹0 at the end of the period; "max monthly withdrawal" is the starting amount your corpus can pay for that period.'
       };
     }
   };
