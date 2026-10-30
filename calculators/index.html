@@ -1866,7 +1866,7 @@ registerCalc('lumpsum', 'Lumpsum', '💰', () => [
 /* ── SWP (linked, corpus auto-fed from the calculator above) ── */
 function swpCfg(parentKey) {
   return {
-    id: 'swp_' + parentKey, title: 'Now Withdraw From This — SWP', blurb: 'See how long your money actually lasts if you start withdrawing from it.',
+    id: 'swp_' + parentKey, title: 'Now Withdraw From This — SWP', blurb: 'Choose how much to take out each month and for how many years. See what is left at the end, or when it runs out.',
     linkable: true,
     deriveFromParent: (parentRes) => ({ corpus: parentRes._raw ? parentRes._raw.fv : parentRes.fv }),
     fields: [
