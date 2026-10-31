@@ -4,147 +4,108 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>Tell Manoj About You — Ashvamedha Finance</title>
-<meta name="description" content="A 3-minute guided form so Manoj Kumar understands your goals, family and money before you talk: retirement, investments, insurance, kids and parents. Skip what doesn't apply.">
+<meta name="description" content="A 1-minute form so Manoj Kumar understands your goals before you talk: retirement, investments, guaranteed income, life cover, kids and parents.">
 <meta name="robots" content="noindex">
 <link rel="canonical" href="https://www.ashvamedhaai.com/start">
 <meta name="theme-color" content="#fbfaf7">
 <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
 <style>
-/* Layout: one column "journey". A route of chapter stops on top, one chapter card at a time, sticky action bar. Ending: a "Money Passport". */
+/* Layout: 4-step horizontal tracker; each step is a short list of tap-to-open rows ("drops"). */
 :root{
-  --paper:#fbfaf7; --card:#ffffff; --ink:#0b1730; --sub:#5d6778; --line:#e8e4dc; --soft:#f3f0e9;
-  --navy:#0b1730; --gold:#c49a3c; --gold-soft:#f8efd9; --green:#13915a; --green-soft:#e6f6ee; --blue:#2458d6; --blue-soft:#eaf0fd; --coral:#e2674a;
-  --body:'Outfit',system-ui,-apple-system,'Segoe UI',sans-serif; --serif:'Instrument Serif',Georgia,serif;
+  --paper:#fbfaf7;--card:#fff;--ink:#0b1730;--sub:#5d6778;--line:#e8e4dc;--soft:#f3f0e9;
+  --gold:#c49a3c;--green:#13915a;--green-soft:#e6f6ee;--blue:#2458d6;--blue-soft:#eaf0fd;--coral:#e2674a;
+  --body:'Outfit',system-ui,-apple-system,'Segoe UI',sans-serif;--serif:'Instrument Serif',Georgia,serif;
 }
 *{margin:0;padding:0;box-sizing:border-box}
 [hidden]{display:none!important}
-html{-webkit-text-size-adjust:100%}
-body{font-family:var(--body);background:var(--paper);color:var(--ink);font-size:16px;line-height:1.5;-webkit-font-smoothing:antialiased;padding-bottom:calc(92px + env(safe-area-inset-bottom,0px))}
+body{font-family:var(--body);background:var(--paper);color:var(--ink);font-size:16px;line-height:1.5;-webkit-font-smoothing:antialiased;padding-bottom:calc(88px + env(safe-area-inset-bottom,0px))}
 button,input{font:inherit;color:inherit}
 :focus-visible{outline:2.5px solid var(--blue);outline-offset:2px}
-.gutter{padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
-.top{position:sticky;top:0;z-index:20;background:rgba(251,250,247,.94);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
-.top-in{max-width:620px;margin:0 auto;padding-block:10px;display:flex;align-items:center;justify-content:space-between;gap:12px}
-.brand{display:flex;align-items:center;gap:10px;text-decoration:none;color:inherit}
-.logo{width:34px;height:34px;border-radius:9px;background:var(--navy);color:#e8c878;display:grid;place-items:center;font-weight:800;font-size:13px}
-.brand b{display:block;font-size:13.5px;letter-spacing:.04em}
+.g{padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.wrap{max-width:600px;margin:0 auto}
+/* header + tracker */
+.top{position:sticky;top:0;z-index:20;background:rgba(251,250,247,.95);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.brand{display:flex;align-items:center;gap:10px;padding-block:10px 6px;text-decoration:none;color:inherit}
+.logo{width:32px;height:32px;border-radius:9px;background:var(--ink);color:#e8c878;display:grid;place-items:center;font-weight:800;font-size:12.5px}
+.brand b{display:block;font-size:13px;letter-spacing:.04em}
 .brand span{display:block;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);font-weight:700}
-.time{font-size:12.5px;color:var(--sub);font-weight:600;white-space:nowrap}
-/* route */
-.route{max-width:620px;margin:0 auto;padding-block:12px 4px}
-.stops{display:flex;align-items:center;gap:0;overflow-x:auto;scrollbar-width:none;padding:4px 2px}
-.stops::-webkit-scrollbar{display:none}
-.stop{flex:none;width:34px;height:34px;border-radius:50%;display:grid;place-items:center;font-size:16px;background:var(--card);border:1.5px solid var(--line);position:relative;cursor:pointer;padding:0}
-.stop.done{background:var(--green-soft);border-color:#b7e3cb}
-.stop.skip{opacity:.45}
-.stop.on{border-color:var(--ink);box-shadow:0 0 0 3px rgba(11,23,48,.08);transform:scale(1.08)}
-.stop.done::after{content:"✓";position:absolute;right:-3px;bottom:-3px;width:15px;height:15px;border-radius:50%;background:var(--green);color:#fff;font-size:9px;font-weight:800;display:grid;place-items:center}
-.lane{flex:1 0 14px;height:2px;background:var(--line);min-width:14px}
-.lane.done{background:#9fd8bb}
-.route-l{font-size:12.5px;color:var(--sub);margin-top:6px;font-weight:600}
-.route-l b{color:var(--ink)}
-/* chapter */
-main{max-width:620px;margin:0 auto}
-.chap{padding-block:14px 8px;animation:rise .35s ease both}
-@keyframes rise{from{opacity:.0;transform:translateY(8px)}to{opacity:1;transform:none}}
-@media (prefers-reduced-motion:reduce){.chap{animation:none}.stop.on{transform:none}}
-.eyebrow{font-size:11.5px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--gold)}
-h1{font-family:var(--serif);font-weight:400;font-size:clamp(32px,8.4vw,42px);line-height:1.05;letter-spacing:-.01em;margin-top:6px;text-wrap:balance}
-h1 em{font-style:italic;color:var(--green)}
-.lead{color:var(--sub);margin-top:8px;font-size:15.5px;max-width:52ch}
-.fields{display:grid;gap:22px;margin-top:22px}
-.f{display:grid;gap:9px;min-width:0}
-.f>.l{font-weight:700;font-size:15.5px;line-height:1.3}
-.f>.l small{font-weight:500;color:var(--sub);font-size:13px;margin-left:4px}
-.chips{display:flex;flex-wrap:wrap;gap:8px}
-.chip{background:var(--card);border:1.5px solid var(--line);border-radius:999px;padding:9px 15px;font-weight:600;font-size:14.5px;cursor:pointer;line-height:1.2}
-.chip:hover{border-color:#c9c2b4}
+.track{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;padding-block:6px 12px;position:relative}
+.tstep{border:0;background:none;cursor:pointer;display:grid;justify-items:center;gap:5px;padding:0;position:relative;z-index:1}
+.tstep .d{width:30px;height:30px;border-radius:50%;display:grid;place-items:center;font-size:13px;font-weight:800;background:var(--card);border:2px solid var(--line);color:var(--sub);transition:all .2s}
+.tstep .t{font-size:12.5px;font-weight:700;color:var(--sub)}
+.tstep.on .d{background:var(--ink);border-color:var(--ink);color:#fff}
+.tstep.on .t{color:var(--ink)}
+.tstep.done .d{background:var(--green);border-color:var(--green);color:#fff}
+.rail{position:absolute;left:12.5%;right:12.5%;top:21px;height:2px;background:var(--line)}
+.rail i{display:block;height:100%;background:var(--green);transition:width .3s}
+/* step */
+.step{padding-block:18px 10px;animation:rise .3s ease both}
+@keyframes rise{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){.step,.drop{animation:none}}
+h1{font-family:var(--serif);font-weight:400;font-size:clamp(30px,8vw,38px);line-height:1.08;text-wrap:balance}
+h1 em{color:var(--green)}
+.lead{color:var(--sub);margin-top:6px;font-size:15px}
+.stack{display:grid;gap:18px;margin-top:20px}
+.f{display:grid;gap:8px;min-width:0}
+.l{font-weight:700;font-size:15px}
+.l small{font-weight:500;color:var(--sub);font-size:13px;margin-left:4px}
+.chips{display:flex;flex-wrap:wrap;gap:7px}
+.chip{background:var(--card);border:1.5px solid var(--line);border-radius:999px;padding:8px 14px;font-weight:600;font-size:14px;cursor:pointer;line-height:1.2}
 .chip[aria-pressed=true]{background:var(--ink);border-color:var(--ink);color:#fff}
-input.tx{width:100%;background:var(--card);border:1.5px solid var(--line);border-radius:14px;padding:12px 14px;font-size:16px;outline:none}
-input.tx:focus{border-color:var(--ink)}
-.row{display:flex;gap:10px;align-items:center}
-.money{position:relative}
-.money span.r{position:absolute;left:14px;top:50%;transform:translateY(-50%);color:var(--sub);font-weight:600}
-.money input.tx{padding-left:30px}
-.hint{font-size:13px;color:var(--sub)}
-.hint b{color:var(--green)}
-.stepper{display:flex;align-items:center;gap:6px;background:var(--card);border:1.5px solid var(--line);border-radius:14px;padding:4px;width:max-content}
-.stepper button{width:40px;height:40px;border-radius:10px;border:0;background:var(--soft);font-size:20px;font-weight:700;cursor:pointer}
-.stepper input{width:64px;border:0;text-align:center;font-size:20px;font-weight:800;background:transparent;outline:none;font-variant-numeric:tabular-nums}
-.stepper em{font-style:normal;color:var(--sub);font-size:13px;padding-right:10px}
-/* goal tiles */
-.tiles{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
-.tile{background:var(--card);border:1.5px solid var(--line);border-radius:18px;padding:14px;text-align:left;cursor:pointer;display:grid;gap:4px;position:relative;min-height:104px;align-content:start}
-.tile i{font-style:normal;font-size:24px;width:42px;height:42px;border-radius:12px;display:grid;place-items:center;background:var(--soft)}
-.tile b{font-size:15px;line-height:1.25;margin-top:4px}
-.tile span{font-size:12.5px;color:var(--sub);line-height:1.35}
-.tile[aria-pressed=true]{border-color:var(--ink);background:#fffdf8;box-shadow:0 6px 18px rgba(11,23,48,.08)}
-.tile[aria-pressed=true]::after{content:"✓";position:absolute;top:10px;right:10px;width:22px;height:22px;border-radius:50%;background:var(--ink);color:#fff;font-size:12px;font-weight:800;display:grid;place-items:center}
-.tile.wide{grid-column:1/-1;min-height:0;grid-template-columns:auto 1fr;align-items:center;column-gap:12px}
-.tile.wide b{margin:0}
-/* react cards */
-.reacts{display:grid;gap:8px}
-.react{display:flex;gap:12px;align-items:center;background:var(--card);border:1.5px solid var(--line);border-radius:16px;padding:12px 14px;cursor:pointer;text-align:left}
-.react i{font-style:normal;font-size:22px}
-.react b{display:block;font-size:15px}.react span{font-size:13px;color:var(--sub)}
-.react[aria-pressed=true]{border-color:var(--ink);background:#fffdf8}
-/* kid ages */
-.kids{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:8px}
-.kid{background:var(--card);border:1.5px solid var(--line);border-radius:14px;padding:8px 12px;display:flex;align-items:center;gap:8px}
-.kid span{font-size:13px;color:var(--sub);white-space:nowrap}
-.kid input{width:100%;min-width:0;border:0;outline:none;font-weight:700;font-size:16px;background:transparent}
-/* estimate */
-.est{background:var(--navy);color:#fff;border-radius:20px;padding:18px;display:grid;gap:10px;margin-top:4px}
-.est small{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#e8c878;font-weight:700}
-.est .n{font-family:var(--serif);font-size:34px;line-height:1.05}
-.est .grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-.est .grid div{background:rgba(255,255,255,.07);border-radius:12px;padding:10px}
-.est .grid span{display:block;font-size:12px;color:#b9c3d6}
-.est .grid b{font-size:17px;font-variant-numeric:tabular-nums}
-.est p{font-size:12px;color:#b9c3d6}
-.note{background:var(--gold-soft);border-radius:14px;padding:12px 14px;font-size:13.5px;color:#5b4410}
-.note a{color:var(--blue);font-weight:700}
-.privacy{display:flex;gap:10px;align-items:flex-start;background:var(--blue-soft);border-radius:14px;padding:12px 14px;font-size:13.5px}
-/* passport */
-.pass{background:linear-gradient(160deg,#0b1730 0%,#14284f 100%);color:#fff;border-radius:22px;padding:20px;display:grid;gap:14px;position:relative;overflow:hidden}
-.pass::before{content:"";position:absolute;right:-60px;top:-60px;width:200px;height:200px;border-radius:50%;border:28px solid rgba(232,200,120,.08)}
-.pass-h{display:flex;justify-content:space-between;align-items:flex-start;gap:10px;position:relative}
-.pass-h small{font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;color:#e8c878;font-weight:700}
-.pass-h .nm{font-family:var(--serif);font-size:30px;line-height:1.1;margin-top:4px;word-break:break-word}
-.pass-h .meta{font-size:13px;color:#b9c3d6;margin-top:2px}
-.seal{flex:none;width:52px;height:52px;border-radius:50%;border:2px dashed #e8c878;display:grid;place-items:center;font-size:11px;font-weight:800;color:#e8c878;text-align:center;line-height:1.1;transform:rotate(-12deg)}
-.stamps{display:flex;flex-wrap:wrap;gap:8px;position:relative}
-.stamp{border:1.5px solid rgba(232,200,120,.6);color:#f3dfa8;border-radius:10px;padding:5px 10px;font-size:12.5px;font-weight:700;transform:rotate(-1.5deg)}
-.stamp:nth-child(even){transform:rotate(1.5deg)}
-.pass-g{display:grid;grid-template-columns:1fr 1fr;gap:8px;position:relative}
-.pass-g div{background:rgba(255,255,255,.07);border-radius:12px;padding:9px 11px;min-width:0}
-.pass-g span{display:block;font-size:11px;color:#b9c3d6;text-transform:uppercase;letter-spacing:.08em}
-.pass-g b{font-size:14.5px;word-break:break-word}
-.check{display:flex;gap:10px;align-items:flex-start;font-size:13.5px;color:var(--sub)}
-.check input{width:20px;height:20px;margin-top:1px;flex:none;accent-color:var(--green)}
+.tx{width:100%;background:var(--card);border:1.5px solid var(--line);border-radius:14px;padding:12px 14px;font-size:16px;outline:none}
+.tx:focus{border-color:var(--ink)}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:12px}.two>*{min-width:0}
+.stepper{display:flex;align-items:center;background:var(--card);border:1.5px solid var(--line);border-radius:14px;padding:3px;width:max-content;max-width:100%}
+.stepper button{width:38px;height:38px;border-radius:10px;border:0;background:var(--soft);font-size:19px;font-weight:700;cursor:pointer}
+.stepper input{width:54px;border:0;text-align:center;font-size:19px;font-weight:800;background:transparent;outline:none;font-variant-numeric:tabular-nums}
+.toggle{display:flex;align-items:center;gap:10px;cursor:pointer;font-weight:600;font-size:15px}
+.toggle input{width:20px;height:20px;accent-color:var(--ink)}
+/* rows with drops */
+.rows{display:grid;gap:10px}
+.row{background:var(--card);border:1.5px solid var(--line);border-radius:18px;overflow:hidden;transition:border-color .2s,box-shadow .2s}
+.row.on{border-color:var(--ink);box-shadow:0 8px 22px rgba(11,23,48,.07)}
+.rh{width:100%;border:0;background:none;display:flex;align-items:center;gap:12px;padding:12px 14px;cursor:pointer;text-align:left}
+.rh i{font-style:normal;flex:none;width:42px;height:42px;border-radius:12px;display:grid;place-items:center;font-size:21px;background:var(--soft)}
+.row.on .rh i{background:var(--c,var(--soft))}
+.rh div{flex:1;min-width:0}
+.rh b{display:block;font-size:15.5px;line-height:1.25}
+.rh span{display:block;font-size:13px;color:var(--sub);line-height:1.35;overflow:hidden;text-overflow:ellipsis}
+.row.on .rh span{color:var(--green);font-weight:600}
+.box{flex:none;width:24px;height:24px;border-radius:8px;border:2px solid var(--line);display:grid;place-items:center;font-size:13px;color:transparent;font-weight:800}
+.row.on .box{background:var(--ink);border-color:var(--ink);color:#fff}
+.drop{padding:2px 14px 16px;display:grid;gap:14px;border-top:1px dashed var(--line);margin:0 14px;padding-inline:0;padding-top:14px;animation:open .25s ease both}
+@keyframes open{from{opacity:0;transform:translateY(-4px)}to{opacity:1;transform:none}}
+.est{background:var(--ink);color:#fff;border-radius:14px;padding:12px 14px;font-size:14px;display:grid;gap:2px}
+.est b{font-size:18px}.est small{color:#b9c3d6;font-size:11.5px}
+.note{font-size:13px;color:var(--sub)}
+.note a{color:var(--blue);font-weight:700;text-decoration:none}
+.kids{display:flex;flex-wrap:wrap;gap:8px}
+.kid{display:flex;align-items:center;gap:6px;background:var(--soft);border-radius:12px;padding:6px 10px;font-size:13px;color:var(--sub)}
+.kid input{width:42px;border:0;background:#fff;border-radius:8px;padding:5px;text-align:center;font-weight:700;font-size:15px;outline:none}
+.consent{display:flex;gap:10px;align-items:flex-start;font-size:13.5px;color:var(--sub)}
+.consent input{width:20px;height:20px;margin-top:1px;flex:none;accent-color:var(--green)}
 .err{color:var(--coral);font-size:13.5px;font-weight:600}
-.copy{background:none;border:0;color:var(--blue);font-weight:700;font-size:13.5px;cursor:pointer;padding:4px 0}
-textarea#msg{width:100%;min-height:160px;border:1px solid var(--line);border-radius:12px;padding:10px;font:inherit;font-size:13px;background:var(--card)}
 .fine{font-size:11.5px;color:var(--sub);line-height:1.6}
+.copy{background:none;border:0;color:var(--blue);font-weight:700;font-size:13.5px;cursor:pointer;padding:0;text-align:left}
+textarea{width:100%;min-height:150px;border:1px solid var(--line);border-radius:12px;padding:10px;font:inherit;font-size:13px;margin-top:8px}
 /* bar */
-.bar{position:fixed;left:0;right:0;bottom:0;z-index:30;background:rgba(255,255,255,.97);border-top:1px solid var(--line);padding-top:10px;padding-bottom:calc(10px + env(safe-area-inset-bottom,0px))}
-.bar-in{max-width:620px;margin:0 auto;display:flex;gap:8px;align-items:center}
-.btn{border-radius:14px;padding:13px 16px;font-weight:700;font-size:15px;cursor:pointer;border:1.5px solid var(--line);background:var(--card);text-decoration:none;color:var(--ink);display:inline-flex;align-items:center;justify-content:center;gap:8px;white-space:nowrap}
+.bar{position:fixed;left:0;right:0;bottom:0;z-index:30;background:rgba(255,255,255,.97);border-top:1px solid var(--line);padding-block:10px calc(10px + env(safe-area-inset-bottom,0px))}
+.bar-in{display:flex;gap:8px}
+.btn{border-radius:14px;padding:13px 16px;font-weight:700;font-size:15px;cursor:pointer;border:1.5px solid var(--line);background:var(--card);color:var(--ink);text-decoration:none;display:inline-flex;align-items:center;justify-content:center;gap:6px;white-space:nowrap}
 .btn.main{flex:1;background:var(--ink);border-color:var(--ink);color:#fff}
 .btn.wa{flex:1;background:#1f9d55;border-color:#1f9d55;color:#fff}
 .btn.wa[aria-disabled=true]{opacity:.45;pointer-events:none}
-.btn.ghost{border-color:transparent;background:transparent;color:var(--sub);padding-inline:10px}
-@media (max-width:360px){.tiles{grid-template-columns:1fr}.pass-g,.est .grid{grid-template-columns:1fr}}
+.btn.ghost{border-color:transparent;background:none;color:var(--sub)}
+@media (max-width:360px){.two{grid-template-columns:1fr}.tstep .t{font-size:11px}}
 </style>
 </head>
 <body>
-<header class="top"><div class="top-in gutter">
+<header class="top"><div class="wrap g">
   <a class="brand" href="/"><div class="logo">AF</div><div><b>MANOJ KUMAR</b><span>Ashvamedha Finance</span></div></a>
-  <span class="time" id="time">≈ 3 min</span>
+  <nav class="track" id="track" aria-label="Steps"><div class="rail"><i id="railFill"></i></div></nav>
 </div></header>
-<div class="route gutter"><div class="stops" id="stops" aria-label="Your progress"></div><div class="route-l" id="routeL"></div></div>
-<main class="gutter"><div id="stage"></div></main>
-<div class="bar"><div class="bar-in gutter">
+<main class="wrap g" id="stage"></main>
+<div class="bar"><div class="wrap g bar-in">
   <button class="btn" id="back" type="button" aria-label="Back">←</button>
   <button class="btn ghost" id="skip" type="button">Skip</button>
   <button class="btn main" id="next" type="button">Next →</button>
@@ -153,246 +114,127 @@ textarea#msg{width:100%;min-height:160px;border:1px solid var(--line);border-rad
 
 <script>
 (function(){
-const $=id=>document.getElementById(id), WA='918790109022', KEY='ashv-start-v1';
+const $=id=>document.getElementById(id),WA='918790109022',KEY='ashv-start-v2';
 const esc=s=>String(s??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
-const L=n=>n>=1e7?'₹'+(n/1e7).toFixed(2).replace(/\.?0+$/,'')+' Cr':n>=1e5?'₹'+(n/1e5).toFixed(1).replace(/\.0$/,'')+' Lakh':'₹'+Math.round(n).toLocaleString('en-IN');
+const L=n=>n>=1e7?'₹'+(n/1e7).toFixed(2).replace(/\.?0+$/,'')+' Cr':n>=1e5?'₹'+(n/1e5).toFixed(1).replace(/\.0$/,'')+' L':'₹'+Math.round(n).toLocaleString('en-IN');
 const inr=n=>'₹'+Math.round(n).toLocaleString('en-IN');
-
-let S={v:{},idx:0,skipped:{},done:{}};
+let S={v:{},sel:{},step:0,done:{}};
 try{const d=JSON.parse(localStorage.getItem(KEY)||'null');if(d&&d.v)S=Object.assign(S,d)}catch(e){}
 const save=()=>{try{localStorage.setItem(KEY,JSON.stringify(S))}catch(e){}};
-const V=k=>S.v[k], has=(k,x)=>Array.isArray(S.v[k])&&S.v[k].includes(x), need=x=>has('needs',x);
-const anyInvest=()=>['retire','wealth','guaranteed','kids','parents','tax'].some(need);
+const V=k=>S.v[k];
 
-/* amount options shared */
-const HOLD=[['None',0],['Under ₹1 L',50000],['₹1–5 L',300000],['₹5–25 L',1500000],['₹25 L–1 Cr',6000000],['₹1 Cr+',15000000]];
+/* building blocks */
+const chips=(k,opts)=>`<div class="chips">${opts.map(o=>`<button type="button" class="chip" data-k="${k}" data-v="${esc(o)}" aria-pressed="${V(k)===o}">${esc(o)}</button>`).join('')}</div>`;
+const F=(label,inner,sub)=>`<div class="f"><div class="l">${label}${sub?`<small>${sub}</small>`:''}</div>${inner}</div>`;
+const num=(k,def,min,max)=>`<div class="stepper"><button type="button" data-step="${k}" data-d="-1" data-min="${min}" data-max="${max}" data-def="${def}" aria-label="Less">−</button><input data-num="${k}" inputmode="numeric" value="${V(k)??''}" placeholder="${def}" aria-label="${k}"><button type="button" data-step="${k}" data-d="1" data-min="${min}" data-max="${max}" data-def="${def}" aria-label="More">+</button></div>`;
 
-/* ── Chapters ── */
-const CH=[
- {id:'needs',icon:'🧭',name:'Your needs',eyebrow:'Start here',title:'What can Manoj <em>help you</em> with?',lead:'Pick everything that applies. You\'ll only see questions about what you pick.',
-  fields:[{k:'needs',t:'tiles',opts:[
-   ['retire','🏝️','Plan my retirement','How much to invest for a monthly income later'],
-   ['wealth','📈','Grow my wealth','Mutual funds, SIPs, long-term investing'],
-   ['guaranteed','🔒','Guaranteed income','Fixed income that markets can\'t change'],
-   ['life','🛡️','Life insurance','Protect my family if something happens to me'],
-   ['health','🏥','Health insurance','Cover hospital bills for me or my family'],
-   ['kids','🎓','My children\'s future','Education or marriage fund'],
-   ['parents','👵','Support my parents','Monthly income, health cover, help them retire'],
-   ['tax','🧾','Save tax','Make my tax-saving work harder'],
-   ['unsure','💬','Not sure, guide me','Just help me get started',1]]}]},
- {id:'you',icon:'🙂',name:'About you',eyebrow:'Chapter 1',title:'A little <em>about you</em>',lead:'Rough answers are perfect. Nothing here is shared until you choose to send it.',
-  fields:[
-   {k:'name',t:'text',l:'Your first name',ph:'e.g. Ravi',ac:'given-name',s:'Name'},
-   {k:'age',t:'num',l:'Your age',min:18,max:85,def:32,s:'Age'},
-   {k:'city',t:'text',l:'City',ph:'e.g. Hyderabad',ac:'address-level2',s:'City'},
-   {k:'work',t:'chips',l:'What do you do?',opts:['Salaried','Business','Professional','Retired','Homemaker','Student'],s:'Work'},
-   {k:'nri',t:'chips',l:'Where do you live?',opts:['In India','Outside India (NRI)'],s:'Lives'},
-   {k:'country',t:'chips',l:'Which country?',opts:['UAE','Saudi / Gulf','USA','UK','Canada','Singapore','Australia','Other'],show:()=>V('nri')==='Outside India (NRI)',s:'Country'},
-   {k:'income',t:'chips',l:'Yearly income',sub:'take-home, roughly',opts:['Under ₹5 L','₹5–10 L','₹10–25 L','₹25–50 L','₹50 L–1 Cr','₹1 Cr+'],s:'Income/yr'},
-   {k:'expenses',t:'chips',l:'Monthly household expenses',sub:'rent, food, bills, EMIs',opts:['Under ₹25k','₹25–50k','₹50k–1 L','₹1–2 L','₹2 L+'],s:'Expenses/mo'}]},
- {id:'family',icon:'👨‍👩‍👧',name:'Family',eyebrow:'Chapter 2 · optional',title:'Who\'s in your <em>family?</em>',lead:'This helps size insurance and goals. Skip it if you prefer.',skip:1,
-  fields:[
-   {k:'married',t:'chips',l:'Are you married?',opts:['Single','Married'],s:'Married'},
-   {k:'spouseAge',t:'num',l:'Spouse\'s age',min:18,max:85,def:30,show:()=>V('married')==='Married',s:'Spouse age'},
-   {k:'spouseWorks',t:'chips',l:'Does your spouse earn?',opts:['Yes','No'],show:()=>V('married')==='Married',s:'Spouse earns'},
-   {k:'kids',t:'kids',l:'Children',s:'Children'},
-   {k:'parents',t:'multi',l:'Parents',sub:'pick who\'s alive',opts:['Father','Mother','In-laws','None'],none:'None',s:'Parents'},
-   {k:'parentAge',t:'num',l:'Older parent\'s age',min:40,max:100,def:60,show:()=>Array.isArray(V('parents'))&&V('parents').length&&!has('parents','None'),s:'Parent age'},
-   {k:'parentDep',t:'chips',l:'Do they depend on you for money?',opts:['Fully','Partly','No'],show:()=>Array.isArray(V('parents'))&&V('parents').length&&!has('parents','None'),s:'Parents depend'}]},
- {id:'have',icon:'💼',name:'What you have',eyebrow:'Chapter 3 · optional',title:'What you <em>already have</em>',lead:'Ballpark values are fine. This is where most people forget something.',skip:1,
-  fields:[
-   {k:'mf',t:'chips',l:'Mutual funds',opts:HOLD,s:'Mutual funds'},
-   {k:'stocks',t:'chips',l:'Stocks',opts:HOLD,s:'Stocks'},
-   {k:'safe',t:'chips',l:'FDs, PPF, EPF, NPS',sub:'all together',opts:HOLD,s:'FD/PPF/EPF/NPS'},
-   {k:'gold',t:'chips',l:'Gold & real estate (other than your home)',opts:['None','Some gold','Property','Both'],s:'Gold/property'},
-   {k:'sip',t:'chips',l:'SIPs running every month',opts:['None','Under ₹5k','₹5–15k','₹15–50k','₹50k+'],s:'Running SIPs'},
-   {k:'loans',t:'multi',l:'Loans',opts:['None','Home','Car','Personal','Education','Credit card'],none:'None',s:'Loans'},
-   {k:'emi',t:'chips',l:'Total EMI per month',opts:['Under ₹10k','₹10–25k','₹25–50k','₹50k+'],show:()=>Array.isArray(V('loans'))&&V('loans').length&&!has('loans','None'),s:'EMI/mo'},
-   {k:'emergency',t:'chips',l:'Emergency savings',sub:'money you can use in a week',opts:['None','Under 3 months of expenses','3–6 months','6+ months'],s:'Emergency fund'}]},
- {id:'cover',icon:'🛡️',name:'Insurance',eyebrow:'Chapter 4 · optional',title:'Your <em>insurance</em> today',lead:'Don\'t count cover from your employer under life insurance. It stops when you change jobs.',skip:1,
-  fields:[
-   {k:'term',t:'chips',l:'Your life / term cover',opts:['None','Under ₹50 L','₹50 L–1 Cr','₹1–2 Cr','₹2 Cr+','Not sure'],s:'Life cover'},
-   {k:'termSp',t:'chips',l:'Spouse\'s life cover',opts:['None','Under ₹50 L','₹50 L–1 Cr','₹1 Cr+','Not sure'],show:()=>V('married')==='Married',s:'Spouse cover'},
-   {k:'hlth',t:'chips',l:'Health insurance',opts:['None','Only from employer','Under ₹5 L','₹5–10 L','₹10–25 L','₹25 L+'],s:'Health cover'},
-   {k:'hlthPar',t:'chips',l:'Parents\' health insurance',opts:['None','Yes','Not sure'],show:()=>Array.isArray(V('parents'))&&V('parents').length&&!has('parents','None'),s:'Parents health'},
-   {k:'oldPol',t:'multi',l:'Other policies you pay for',opts:['None','LIC / endowment','Money-back','ULIP','Child plan','Pension plan'],none:'None',s:'Other policies'}]},
- /* goal chapters */
- {id:'retire',icon:'🏝️',name:'Retirement',eyebrow:'Your goal',title:'Your <em>retirement</em>',lead:'Tell us the life you want. We\'ll show a rough number right away.',when:()=>need('retire'),est:1,
-  fields:[
-   {k:'retAge',t:'num',l:'Retire at age',min:35,max:75,def:55,s:'Retire at'},
-   {k:'retNeed',t:'money',l:'Monthly income you\'d need',sub:'in today\'s money',quick:[30000,50000,75000,100000,200000],per:'/month',s:'Needs'},
-   {k:'retYears',t:'chips',l:'For how many years?',opts:['20 years','25 years','30 years','35 years'],s:'For'}]},
- {id:'wealth',icon:'📈',name:'Wealth',eyebrow:'Your goal',title:'Growing your <em>wealth</em>',lead:'Even a rough target helps pick the right funds.',when:()=>need('wealth'),
-  fields:[
-   {k:'wFor',t:'multi',l:'Growing it for…',opts:['Buying a house','A car','Financial freedom','Just growing it','Something else'],s:'For'},
-   {k:'wTarget',t:'money',l:'Target amount',sub:'optional',quick:[1000000,2500000,5000000,10000000],s:'Target'},
-   {k:'wYears',t:'chips',l:'In how many years?',opts:['Under 3','3–5','5–10','10–15','15+'],s:'In (yrs)'}]},
- {id:'guaranteed',icon:'🔒',name:'Guaranteed',eyebrow:'Your goal',title:'A <em>guaranteed</em> income',lead:'Income that doesn\'t depend on markets, usually with life cover included.',when:()=>need('guaranteed'),
-  fields:[
-   {k:'gStart',t:'chips',l:'When should the income start?',opts:['In 5 years','In 10 years','In 15 years','At retirement','Not sure'],s:'Start'},
-   {k:'gAmt',t:'chips',l:'How much could you set aside every year?',sub:'usually for 10 years',opts:['₹1 L','₹2–3 L','₹5 L','₹10 L+','Not sure'],s:'Can pay/yr'},
-   {k:'gFor',t:'chips',l:'Whose name?',opts:['Me','My spouse','My child','My parent'],s:'For'}],
-  note:'Want to see sample numbers first? <a href="/insurance/guaranteed-income/10-pay-30-year-income" target="_blank" rel="noopener">Try the guaranteed income calculator →</a>'},
- {id:'life',icon:'🛡️',name:'Life cover',eyebrow:'Your goal',title:'Protecting your <em>family</em>',lead:'Term insurance is the cheapest way to get a big cover.',when:()=>need('life'),
-  fields:[
-   {k:'lFor',t:'multi',l:'Cover for',opts:['Me','My spouse'],s:'For'},
-   {k:'lAmt',t:'chips',l:'How much cover are you thinking of?',opts:['Help me decide','₹50 L','₹1 Cr','₹2 Cr','₹3 Cr+'],s:'Cover'},
-   {k:'smoke',t:'chips',l:'Do you smoke or chew tobacco?',sub:'it changes the price',opts:['No','Yes'],s:'Tobacco'}]},
- {id:'health',icon:'🏥',name:'Health',eyebrow:'Your goal',title:'Health <em>cover</em>',lead:'One hospital stay can cost ₹3–8 Lakh. Let\'s get the right cover.',when:()=>need('health'),
-  fields:[
-   {k:'hFor',t:'multi',l:'Who needs cover?',opts:['Me','Spouse','Children','Parents'],s:'For'},
-   {k:'hAmt',t:'chips',l:'Cover you\'re looking for',opts:['Help me decide','₹5 L','₹10 L','₹25 L','₹50 L+'],s:'Cover'},
-   {k:'hPre',t:'chips',l:'Anyone with an existing health condition?',sub:'just yes or no, no details here',opts:['No','Yes','Not sure'],s:'Existing condition'}]},
- {id:'kids',icon:'🎓',name:'Children',eyebrow:'Your goal',title:'Your <em>children\'s</em> future',lead:'Education costs in India rise about 8–10% a year, so starting early matters.',when:()=>need('kids'),
-  fields:[
-   {k:'kGoal',t:'multi',l:'Planning for',opts:['Higher education in India','Education abroad','Marriage'],s:'For'},
-   {k:'kWhen',t:'chips',l:'Needed in about',opts:['Under 5 years','5–10 years','10–15 years','15+ years'],s:'Needed in'},
-   {k:'kAmt',t:'chips',l:'Amount you have in mind (today\'s value)',opts:['Help me decide','₹25 L','₹50 L','₹1 Cr','₹2 Cr+'],s:'Amount'}]},
- {id:'parents',icon:'👵',name:'Parents',eyebrow:'Your goal',title:'Taking care of your <em>parents</em>',lead:'Whether it\'s a monthly income for them or helping them stop working.',when:()=>need('parents'),
-  fields:[
-   {k:'pNeed',t:'multi',l:'What would you like?',opts:['Monthly income for them','Help them retire','Health cover for them','Use their savings better'],s:'Wants'},
-   {k:'pMonthly',t:'money',l:'Monthly amount they need',quick:[15000,25000,40000,60000],per:'/month',s:'They need'},
-   {k:'pWhen',t:'chips',l:'From when?',opts:['Now','In 1–3 years','In 5 years','In 10 years'],s:'From'},
-   {k:'pSave',t:'chips',l:'Their own savings',opts:['None','Under ₹10 L','₹10–30 L','₹30 L+','Not sure'],s:'Their savings'}]},
- {id:'tax',icon:'🧾',name:'Tax',eyebrow:'Your goal',title:'Saving <em>tax</em>',lead:'The right answer depends on your tax regime.',when:()=>need('tax'),
-  fields:[
-   {k:'regime',t:'chips',l:'Your tax regime',opts:['Old regime','New regime','Don\'t know'],s:'Regime'},
-   {k:'taxInv',t:'chips',l:'Already investing for tax every year',opts:['Nothing','Under ₹50k','₹50k–1.5 L','Full ₹1.5 L'],s:'Tax investments'}]},
- /* money + risk */
- {id:'money',icon:'💰',name:'Investing',eyebrow:'Almost there',title:'What you can <em>invest</em>',lead:'Comfortable amounts only. You can always start small and step up.',when:anyInvest,skip:1,
-  fields:[
-   {k:'lump',t:'chips',l:'One-time amount available now',opts:['None','Under ₹1 L','₹1–5 L','₹5–25 L','₹25 L+'],s:'Lump sum now'},
-   {k:'monthly',t:'chips',l:'Every month',opts:['Under ₹5k','₹5–10k','₹10–25k','₹25–50k','₹50k+'],s:'Monthly'},
-   {k:'yearly',t:'chips',l:'Or once a year (bonus etc.)',opts:['None','₹1 L','₹2–5 L','₹5–10 L','₹10 L+'],s:'Yearly'}]},
- {id:'risk',icon:'🎢',name:'Comfort',eyebrow:'Almost there',title:'How do markets <em>make you feel?</em>',lead:'There\'s no right answer. It helps match investments to you.',when:()=>['retire','wealth','kids'].some(need),skip:1,
-  fields:[
-   {k:'react',t:'react',l:'You invested ₹1 Lakh. A year later it shows ₹80,000. You…',s:'If -20%',opts:[['😟','Sell, to stop losing more','Safety matters most to me'],['🧘','Wait for it to recover','I can sit through bad years'],['🛒','Invest more while it\'s cheap','Falls are buying chances']]},
-   {k:'exp',t:'chips',l:'Your investing experience',opts:['New to it','1–3 years','3–10 years','10+ years'],s:'Experience'}]},
- {id:'send',icon:'🎫',name:'Contact',eyebrow:'Done',title:'Your <em>money passport</em>',lead:'Check it, then send it to Manoj. He\'ll reply on WhatsApp.',final:1,
-  fields:[
-   {k:'when',t:'chips',l:'Best time to talk',opts:['Morning','Afternoon','Evening','Weekend'],s:'Best time'},
-   {k:'lang',t:'chips',l:'Language',opts:['English','Telugu','Hindi'],s:'Language'}]}
+/* rows: each opens a "drop" when selected */
+const ROWS={
+ family:[
+  {id:'spouse',ic:'💑',c:'#fde8ec',t:'Spouse',d:'Husband or wife',body:()=>`<div class="two">${F('Their age',num('spAge',30,18,85))}${F('Do they earn?',chips('spEarn',['Yes','No']))}</div>`,sum:()=>[V('spAge')&&V('spAge')+' yrs',V('spEarn')==='Yes'&&'earns'].filter(Boolean).join(' · ')},
+  {id:'kids',ic:'🧒',c:'#e9f3ff',t:'Children',d:'Add their ages',body:()=>F('How many?',chips('kidsN',['1','2','3','4']))+(V('kidsN')?`<div class="kids">${Array.from({length:+V('kidsN')},(_,i)=>`<label class="kid">Child ${i+1}<input data-kid="${i}" inputmode="numeric" value="${esc((V('kidAges')||[])[i]??'')}" placeholder="age"></label>`).join('')}</div>`:''),sum:()=>V('kidsN')?`${V('kidsN')} · ages ${(V('kidAges')||[]).filter(Boolean).join(', ')||'–'}`:''},
+  {id:'parents',ic:'👵',c:'#fff3dc',t:'Parents',d:'Yours or your spouse\'s',body:()=>`<div class="two">${F('Older parent\'s age',num('parAge',60,40,100))}${F('Depend on you?',chips('parDep',['Fully','Partly','No']))}</div>`,sum:()=>[V('parAge')&&V('parAge')+' yrs',V('parDep')&&'depend: '+V('parDep').toLowerCase()].filter(Boolean).join(' · ')}],
+ goals:[
+  {id:'retire',ic:'🏝️',c:'#e2f6ec',t:'Retirement',d:'How much to invest for a monthly income later',
+   body:()=>`<div class="two">${F('Retire at',num('retAge',55,35,75))}${F('For how long?',chips('retYrs',['20 yrs','25 yrs','30 yrs']))}</div>`+F('Monthly income you\'ll need',chips('retNeed',['₹30k','₹50k','₹75k','₹1 L','₹2 L+']),'today\'s value')+`<div id="est">${estHTML()}</div>`,
+   sum:()=>V('retNeed')?`at ${V('retAge')??55} · ${V('retNeed')}/mo · ${V('retYrs')||'25 yrs'}`:''},
+  {id:'wealth',ic:'📈',c:'#eaf0fd',t:'Grow my wealth',d:'Mutual funds & SIPs for a goal',
+   body:()=>F('Growing it for',chips('wFor',['A house','Financial freedom','Just growing it','Other']))+F('In about',chips('wYrs',['3–5 yrs','5–10 yrs','10+ yrs'])),
+   sum:()=>[V('wFor'),V('wYrs')].filter(Boolean).join(' · ')},
+  {id:'guaranteed',ic:'🔒',c:'#f1ecfd',t:'Guaranteed income',d:'Fixed income markets can\'t change',
+   body:()=>F('Can set aside every year',chips('gAmt',['₹1 L','₹2–3 L','₹5 L','₹10 L+']),'for ~10 years')+F('Income should start',chips('gStart',['In 10 yrs','In 15 yrs','At retirement']))+`<p class="note">See sample numbers: <a href="/insurance/guaranteed-income/10-pay-30-year-income" target="_blank" rel="noopener">guaranteed income calculator →</a></p>`,
+   sum:()=>[V('gAmt')&&V('gAmt')+'/yr',V('gStart')].filter(Boolean).join(' · ')},
+  {id:'life',ic:'🛡️',c:'#e9f3ff',t:'Life insurance',d:'Protect my family',
+   body:()=>F('Cover you\'re thinking of',chips('lAmt',['Help me decide','₹1 Cr','₹2 Cr','₹3 Cr+']))+F('Do you use tobacco?',chips('smoke',['No','Yes']),'changes the price'),
+   sum:()=>[V('lAmt'),V('smoke')==='Yes'&&'tobacco'].filter(Boolean).join(' · ')},
+  {id:'kidsGoal',ic:'🎓',c:'#fff3dc',t:'Children\'s future',d:'Education or marriage fund',
+   body:()=>F('Planning for',chips('kGoal',['Education','Study abroad','Marriage']))+F('Needed in',chips('kWhen',['Under 5 yrs','5–10 yrs','10+ yrs'])),
+   sum:()=>[V('kGoal'),V('kWhen')].filter(Boolean).join(' · ')},
+  {id:'parentsGoal',ic:'🤲',c:'#fde8ec',t:'Income for my parents',d:'Monthly support or help them retire',
+   body:()=>F('They need every month',chips('pNeed',['₹15k','₹25k','₹40k','₹60k+']))+F('From',chips('pWhen',['Now','In 1–3 yrs','In 5+ yrs'])),
+   sum:()=>[V('pNeed')&&V('pNeed')+'/mo',V('pWhen')].filter(Boolean).join(' · ')}],
+ have:[
+  {id:'hMF',ic:'📊',c:'#eaf0fd',t:'Mutual funds',d:'Current value',body:()=>chips('mf',['Under ₹1 L','₹1–5 L','₹5–25 L','₹25 L–1 Cr','₹1 Cr+']),sum:()=>V('mf')||''},
+  {id:'hStk',ic:'📈',c:'#e2f6ec',t:'Stocks',d:'Current value',body:()=>chips('stk',['Under ₹1 L','₹1–5 L','₹5–25 L','₹25 L–1 Cr','₹1 Cr+']),sum:()=>V('stk')||''},
+  {id:'hSafe',ic:'🏦',c:'#fff3dc',t:'FD / PPF / EPF',d:'All together',body:()=>chips('safe',['Under ₹1 L','₹1–5 L','₹5–25 L','₹25 L–1 Cr','₹1 Cr+']),sum:()=>V('safe')||''},
+  {id:'hIns',ic:'🛡️',c:'#e9f3ff',t:'Insurance I already have',d:'Term, LIC, ULIP…',body:()=>F('Life / term cover',chips('term',['None','Under ₹50 L','₹50 L–1 Cr','₹1 Cr+']))+F('Savings policies',chips('pol',['None','LIC / endowment','ULIP','Both'])),sum:()=>[V('term')&&'cover '+V('term'),V('pol')&&V('pol')!=='None'&&V('pol')].filter(Boolean).join(' · ')},
+  {id:'hLoan',ic:'🏠',c:'#fde8ec',t:'Loans / EMIs',d:'Home, car, personal',body:()=>F('Total EMI per month',chips('emi',['Under ₹10k','₹10–25k','₹25–50k','₹50k+'])),sum:()=>V('emi')?'EMI '+V('emi'):''}]
+};
+const rowsHTML=group=>`<div class="rows">${ROWS[group].map(r=>{const on=!!S.sel[r.id],s=on&&r.sum();return `<div class="row ${on?'on':''}" style="--c:${r.c}"><button type="button" class="rh" data-row="${r.id}" aria-expanded="${on}"><i>${r.ic}</i><div><b>${r.t}</b><span>${esc(s||r.d)}</span></div><span class="box">${on?'✓':''}</span></button>${on?`<div class="drop">${r.body()}</div>`:''}</div>`}).join('')}</div>`;
+
+/* retirement estimate: transparent assumptions */
+const MID={'Under ₹1 L':50000,'₹1–5 L':300000,'₹5–25 L':1500000,'₹25 L–1 Cr':6000000,'₹1 Cr+':15000000};
+const NEED={'₹30k':30000,'₹50k':50000,'₹75k':75000,'₹1 L':100000,'₹2 L+':200000};
+function retire(){const age=V('age'),R=V('retAge')??55,M=NEED[V('retNeed')],Z=parseInt(V('retYrs')||'25',10);
+  if(!age||!M||R<=age)return null;const n=R-age,need1=M*12*Math.pow(1.06,n),q=1.06/1.07,corpus=need1*(1-Math.pow(q,Z))/0.01*1.07;
+  const have=((MID[V('mf')]||0)+(MID[V('stk')]||0)+(MID[V('safe')]||0))*Math.pow(1.1,n),gap=Math.max(0,corpus-have);
+  const m=Math.pow(1.1,1/12)-1,sip=gap/(((Math.pow(1+m,n*12)-1)/m)*(1+m));return{corpus,sip:Math.ceil(sip/500)*500,gap,R}}
+function estHTML(){const r=retire();if(!r)return `<p class="note">${V('age')?'Pick a monthly amount to see a rough number.':'Add your age in step 1 to see a rough number.'}</p>`;
+  return `<div class="est"><span>You'd need about <b>${L(r.corpus)}</b> at ${r.R}</span><span>${r.gap?`Monthly SIP to get there: <b>${inr(r.sip)}</b>`:'You look on track 🎉'}</span><small>Rough guide: 6% inflation, 10% growth before retirement, 7% after. Not guaranteed.</small></div>`}
+
+/* steps */
+const STEPS=[
+ {t:'You',h:'Hi! Let\'s start with <em>you</em>',lead:'Takes about a minute. Rough answers are perfect.',
+  body:()=>`<div class="stack">${F('Your name',`<input class="tx" data-tx="name" value="${esc(V('name')||'')}" placeholder="e.g. Ravi" autocomplete="given-name">`)}
+   <div class="two">${F('Age',num('age',32,18,85))}${F('City',`<input class="tx" data-tx="city" value="${esc(V('city')||'')}" placeholder="Hyderabad" autocomplete="address-level2">`)}</div>
+   ${F('Work',chips('work',['Salaried','Business','Professional','Retired']))}
+   ${F('Yearly income',chips('income',['Under ₹10 L','₹10–25 L','₹25–50 L','₹50 L–1 Cr','₹1 Cr+']),'roughly')}
+   <label class="toggle"><input type="checkbox" data-flag="nri" ${V('nri')?'checked':''}> I live outside India (NRI)</label>
+   ${V('nri')?F('Country',chips('country',['UAE / Gulf','USA','UK','Canada','Singapore','Other'])):''}</div>`},
+ {t:'Family',h:'Who\'s in your <em>family?</em>',lead:'Tap who applies. Skip if you prefer.',skip:1,body:()=>`<div class="stack">${rowsHTML('family')}</div>`},
+ {t:'Goals',h:'What do you want to <em>achieve?</em>',lead:'Tap one or more. Each opens just 2–3 quick questions.',body:()=>`<div class="stack">${rowsHTML('goals')}</div>`},
+ {t:'Money',h:'Your <em>money</em> today',lead:'Tap what you have, then how much you can invest.',final:1,
+  body:()=>`<div class="stack">${rowsHTML('have')}
+   ${F('You could invest every month',chips('monthly',['Under ₹10k','₹10–25k','₹25–50k','₹50k+']))}
+   ${F('One-time amount available now',chips('lump',['None','Under ₹5 L','₹5–25 L','₹25 L+']))}
+   ${V('name')?'':F('Your name',`<input class="tx" data-tx="name" value="" placeholder="So Manoj knows who this is" autocomplete="given-name">`)}
+   <label class="consent"><input type="checkbox" id="ok" ${S.ok?'checked':''}> Share these answers with Manoj Kumar (Ashvamedha Finance) on WhatsApp so he can contact me.</label>
+   <div class="err" id="err" hidden></div>
+   <div><button type="button" class="copy" id="showMsg">WhatsApp not opening? Copy the message</button><textarea id="msg" hidden readonly aria-label="Message"></textarea></div>
+   <p class="fine">🔒 Please don't share PAN or account numbers. Nothing is sent until you tap Send. This form is not investment advice. Mutual fund investments are subject to market risks. Insurance is the subject matter of solicitation.</p></div>`}
 ];
 
-const active=()=>CH.filter(c=>!c.when||c.when());
-let cur=()=>active()[Math.min(S.idx,active().length-1)];
-
-/* ── rendering ── */
-function fieldHTML(f){
-  const v=V(f.k);
-  const head=f.l?`<div class="l">${f.l}${f.sub?`<small>${f.sub}</small>`:''}</div>`:'';
-  if(f.t==='tiles') return `<div class="tiles">${f.opts.map(([id,ic,t,d,wide])=>`<button type="button" class="tile${wide?' wide':''}" data-k="${f.k}" data-multi="1" data-v="${id}" aria-pressed="${has(f.k,id)}"><i>${ic}</i><div><b>${t}</b>${wide?`<span>${d}</span>`:''}</div>${wide?'':`<span>${d}</span>`}</button>`).join('')}</div>`;
-  if(f.t==='chips'||f.t==='multi'){const multi=f.t==='multi';return head+`<div class="chips">${f.opts.map(o=>{const lab=Array.isArray(o)?o[0]:o;const on=multi?has(f.k,lab):v===lab;return `<button type="button" class="chip" data-k="${f.k}" ${multi?'data-multi="1"':''} data-v="${esc(lab)}" aria-pressed="${on}">${esc(lab)}</button>`}).join('')}</div>`}
-  if(f.t==='react') return head+`<div class="reacts">${f.opts.map(([ic,t,d])=>`<button type="button" class="react" data-k="${f.k}" data-v="${esc(t)}" aria-pressed="${v===t}"><i>${ic}</i><div><b>${t}</b><span>${d}</span></div></button>`).join('')}</div>`;
-  if(f.t==='text') return head.replace('<div class="l">',`<label class="l" for="i_${f.k}">`).replace(/<\/div>$/,'</label>')+`<input class="tx" id="i_${f.k}" data-tx="${f.k}" value="${esc(v||'')}" placeholder="${f.ph||''}" autocomplete="${f.ac||'off'}">`;
-  if(f.t==='num'){const n=v??'';return head+`<div class="stepper"><button type="button" data-step="${f.k}" data-d="-1" aria-label="Less">−</button><input id="i_${f.k}" data-num="${f.k}" inputmode="numeric" value="${n}" placeholder="${f.def}" aria-label="${esc(f.l)}"><button type="button" data-step="${f.k}" data-d="1" aria-label="More">+</button><em>years</em></div>`}
-  if(f.t==='money') return head+`<div class="money"><span class="r">₹</span><input class="tx" id="i_${f.k}" data-money="${f.k}" inputmode="numeric" value="${v?Number(v).toLocaleString('en-IN'):''}" placeholder="Type an amount" aria-label="${esc(f.l)}"></div><div class="chips">${f.quick.map(q=>`<button type="button" class="chip" data-k="${f.k}" data-num="1" data-v="${q}" aria-pressed="${+v===q}">${L(q)}</button>`).join('')}</div><div class="hint" id="h_${f.k}">${v?`= <b>${L(+v)}</b>${f.per||''}`:''}</div>`;
-  if(f.t==='kids'){const n=V('kidsN')||0;let h=head+`<div class="chips">${['None','1','2','3','4'].map((t,i)=>`<button type="button" class="chip" data-kids="${i}" aria-pressed="${(V('kidsN')??-1)===i}">${t}</button>`).join('')}</div>`;
-    if(n>0)h+=`<div class="kids">${Array.from({length:n},(_,i)=>`<label class="kid"><span>Child ${i+1} age</span><input data-kid="${i}" inputmode="numeric" value="${esc((V('kidAges')||[])[i]??'')}" placeholder="e.g. 4"></label>`).join('')}</div>`;return h}
-  return '';
-}
 function render(){
-  const list=active();if(S.idx>list.length-1)S.idx=list.length-1;const c=list[S.idx];
-  // route
-  $('stops').innerHTML=list.map((x,i)=>`${i?`<span class="lane ${S.done[list[i-1].id]?'done':''}"></span>`:''}<button type="button" class="stop ${i===S.idx?'on':''} ${S.done[x.id]&&i!==S.idx?'done':''} ${S.skipped[x.id]&&i!==S.idx?'skip':''}" data-go="${i}" aria-label="${x.name}" title="${x.name}">${x.icon}</button>`).join('');
-  $('routeL').innerHTML=`Step <b>${S.idx+1}</b> of ${list.length} · ${c.name}`;
-  requestAnimationFrame(()=>{const on=$('stops').querySelector('.on');on&&on.scrollIntoView({inline:'center',block:'nearest'})});
-  const left=list.length-S.idx-1;$('time').textContent=left?`≈ ${Math.max(1,Math.round(left*0.4))} min left`:'Last step';
-  // body
-  let h=`<section class="chap"><div class="eyebrow">${c.eyebrow}</div><h1>${c.title}</h1><p class="lead">${c.lead}</p><div class="fields">`;
-  if(c.final) h+=passport();
-  c.fields.filter(f=>!f.show||f.show()).forEach(f=>{h+=`<div class="f">${fieldHTML(f)}</div>`});
-  if(c.est) h+=`<div id="est">${estimate()}</div>`;
-  if(c.note) h+=`<div class="note">${c.note}</div>`;
-  if(c.id==='you') h+=`<div class="privacy"><span>🔒</span><div>Please don't type PAN, Aadhaar or account numbers anywhere here. Nothing leaves your phone until you tap <b>Send</b>.</div></div>`;
-  if(c.final){h+=`<label class="check"><input type="checkbox" id="ok" ${S.ok?'checked':''}> I'm happy to share these answers with Manoj Kumar (Ashvamedha Finance) on WhatsApp so he can contact me.</label><div class="err" id="err" hidden></div>
-    <div><button type="button" class="copy" id="showMsg">WhatsApp not opening? Copy the message</button><textarea id="msg" hidden readonly aria-label="Message"></textarea><p class="hint" style="margin-top:6px">Manoj's WhatsApp: <b style="color:var(--ink);user-select:all">+91 87901 09022</b></p></div>
-    <p class="fine">Your answers help Manoj understand your situation before you talk. This form is not investment advice; any estimate shown is a rough illustration using stated assumptions. Mutual fund investments are subject to market risks. Insurance is the subject matter of solicitation.</p>`}
-  h+='</div></section>';
-  $('stage').innerHTML=h;
-  // bar
-  $('back').hidden=S.idx===0;$('skip').hidden=!c.skip;$('next').hidden=!!c.final;$('send').hidden=!c.final;
-  $('next').textContent=S.idx===0?'Let\'s go →':'Next →';
-  if(c.final)updSend();
-  bind();save();
+  const s=STEPS[S.step];
+  $('track').innerHTML=`<div class="rail"><i style="width:${S.step/3*100}%"></i></div>`+STEPS.map((x,i)=>`<button type="button" class="tstep ${i===S.step?'on':''} ${S.done[i]&&i!==S.step?'done':''}" data-go="${i}"><span class="d">${S.done[i]&&i!==S.step?'✓':i+1}</span><span class="t">${x.t}</span></button>`).join('');
+  $('stage').innerHTML=`<section class="step"><h1>${s.h}</h1><p class="lead">${s.lead}</p>${s.body()}</section>`;
+  $('back').hidden=S.step===0;$('skip').hidden=!s.skip;$('next').hidden=!!s.final;$('send').hidden=!s.final;
+  if(s.final)upd();bind();save();
 }
 function bind(){
   const st=$('stage');
-  st.querySelectorAll('[data-k]').forEach(b=>b.onclick=()=>{const k=b.dataset.k,val=b.dataset.num?+b.dataset.v:b.dataset.v;
-    if(b.dataset.multi){const f=findField(k);let a=Array.isArray(V(k))?[...V(k)]:[];
-      if(f&&f.none&&val===f.none)a=a.includes(val)?[]:[val];else{if(f&&f.none)a=a.filter(x=>x!==f.none);a=a.includes(val)?a.filter(x=>x!==val):[...a,val]}
-      if(k==='needs'){if(val==='unsure')a=a.includes('unsure')?['unsure']:[];else a=a.filter(x=>x!=='unsure')}
-      S.v[k]=a}
-    else S.v[k]=V(k)===val?undefined:val;
-    render()});
-  st.querySelectorAll('[data-tx]').forEach(i=>i.oninput=()=>{S.v[i.dataset.tx]=i.value.trim();save();if(cur().final)updSend()});
-  st.querySelectorAll('[data-num]').forEach(i=>{if(i.tagName!=='INPUT')return;i.oninput=()=>{const n=parseInt(i.value.replace(/\D/g,''),10);S.v[i.dataset.num]=Number.isFinite(n)?n:undefined;updEst();save()}});
-  st.querySelectorAll('[data-step]').forEach(b=>b.onclick=()=>{const k=b.dataset.step,f=findField(k);let n=V(k)??f.def;n=Math.min(f.max,Math.max(f.min,n+ +b.dataset.d));S.v[k]=n;$('i_'+k).value=n;updEst();save()});
-  st.querySelectorAll('[data-money]').forEach(i=>i.oninput=()=>{const k=i.dataset.money,n=parseInt(i.value.replace(/\D/g,''),10);S.v[k]=Number.isFinite(n)&&n>0?n:undefined;
-    const f=findField(k);$('h_'+k).innerHTML=S.v[k]?`= <b>${L(S.v[k])}</b>${f.per||''}`:'';st.querySelectorAll(`.chip[data-k="${k}"]`).forEach(c=>c.setAttribute('aria-pressed',+c.dataset.v===S.v[k]));updEst();save()});
-  st.querySelectorAll('[data-kids]').forEach(b=>b.onclick=()=>{S.v.kidsN=+b.dataset.kids;S.v.kidAges=(V('kidAges')||[]).slice(0,S.v.kidsN);render()});
+  st.querySelectorAll('[data-k]').forEach(b=>b.onclick=()=>{const k=b.dataset.k,v=b.dataset.v;S.v[k]=V(k)===v?undefined:v;if(k==='kidsN')S.v.kidAges=(V('kidAges')||[]).slice(0,+(V('kidsN')||0));render()});
+  st.querySelectorAll('[data-row]').forEach(b=>b.onclick=()=>{const id=b.dataset.row;S.sel[id]=!S.sel[id];render();
+    if(S.sel[id])requestAnimationFrame(()=>{const r=b.closest('.row');const y=r.getBoundingClientRect().top+scrollY-140;if(r.getBoundingClientRect().top>innerHeight*0.55)scrollTo({top:y,behavior:'smooth'})})});
+  st.querySelectorAll('[data-tx]').forEach(i=>i.oninput=()=>{S.v[i.dataset.tx]=i.value.trim();save();if(STEPS[S.step].final)upd()});
+  st.querySelectorAll('input[data-num]').forEach(i=>i.oninput=()=>{const n=parseInt(i.value.replace(/\D/g,''),10);S.v[i.dataset.num]=Number.isFinite(n)?n:undefined;save();refreshEst()});
+  st.querySelectorAll('[data-step]').forEach(b=>b.onclick=()=>{const k=b.dataset.step;let n=V(k)??+b.dataset.def;n=Math.min(+b.dataset.max,Math.max(+b.dataset.min,n+ +b.dataset.d));S.v[k]=n;st.querySelector(`input[data-num="${k}"]`).value=n;save();refreshEst()});
   st.querySelectorAll('[data-kid]').forEach(i=>i.oninput=()=>{const a=V('kidAges')||[];a[+i.dataset.kid]=i.value.replace(/\D/g,'').slice(0,2);S.v.kidAges=a;save()});
-  if($('ok'))$('ok').onchange=()=>{S.ok=$('ok').checked;save();updSend()};
+  st.querySelectorAll('[data-flag]').forEach(i=>i.onchange=()=>{S.v[i.dataset.flag]=i.checked;render()});
+  if($('ok'))$('ok').onchange=()=>{S.ok=$('ok').checked;save();upd()};
   if($('showMsg'))$('showMsg').onclick=async()=>{const t=$('msg');t.value=message();t.hidden=false;try{await navigator.clipboard.writeText(t.value);$('showMsg').textContent='Copied ✓'}catch(e){t.focus();t.select()}};
 }
-const findField=k=>{for(const c of CH)for(const f of c.fields)if(f.k===k)return f};
+function refreshEst(){const e=$('est');if(e)e.innerHTML=estHTML();const r=document.querySelector('[data-row="retire"] span');if(r&&S.sel.retire)r.textContent=ROWS.goals[0].sum()||ROWS.goals[0].d}
 
-/* ── retirement estimate (transparent assumptions) ── */
-const INF=.06, PRE=.10, POST=.07;
-function retireCalc(){
-  const age=V('age'),R=V('retAge')??55,M=V('retNeed'),Z=parseInt(V('retYears')||'25',10);
-  if(!age||!M||R<=age)return null;
-  const n=R-age, need1=M*12*Math.pow(1+INF,n), q=(1+INF)/(1+POST);
-  const corpus=need1*(1-Math.pow(q,Z))/(POST-INF)*(1+POST);
-  const val=k=>{const f=findField(k),o=f&&f.opts.find(x=>x[0]===V(k));return o?o[1]:0};
-  const have=(val('mf')+val('stocks')+val('safe'))*Math.pow(1+PRE,n), gap=Math.max(0,corpus-have);
-  const m=Math.pow(1+PRE,1/12)-1,N=n*12, sip=gap?gap/(((Math.pow(1+m,N)-1)/m)*(1+m)):0;
-  return {n,corpus,have,gap,sip,monthlyAtR:need1/12,R,Z};
-}
-function estimate(){
-  const r=retireCalc();
-  if(!r) return `<div class="note">Fill your age (in Chapter 1), retirement age and monthly need to see a rough number.</div>`;
-  return `<div class="est"><small>Rough estimate</small><div class="n">${L(r.corpus)}</div><div style="font-size:14px;color:#dfe5f0">needed at age ${r.R} to get ${inr(V('retNeed'))}/month (today's value) for ${r.Z} years</div>
-   <div class="grid"><div><span>Monthly SIP needed</span><b>${r.gap?inr(Math.ceil(r.sip/500)*500):'On track 🎉'}</b></div><div><span>Your need at ${r.R}</span><b>${inr(r.monthlyAtR)}/mo</b></div></div>
-   <p>Assumes 6% inflation, 10% a year growth before retirement and 7% after${r.have?', and counts your current investments':''}. Returns are not guaranteed. Manoj will refine this with you.</p></div>`;
-}
-function updEst(){const e=$('est');if(e)e.innerHTML=estimate()}
-
-/* ── passport + message ── */
-const NEED_LBL={retire:'Retirement',wealth:'Wealth',guaranteed:'Guaranteed income',life:'Life cover',health:'Health cover',kids:'Children',parents:'Parents',tax:'Tax',unsure:'Guide me'};
-function passport(){
-  const needs=(V('needs')||[]).map(x=>NEED_LBL[x]);const r=need('retire')?retireCalc():null;
-  const cell=(a,b)=>b?`<div><span>${a}</span><b>${esc(b)}</b></div>`:'';
-  return `<div class="pass"><div class="pass-h"><div><small>Money passport</small><div class="nm">${esc(V('name')||'Your name')}</div><div class="meta">${[V('age')?V('age')+' yrs':'',V('city'),V('work'),V('nri')==='Outside India (NRI)'?'NRI · '+(V('country')||''):''].filter(Boolean).map(esc).join(' · ')}</div></div><div class="seal">ASHVA<br>MEDHA</div></div>
-   <div class="stamps">${needs.map(n=>`<span class="stamp">${esc(n)}</span>`).join('')}</div>
-   <div class="pass-g">${cell('Income / year',V('income'))}${cell('Expenses / month',V('expenses'))}${cell('Family',familyLine())}${cell('Invest / month',V('monthly'))}${r?cell('Retirement need',L(r.corpus)):''}${r&&r.gap?cell('SIP to get there',inr(Math.ceil(r.sip/500)*500)+'/mo'):''}</div></div>
-   <div class="f"><label class="l" for="i_name2">Your name</label><input class="tx" id="i_name2" data-tx="name" value="${esc(V('name')||'')}" placeholder="So Manoj knows who this is" autocomplete="name"></div>`;
-}
-function familyLine(){const p=[];if(V('married')==='Married')p.push('Spouse');if(V('kidsN'))p.push(V('kidsN')+(V('kidsN')>1?' kids':' kid'));const pa=V('parents');if(Array.isArray(pa)&&pa.length&&!pa.includes('None'))p.push('Parents');return p.join(' + ')}
-function fmt(f){let v=V(f.k);if(f.t==='kids'){const n=V('kidsN');if(n==null)return null;if(!n)return 'None';const a=(V('kidAges')||[]).filter(Boolean);return n+(a.length?` (ages ${a.join(', ')})`:'')}
-  if(v==null||v===''||(Array.isArray(v)&&!v.length))return null;if(f.t==='money')return L(v)+(f.per||'');if(Array.isArray(v))return v.join(', ');return String(v)}
 function message(){
-  const out=['Hi Manoj 👋 Here\'s my profile from your website.',''];
-  out.push('*Looking for:* '+((V('needs')||[]).map(x=>NEED_LBL[x]).join(', ')||'-'));
-  active().forEach(c=>{if(c.id==='needs')return;if(S.skipped[c.id]&&!c.final){return}
-    const lines=c.fields.filter(f=>(!f.show||f.show())&&f.s).map(f=>{const x=fmt(f);return x?`${f.s}: ${x}`:null}).filter(Boolean);
-    if(c.id==='retire'){const r=retireCalc();if(r)lines.push(`Rough corpus: ${L(r.corpus)}${r.gap?`, SIP ≈ ${inr(Math.ceil(r.sip/500)*500)}/mo`:''}`)}
-    if(lines.length){out.push('',`*${c.name}*`,...lines)}});
-  const sk=active().filter(c=>S.skipped[c.id]).map(c=>c.name);if(sk.length)out.push('','(Skipped: '+sk.join(', ')+')');
-  out.push('','Please guide me. [profile]');return out.join('\n');
+  const o=['Hi Manoj 👋 Here\'s my profile from your website.',''];
+  const me=[V('name'),V('age')&&V('age')+' yrs',V('city'),V('work'),V('nri')&&('NRI'+(V('country')?' · '+V('country'):''))].filter(Boolean).join(' · ');
+  o.push('*About me:* '+(me||'-'));if(V('income'))o.push('Income: '+V('income')+' a year');
+  const sect=(title,group)=>{const out=[];ROWS[group].filter(r=>S.sel[r.id]).forEach(r=>{const s=r.sum();out.push('• '+r.t+(s?': '+s:''));if(r.id==='retire'){const x=retire();if(x)out.push(`   Rough need ${L(x.corpus)}${x.gap?`, SIP ≈ ${inr(x.sip)}/mo`:''}`)}});if(out.length)o.push('',`*${title}*`,...out)};
+  sect('Family','family');sect('Goals','goals');
+  sect('Already have','have');
+  const inv=[V('monthly')&&V('monthly')+' a month',V('lump')&&V('lump')!=='None'&&V('lump')+' one-time'].filter(Boolean);
+  if(inv.length)o.push('','*Can invest:* '+inv.join(' + '));
+  o.push('','Please guide me. [profile]');return o.join('\n');
 }
-function updSend(){const ok=!!(V('name')&&S.ok);const a=$('send');a.setAttribute('aria-disabled',ok?'false':'true');a.href=`https://wa.me/${WA}?text=${encodeURIComponent(message())}`;
-  const e=$('err');if(e){e.hidden=ok;e.textContent=!V('name')?'Add your name to send.':!S.ok?'Tick the box to send.':''}
-  const nm=document.querySelector('.pass .nm');if(nm)nm.textContent=V('name')||'Your name'}
+function upd(){const ok=!!(V('name')&&S.ok),a=$('send');a.setAttribute('aria-disabled',ok?'false':'true');a.href=`https://wa.me/${WA}?text=${encodeURIComponent(message())}`;
+  const e=$('err');if(e){e.hidden=ok;e.textContent=!V('name')?'Add your name to send.':'Tick the box to send.'}}
 
-/* ── navigation ── */
-function go(i){const n=active().length;S.idx=Math.max(0,Math.min(n-1,i));render();window.scrollTo({top:0,behavior:'smooth'})}
-$('next').onclick=()=>{const c=cur();
-  if(c.id==='needs'&&!(V('needs')||[]).length){const t=document.querySelector('.tiles');t.animate&&t.animate([{transform:'translateX(0)'},{transform:'translateX(-6px)'},{transform:'translateX(6px)'},{transform:'translateX(0)'}],{duration:260});return}
-  S.done[c.id]=1;delete S.skipped[c.id];go(S.idx+1)};
-$('skip').onclick=()=>{const c=cur();S.skipped[c.id]=1;delete S.done[c.id];go(S.idx+1)};
-$('back').onclick=()=>go(S.idx-1);
-$('stops').onclick=e=>{const b=e.target.closest('[data-go]');if(b)go(+b.dataset.go)};
+function go(i){S.step=Math.max(0,Math.min(3,i));render();scrollTo({top:0,behavior:'smooth'})}
+$('next').onclick=()=>{S.done[S.step]=1;go(S.step+1)};
+$('skip').onclick=()=>go(S.step+1);
+$('back').onclick=()=>go(S.step-1);
+$('track').onclick=e=>{const b=e.target.closest('[data-go]');if(b)go(+b.dataset.go)};
 $('send').onclick=()=>{try{window.gtag&&gtag('event','profile_sent')}catch(e){}};
 render();
 })();
