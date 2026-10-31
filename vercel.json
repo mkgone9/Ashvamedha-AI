@@ -3,6 +3,16 @@
  "trailingSlash": false,
  "redirects": [
   {
+   "source": "/unlisted",
+   "destination": "/blog",
+   "permanent": true
+  },
+  {
+   "source": "/unlisted/",
+   "destination": "/blog",
+   "permanent": true
+  },
+  {
    "source": "/accredited-investor-india-2026",
    "destination": "/blog/accredited-investor-india-2026",
    "permanent": true
