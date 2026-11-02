@@ -124,17 +124,6 @@ ul.pl{margin:6px 0 0 18px;font-size:13.5px;line-height:1.7;color:#334155}
     <div class="phase" style="margin:14px 0 0"><div class="n" style="background:var(--green)">2</div><div><b id="p2t">Income</b><small id="p2s"></small></div></div>
   </section>
 
-  <div class="sec-t">What if returns are lower?</div>
-  <section class="card">
-    <p class="note" id="sn"></p>
-    <div class="sl">
-      <label for="rr">Move to try a different return <output id="rro"></output></label>
-      <input type="range" id="rr" min="4" max="15" step="0.5">
-    </div>
-    <div class="verdict" id="verdict"></div>
-    <p class="note" style="margin-top:10px">A bad year early in retirement hurts most: with a <b>20% fall in the first year</b> and your assumed return after that, <span id="crash">—</span>. This is why a retirement plan needs a safety cushion and a yearly review.</p>
-  </section>
-
   <div class="sec-t">In today's money</div>
   <section class="card">
     <p class="note" id="real"></p>
@@ -155,8 +144,7 @@ ul.pl{margin:6px 0 0 18px;font-size:13.5px;line-height:1.7;color:#334155}
   <section class="card cta">
     <h2>Want help with your own plan? 🤝</h2>
     <p>Talk to Manoj. Free 15-minute call, in Telugu or English.</p>
-    <a class="btn btn-wa" href="https://wa.me/918790109022?text=Hi%20Manoj%2C%20I%20tried%20the%20retirement%20calculator." target="_blank" rel="noopener">Ask Manoj on WhatsApp</a>
-    <a class="btn btn-line" href="/calculators#calc=retirement">Plan with monthly SIPs instead →</a>
+    <a class="btn btn-wa" id="wa" href="https://wa.me/918790109022?text=Hi%20Manoj%2C%20I%20tried%20the%20retirement%20calculator%20on%20your%20website." target="_blank" rel="noopener">Ask Manoj on WhatsApp</a>
   </section>
 
   <p class="fine">Calculator and example for education only. Assumed returns are not guaranteed; past or assumed performance does not indicate future results. Figures are pre-tax and approximate. Mutual fund investments are subject to market risks; read all scheme-related documents carefully. Not investment advice or a recommendation to buy or sell any security. Consult a SEBI-registered investment adviser for advice on your situation.</p>
@@ -262,34 +250,28 @@ ul.pl{margin:6px 0 0 18px;font-size:13.5px;line-height:1.7;color:#334155}
     var last = base.rows[base.rows.length - 1];
     $('p2t').textContent = 'Income: age ' + (p.ret + 1) + ' → ' + endAge;
     $('p2s').innerHTML = fmt(p.inc) + ' a month' + (p.stp ? ', rising to <b>' + fmt(last.w) + '</b> a month by age ' + endAge : '') + (base.outAge ? ' — but the money runs out at <b>age ' + base.outAge + '</b>' : '');
-    $('sn').innerHTML = 'Your result assumes <b>' + pc(p.rr0) + ' every year for ' + p.yrs + ' years</b>. Returns are rarely that steady.';
-    var cr = draw(p, corpus, r, -0.20);
-    $('crash').innerHTML = cr.outAge ? 'the money runs out at <b>age ' + cr.outAge + '</b>' : '<b>' + fmt(cr.left) + '</b> is left at age ' + endAge + ' instead of ' + fmt(base.left);
-
-    var rr = $('rr'); rr.dataset.base = p.rr0; if (!rr._touched) rr.value = p.rr0; slider(p, corpus);
+    var msg = 'Hi Manoj, I tried the retirement calculator on your website.\n\n' +
+      '*My numbers*\n' +
+      '• Invest today: ' + fmt(p.amt) + ' (' + [p.eqp > 0 ? pc(p.eqp) + ' equity at ' + pc(p.eqr) : '', p.eqp < 100 ? pc(100 - p.eqp) + ' hybrid at ' + pc(p.hyr) : ''].filter(Boolean).join(', ') + ')\n' +
+      '• Age ' + p.age + ', retire at ' + p.ret + '\n' +
+      '• Monthly income wanted: ' + fmt(p.inc) + (p.stp ? ', +' + pc(p.stp) + ' every year' : '') + ', for ' + p.yrs + ' years\n' +
+      '• Return after retirement: ' + pc(p.rr0) + '\n\n' +
+      '*Result*\n' +
+      '• Corpus at ' + p.ret + ': ' + fmt(corpus) + '\n' +
+      '• Total income: ' + fmt(base.total) + '\n' +
+      (base.outAge ? '• Money runs out at age ' + base.outAge + '\n' : '• Left at age ' + endAge + ': ' + fmt(base.left) + '\n') +
+      '\nI would like to discuss my retirement plan.';
+    $('wa').href = 'https://wa.me/918790109022?text=' + encodeURIComponent(msg);
 
     var yToInc = p.ret + 1 - p.age, yToEnd = endAge - p.age;
     $('real').innerHTML = 'At 6% inflation, <b>' + fmt(p.inc) + ' a month at age ' + (p.ret + 1) + '</b> buys about what <b>' + fmt(p.inc / Math.pow(1 + INFL, yToInc)) + ' a month</b> buys today' +
       (base.outAge ? '.' : ', and <b>' + fmt(base.left) + '</b> left at age ' + endAge + ' is worth about <b>' + fmt(base.left / Math.pow(1 + INFL, yToEnd)) + '</b> in today\'s money.');
   }
-  function slider(p, corpus) {
-    var rr = $('rr'), v = +rr.value, d = draw(p, corpus, v / 100);
-    $('rro').textContent = pc(v);
-    $('verdict').className = 'verdict ' + (d.outAge ? 'bad' : 'ok');
-    $('verdict').innerHTML = d.outAge
-      ? 'At <b>' + pc(v) + '</b>, the money <b>runs out at age ' + d.outAge + '</b>, after paying ' + fmt(d.total) + ' in income.'
-      : 'At <b>' + pc(v) + '</b>, all ' + p.yrs + ' years of income are paid (' + fmt(d.total) + ') and <b>' + fmt(d.left) + '</b> is left at age ' + (p.ret + p.yrs) + '.';
-  }
-
-  function fill(o) { Object.keys(o).forEach(function (k) { $(k).value = (k === 'amt' || k === 'inc') ? inr(o[k]) : o[k]; }); $('rr')._touched = false; render(); }
+  function fill(o) { Object.keys(o).forEach(function (k) { $(k).value = (k === 'amt' || k === 'inc') ? inr(o[k]) : o[k]; }); render(); }
   Object.keys(DEF).forEach(function (k) {
     var el = $(k);
     el.addEventListener('input', render);
     if (k === 'amt' || k === 'inc') el.addEventListener('blur', function () { var v = num(k); if (v != null) el.value = inr(v); });
-  });
-  $('rr').addEventListener('input', function () {
-    this._touched = true; var R = read(); if (R.bad.length) return;
-    var g = grow(R.p); slider(R.p, g[g.length - 1].t);
   });
   $('reset').addEventListener('click', function () { fill(DEF); });
   fill(DEF);
