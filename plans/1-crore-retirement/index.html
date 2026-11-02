@@ -84,7 +84,7 @@ ul.pl{margin:6px 0 0 18px;font-size:13.5px;line-height:1.7;color:#334155}
   <nav class="crumb" aria-label="Breadcrumb"><a href="/">Home</a><span aria-hidden="true">›</span><span>Retirement example</span></nav>
   <div class="eyebrow">Calculator · Full calculation</div>
   <h1>₹1 Crore<br><span>Retirement Plan</span></h1>
-  <p>Start with the video example — ₹1 crore at 40, ₹2 lakh a month from 51 — then change any number to calculate your own plan, year by year.</p>
+  <p>Start with the video example — ₹1 crore at 40, ₹2 lakh a month from 51 — then change any number to calculate your own plan.</p>
 </div></section>
 
 <main class="wrap">
@@ -98,7 +98,7 @@ ul.pl{margin:6px 0 0 18px;font-size:13.5px;line-height:1.7;color:#334155}
       <div class="f"><label for="eqr">Equity return / year</label><div class="inp"><input id="eqr" inputmode="decimal"><span>%</span></div></div>
       <div class="f"><label for="hyr">Hybrid return / year</label><div class="inp"><input id="hyr" inputmode="decimal"><span>%</span></div></div>
       <div class="f full"><label for="inc">Monthly income you want after retiring</label><div class="inp"><span>₹</span><input id="inc" inputmode="numeric" autocomplete="off"></div><small id="inc-w"></small></div>
-      <div class="f"><label for="stp">Yearly increase in income</label><div class="inp"><input id="stp" inputmode="decimal"><span>%</span></div></div>
+      <div class="f"><label for="stp">Yearly raise in income</label><div class="inp"><input id="stp" inputmode="decimal"><span>%</span></div></div>
       <div class="f"><label for="yrs">Years of income</label><div class="inp"><input id="yrs" inputmode="numeric"><span>yrs</span></div></div>
       <div class="f full"><label for="rr0">Return after retirement / year</label><div class="inp"><input id="rr0" inputmode="decimal"><span>%</span></div></div>
     </form>
@@ -120,25 +120,18 @@ ul.pl{margin:6px 0 0 18px;font-size:13.5px;line-height:1.7;color:#334155}
   </section>
 
   <section class="card">
-    <div class="phase"><div class="n" style="background:var(--blue)">1</div><div><b id="p1t">Grow</b><small>Invested once, nothing withdrawn</small></div></div>
-    <div class="tw"><table id="t1"></table></div>
-  </section>
-
-  <section class="card">
-    <div class="phase"><div class="n" style="background:var(--green)">2</div><div><b id="p2t">Income</b><small id="p2s"></small></div></div>
-    <div class="tw"><table id="t2"></table></div>
-    <p class="note" style="margin-top:10px" id="p2n"></p>
+    <div class="phase"><div class="n" style="background:var(--blue)">1</div><div><b id="p1t">Grow</b><small id="p1s"></small></div></div>
+    <div class="phase" style="margin:14px 0 0"><div class="n" style="background:var(--green)">2</div><div><b id="p2t">Income</b><small id="p2s"></small></div></div>
   </section>
 
   <div class="sec-t">What if returns are lower?</div>
   <section class="card">
     <p class="note" id="sn"></p>
     <div class="sl">
-      <label for="rr">Try a different return after retirement <output id="rro"></output></label>
+      <label for="rr">Move to try a different return <output id="rro"></output></label>
       <input type="range" id="rr" min="4" max="15" step="0.5">
     </div>
     <div class="verdict" id="verdict"></div>
-    <div class="tw"><table id="t3"></table></div>
     <p class="note" style="margin-top:10px">A bad year early in retirement hurts most: with a <b>20% fall in the first year</b> and your assumed return after that, <span id="crash">—</span>. This is why a retirement plan needs a safety cushion and a yearly review.</p>
   </section>
 
@@ -210,16 +203,17 @@ ul.pl{margin:6px 0 0 18px;font-size:13.5px;line-height:1.7;color:#334155}
     return { rows: rows, total: total, left: Math.max(c, 0), outAge: outAge };
   }
 
+  function axis(v) { return v >= CR ? '₹' + (+(v / CR).toFixed(1)) + 'Cr' : '₹' + (+(v / L).toFixed(1)) + 'L'; }
   function chart(p, g, base, low, lowR) {
     var pts = function (d) { return g.map(function (r) { return { age: r.age, c: r.t }; }).concat(d.rows.map(function (r) { return { age: r.age, c: r.c }; })); };
     var A = pts(base), B = pts(low), maxC = Math.max.apply(null, A.concat(B).map(function (q) { return q.c; })) || 1;
-    var mag = Math.pow(10, Math.floor(Math.log10(maxC))), stepV = [1, 2, 2.5, 5, 10].map(function (k) { return k * mag; }).find(function (s) { return maxC / s <= 6; });
+    var mag = Math.pow(10, Math.floor(Math.log10(maxC)) - 1), stepV = [1, 2, 2.5, 5, 10, 20, 25, 50, 100].map(function (k) { return k * mag; }).find(function (s) { return maxC / s <= 5; });
     var top = Math.ceil(maxC / stepV) * stepV, W = 600, H = 300, l = 82, rp = 14, t = 16, b = 36;
     var a0 = p.age, a1 = p.ret + p.yrs;
     var X = function (age) { return l + (age - a0) / (a1 - a0) * (W - l - rp); };
     var Y = function (c) { return t + (1 - c / top) * (H - t - b); };
     var svg = '';
-    for (var v = 0; v <= top + 1; v += stepV) svg += '<line x1="' + l + '" x2="' + (W - rp) + '" y1="' + Y(v) + '" y2="' + Y(v) + '" stroke="#e6e9ef"/><text x="' + (l - 6) + '" y="' + (Y(v) + 5) + '" font-size="16" text-anchor="end" fill="#5b6676">' + (v ? fmt(v).replace(' ', '') : '₹0') + '</text>';
+    for (var v = 0; v <= top + 1; v += stepV) svg += '<line x1="' + l + '" x2="' + (W - rp) + '" y1="' + Y(v) + '" y2="' + Y(v) + '" stroke="#e6e9ef"/><text x="' + (l - 6) + '" y="' + (Y(v) + 5) + '" font-size="16" text-anchor="end" fill="#5b6676">' + (v ? axis(v) : '₹0') + '</text>';
     var span = a1 - a0, tick = span > 45 ? 10 : span > 20 ? 5 : span > 8 ? 2 : 1;
     for (var a = Math.ceil(a0 / tick) * tick; a <= a1; a += tick) svg += '<text x="' + X(a) + '" y="' + (H - 10) + '" font-size="16" text-anchor="middle" fill="#5b6676">' + a + '</text>';
     svg += '<line x1="' + X(p.ret) + '" x2="' + X(p.ret) + '" y1="' + t + '" y2="' + (H - b) + '" stroke="#b8902f" stroke-dasharray="3 3"/><text x="' + (X(p.ret) + 5) + '" y="' + (t + 14) + '" font-size="16" fill="#b8902f">Retire</text>';
@@ -264,28 +258,11 @@ ul.pl{margin:6px 0 0 18px;font-size:13.5px;line-height:1.7;color:#334155}
     chart(p, g, base, low, lowR);
 
     $('p1t').textContent = p.ret > p.age ? 'Grow: age ' + p.age + ' → ' + p.ret : 'Grow: retiring now';
-    var t1 = '<thead><tr><th>Age</th><th>Equity</th><th>Hybrid</th><th>Total</th></tr></thead><tbody>';
-    g.forEach(function (x, i) { t1 += '<tr' + (i === g.length - 1 ? ' class="mark"' : '') + '><td>' + x.age + '</td><td>' + fmt(x.e) + '</td><td>' + fmt(x.h) + '</td><td>' + fmt(x.t) + '</td></tr>'; });
-    $('t1').innerHTML = t1 + '</tbody>';
-
+    $('p1s').innerHTML = fmt(p.amt) + ' grows to <b>' + fmt(corpus) + '</b>' + (p.ret > p.age ? ' in ' + (p.ret - p.age) + ' years' : '') + ', nothing withdrawn';
+    var last = base.rows[base.rows.length - 1];
     $('p2t').textContent = 'Income: age ' + (p.ret + 1) + ' → ' + endAge;
-    $('p2s').textContent = fmt(p.inc) + ' a month' + (p.stp ? ', increased ' + pc(p.stp) + ' each year' : '') + '; the rest stays invested at ' + pc(p.rr0);
-    var t2 = '<thead><tr><th>Age</th><th>Per month</th><th>That year</th><th>Left</th></tr></thead><tbody>';
-    base.rows.forEach(function (x, i) {
-      var cls = base.outAge && x.age === base.outAge ? 'out' : (i === base.rows.length - 1 && !base.outAge ? 'end' : '');
-      t2 += '<tr' + (cls ? ' class="' + cls + '"' : '') + '><td>' + x.age + '</td><td>' + fmt(x.w) + '</td><td>' + fmt(x.paid) + '</td><td>' + fmt(x.c) + '</td></tr>';
-    });
-    t2 += '<tr class="mark"><td>Total</td><td></td><td>' + fmt(base.total) + '</td><td>' + fmt(base.left) + '</td></tr>';
-    $('t2').innerHTML = t2 + '</tbody>';
-    $('p2n').textContent = 'Income is taken at the end of each month; the remaining money grows at ' + pc(p.rr0) + ' a year (compounded monthly).' + (base.outAge ? ' Once the money runs out, the income shown is what could still be paid.' : '');
-
-    $('sn').innerHTML = 'Your result depends on earning <b>' + pc(p.rr0) + ' every year for ' + p.yrs + ' years</b> while withdrawing. See what a lower return does:';
-    var t3 = '<thead><tr><th>Return</th><th>Income paid</th><th>At age ' + endAge + '</th></tr></thead><tbody>';
-    [0, 0.5, 1, 2, 3, 4].map(function (d) { return p.rr0 - d; }).filter(function (x) { return x >= 0; }).forEach(function (x) {
-      var d = draw(p, corpus, x / 100);
-      t3 += '<tr class="' + (d.outAge ? 'out' : (x === p.rr0 ? 'end' : '')) + '"><td>' + pc(x) + '</td><td>' + fmt(d.total) + '</td><td>' + (d.outAge ? 'Runs out at ' + d.outAge : fmt(d.left) + ' left') + '</td></tr>';
-    });
-    $('t3').innerHTML = t3 + '</tbody>';
+    $('p2s').innerHTML = fmt(p.inc) + ' a month' + (p.stp ? ', rising to <b>' + fmt(last.w) + '</b> a month by age ' + endAge : '') + (base.outAge ? ' — but the money runs out at <b>age ' + base.outAge + '</b>' : '');
+    $('sn').innerHTML = 'Your result assumes <b>' + pc(p.rr0) + ' every year for ' + p.yrs + ' years</b>. Returns are rarely that steady.';
     var cr = draw(p, corpus, r, -0.20);
     $('crash').innerHTML = cr.outAge ? 'the money runs out at <b>age ' + cr.outAge + '</b>' : '<b>' + fmt(cr.left) + '</b> is left at age ' + endAge + ' instead of ' + fmt(base.left);
 
