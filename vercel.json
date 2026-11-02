@@ -3,6 +3,11 @@
  "trailingSlash": false,
  "redirects": [
   {
+   "source": "/retirement",
+   "destination": "/plans/1-crore-retirement",
+   "permanent": false
+  },
+  {
    "source": "/unlisted",
    "destination": "/blog",
    "permanent": true
