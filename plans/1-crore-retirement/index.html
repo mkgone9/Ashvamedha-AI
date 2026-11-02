@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>₹1 Crore Retirement Plan — Full Calculation | Ashvamedha Finance</title>
-<meta name="description" content="Full year-by-year calculation: ₹1 crore invested at 40, ₹2 lakh a month from age 51 rising 5% a year, and what is left after 30 years — plus what happens if returns are lower.">
+<title>₹1 Crore Retirement Plan — Calculator &amp; Full Calculation | Ashvamedha Finance</title>
+<meta name="description" content="Calculate your own retirement income plan: lumpsum, monthly income, yearly increase and returns — with year-by-year numbers and what happens if returns are lower. Starts with the ₹1 crore example.">
 <link rel="canonical" href="https://www.ashvamedhaai.com/plans/1-crore-retirement">
 <meta property="og:title" content="₹1 Crore Retirement Plan — Full Calculation">
 <meta property="og:description" content="Year-by-year numbers for a ₹1 crore retirement example, with what happens if returns are lower. Illustrative, not advice.">
@@ -57,6 +57,20 @@ details.more summary::after{content:" ▾"}details.more[open] summary::after{con
 ul.pl{margin:6px 0 0 18px;font-size:13.5px;line-height:1.7;color:#334155}
 .tel{font-size:13px;color:var(--sub);font-style:italic;margin-top:6px}
 .cta .btn{margin-top:12px}
+.form{display:grid;grid-template-columns:1fr 1fr;gap:10px 12px}
+.f{display:flex;flex-direction:column;gap:5px;min-width:0}
+.f.full{grid-column:1/-1}
+.f label{font-size:12.5px;font-weight:600;color:var(--sub)}
+.inp{display:flex;align-items:center;border:1.5px solid var(--line);border-radius:11px;background:#fff;padding:0 11px;height:46px}
+.inp:focus-within{border-color:var(--blue);box-shadow:0 0 0 3px rgba(31,111,235,.12)}
+.inp span{color:var(--sub);font-weight:600;font-size:14px}
+.inp input{border:0;outline:0;width:100%;min-width:0;font:700 16px Outfit,system-ui,sans-serif;color:var(--ink);background:transparent;padding:0 4px}
+.f small{font-size:11.5px;color:var(--blue);font-weight:600;min-height:14px}
+.f.bad .inp{border-color:#d92d20}
+.split2{display:flex;gap:8px;font-size:12.5px;color:var(--sub);margin-top:2px}
+.split2 b{color:var(--ink)}
+.reset{margin-top:12px;background:none;border:1.5px solid var(--line);border-radius:10px;padding:9px 14px;font:600 13.5px Outfit,system-ui,sans-serif;color:var(--blue);cursor:pointer}
+.err{color:#b42318;font-size:13px;font-weight:600;margin-top:8px}
 @media(max-width:480px){table{font-size:12px}th,td{padding:7px 6px}th{font-size:10px;letter-spacing:0}}
 </style>
 </head>
@@ -68,173 +82,196 @@ ul.pl{margin:6px 0 0 18px;font-size:13.5px;line-height:1.7;color:#334155}
 
 <section class="band"><div class="wrap">
   <nav class="crumb" aria-label="Breadcrumb"><a href="/">Home</a><span aria-hidden="true">›</span><span>Retirement example</span></nav>
-  <div class="eyebrow">Full calculation · Illustrative example</div>
+  <div class="eyebrow">Calculator · Full calculation</div>
   <h1>₹1 Crore<br><span>Retirement Plan</span></h1>
-  <p>Invest ₹1 crore at 40, draw ₹2 lakh a month from 51 rising 5% a year for 30 years — every number, year by year, and what happens if returns are lower.</p>
+  <p>Start with the video example — ₹1 crore at 40, ₹2 lakh a month from 51 — then change any number to calculate your own plan.</p>
 </div></section>
 
 <main class="wrap">
-  <div class="sec-t">The example</div>
+  <div class="sec-t">Your numbers</div>
   <section class="card">
-    <div class="kv">
-      <div><small>Age today</small><b>40</b></div>
-      <div><small>Retire at</small><b>50</b></div>
-      <div><small>Equity mutual funds</small><b>₹80 Lakh</b> <small>at 14% a year (assumed)</small></div>
-      <div><small>Hybrid mutual funds</small><b>₹20 Lakh</b> <small>at 9% a year (assumed)</small></div>
-      <div><small>Income from age 51</small><b>₹2 Lakh / month</b> <small>+5% every year</small></div>
-      <div><small>Return after retirement</small><b>12% a year</b> <small>(assumed)</small></div>
-    </div>
-    <p class="tel">Goal: a monthly income for 30 years, and wealth left for the next generation.</p>
+    <form class="form" id="frm" onsubmit="return false" novalidate>
+      <div class="f full"><label for="amt">Amount you invest today</label><div class="inp"><span>₹</span><input id="amt" inputmode="numeric" autocomplete="off"></div><small id="amt-w"></small></div>
+      <div class="f"><label for="age">Age today</label><div class="inp"><input id="age" inputmode="numeric"><span>yrs</span></div></div>
+      <div class="f"><label for="ret">Retire at age</label><div class="inp"><input id="ret" inputmode="numeric"><span>yrs</span></div></div>
+      <div class="f full"><label for="eqp">Share in equity funds (rest in hybrid)</label><div class="inp"><input id="eqp" inputmode="numeric"><span>%</span></div><div class="split2" id="split"></div></div>
+      <div class="f"><label for="eqr">Equity return / year</label><div class="inp"><input id="eqr" inputmode="decimal"><span>%</span></div></div>
+      <div class="f"><label for="hyr">Hybrid return / year</label><div class="inp"><input id="hyr" inputmode="decimal"><span>%</span></div></div>
+      <div class="f full"><label for="inc">Monthly income you want after retiring</label><div class="inp"><span>₹</span><input id="inc" inputmode="numeric" autocomplete="off"></div><small id="inc-w"></small></div>
+      <div class="f"><label for="stp">Yearly raise in income</label><div class="inp"><input id="stp" inputmode="decimal"><span>%</span></div></div>
+      <div class="f"><label for="yrs">Years of income</label><div class="inp"><input id="yrs" inputmode="numeric"><span>yrs</span></div></div>
+      <div class="f full"><label for="rr0">Return after retirement / year</label><div class="inp"><input id="rr0" inputmode="decimal"><span>%</span></div></div>
+    </form>
+    <div class="err" id="err" hidden></div>
+    <button type="button" class="reset" id="reset">↺ Reset to the video example</button>
   </section>
 
+  <div id="out">
   <div class="sec-t">Result at a glance</div>
   <section class="card">
     <div class="big3">
-      <div class="c-b"><small>Corpus at 50</small><b id="g-corpus">—</b></div>
-      <div class="c-g"><small>Total income, 30 years</small><b id="g-income">—</b></div>
-      <div class="c-y"><small>Left at 80</small><b id="g-left">—</b></div>
+      <div class="c-b"><small id="l-corpus">Corpus at retirement</small><b id="g-corpus">—</b></div>
+      <div class="c-g"><small id="l-income">Total income</small><b id="g-income">—</b></div>
+      <div class="c-y"><small id="l-left">Left at the end</small><b id="g-left">—</b></div>
     </div>
+    <div class="verdict" id="v0"></div>
     <svg class="chart" id="chart" viewBox="0 0 600 300" role="img" aria-label="Corpus over time"></svg>
-    <p class="note" style="margin-top:6px">Blue: the corpus at the assumed 12%. Red dashed: the same plan if retirement returns are 10%.</p>
+    <p class="note" style="margin-top:6px" id="legend"></p>
   </section>
 
   <section class="card">
-    <div class="phase"><div class="n" style="background:var(--blue)">1</div><div><b>Grow: age 40 → 50</b><small>₹1 crore invested once, nothing withdrawn</small></div></div>
-    <div class="tw"><table id="t1"></table></div>
-  </section>
-
-  <section class="card">
-    <div class="phase"><div class="n" style="background:var(--green)">2</div><div><b>Income: age 51 → 80</b><small>₹2 lakh a month, increased 5% each year; the rest stays invested at 12%</small></div></div>
-    <div class="tw"><table id="t2"></table></div>
-    <p class="note" style="margin-top:10px">Income is taken at the end of each month; the remaining money grows at 12% a year (compounded monthly).</p>
-  </section>
-
-  <div class="sec-t">The part most videos skip</div>
-  <section class="card">
-    <p class="note">The ₹10.4 crore depends on earning <b>12% every year for 30 years</b> while withdrawing. Move the slider to see how sensitive it is.</p>
-    <div class="sl">
-      <label for="rr">Return after retirement <output id="rro">12%</output></label>
-      <input type="range" id="rr" min="8" max="13" step="0.5" value="12">
-    </div>
-    <div class="verdict" id="verdict"></div>
-    <div class="tw"><table id="t3"></table></div>
-    <p class="note" style="margin-top:10px">A bad year early in retirement hurts most: with a <b>20% fall in the first year</b> and 12% after that, the money runs out at <b id="crash">—</b>. This is why a retirement plan needs a safety cushion and a yearly review.</p>
+    <div class="phase"><div class="n" style="background:var(--blue)">1</div><div><b id="p1t">Grow</b><small id="p1s"></small></div></div>
+    <div class="phase" style="margin:14px 0 0"><div class="n" style="background:var(--green)">2</div><div><b id="p2t">Income</b><small id="p2s"></small></div></div>
   </section>
 
   <div class="sec-t">In today's money</div>
   <section class="card">
-    <p class="note">At 6% inflation, <b>₹2 lakh a month at age 51</b> buys about what <b id="r1">—</b> buys today, and <b id="r2">—</b> left at age 80 is worth about <b id="r3">—</b> in today's money.</p>
+    <p class="note" id="real"></p>
   </section>
+  </div>
 
-  <div class="sec-t">Assumptions &amp; what's not included</div>
   <section class="card">
     <ul class="pl">
-      <li>Returns of 14% (equity), 9% (hybrid) and 12% (after retirement) are <b>assumptions, not guarantees</b>. Real returns vary year to year and can be negative.</li>
-      <li>Figures are <b>before tax</b>. Withdrawals from mutual funds attract capital gains tax, which lowers the income or the amount left.</li>
-      <li>No fund charges beyond what the assumed returns already reflect; no other income or expenses.</li>
-      <li>This is one general example, the same for everyone. It is <b>not personal advice</b> and not a recommendation to buy any fund.</li>
+      <li>Returns are <b>assumptions, not guarantees</b>. Figures are <b>before tax</b>.</li>
+      <li><b>Mutual fund investments are subject to market risks</b>; read all scheme-related documents carefully.</li>
+      <li>For education only, not investment advice.</li>
     </ul>
   </section>
 
   <section class="card cta">
-    <h2>Try it with your own numbers 🧮</h2>
-    <p>Change the amount, age and returns in the free retirement calculator.</p>
-    <a class="btn btn-wa" style="background:#fff;color:var(--ink)" href="/calculators#calc=retirement">Open the retirement calculator →</a>
-    <a class="btn btn-line" href="https://wa.me/918790109022?text=Hi%20Manoj%2C%20I%20saw%20the%20%E2%82%B91%20crore%20retirement%20example." target="_blank" rel="noopener">Questions? WhatsApp Manoj</a>
+    <h2>Want help with your own plan? 🤝</h2>
+    <p>Talk to Manoj. Free 15-minute call, in Telugu or English.</p>
+    <a class="btn btn-wa" id="wa" href="https://wa.me/918790109022?text=Hi%20Manoj%2C%20I%20tried%20the%20retirement%20calculator%20on%20your%20website." target="_blank" rel="noopener">Ask Manoj on WhatsApp</a>
   </section>
 
-  <p class="fine">Illustrative example for education only. Assumed returns are not guaranteed; past or assumed performance does not indicate future results. Figures are pre-tax and approximate. Mutual fund investments are subject to market risks; read all scheme-related documents carefully. Not investment advice or a recommendation to buy or sell any security. Consult a SEBI-registered investment adviser for advice on your situation.</p>
+  <p class="fine">Illustrative calculator. Inflation taken at 6% a year; income taken monthly from the month after retirement. Consult a SEBI-registered investment adviser for advice on your situation.</p>
 </main>
 
 <script>
 (function () {
-  var L = 1e5, CR = 1e7;
-  var P = { eq: 80 * L, eqR: 0.14, hy: 20 * L, hyR: 0.09, years1: 10, startAge: 40, monthly: 2 * L, step: 0.05, years2: 30, infl: 0.06 };
+  var L = 1e5, CR = 1e7, INFL = 0.06;
+  var DEF = { amt: 1e7, age: 40, ret: 50, eqp: 80, eqr: 14, hyr: 9, inc: 2e5, stp: 5, yrs: 30, rr0: 12 };
+  var LIM = { amt: [1e4, 1e10], age: [18, 80], ret: [18, 90], eqp: [0, 100], eqr: [0, 30], hyr: [0, 30], inc: [1000, 1e8], stp: [0, 20], yrs: [1, 50], rr0: [0, 30] };
+  var $ = function (id) { return document.getElementById(id); };
   function fmt(n) {
     var a = Math.abs(n), s = n < 0 ? '−' : '';
     if (a >= CR) return s + '₹' + (a / CR).toFixed(2) + ' Cr';
     if (a >= L) return s + '₹' + (a / L).toFixed(a >= 10 * L ? 1 : 2) + ' L';
     return s + '₹' + Math.round(a).toLocaleString('en-IN');
   }
-  function grow() {
-    var rows = [];
-    for (var y = 0; y <= P.years1; y++) {
-      var e = P.eq * Math.pow(1 + P.eqR, y), h = P.hy * Math.pow(1 + P.hyR, y);
-      rows.push({ age: P.startAge + y, e: e, h: h, t: e + h });
+  var inr = function (n) { return Math.round(n).toLocaleString('en-IN'); };
+  var num = function (id) { var v = parseFloat(String($(id).value).replace(/[^0-9.]/g, '')); return isNaN(v) ? null : v; };
+  var pc = function (x) { return (Math.round(x * 10) / 10) + '%'; };
+
+  function grow(p) {
+    var rows = [], eq = p.amt * p.eqp / 100, hy = p.amt - eq;
+    for (var y = 0; y <= p.ret - p.age; y++) {
+      var e = eq * Math.pow(1 + p.eqr / 100, y), h = hy * Math.pow(1 + p.hyr / 100, y);
+      rows.push({ age: p.age + y, e: e, h: h, t: e + h });
     }
     return rows;
   }
-  // Retirement phase: end-of-month withdrawals, return compounded monthly; optional first-year return override.
-  function draw(corpus, r, firstYearR) {
+  // End-of-month withdrawals; return compounded monthly; optional first-year return override.
+  function draw(p, corpus, r, firstYearR) {
     var rows = [], c = corpus, total = 0, outAge = null;
-    for (var y = 0; y < P.years2; y++) {
+    for (var y = 0; y < p.yrs; y++) {
       var ry = (y === 0 && firstYearR != null) ? firstYearR : r, m = Math.pow(1 + ry, 1 / 12) - 1;
-      var w = P.monthly * Math.pow(1 + P.step, y), paid = 0;
+      var w = p.inc * Math.pow(1 + p.stp / 100, y), paid = 0;
       for (var k = 0; k < 12; k++) {
         c = c * (1 + m);
         var take = Math.min(w, Math.max(c, 0)); c -= take; paid += take;
-        if (c <= 0 && outAge == null) outAge = P.startAge + P.years1 + y + 1;
+        if (c <= 0.5 && outAge == null) outAge = p.ret + y + 1;
       }
       total += paid;
-      rows.push({ age: P.startAge + P.years1 + y + 1, w: w, paid: paid, c: Math.max(c, 0) });
+      rows.push({ age: p.ret + y + 1, w: w, paid: paid, c: Math.max(c, 0) });
     }
     return { rows: rows, total: total, left: Math.max(c, 0), outAge: outAge };
   }
-  var g = grow(), corpus = g[g.length - 1].t, base = draw(corpus, 0.12), low = draw(corpus, 0.10);
-  document.getElementById('g-corpus').textContent = fmt(corpus);
-  document.getElementById('g-income').textContent = fmt(base.total);
-  document.getElementById('g-left').textContent = fmt(base.left);
 
-  var t1 = '<thead><tr><th>Age</th><th>Equity</th><th>Hybrid</th><th>Total</th></tr></thead><tbody>';
-  g.forEach(function (r, i) { t1 += '<tr' + (i === g.length - 1 ? ' class="mark"' : '') + '><td>' + r.age + '</td><td>' + fmt(r.e) + '</td><td>' + fmt(r.h) + '</td><td>' + fmt(r.t) + '</td></tr>'; });
-  document.getElementById('t1').innerHTML = t1 + '</tbody>';
-
-  var t2 = '<thead><tr><th>Age</th><th>Per month</th><th>That year</th><th>Left</th></tr></thead><tbody>';
-  base.rows.forEach(function (r, i) { t2 += '<tr' + (i === base.rows.length - 1 ? ' class="end"' : '') + '><td>' + r.age + '</td><td>' + fmt(r.w) + '</td><td>' + fmt(r.paid) + '</td><td>' + fmt(r.c) + '</td></tr>'; });
-  t2 += '<tr class="mark"><td>Total</td><td></td><td>' + fmt(base.total) + '</td><td>' + fmt(base.left) + '</td></tr>';
-  document.getElementById('t2').innerHTML = t2 + '</tbody>';
-
-  // chart
-  function path(rows0, d) {
-    var pts = [{ age: P.startAge, c: rows0[0].t }].concat(rows0.slice(1).map(function (r) { return { age: r.age, c: r.t }; }), d.rows.map(function (r) { return { age: r.age, c: r.c }; }));
-    return pts;
+  function axis(v) { return v >= CR ? '₹' + (+(v / CR).toFixed(1)) + 'Cr' : '₹' + (+(v / L).toFixed(1)) + 'L'; }
+  function chart(p, g, base, low, lowR) {
+    var pts = function (d) { return g.map(function (r) { return { age: r.age, c: r.t }; }).concat(d.rows.map(function (r) { return { age: r.age, c: r.c }; })); };
+    var A = pts(base), B = pts(low), maxC = Math.max.apply(null, A.concat(B).map(function (q) { return q.c; })) || 1;
+    var mag = Math.pow(10, Math.floor(Math.log10(maxC)) - 1), stepV = [1, 2, 2.5, 5, 10, 20, 25, 50, 100].map(function (k) { return k * mag; }).find(function (s) { return maxC / s <= 5; });
+    var top = Math.ceil(maxC / stepV) * stepV, W = 600, H = 300, l = 82, rp = 14, t = 16, b = 36;
+    var a0 = p.age, a1 = p.ret + p.yrs;
+    var X = function (age) { return l + (age - a0) / (a1 - a0) * (W - l - rp); };
+    var Y = function (c) { return t + (1 - c / top) * (H - t - b); };
+    var svg = '';
+    for (var v = 0; v <= top + 1; v += stepV) svg += '<line x1="' + l + '" x2="' + (W - rp) + '" y1="' + Y(v) + '" y2="' + Y(v) + '" stroke="#e6e9ef"/><text x="' + (l - 6) + '" y="' + (Y(v) + 5) + '" font-size="16" text-anchor="end" fill="#5b6676">' + (v ? axis(v) : '₹0') + '</text>';
+    var span = a1 - a0, tick = span > 45 ? 10 : span > 20 ? 5 : span > 8 ? 2 : 1;
+    for (var a = Math.ceil(a0 / tick) * tick; a <= a1; a += tick) svg += '<text x="' + X(a) + '" y="' + (H - 10) + '" font-size="16" text-anchor="middle" fill="#5b6676">' + a + '</text>';
+    svg += '<line x1="' + X(p.ret) + '" x2="' + X(p.ret) + '" y1="' + t + '" y2="' + (H - b) + '" stroke="#b8902f" stroke-dasharray="3 3"/><text x="' + (X(p.ret) + 5) + '" y="' + (t + 14) + '" font-size="16" fill="#b8902f">Retire</text>';
+    var poly = function (q, col, dash) { return '<polyline fill="none" stroke="' + col + '" stroke-width="3.5" stroke-linejoin="round"' + (dash ? ' stroke-dasharray="6 4"' : '') + ' points="' + q.map(function (z) { return X(z.age).toFixed(1) + ',' + Y(z.c).toFixed(1); }).join(' ') + '"/>'; };
+    $('chart').innerHTML = svg + poly(B, '#d92d20', true) + poly(A, '#1f6feb', false);
+    $('legend').innerHTML = 'Blue: your plan at ' + pc(p.rr0) + ' after retirement. Red dashed: the same plan at ' + pc(lowR) + '.';
   }
-  var A = path(g, base), B = path(g, low), maxC = Math.max.apply(null, A.map(function (p) { return p.c; }));
-  var top = Math.ceil(maxC / (2 * CR)) * 2 * CR, W = 600, H = 300, l = 70, r = 14, t = 16, b = 36;
-  function X(age) { return l + (age - 40) / 40 * (W - l - r); }
-  function Y(c) { return t + (1 - c / top) * (H - t - b); }
-  var svg = '';
-  for (var v = 0; v <= top; v += 2 * CR) svg += '<line x1="' + l + '" x2="' + (W - r) + '" y1="' + Y(v) + '" y2="' + Y(v) + '" stroke="#e6e9ef"/><text x="' + (l - 6) + '" y="' + (Y(v) + 4) + '" font-size="17" text-anchor="end" fill="#5b6676">₹' + (v / CR) + 'Cr</text>';
-  [40, 50, 60, 70, 80].forEach(function (a) { svg += '<text x="' + X(a) + '" y="' + (H - 10) + '" font-size="17" text-anchor="middle" fill="#5b6676">' + a + '</text>'; });
-  svg += '<line x1="' + X(50) + '" x2="' + X(50) + '" y1="' + t + '" y2="' + (H - b) + '" stroke="#b8902f" stroke-dasharray="3 3"/><text x="' + (X(50) + 4) + '" y="' + (t + 14) + '" font-size="17" fill="#b8902f">Retire</text>';
-  function poly(pts, col, dash) { return '<polyline fill="none" stroke="' + col + '" stroke-width="3.5"' + (dash ? ' stroke-dasharray="6 4"' : '') + ' points="' + pts.map(function (p) { return X(p.age).toFixed(1) + ',' + Y(p.c).toFixed(1); }).join(' ') + '"/>'; }
-  svg += poly(B, '#d92d20', true) + poly(A, '#1f6feb', false);
-  document.getElementById('chart').innerHTML = svg;
 
-  // sensitivity
-  var t3 = '<thead><tr><th>Return</th><th>Income paid</th><th>At age 80</th></tr></thead><tbody>';
-  [12, 11.5, 11, 10, 9, 8].forEach(function (p) {
-    var d = draw(corpus, p / 100);
-    t3 += '<tr class="' + (d.outAge ? 'out' : (p === 12 ? 'end' : '')) + '"><td>' + p + '%</td><td>' + fmt(d.total) + '</td><td>' + (d.outAge ? 'Runs out at ' + d.outAge : fmt(d.left) + ' left') + '</td></tr>';
+  function read() {
+    var p = {}, bad = [];
+    Object.keys(DEF).forEach(function (k) {
+      var v = num(k), lim = LIM[k], f = $(k).closest('.f');
+      var ok = v != null && v >= lim[0] && v <= lim[1];
+      f.classList.toggle('bad', !ok); if (!ok) bad.push(k); p[k] = v;
+    });
+    if (!bad.length && p.ret < p.age) { bad.push('ret'); $('ret').closest('.f').classList.add('bad'); }
+    ['age', 'ret', 'yrs'].forEach(function (k) { if (p[k] != null) p[k] = Math.round(p[k]); });
+    return { p: p, bad: bad };
+  }
+
+  function render() {
+    var R = read(), p = R.p;
+    $('amt-w').textContent = p.amt ? '= ' + fmt(p.amt) : '';
+    $('inc-w').textContent = p.inc ? '= ' + fmt(p.inc) + ' a month' : '';
+    if (p.amt != null && p.eqp != null && p.eqp >= 0 && p.eqp <= 100) $('split').innerHTML = 'Equity <b>' + fmt(p.amt * p.eqp / 100) + '</b> · Hybrid <b>' + fmt(p.amt * (100 - p.eqp) / 100) + '</b>';
+    if (R.bad.length) {
+      $('err').hidden = false; $('out').style.opacity = .35;
+      $('err').textContent = R.bad.indexOf('ret') >= 0 && p.ret != null && p.age != null && p.ret < p.age ? 'Retirement age must be the same as or later than your age today.' : 'Please check the highlighted boxes.';
+      return;
+    }
+    $('err').hidden = true; $('out').style.opacity = 1;
+    var g = grow(p), corpus = g[g.length - 1].t, r = p.rr0 / 100;
+    var base = draw(p, corpus, r), lowR = Math.max(0, p.rr0 - 2), low = draw(p, corpus, lowR / 100), endAge = p.ret + p.yrs;
+
+    $('l-corpus').textContent = 'Corpus at ' + p.ret; $('g-corpus').textContent = fmt(corpus);
+    $('l-income').textContent = 'Total income, ' + p.yrs + ' yrs'; $('g-income').textContent = fmt(base.total);
+    $('l-left').textContent = base.outAge ? 'Runs out at' : 'Left at ' + endAge; $('g-left').textContent = base.outAge ? 'age ' + base.outAge : fmt(base.left);
+    $('v0').className = 'verdict ' + (base.outAge ? 'bad' : 'ok');
+    $('v0').innerHTML = base.outAge
+      ? 'At these assumptions, the money <b>runs out at age ' + base.outAge + '</b>, ' + (endAge - base.outAge) + ' years before the plan ends. Try a smaller income, a later retirement or a larger amount.'
+      : 'At these assumptions, all ' + p.yrs + ' years of income are paid and <b>' + fmt(base.left) + '</b> is left at age ' + endAge + '.';
+    chart(p, g, base, low, lowR);
+
+    $('p1t').textContent = p.ret > p.age ? 'Grow: age ' + p.age + ' → ' + p.ret : 'Grow: retiring now';
+    $('p1s').innerHTML = fmt(p.amt) + ' grows to <b>' + fmt(corpus) + '</b>' + (p.ret > p.age ? ' in ' + (p.ret - p.age) + ' years' : '') + ', nothing withdrawn';
+    var last = base.rows[base.rows.length - 1];
+    $('p2t').textContent = 'Income: age ' + (p.ret + 1) + ' → ' + endAge;
+    $('p2s').innerHTML = fmt(p.inc) + ' a month' + (p.stp ? ', rising to <b>' + fmt(last.w) + '</b> a month by age ' + endAge : '') + (base.outAge ? ' — but the money runs out at <b>age ' + base.outAge + '</b>' : '');
+    var msg = 'Hi Manoj, I tried the retirement calculator on your website.\n\n' +
+      '*My numbers*\n' +
+      '• Invest today: ' + fmt(p.amt) + ' (' + [p.eqp > 0 ? pc(p.eqp) + ' equity at ' + pc(p.eqr) : '', p.eqp < 100 ? pc(100 - p.eqp) + ' hybrid at ' + pc(p.hyr) : ''].filter(Boolean).join(', ') + ')\n' +
+      '• Age ' + p.age + ', retire at ' + p.ret + '\n' +
+      '• Monthly income wanted: ' + fmt(p.inc) + (p.stp ? ', +' + pc(p.stp) + ' every year' : '') + ', for ' + p.yrs + ' years\n' +
+      '• Return after retirement: ' + pc(p.rr0) + '\n\n' +
+      '*Result*\n' +
+      '• Corpus at ' + p.ret + ': ' + fmt(corpus) + '\n' +
+      '• Total income: ' + fmt(base.total) + '\n' +
+      (base.outAge ? '• Money runs out at age ' + base.outAge + '\n' : '• Left at age ' + endAge + ': ' + fmt(base.left) + '\n') +
+      '\nI would like to discuss my retirement plan.';
+    $('wa').href = 'https://wa.me/918790109022?text=' + encodeURIComponent(msg);
+
+    var yToInc = p.ret + 1 - p.age, yToEnd = endAge - p.age;
+    $('real').innerHTML = 'At 6% inflation, <b>' + fmt(p.inc) + ' a month at age ' + (p.ret + 1) + '</b> buys about what <b>' + fmt(p.inc / Math.pow(1 + INFL, yToInc)) + ' a month</b> buys today' +
+      (base.outAge ? '.' : ', and <b>' + fmt(base.left) + '</b> left at age ' + endAge + ' is worth about <b>' + fmt(base.left / Math.pow(1 + INFL, yToEnd)) + '</b> in today\'s money.');
+  }
+  function fill(o) { Object.keys(o).forEach(function (k) { $(k).value = (k === 'amt' || k === 'inc') ? inr(o[k]) : o[k]; }); render(); }
+  Object.keys(DEF).forEach(function (k) {
+    var el = $(k);
+    el.addEventListener('input', render);
+    if (k === 'amt' || k === 'inc') el.addEventListener('blur', function () { var v = num(k); if (v != null) el.value = inr(v); });
   });
-  document.getElementById('t3').innerHTML = t3 + '</tbody>';
-  var crash = draw(corpus, 0.12, -0.20);
-  document.getElementById('crash').textContent = crash.outAge ? 'age ' + crash.outAge : fmt(crash.left) + ' left';
-
-  var rr = document.getElementById('rr'), ro = document.getElementById('rro'), vd = document.getElementById('verdict');
-  function upd() {
-    var p = +rr.value, d = draw(corpus, p / 100); ro.textContent = p + '%';
-    vd.className = 'verdict ' + (d.outAge ? 'bad' : 'ok');
-    vd.innerHTML = d.outAge
-      ? 'At <b>' + p + '%</b>, the money <b>runs out at age ' + d.outAge + '</b>, after paying ' + fmt(d.total) + ' in income.'
-      : 'At <b>' + p + '%</b>, all 30 years of income are paid (' + fmt(d.total) + ') and <b>' + fmt(d.left) + '</b> is left at age 80.';
-  }
-  rr.addEventListener('input', upd); upd();
-
-  var rt = function (amt, yrs) { return amt / Math.pow(1 + P.infl, yrs); };
-  document.getElementById('r1').textContent = fmt(rt(P.monthly, 11)) + ' a month';
-  document.getElementById('r2').textContent = fmt(base.left);
-  document.getElementById('r3').textContent = fmt(rt(base.left, 40));
+  $('reset').addEventListener('click', function () { fill(DEF); });
+  fill(DEF);
 })();
 </script>
 </body>
