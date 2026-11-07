@@ -263,13 +263,66 @@
   }
 
   /* ═══════ INIT ═══════ */
+
+  /* ═══════ 6. "START HERE" POPUP → /start (goal picked in the popup is pre-selected) ═══════ */
+  function startPopup() {
+    if (/^\/start/.test(path)) return;
+    var K = 'av_start_pop', st = safe(function () { return JSON.parse(localStorage.getItem(K) || '{}'); }) || {};
+    if (st.done || (st.t && Date.now() - st.t < 3 * 864e5)) return;          // once every 3 days, never after they start
+    var shown = false;
+    function save() { safe(function () { localStorage.setItem(K, JSON.stringify(st)); }); }
+    function show() {
+      if (shown) return; shown = true; st.t = Date.now(); save();
+      safe(function () { sessionStorage.setItem('avg_nudge', '1'); });
+      var css = document.createElement('style');
+      css.textContent =
+        '#avs-ov{position:fixed;inset:0;z-index:9999;background:rgba(8,16,32,.55);display:flex;align-items:center;justify-content:center;padding:16px;font-family:Outfit,Inter,system-ui,sans-serif;animation:avsF .25s ease}' +
+        '#avs{background:#fff;color:#0b1730;width:100%;max-width:440px;border-radius:22px;padding:22px 20px 18px;box-shadow:0 24px 60px rgba(0,0,0,.28);position:relative;animation:avsU .3s ease}' +
+        '#avs .x{position:absolute;top:10px;right:10px;width:36px;height:36px;border-radius:50%;border:0;background:#f3f0e9;font-size:18px;cursor:pointer;color:#0b1730}' +
+        '#avs small{display:block;font-size:11px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:#c49a3c}' +
+        '#avs h3{font-size:23px;line-height:1.2;margin:6px 40px 4px 0;font-weight:800;color:#0b1730}' +
+        '#avs p{font-size:14.5px;color:#5d6778;margin:0 0 14px}' +
+        '#avs .g{display:grid;grid-template-columns:1fr 1fr;gap:8px}' +
+        '#avs .g a{display:flex;align-items:center;gap:8px;border:1.5px solid #e8e4dc;border-radius:14px;padding:11px 10px;text-decoration:none;color:#0b1730;font-weight:700;font-size:14px;line-height:1.2;background:#fff}' +
+        '#avs .g a:hover,#avs .g a:focus-visible{border-color:#0b1730}' +
+        '#avs .g i{font-style:normal;font-size:20px;flex:none}' +
+        '#avs .go{display:block;text-align:center;margin-top:12px;background:#0b1730;color:#fff;border-radius:14px;padding:13px;font-weight:700;text-decoration:none;font-size:15px}' +
+        '#avs .later{display:block;margin:8px auto 0;background:none;border:0;color:#5d6778;font-size:13.5px;cursor:pointer;padding:6px}' +
+        '@media(max-width:600px){#avs-ov{align-items:flex-end;padding:0}#avs{border-radius:22px 22px 0 0;max-width:none;padding-bottom:calc(16px + env(safe-area-inset-bottom))}}' +
+        '@keyframes avsF{from{opacity:0}}@keyframes avsU{from{transform:translateY(24px);opacity:0}}' +
+        '@media(prefers-reduced-motion:reduce){#avs-ov,#avs{animation:none}}';
+      document.head.appendChild(css);
+      var G = [['retire', '🏝️', 'Retirement'], ['wealth', '📈', 'Grow wealth'], ['guaranteed', '🔒', 'Guaranteed income'], ['life', '🛡️', 'Life insurance'], ['kids', '🎓', 'Children’s future'], ['parents', '🤲', 'Income for parents']];
+      var ov = document.createElement('div'); ov.id = 'avs-ov';
+      ov.innerHTML = '<div id="avs" role="dialog" aria-modal="true" aria-labelledby="avs-h"><button class="x" type="button" aria-label="Close">✕</button>' +
+        '<small>Takes 1 minute</small><h3 id="avs-h">What can Manoj help you with?</h3><p>Tap your goal. Answer a few quick questions and Manoj will get back to you on WhatsApp.</p>' +
+        '<div class="g">' + G.map(function (g) { return '<a href="/start?goal=' + g[0] + '" data-g="' + g[0] + '"><i>' + g[1] + '</i>' + g[2] + '</a>'; }).join('') + '</div>' +
+        '<a class="go" href="/start" data-g="none">Not sure? Start here →</a><button class="later" type="button">Not now</button></div>';
+      document.body.appendChild(ov);
+      function close() { ov.remove(); document.removeEventListener('keydown', esc); }
+      function esc(e) { if (e.key === 'Escape') { track('start_popup_close', { page: path }); close(); } }
+      ov.addEventListener('click', function (e) {
+        var a = e.target.closest('a[data-g]');
+        if (a) { st.done = 1; save(); track('start_popup_click', { goal: a.dataset.g, page: path }); return; }
+        if (e.target === ov || e.target.closest('.x,.later')) { track('start_popup_close', { page: path }); close(); }
+      });
+      document.addEventListener('keydown', esc);
+      track('start_popup_view', { page: path });
+      var first = ov.querySelector('.g a'); if (first && window.matchMedia('(pointer:fine)').matches) first.focus();
+    }
+    if (isBlogArticle) {                                   // readers from Google: only after they've read half the article
+      var onS = function () { var h = document.documentElement; if ((h.scrollTop + innerHeight) / h.scrollHeight > 0.5) { removeEventListener('scroll', onS); show(); } };
+      addEventListener('scroll', onS, { passive: true });
+    } else setTimeout(show, 6000);
+  }
+
   function fixWa() {
     var a = document.querySelectorAll('a[href*="wa.link"]');
     for (var i = 0; i < a.length; i++) a[i].setAttribute('href', CFG.WA_LINK);
   }
 
   function init() {
-    fixWa(); buildBar(); addCalcCard(); addGuides(); scrollNudge();
+    fixWa(); buildBar(); addCalcCard(); addGuides(); startPopup(); scrollNudge();
     setTimeout(carouselFix, 400);
     document.addEventListener('click', function (e) {
       var a = e.target.closest && e.target.closest('a[href*="wa.link"],a[href*="wa.me"]');

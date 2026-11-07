@@ -121,6 +121,8 @@ const inr=n=>'₹'+Math.round(n).toLocaleString('en-IN');
 let S={v:{},sel:{},step:0,done:{}};
 try{const d=JSON.parse(localStorage.getItem(KEY)||'null');if(d&&d.v)S=Object.assign(S,d)}catch(e){}
 const save=()=>{try{localStorage.setItem(KEY,JSON.stringify(S))}catch(e){}};
+try{localStorage.setItem('av_start_pop',JSON.stringify({done:1}))}catch(e){}
+{const g=new URLSearchParams(location.search).get('goal'),m={retire:'retire',wealth:'wealth',guaranteed:'guaranteed',life:'life',kids:'kidsGoal',parents:'parentsGoal'};if(m[g]){S.sel[m[g]]=true;S.step=0}}
 const V=k=>S.v[k];
 
 /* building blocks */
