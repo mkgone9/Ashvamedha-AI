@@ -119,9 +119,7 @@
     if (document.getElementById('avg-bar')) return;
     var bar = document.createElement('div'); bar.id = 'avg-bar';
     bar.innerHTML =
-      '<a class="avg-wa" href="' + CFG.WA_LINK + '" target="_blank" rel="noopener" data-ev="whatsapp">WhatsApp</a>' +
-      '<a class="avg-call" href="tel:' + CFG.PHONE + '" data-ev="call">Call</a>' +
-      '<button class="avg-cb" type="button" data-ev="callback">Free callback</button>';
+      '<a class="avg-cb" href="/start" data-ev="free_consultation">\uD83D\uDCAC Free consultation</a>';
     document.body.appendChild(bar); document.body.classList.add('avg-pad');
     bar.addEventListener('click', function (e) {
       var t = e.target.closest('[data-ev]'); if (!t) return;
@@ -297,7 +295,7 @@
       ov.innerHTML = '<div id="avs" role="dialog" aria-modal="true" aria-labelledby="avs-h"><button class="x" type="button" aria-label="Close">✕</button>' +
         '<small>Takes 1 minute</small><h3 id="avs-h">What can Manoj help you with?</h3><p>Tap your goal. Answer a few quick questions and Manoj will get back to you on WhatsApp.</p>' +
         '<div class="g">' + G.map(function (g) { return '<a href="/start?goal=' + g[0] + '" data-g="' + g[0] + '"><i>' + g[1] + '</i>' + g[2] + '</a>'; }).join('') + '</div>' +
-        '<a class="go" href="/start" data-g="none">Not sure? Start here →</a><button class="later" type="button">Not now</button></div>';
+        '<a class="go" href="/start" data-g="none">Not sure? Free consultation →</a><button class="later" type="button">Not now</button></div>';
       document.body.appendChild(ov);
       function close() { ov.remove(); document.removeEventListener('keydown', esc); }
       function esc(e) { if (e.key === 'Escape') { track('start_popup_close', { page: path }); close(); } }
