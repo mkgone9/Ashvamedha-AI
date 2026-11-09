@@ -1,3 +1,30 @@
+# Ashvamedha Finance — all search engines and AI assistants are welcome to read and cite these guides.
 User-agent: *
 Allow: /
+
+# AI search / assistant crawlers (explicitly allowed)
+User-agent: GPTBot
+Allow: /
+User-agent: OAI-SearchBot
+Allow: /
+User-agent: ChatGPT-User
+Allow: /
+User-agent: ClaudeBot
+Allow: /
+User-agent: Claude-SearchBot
+Allow: /
+User-agent: Claude-User
+Allow: /
+User-agent: PerplexityBot
+Allow: /
+User-agent: Perplexity-User
+Allow: /
+User-agent: Google-Extended
+Allow: /
+User-agent: Bingbot
+Allow: /
+User-agent: Applebot-Extended
+Allow: /
+
 Sitemap: https://www.ashvamedhaai.com/sitemap.xml
+# AI-readable site map: https://www.ashvamedhaai.com/llms.txt

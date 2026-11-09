@@ -48,16 +48,6 @@
    "permanent": true
   },
   {
-   "source": "/aif-category-explained",
-   "destination": "/blog/aif-category-explained",
-   "permanent": true
-  },
-  {
-   "source": "/aif-category-explained.html",
-   "destination": "/blog/aif-category-explained",
-   "permanent": true
-  },
-  {
    "source": "/aif-for-hnis-private-credit-category-ii",
    "destination": "/blog/aif-for-hnis-private-credit-category-ii",
    "permanent": true
@@ -85,16 +75,6 @@
   {
    "source": "/annuity-plans-india-types-explained.html",
    "destination": "/blog/annuity-plans-india-types-explained",
-   "permanent": true
-  },
-  {
-   "source": "/are-unlisted-shares-risky",
-   "destination": "/blog/are-unlisted-shares-risky",
-   "permanent": true
-  },
-  {
-   "source": "/are-unlisted-shares-risky.html",
-   "destination": "/blog/are-unlisted-shares-risky",
    "permanent": true
   },
   {
@@ -165,16 +145,6 @@
   {
    "source": "/best-mutual-funds-hyderabad.html",
    "destination": "/blog/best-mutual-funds-hyderabad",
-   "permanent": true
-  },
-  {
-   "source": "/best-nri-investment-advisory-hyderabad",
-   "destination": "/blog/best-nri-investment-advisory-hyderabad",
-   "permanent": true
-  },
-  {
-   "source": "/best-nri-investment-advisory-hyderabad.html",
-   "destination": "/blog/best-nri-investment-advisory-hyderabad",
    "permanent": true
   },
   {
@@ -268,16 +238,6 @@
    "permanent": true
   },
   {
-   "source": "/best-unlisted-shares-to-buy-2025",
-   "destination": "/blog/best-unlisted-shares-to-buy-2025",
-   "permanent": true
-  },
-  {
-   "source": "/best-unlisted-shares-to-buy-2025.html",
-   "destination": "/blog/best-unlisted-shares-to-buy-2025",
-   "permanent": true
-  },
-  {
    "source": "/can-i-buy-term-insurance-with-pre-existing-condition",
    "destination": "/blog/can-i-buy-term-insurance-with-pre-existing-condition",
    "permanent": true
@@ -358,16 +318,6 @@
    "permanent": true
   },
   {
-   "source": "/can-nris-invest-in-india-direct-answer",
-   "destination": "/blog/can-nris-invest-in-india-direct-answer",
-   "permanent": true
-  },
-  {
-   "source": "/can-nris-invest-in-india-direct-answer.html",
-   "destination": "/blog/can-nris-invest-in-india-direct-answer",
-   "permanent": true
-  },
-  {
    "source": "/can-nris-invest-in-ppf-real-current-rules",
    "destination": "/blog/can-nris-invest-in-ppf-real-current-rules",
    "permanent": true
@@ -408,26 +358,6 @@
    "permanent": true
   },
   {
-   "source": "/choosing-nri-specific-financial-advisor",
-   "destination": "/blog/choosing-nri-specific-financial-advisor",
-   "permanent": true
-  },
-  {
-   "source": "/choosing-nri-specific-financial-advisor.html",
-   "destination": "/blog/choosing-nri-specific-financial-advisor",
-   "permanent": true
-  },
-  {
-   "source": "/commodity-exchange-investing-india-ncdex-mcx",
-   "destination": "/blog/commodity-exchange-investing-india-ncdex-mcx",
-   "permanent": true
-  },
-  {
-   "source": "/commodity-exchange-investing-india-ncdex-mcx.html",
-   "destination": "/blog/commodity-exchange-investing-india-ncdex-mcx",
-   "permanent": true
-  },
-  {
    "source": "/common-mistakes-indians-investing-us-stocks",
    "destination": "/blog/common-mistakes-indians-investing-us-stocks",
    "permanent": true
@@ -455,26 +385,6 @@
   {
    "source": "/corporate-demat-account.html",
    "destination": "/blog/corporate-demat-account",
-   "permanent": true
-  },
-  {
-   "source": "/defence-sector-unlisted-shares-india",
-   "destination": "/blog/defence-sector-unlisted-shares-india",
-   "permanent": true
-  },
-  {
-   "source": "/defence-sector-unlisted-shares-india.html",
-   "destination": "/blog/defence-sector-unlisted-shares-india",
-   "permanent": true
-  },
-  {
-   "source": "/difference-pms-aif-mutual-funds",
-   "destination": "/blog/difference-pms-aif-mutual-funds",
-   "permanent": true
-  },
-  {
-   "source": "/difference-pms-aif-mutual-funds.html",
-   "destination": "/blog/difference-pms-aif-mutual-funds",
    "permanent": true
   },
   {
@@ -538,16 +448,6 @@
    "permanent": true
   },
   {
-   "source": "/employer-employee-insurance",
-   "destination": "/blog/employer-employee-insurance",
-   "permanent": true
-  },
-  {
-   "source": "/employer-employee-insurance.html",
-   "destination": "/blog/employer-employee-insurance",
-   "permanent": true
-  },
-  {
    "source": "/endowment-plans-for-nris-taxation-repatriation",
    "destination": "/blog/endowment-plans-for-nris-taxation-repatriation",
    "permanent": true
@@ -578,16 +478,6 @@
    "permanent": true
   },
   {
-   "source": "/family-office-vs-wealth-manager-india-2026",
-   "destination": "/blog/family-office-vs-wealth-manager-india-2026",
-   "permanent": true
-  },
-  {
-   "source": "/family-office-vs-wealth-manager-india-2026.html",
-   "destination": "/blog/family-office-vs-wealth-manager-india-2026",
-   "permanent": true
-  },
-  {
    "source": "/fd-alternatives-debt-mf",
    "destination": "/blog/fd-alternatives-debt-mf",
    "permanent": true
@@ -605,16 +495,6 @@
   {
    "source": "/fd-vs-mutual-fund-calculator.html",
    "destination": "/blog/fd-vs-mutual-fund-calculator",
-   "permanent": true
-  },
-  {
-   "source": "/financial-advisor-vs-doing-it-yourself",
-   "destination": "/blog/financial-advisor-vs-doing-it-yourself",
-   "permanent": true
-  },
-  {
-   "source": "/financial-advisor-vs-doing-it-yourself.html",
-   "destination": "/blog/financial-advisor-vs-doing-it-yourself",
    "permanent": true
   },
   {
@@ -678,16 +558,6 @@
    "permanent": true
   },
   {
-   "source": "/financial-planning-it-employees",
-   "destination": "/blog/financial-planning-it-employees",
-   "permanent": true
-  },
-  {
-   "source": "/financial-planning-it-employees.html",
-   "destination": "/blog/financial-planning-it-employees",
-   "permanent": true
-  },
-  {
    "source": "/financial-planning-telugu-families-hyderabad",
    "destination": "/blog/financial-planning-telugu-families-hyderabad",
    "permanent": true
@@ -745,46 +615,6 @@
   {
    "source": "/fixed-vs-floating-home-loan-interest-rate.html",
    "destination": "/blog/fixed-vs-floating-home-loan-interest-rate",
-   "permanent": true
-  },
-  {
-   "source": "/garuda-aerospace-drone-as-a-service-model-explained",
-   "destination": "/blog/garuda-aerospace-drone-as-a-service-model-explained",
-   "permanent": true
-  },
-  {
-   "source": "/garuda-aerospace-drone-as-a-service-model-explained.html",
-   "destination": "/blog/garuda-aerospace-drone-as-a-service-model-explained",
-   "permanent": true
-  },
-  {
-   "source": "/garuda-aerospace-pre-ipo",
-   "destination": "/blog/garuda-aerospace-pre-ipo",
-   "permanent": true
-  },
-  {
-   "source": "/garuda-aerospace-pre-ipo.html",
-   "destination": "/blog/garuda-aerospace-pre-ipo",
-   "permanent": true
-  },
-  {
-   "source": "/garuda-aerospace-revenue-deceleration-what-it-means",
-   "destination": "/blog/garuda-aerospace-revenue-deceleration-what-it-means",
-   "permanent": true
-  },
-  {
-   "source": "/garuda-aerospace-revenue-deceleration-what-it-means.html",
-   "destination": "/blog/garuda-aerospace-revenue-deceleration-what-it-means",
-   "permanent": true
-  },
-  {
-   "source": "/garuda-aerospace-vs-ideaforge-drone-sector-comparison",
-   "destination": "/blog/garuda-aerospace-vs-ideaforge-drone-sector-comparison",
-   "permanent": true
-  },
-  {
-   "source": "/garuda-aerospace-vs-ideaforge-drone-sector-comparison.html",
-   "destination": "/blog/garuda-aerospace-vs-ideaforge-drone-sector-comparison",
    "permanent": true
   },
   {
@@ -865,16 +695,6 @@
   {
    "source": "/hidden-stock-broker-charges-explained.html",
    "destination": "/blog/hidden-stock-broker-charges-explained",
-   "permanent": true
-  },
-  {
-   "source": "/hni-portfolio-management-india-2026",
-   "destination": "/blog/hni-portfolio-management-india-2026",
-   "permanent": true
-  },
-  {
-   "source": "/hni-portfolio-management-india-2026.html",
-   "destination": "/blog/hni-portfolio-management-india-2026",
    "permanent": true
   },
   {
@@ -1088,96 +908,6 @@
    "permanent": true
   },
   {
-   "source": "/how-to-buy-garuda-aerospace-unlisted-shares",
-   "destination": "/blog/how-to-buy-garuda-aerospace-unlisted-shares",
-   "permanent": true
-  },
-  {
-   "source": "/how-to-buy-garuda-aerospace-unlisted-shares.html",
-   "destination": "/blog/how-to-buy-garuda-aerospace-unlisted-shares",
-   "permanent": true
-  },
-  {
-   "source": "/how-to-buy-good-luck-defence-unlisted-shares",
-   "destination": "/blog/how-to-buy-good-luck-defence-unlisted-shares",
-   "permanent": true
-  },
-  {
-   "source": "/how-to-buy-good-luck-defence-unlisted-shares.html",
-   "destination": "/blog/how-to-buy-good-luck-defence-unlisted-shares",
-   "permanent": true
-  },
-  {
-   "source": "/how-to-buy-msei-unlisted-shares",
-   "destination": "/blog/how-to-buy-msei-unlisted-shares",
-   "permanent": true
-  },
-  {
-   "source": "/how-to-buy-msei-unlisted-shares.html",
-   "destination": "/blog/how-to-buy-msei-unlisted-shares",
-   "permanent": true
-  },
-  {
-   "source": "/how-to-buy-nse-unlisted-shares",
-   "destination": "/blog/how-to-buy-nse-unlisted-shares",
-   "permanent": true
-  },
-  {
-   "source": "/how-to-buy-nse-unlisted-shares.html",
-   "destination": "/blog/how-to-buy-nse-unlisted-shares",
-   "permanent": true
-  },
-  {
-   "source": "/how-to-buy-pre-ipo-shares",
-   "destination": "/blog/how-to-buy-pre-ipo-shares",
-   "permanent": true
-  },
-  {
-   "source": "/how-to-buy-pre-ipo-shares.html",
-   "destination": "/blog/how-to-buy-pre-ipo-shares",
-   "permanent": true
-  },
-  {
-   "source": "/how-to-buy-sterlite-electric-unlisted-shares",
-   "destination": "/blog/how-to-buy-sterlite-electric-unlisted-shares",
-   "permanent": true
-  },
-  {
-   "source": "/how-to-buy-sterlite-electric-unlisted-shares.html",
-   "destination": "/blog/how-to-buy-sterlite-electric-unlisted-shares",
-   "permanent": true
-  },
-  {
-   "source": "/how-to-buy-unlisted-shares-in-hyderabad-local-process",
-   "destination": "/blog/how-to-buy-unlisted-shares-in-hyderabad-local-process",
-   "permanent": true
-  },
-  {
-   "source": "/how-to-buy-unlisted-shares-in-hyderabad-local-process.html",
-   "destination": "/blog/how-to-buy-unlisted-shares-in-hyderabad-local-process",
-   "permanent": true
-  },
-  {
-   "source": "/how-to-buy-unlisted-shares-in-india-complete-process",
-   "destination": "/blog/how-to-buy-unlisted-shares-in-india-complete-process",
-   "permanent": true
-  },
-  {
-   "source": "/how-to-buy-unlisted-shares-in-india-complete-process.html",
-   "destination": "/blog/how-to-buy-unlisted-shares-in-india-complete-process",
-   "permanent": true
-  },
-  {
-   "source": "/how-to-buy-unlisted-shares",
-   "destination": "/blog/how-to-buy-unlisted-shares",
-   "permanent": true
-  },
-  {
-   "source": "/how-to-buy-unlisted-shares.html",
-   "destination": "/blog/how-to-buy-unlisted-shares",
-   "permanent": true
-  },
-  {
    "source": "/how-to-buy-us-stocks-apple-tesla-nvidia-from-india",
    "destination": "/blog/how-to-buy-us-stocks-apple-tesla-nvidia-from-india",
    "permanent": true
@@ -1308,36 +1038,6 @@
    "permanent": true
   },
   {
-   "source": "/how-unlisted-share-valuations-are-calculated",
-   "destination": "/blog/how-unlisted-share-valuations-are-calculated",
-   "permanent": true
-  },
-  {
-   "source": "/how-unlisted-share-valuations-are-calculated.html",
-   "destination": "/blog/how-unlisted-share-valuations-are-calculated",
-   "permanent": true
-  },
-  {
-   "source": "/indias-stock-exchanges-explained-nse-bse-msei-mcx-ncdex",
-   "destination": "/blog/indias-stock-exchanges-explained-nse-bse-msei-mcx-ncdex",
-   "permanent": true
-  },
-  {
-   "source": "/indias-stock-exchanges-explained-nse-bse-msei-mcx-ncdex.html",
-   "destination": "/blog/indias-stock-exchanges-explained-nse-bse-msei-mcx-ncdex",
-   "permanent": true
-  },
-  {
-   "source": "/insolare-energy-unlisted-shares-financials",
-   "destination": "/blog/insolare-energy-unlisted-shares-financials",
-   "permanent": true
-  },
-  {
-   "source": "/insolare-energy-unlisted-shares-financials.html",
-   "destination": "/blog/insolare-energy-unlisted-shares-financials",
-   "permanent": true
-  },
-  {
    "source": "/insurance-mistakes-to-avoid-india",
    "destination": "/blog/insurance-mistakes-to-avoid-india",
    "permanent": true
@@ -1365,16 +1065,6 @@
   {
    "source": "/investment-advisor-hyderabad.html",
    "destination": "/blog/investment-advisor-hyderabad",
-   "permanent": true
-  },
-  {
-   "source": "/investment-advisors-near-me",
-   "destination": "/blog/investment-advisors-near-me",
-   "permanent": true
-  },
-  {
-   "source": "/investment-advisors-near-me.html",
-   "destination": "/blog/investment-advisors-near-me",
    "permanent": true
   },
   {
@@ -1488,16 +1178,6 @@
    "permanent": true
   },
   {
-   "source": "/missed-nse-unlisted-shares-rally-what-to-know-now",
-   "destination": "/blog/missed-nse-unlisted-shares-rally-what-to-know-now",
-   "permanent": true
-  },
-  {
-   "source": "/missed-nse-unlisted-shares-rally-what-to-know-now.html",
-   "destination": "/blog/missed-nse-unlisted-shares-rally-what-to-know-now",
-   "permanent": true
-  },
-  {
    "source": "/money-management-tips-for-nris",
    "destination": "/blog/money-management-tips-for-nris",
    "permanent": true
@@ -1505,56 +1185,6 @@
   {
    "source": "/money-management-tips-for-nris.html",
    "destination": "/blog/money-management-tips-for-nris",
-   "permanent": true
-  },
-  {
-   "source": "/msei-2026-turnaround-real-trading-volumes",
-   "destination": "/blog/msei-2026-turnaround-real-trading-volumes",
-   "permanent": true
-  },
-  {
-   "source": "/msei-2026-turnaround-real-trading-volumes.html",
-   "destination": "/blog/msei-2026-turnaround-real-trading-volumes",
-   "permanent": true
-  },
-  {
-   "source": "/msei-vs-nse-vs-bse-can-smaller-exchange-compete",
-   "destination": "/blog/msei-vs-nse-vs-bse-can-smaller-exchange-compete",
-   "permanent": true
-  },
-  {
-   "source": "/msei-vs-nse-vs-bse-can-smaller-exchange-compete.html",
-   "destination": "/blog/msei-vs-nse-vs-bse-can-smaller-exchange-compete",
-   "permanent": true
-  },
-  {
-   "source": "/mutual-fund-vs-real-estate-calculator",
-   "destination": "/blog/mutual-fund-vs-real-estate-calculator",
-   "permanent": true
-  },
-  {
-   "source": "/mutual-fund-vs-real-estate-calculator.html",
-   "destination": "/blog/mutual-fund-vs-real-estate-calculator",
-   "permanent": true
-  },
-  {
-   "source": "/ncdex-revenue-growth-losses-narrowing-fy27",
-   "destination": "/blog/ncdex-revenue-growth-losses-narrowing-fy27",
-   "permanent": true
-  },
-  {
-   "source": "/ncdex-revenue-growth-losses-narrowing-fy27.html",
-   "destination": "/blog/ncdex-revenue-growth-losses-narrowing-fy27",
-   "permanent": true
-  },
-  {
-   "source": "/ncdex-shares-what-is-it-how-to-buy",
-   "destination": "/blog/ncdex-shares-what-is-it-how-to-buy",
-   "permanent": true
-  },
-  {
-   "source": "/ncdex-shares-what-is-it-how-to-buy.html",
-   "destination": "/blog/ncdex-shares-what-is-it-how-to-buy",
    "permanent": true
   },
   {
@@ -1605,16 +1235,6 @@
   {
    "source": "/nri-home-loan-in-india-eligibility-process.html",
    "destination": "/blog/nri-home-loan-in-india-eligibility-process",
-   "permanent": true
-  },
-  {
-   "source": "/nri-investing-in-india-guide",
-   "destination": "/blog/nri-investing-in-india-guide",
-   "permanent": true
-  },
-  {
-   "source": "/nri-investing-in-india-guide.html",
-   "destination": "/blog/nri-investing-in-india-guide",
    "permanent": true
   },
   {
@@ -1778,56 +1398,6 @@
    "permanent": true
   },
   {
-   "source": "/nse-ipo-2026-complete-guide",
-   "destination": "/blog/nse-ipo-2026-complete-guide",
-   "permanent": true
-  },
-  {
-   "source": "/nse-ipo-2026-complete-guide.html",
-   "destination": "/blog/nse-ipo-2026-complete-guide",
-   "permanent": true
-  },
-  {
-   "source": "/nse-ipo-2026-risk-reward-analysis",
-   "destination": "/blog/nse-ipo-2026-risk-reward-analysis",
-   "permanent": true
-  },
-  {
-   "source": "/nse-ipo-2026-risk-reward-analysis.html",
-   "destination": "/blog/nse-ipo-2026-risk-reward-analysis",
-   "permanent": true
-  },
-  {
-   "source": "/nse-ipo-analysis",
-   "destination": "/blog/nse-ipo-analysis",
-   "permanent": true
-  },
-  {
-   "source": "/nse-ipo-analysis.html",
-   "destination": "/blog/nse-ipo-analysis",
-   "permanent": true
-  },
-  {
-   "source": "/nse-ipo-vs-buying-unlisted-shares-now",
-   "destination": "/blog/nse-ipo-vs-buying-unlisted-shares-now",
-   "permanent": true
-  },
-  {
-   "source": "/nse-ipo-vs-buying-unlisted-shares-now.html",
-   "destination": "/blog/nse-ipo-vs-buying-unlisted-shares-now",
-   "permanent": true
-  },
-  {
-   "source": "/nse-unlisted-share-price-2025",
-   "destination": "/blog/nse-unlisted-share-price-2025",
-   "permanent": true
-  },
-  {
-   "source": "/nse-unlisted-share-price-2025.html",
-   "destination": "/blog/nse-unlisted-share-price-2025",
-   "permanent": true
-  },
-  {
    "source": "/nse-vs-bse-comparing-indias-exchange-giants",
    "destination": "/blog/nse-vs-bse-comparing-indias-exchange-giants",
    "permanent": true
@@ -1835,36 +1405,6 @@
   {
    "source": "/nse-vs-bse-comparing-indias-exchange-giants.html",
    "destination": "/blog/nse-vs-bse-comparing-indias-exchange-giants",
-   "permanent": true
-  },
-  {
-   "source": "/online-vs-local-unlisted-share-brokers-hyderabad",
-   "destination": "/blog/online-vs-local-unlisted-share-brokers-hyderabad",
-   "permanent": true
-  },
-  {
-   "source": "/online-vs-local-unlisted-share-brokers-hyderabad.html",
-   "destination": "/blog/online-vs-local-unlisted-share-brokers-hyderabad",
-   "permanent": true
-  },
-  {
-   "source": "/oyo-ipo-analysis-2025",
-   "destination": "/blog/oyo-ipo-analysis-2025",
-   "permanent": true
-  },
-  {
-   "source": "/oyo-ipo-analysis-2025.html",
-   "destination": "/blog/oyo-ipo-analysis-2025",
-   "permanent": true
-  },
-  {
-   "source": "/pension-vs-mutual-fund-swp-retirement-income",
-   "destination": "/blog/pension-vs-mutual-fund-swp-retirement-income",
-   "permanent": true
-  },
-  {
-   "source": "/pension-vs-mutual-fund-swp-retirement-income.html",
-   "destination": "/blog/pension-vs-mutual-fund-swp-retirement-income",
    "permanent": true
   },
   {
@@ -1895,16 +1435,6 @@
   {
    "source": "/pms-minimum-investment.html",
    "destination": "/blog/pms-minimum-investment",
-   "permanent": true
-  },
-  {
-   "source": "/pms-vs-aif-for-hni-2026",
-   "destination": "/blog/pms-vs-aif-for-hni-2026",
-   "permanent": true
-  },
-  {
-   "source": "/pms-vs-aif-for-hni-2026.html",
-   "destination": "/blog/pms-vs-aif-for-hni-2026",
    "permanent": true
   },
   {
@@ -1948,26 +1478,6 @@
    "permanent": true
   },
   {
-   "source": "/pure-term-vs-term-ulip",
-   "destination": "/blog/pure-term-vs-term-ulip",
-   "permanent": true
-  },
-  {
-   "source": "/pure-term-vs-term-ulip.html",
-   "destination": "/blog/pure-term-vs-term-ulip",
-   "permanent": true
-  },
-  {
-   "source": "/questions-to-ask-unlisted-share-broker-hyderabad",
-   "destination": "/blog/questions-to-ask-unlisted-share-broker-hyderabad",
-   "permanent": true
-  },
-  {
-   "source": "/questions-to-ask-unlisted-share-broker-hyderabad.html",
-   "destination": "/blog/questions-to-ask-unlisted-share-broker-hyderabad",
-   "permanent": true
-  },
-  {
    "source": "/real-estate-vs-mutual-funds-india",
    "destination": "/blog/real-estate-vs-mutual-funds-india",
    "permanent": true
@@ -1985,26 +1495,6 @@
   {
    "source": "/real-estate-vs-stock-market-which-builds-wealth-faster.html",
    "destination": "/blog/real-estate-vs-stock-market-which-builds-wealth-faster",
-   "permanent": true
-  },
-  {
-   "source": "/renewable-energy-unlisted-shares-india",
-   "destination": "/blog/renewable-energy-unlisted-shares-india",
-   "permanent": true
-  },
-  {
-   "source": "/renewable-energy-unlisted-shares-india.html",
-   "destination": "/blog/renewable-energy-unlisted-shares-india",
-   "permanent": true
-  },
-  {
-   "source": "/rent-vs-buy-calculator-real-numbers",
-   "destination": "/blog/rent-vs-buy-calculator-real-numbers",
-   "permanent": true
-  },
-  {
-   "source": "/rent-vs-buy-calculator-real-numbers.html",
-   "destination": "/blog/rent-vs-buy-calculator-real-numbers",
    "permanent": true
   },
   {
@@ -2038,16 +1528,6 @@
    "permanent": true
   },
   {
-   "source": "/retirement-planning-for-parents-adult-children-help",
-   "destination": "/blog/retirement-planning-for-parents-adult-children-help",
-   "permanent": true
-  },
-  {
-   "source": "/retirement-planning-for-parents-adult-children-help.html",
-   "destination": "/blog/retirement-planning-for-parents-adult-children-help",
-   "permanent": true
-  },
-  {
    "source": "/retirement-plans-for-parents-pension-annuity-swp",
    "destination": "/blog/retirement-plans-for-parents-pension-annuity-swp",
    "permanent": true
@@ -2055,16 +1535,6 @@
   {
    "source": "/retirement-plans-for-parents-pension-annuity-swp.html",
    "destination": "/blog/retirement-plans-for-parents-pension-annuity-swp",
-   "permanent": true
-  },
-  {
-   "source": "/sbi-fund-management-unlisted-shares",
-   "destination": "/blog/sbi-fund-management-unlisted-shares",
-   "permanent": true
-  },
-  {
-   "source": "/sbi-fund-management-unlisted-shares.html",
-   "destination": "/blog/sbi-fund-management-unlisted-shares",
    "permanent": true
   },
   {
@@ -2098,26 +1568,6 @@
    "permanent": true
   },
   {
-   "source": "/sterlite-electric-unlisted-shares-drhp-governance",
-   "destination": "/blog/sterlite-electric-unlisted-shares-drhp-governance",
-   "permanent": true
-  },
-  {
-   "source": "/sterlite-electric-unlisted-shares-drhp-governance.html",
-   "destination": "/blog/sterlite-electric-unlisted-shares-drhp-governance",
-   "permanent": true
-  },
-  {
-   "source": "/sterlite-electric-vs-indigrid-sponsor-relationship",
-   "destination": "/blog/sterlite-electric-vs-indigrid-sponsor-relationship",
-   "permanent": true
-  },
-  {
-   "source": "/sterlite-electric-vs-indigrid-sponsor-relationship.html",
-   "destination": "/blog/sterlite-electric-vs-indigrid-sponsor-relationship",
-   "permanent": true
-  },
-  {
    "source": "/swp-calculator-how-long-money-lasts",
    "destination": "/blog/swp-calculator-how-long-money-lasts",
    "permanent": true
@@ -2125,16 +1575,6 @@
   {
    "source": "/swp-calculator-how-long-money-lasts.html",
    "destination": "/blog/swp-calculator-how-long-money-lasts",
-   "permanent": true
-  },
-  {
-   "source": "/taxation-on-unlisted-shares",
-   "destination": "/blog/taxation-on-unlisted-shares",
-   "permanent": true
-  },
-  {
-   "source": "/taxation-on-unlisted-shares.html",
-   "destination": "/blog/taxation-on-unlisted-shares",
    "permanent": true
   },
   {
@@ -2238,16 +1678,6 @@
    "permanent": true
   },
   {
-   "source": "/top-trending-unlisted-shares-2025",
-   "destination": "/blog/top-trending-unlisted-shares-2025",
-   "permanent": true
-  },
-  {
-   "source": "/top-trending-unlisted-shares-2025.html",
-   "destination": "/blog/top-trending-unlisted-shares-2025",
-   "permanent": true
-  },
-  {
    "source": "/uk-nri-investing-in-india-vs-us-rules",
    "destination": "/blog/uk-nri-investing-in-india-vs-us-rules",
    "permanent": true
@@ -2268,46 +1698,6 @@
    "permanent": true
   },
   {
-   "source": "/unlisted-share-broker-red-flags-hyderabad",
-   "destination": "/blog/unlisted-share-broker-red-flags-hyderabad",
-   "permanent": true
-  },
-  {
-   "source": "/unlisted-share-broker-red-flags-hyderabad.html",
-   "destination": "/blog/unlisted-share-broker-red-flags-hyderabad",
-   "permanent": true
-  },
-  {
-   "source": "/unlisted-share-brokers-hyderabad-how-to-choose",
-   "destination": "/blog/unlisted-share-brokers-hyderabad-how-to-choose",
-   "permanent": true
-  },
-  {
-   "source": "/unlisted-share-brokers-hyderabad-how-to-choose.html",
-   "destination": "/blog/unlisted-share-brokers-hyderabad-how-to-choose",
-   "permanent": true
-  },
-  {
-   "source": "/unlisted-shares-broker-hyderabad",
-   "destination": "/blog/unlisted-shares-broker-hyderabad",
-   "permanent": true
-  },
-  {
-   "source": "/unlisted-shares-broker-hyderabad.html",
-   "destination": "/blog/unlisted-shares-broker-hyderabad",
-   "permanent": true
-  },
-  {
-   "source": "/unlisted-shares-hyderabad-local-investor-interest",
-   "destination": "/blog/unlisted-shares-hyderabad-local-investor-interest",
-   "permanent": true
-  },
-  {
-   "source": "/unlisted-shares-hyderabad-local-investor-interest.html",
-   "destination": "/blog/unlisted-shares-hyderabad-local-investor-interest",
-   "permanent": true
-  },
-  {
    "source": "/us-nri-investing-in-india-pfic-tax-trap",
    "destination": "/blog/us-nri-investing-in-india-pfic-tax-trap",
    "permanent": true
@@ -2315,16 +1705,6 @@
   {
    "source": "/us-nri-investing-in-india-pfic-tax-trap.html",
    "destination": "/blog/us-nri-investing-in-india-pfic-tax-trap",
-   "permanent": true
-  },
-  {
-   "source": "/us-stock-broker-india-comparison-guide",
-   "destination": "/blog/us-stock-broker-india-comparison-guide",
-   "permanent": true
-  },
-  {
-   "source": "/us-stock-broker-india-comparison-guide.html",
-   "destination": "/blog/us-stock-broker-india-comparison-guide",
    "permanent": true
   },
   {
@@ -2358,26 +1738,6 @@
    "permanent": true
   },
   {
-   "source": "/us-stocks-indian-tax-reporting-guide-2026",
-   "destination": "/blog/us-stocks-indian-tax-reporting-guide-2026",
-   "permanent": true
-  },
-  {
-   "source": "/us-stocks-indian-tax-reporting-guide-2026.html",
-   "destination": "/blog/us-stocks-indian-tax-reporting-guide-2026",
-   "permanent": true
-  },
-  {
-   "source": "/us-stocks-lrs-tcs-india-2026",
-   "destination": "/blog/us-stocks-lrs-tcs-india-2026",
-   "permanent": true
-  },
-  {
-   "source": "/us-stocks-lrs-tcs-india-2026.html",
-   "destination": "/blog/us-stocks-lrs-tcs-india-2026",
-   "permanent": true
-  },
-  {
    "source": "/what-are-bonds-how-to-invest",
    "destination": "/blog/what-are-bonds-how-to-invest",
    "permanent": true
@@ -2385,16 +1745,6 @@
   {
    "source": "/what-are-bonds-how-to-invest.html",
    "destination": "/blog/what-are-bonds-how-to-invest",
-   "permanent": true
-  },
-  {
-   "source": "/what-are-nse-unlisted-shares-explained",
-   "destination": "/blog/what-are-nse-unlisted-shares-explained",
-   "permanent": true
-  },
-  {
-   "source": "/what-are-nse-unlisted-shares-explained.html",
-   "destination": "/blog/what-are-nse-unlisted-shares-explained",
    "permanent": true
   },
   {
@@ -2435,26 +1785,6 @@
   {
    "source": "/where-to-invest-lumpsum-50l-1cr-2cr.html",
    "destination": "/blog/where-to-invest-lumpsum-50l-1cr-2cr",
-   "permanent": true
-  },
-  {
-   "source": "/who-owns-msei-shareholding-after-groww-zerodha",
-   "destination": "/blog/who-owns-msei-shareholding-after-groww-zerodha",
-   "permanent": true
-  },
-  {
-   "source": "/who-owns-msei-shareholding-after-groww-zerodha.html",
-   "destination": "/blog/who-owns-msei-shareholding-after-groww-zerodha",
-   "permanent": true
-  },
-  {
-   "source": "/who-owns-ncdex-shareholding-ipo-plans",
-   "destination": "/blog/who-owns-ncdex-shareholding-ipo-plans",
-   "permanent": true
-  },
-  {
-   "source": "/who-owns-ncdex-shareholding-ipo-plans.html",
-   "destination": "/blog/who-owns-ncdex-shareholding-ipo-plans",
    "permanent": true
   },
   {
@@ -2515,6 +1845,1346 @@
   {
    "source": "/zerodha-vs-groww-vs-angel-one-vs-upstox-comparison.html",
    "destination": "/blog/zerodha-vs-groww-vs-angel-one-vs-upstox-comparison",
+   "permanent": true
+  },
+  {
+   "source": "/are-unlisted-shares-risky",
+   "destination": "/blog",
+   "permanent": true
+  },
+  {
+   "source": "/are-unlisted-shares-risky.html",
+   "destination": "/blog",
+   "permanent": true
+  },
+  {
+   "source": "/blog/are-unlisted-shares-risky",
+   "destination": "/blog",
+   "permanent": true
+  },
+  {
+   "source": "/blog/are-unlisted-shares-risky.html",
+   "destination": "/blog",
+   "permanent": true
+  },
+  {
+   "source": "/best-unlisted-shares-to-buy-2025",
+   "destination": "/blog",
+   "permanent": true
+  },
+  {
+   "source": "/best-unlisted-shares-to-buy-2025.html",
+   "destination": "/blog",
+   "permanent": true
+  },
+  {
+   "source": "/blog/best-unlisted-shares-to-buy-2025",
+   "destination": "/blog",
+   "permanent": true
+  },
+  {
+   "source": "/blog/best-unlisted-shares-to-buy-2025.html",
+   "destination": "/blog",
+   "permanent": true
+  },
+  {
+   "source": "/commodity-exchange-investing-india-ncdex-mcx",
+   "destination": "/blog",
+   "permanent": true
+  },
+  {
+   "source": "/commodity-exchange-investing-india-ncdex-mcx.html",
+   "destination": "/blog",
+   "permanent": true
+  },
+  {
+   "source": "/blog/commodity-exchange-investing-india-ncdex-mcx",
+   "destination": "/blog",
+   "permanent": true
+  },
+  {
+   "source": "/blog/commodity-exchange-investing-india-ncdex-mcx.html",
+   "destination": "/blog",
+   "permanent": true
+  },
+  {
+   "source": "/defence-sector-unlisted-shares-india",
+   "destination": "/blog",
+   "permanent": true
+  },
+  {
+   "source": "/defence-sector-unlisted-shares-india.html",
+   "destination": "/blog",
+   "permanent": true
+  },
+  {
+   "source": "/blog/defence-sector-unlisted-shares-india",
+   "destination": "/blog",
+   "permanent": true
+  },
+  {
+   "source": "/blog/defence-sector-unlisted-shares-india.html",
+   "destination": "/blog",
+   "permanent": true
+  },
+  {
+   "source": "/garuda-aerospace-pre-ipo",
+   "destination": "/blog",
+   "permanent": true
+  },
+  {
+   "source": "/garuda-aerospace-pre-ipo.html",
+   "destination": "/blog",
+   "permanent": true
+  },
+  {
+   "source": "/blog/garuda-aerospace-pre-ipo",
+   "destination": "/blog",
+   "permanent": true
+  },
+  {
+   "source": "/blog/garuda-aerospace-pre-ipo.html",
+   "destination": "/blog",
+   "permanent": true
+  },
+  {
+   "source": "/garuda-aerospace-vs-ideaforge-drone-sector-comparison",
+   "destination": "/blog",
+   "permanent": true
+  },
+  {
+   "source": "/garuda-aerospace-vs-ideaforge-drone-sector-comparison.html",
+   "destination": "/blog",
+   "permanent": true
+  },
+  {
+   "source": "/blog/garuda-aerospace-vs-ideaforge-drone-sector-comparison",
+   "destination": "/blog",
+   "permanent": true
+  },
+  {
+   "source": "/blog/garuda-aerospace-vs-ideaforge-drone-sector-comparison.html",
+   "destination": "/blog",
+   "permanent": true
+  },
+  {
+   "source": "/how-to-buy-good-luck-defence-unlisted-shares",
+   "destination": "/blog",
+   "permanent": true
+  },
+  {
+   "source": "/how-to-buy-good-luck-defence-unlisted-shares.html",
+   "destination": "/blog",
+   "permanent": true
+  },
+  {
+   "source": "/blog/how-to-buy-good-luck-defence-unlisted-shares",
+   "destination": "/blog",
+   "permanent": true
+  },
+  {
+   "source": "/blog/how-to-buy-good-luck-defence-unlisted-shares.html",
+   "destination": "/blog",
+   "permanent": true
+  },
+  {
+   "source": "/how-to-buy-nse-unlisted-shares",
+   "destination": "/blog",
+   "permanent": true
+  },
+  {
+   "source": "/how-to-buy-nse-unlisted-shares.html",
+   "destination": "/blog",
+   "permanent": true
+  },
+  {
+   "source": "/blog/how-to-buy-nse-unlisted-shares",
+   "destination": "/blog",
+   "permanent": true
+  },
+  {
+   "source": "/blog/how-to-buy-nse-unlisted-shares.html",
+   "destination": "/blog",
+   "permanent": true
+  },
+  {
+   "source": "/how-to-buy-sterlite-electric-unlisted-shares",
+   "destination": "/blog",
+   "permanent": true
+  },
+  {
+   "source": "/how-to-buy-sterlite-electric-unlisted-shares.html",
+   "destination": "/blog",
+   "permanent": true
+  },
+  {
+   "source": "/blog/how-to-buy-sterlite-electric-unlisted-shares",
+   "destination": "/blog",
+   "permanent": true
+  },
+  {
+   "source": "/blog/how-to-buy-sterlite-electric-unlisted-shares.html",
+   "destination": "/blog",
+   "permanent": true
+  },
+  {
+   "source": "/how-to-buy-unlisted-shares-in-india-complete-process",
+   "destination": "/blog",
+   "permanent": true
+  },
+  {
+   "source": "/how-to-buy-unlisted-shares-in-india-complete-process.html",
+   "destination": "/blog",
+   "permanent": true
+  },
+  {
+   "source": "/blog/how-to-buy-unlisted-shares-in-india-complete-process",
+   "destination": "/blog",
+   "permanent": true
+  },
+  {
+   "source": "/blog/how-to-buy-unlisted-shares-in-india-complete-process.html",
+   "destination": "/blog",
+   "permanent": true
+  },
+  {
+   "source": "/how-unlisted-share-valuations-are-calculated",
+   "destination": "/blog",
+   "permanent": true
+  },
+  {
+   "source": "/how-unlisted-share-valuations-are-calculated.html",
+   "destination": "/blog",
+   "permanent": true
+  },
+  {
+   "source": "/blog/how-unlisted-share-valuations-are-calculated",
+   "destination": "/blog",
+   "permanent": true
+  },
+  {
+   "source": "/blog/how-unlisted-share-valuations-are-calculated.html",
+   "destination": "/blog",
+   "permanent": true
+  },
+  {
+   "source": "/insolare-energy-unlisted-shares-financials",
+   "destination": "/blog",
+   "permanent": true
+  },
+  {
+   "source": "/insolare-energy-unlisted-shares-financials.html",
+   "destination": "/blog",
+   "permanent": true
+  },
+  {
+   "source": "/blog/insolare-energy-unlisted-shares-financials",
+   "destination": "/blog",
+   "permanent": true
+  },
+  {
+   "source": "/blog/insolare-energy-unlisted-shares-financials.html",
+   "destination": "/blog",
+   "permanent": true
+  },
+  {
+   "source": "/missed-nse-unlisted-shares-rally-what-to-know-now",
+   "destination": "/blog",
+   "permanent": true
+  },
+  {
+   "source": "/missed-nse-unlisted-shares-rally-what-to-know-now.html",
+   "destination": "/blog",
+   "permanent": true
+  },
+  {
+   "source": "/blog/missed-nse-unlisted-shares-rally-what-to-know-now",
+   "destination": "/blog",
+   "permanent": true
+  },
+  {
+   "source": "/blog/missed-nse-unlisted-shares-rally-what-to-know-now.html",
+   "destination": "/blog",
+   "permanent": true
+  },
+  {
+   "source": "/msei-2026-turnaround-real-trading-volumes",
+   "destination": "/blog",
+   "permanent": true
+  },
+  {
+   "source": "/msei-2026-turnaround-real-trading-volumes.html",
+   "destination": "/blog",
+   "permanent": true
+  },
+  {
+   "source": "/blog/msei-2026-turnaround-real-trading-volumes",
+   "destination": "/blog",
+   "permanent": true
+  },
+  {
+   "source": "/blog/msei-2026-turnaround-real-trading-volumes.html",
+   "destination": "/blog",
+   "permanent": true
+  },
+  {
+   "source": "/ncdex-shares-what-is-it-how-to-buy",
+   "destination": "/blog",
+   "permanent": true
+  },
+  {
+   "source": "/ncdex-shares-what-is-it-how-to-buy.html",
+   "destination": "/blog",
+   "permanent": true
+  },
+  {
+   "source": "/blog/ncdex-shares-what-is-it-how-to-buy",
+   "destination": "/blog",
+   "permanent": true
+  },
+  {
+   "source": "/blog/ncdex-shares-what-is-it-how-to-buy.html",
+   "destination": "/blog",
+   "permanent": true
+  },
+  {
+   "source": "/nse-ipo-vs-buying-unlisted-shares-now",
+   "destination": "/blog",
+   "permanent": true
+  },
+  {
+   "source": "/nse-ipo-vs-buying-unlisted-shares-now.html",
+   "destination": "/blog",
+   "permanent": true
+  },
+  {
+   "source": "/blog/nse-ipo-vs-buying-unlisted-shares-now",
+   "destination": "/blog",
+   "permanent": true
+  },
+  {
+   "source": "/blog/nse-ipo-vs-buying-unlisted-shares-now.html",
+   "destination": "/blog",
+   "permanent": true
+  },
+  {
+   "source": "/garuda-aerospace-drone-as-a-service-model-explained",
+   "destination": "/blog",
+   "permanent": true
+  },
+  {
+   "source": "/garuda-aerospace-drone-as-a-service-model-explained.html",
+   "destination": "/blog",
+   "permanent": true
+  },
+  {
+   "source": "/blog/garuda-aerospace-drone-as-a-service-model-explained",
+   "destination": "/blog",
+   "permanent": true
+  },
+  {
+   "source": "/blog/garuda-aerospace-drone-as-a-service-model-explained.html",
+   "destination": "/blog",
+   "permanent": true
+  },
+  {
+   "source": "/garuda-aerospace-revenue-deceleration-what-it-means",
+   "destination": "/blog",
+   "permanent": true
+  },
+  {
+   "source": "/garuda-aerospace-revenue-deceleration-what-it-means.html",
+   "destination": "/blog",
+   "permanent": true
+  },
+  {
+   "source": "/blog/garuda-aerospace-revenue-deceleration-what-it-means",
+   "destination": "/blog",
+   "permanent": true
+  },
+  {
+   "source": "/blog/garuda-aerospace-revenue-deceleration-what-it-means.html",
+   "destination": "/blog",
+   "permanent": true
+  },
+  {
+   "source": "/questions-to-ask-unlisted-share-broker-hyderabad",
+   "destination": "/blog",
+   "permanent": true
+  },
+  {
+   "source": "/questions-to-ask-unlisted-share-broker-hyderabad.html",
+   "destination": "/blog",
+   "permanent": true
+  },
+  {
+   "source": "/blog/questions-to-ask-unlisted-share-broker-hyderabad",
+   "destination": "/blog",
+   "permanent": true
+  },
+  {
+   "source": "/blog/questions-to-ask-unlisted-share-broker-hyderabad.html",
+   "destination": "/blog",
+   "permanent": true
+  },
+  {
+   "source": "/sterlite-electric-vs-indigrid-sponsor-relationship",
+   "destination": "/blog",
+   "permanent": true
+  },
+  {
+   "source": "/sterlite-electric-vs-indigrid-sponsor-relationship.html",
+   "destination": "/blog",
+   "permanent": true
+  },
+  {
+   "source": "/blog/sterlite-electric-vs-indigrid-sponsor-relationship",
+   "destination": "/blog",
+   "permanent": true
+  },
+  {
+   "source": "/blog/sterlite-electric-vs-indigrid-sponsor-relationship.html",
+   "destination": "/blog",
+   "permanent": true
+  },
+  {
+   "source": "/taxation-on-unlisted-shares",
+   "destination": "/blog",
+   "permanent": true
+  },
+  {
+   "source": "/taxation-on-unlisted-shares.html",
+   "destination": "/blog",
+   "permanent": true
+  },
+  {
+   "source": "/blog/taxation-on-unlisted-shares",
+   "destination": "/blog",
+   "permanent": true
+  },
+  {
+   "source": "/blog/taxation-on-unlisted-shares.html",
+   "destination": "/blog",
+   "permanent": true
+  },
+  {
+   "source": "/how-to-buy-garuda-aerospace-unlisted-shares",
+   "destination": "/blog",
+   "permanent": true
+  },
+  {
+   "source": "/how-to-buy-garuda-aerospace-unlisted-shares.html",
+   "destination": "/blog",
+   "permanent": true
+  },
+  {
+   "source": "/blog/how-to-buy-garuda-aerospace-unlisted-shares",
+   "destination": "/blog",
+   "permanent": true
+  },
+  {
+   "source": "/blog/how-to-buy-garuda-aerospace-unlisted-shares.html",
+   "destination": "/blog",
+   "permanent": true
+  },
+  {
+   "source": "/unlisted-share-broker-red-flags-hyderabad",
+   "destination": "/blog",
+   "permanent": true
+  },
+  {
+   "source": "/unlisted-share-broker-red-flags-hyderabad.html",
+   "destination": "/blog",
+   "permanent": true
+  },
+  {
+   "source": "/blog/unlisted-share-broker-red-flags-hyderabad",
+   "destination": "/blog",
+   "permanent": true
+  },
+  {
+   "source": "/blog/unlisted-share-broker-red-flags-hyderabad.html",
+   "destination": "/blog",
+   "permanent": true
+  },
+  {
+   "source": "/how-to-buy-msei-unlisted-shares",
+   "destination": "/blog",
+   "permanent": true
+  },
+  {
+   "source": "/how-to-buy-msei-unlisted-shares.html",
+   "destination": "/blog",
+   "permanent": true
+  },
+  {
+   "source": "/blog/how-to-buy-msei-unlisted-shares",
+   "destination": "/blog",
+   "permanent": true
+  },
+  {
+   "source": "/blog/how-to-buy-msei-unlisted-shares.html",
+   "destination": "/blog",
+   "permanent": true
+  },
+  {
+   "source": "/unlisted-shares-broker-hyderabad",
+   "destination": "/blog",
+   "permanent": true
+  },
+  {
+   "source": "/unlisted-shares-broker-hyderabad.html",
+   "destination": "/blog",
+   "permanent": true
+  },
+  {
+   "source": "/blog/unlisted-shares-broker-hyderabad",
+   "destination": "/blog",
+   "permanent": true
+  },
+  {
+   "source": "/blog/unlisted-shares-broker-hyderabad.html",
+   "destination": "/blog",
+   "permanent": true
+  },
+  {
+   "source": "/how-to-buy-pre-ipo-shares",
+   "destination": "/blog",
+   "permanent": true
+  },
+  {
+   "source": "/how-to-buy-pre-ipo-shares.html",
+   "destination": "/blog",
+   "permanent": true
+  },
+  {
+   "source": "/blog/how-to-buy-pre-ipo-shares",
+   "destination": "/blog",
+   "permanent": true
+  },
+  {
+   "source": "/blog/how-to-buy-pre-ipo-shares.html",
+   "destination": "/blog",
+   "permanent": true
+  },
+  {
+   "source": "/how-to-buy-unlisted-shares-in-hyderabad-local-process",
+   "destination": "/blog",
+   "permanent": true
+  },
+  {
+   "source": "/how-to-buy-unlisted-shares-in-hyderabad-local-process.html",
+   "destination": "/blog",
+   "permanent": true
+  },
+  {
+   "source": "/blog/how-to-buy-unlisted-shares-in-hyderabad-local-process",
+   "destination": "/blog",
+   "permanent": true
+  },
+  {
+   "source": "/blog/how-to-buy-unlisted-shares-in-hyderabad-local-process.html",
+   "destination": "/blog",
+   "permanent": true
+  },
+  {
+   "source": "/how-to-buy-unlisted-shares",
+   "destination": "/blog",
+   "permanent": true
+  },
+  {
+   "source": "/how-to-buy-unlisted-shares.html",
+   "destination": "/blog",
+   "permanent": true
+  },
+  {
+   "source": "/blog/how-to-buy-unlisted-shares",
+   "destination": "/blog",
+   "permanent": true
+  },
+  {
+   "source": "/blog/how-to-buy-unlisted-shares.html",
+   "destination": "/blog",
+   "permanent": true
+  },
+  {
+   "source": "/what-are-nse-unlisted-shares-explained",
+   "destination": "/blog",
+   "permanent": true
+  },
+  {
+   "source": "/what-are-nse-unlisted-shares-explained.html",
+   "destination": "/blog",
+   "permanent": true
+  },
+  {
+   "source": "/blog/what-are-nse-unlisted-shares-explained",
+   "destination": "/blog",
+   "permanent": true
+  },
+  {
+   "source": "/blog/what-are-nse-unlisted-shares-explained.html",
+   "destination": "/blog",
+   "permanent": true
+  },
+  {
+   "source": "/who-owns-ncdex-shareholding-ipo-plans",
+   "destination": "/blog",
+   "permanent": true
+  },
+  {
+   "source": "/who-owns-ncdex-shareholding-ipo-plans.html",
+   "destination": "/blog",
+   "permanent": true
+  },
+  {
+   "source": "/blog/who-owns-ncdex-shareholding-ipo-plans",
+   "destination": "/blog",
+   "permanent": true
+  },
+  {
+   "source": "/blog/who-owns-ncdex-shareholding-ipo-plans.html",
+   "destination": "/blog",
+   "permanent": true
+  },
+  {
+   "source": "/indias-stock-exchanges-explained-nse-bse-msei-mcx-ncdex",
+   "destination": "/blog",
+   "permanent": true
+  },
+  {
+   "source": "/indias-stock-exchanges-explained-nse-bse-msei-mcx-ncdex.html",
+   "destination": "/blog",
+   "permanent": true
+  },
+  {
+   "source": "/blog/indias-stock-exchanges-explained-nse-bse-msei-mcx-ncdex",
+   "destination": "/blog",
+   "permanent": true
+  },
+  {
+   "source": "/blog/indias-stock-exchanges-explained-nse-bse-msei-mcx-ncdex.html",
+   "destination": "/blog",
+   "permanent": true
+  },
+  {
+   "source": "/msei-vs-nse-vs-bse-can-smaller-exchange-compete",
+   "destination": "/blog",
+   "permanent": true
+  },
+  {
+   "source": "/msei-vs-nse-vs-bse-can-smaller-exchange-compete.html",
+   "destination": "/blog",
+   "permanent": true
+  },
+  {
+   "source": "/blog/msei-vs-nse-vs-bse-can-smaller-exchange-compete",
+   "destination": "/blog",
+   "permanent": true
+  },
+  {
+   "source": "/blog/msei-vs-nse-vs-bse-can-smaller-exchange-compete.html",
+   "destination": "/blog",
+   "permanent": true
+  },
+  {
+   "source": "/ncdex-revenue-growth-losses-narrowing-fy27",
+   "destination": "/blog",
+   "permanent": true
+  },
+  {
+   "source": "/ncdex-revenue-growth-losses-narrowing-fy27.html",
+   "destination": "/blog",
+   "permanent": true
+  },
+  {
+   "source": "/blog/ncdex-revenue-growth-losses-narrowing-fy27",
+   "destination": "/blog",
+   "permanent": true
+  },
+  {
+   "source": "/blog/ncdex-revenue-growth-losses-narrowing-fy27.html",
+   "destination": "/blog",
+   "permanent": true
+  },
+  {
+   "source": "/nse-ipo-2026-complete-guide",
+   "destination": "/blog",
+   "permanent": true
+  },
+  {
+   "source": "/nse-ipo-2026-complete-guide.html",
+   "destination": "/blog",
+   "permanent": true
+  },
+  {
+   "source": "/blog/nse-ipo-2026-complete-guide",
+   "destination": "/blog",
+   "permanent": true
+  },
+  {
+   "source": "/blog/nse-ipo-2026-complete-guide.html",
+   "destination": "/blog",
+   "permanent": true
+  },
+  {
+   "source": "/nse-ipo-analysis",
+   "destination": "/blog",
+   "permanent": true
+  },
+  {
+   "source": "/nse-ipo-analysis.html",
+   "destination": "/blog",
+   "permanent": true
+  },
+  {
+   "source": "/blog/nse-ipo-analysis",
+   "destination": "/blog",
+   "permanent": true
+  },
+  {
+   "source": "/blog/nse-ipo-analysis.html",
+   "destination": "/blog",
+   "permanent": true
+  },
+  {
+   "source": "/nse-unlisted-share-price-2025",
+   "destination": "/blog",
+   "permanent": true
+  },
+  {
+   "source": "/nse-unlisted-share-price-2025.html",
+   "destination": "/blog",
+   "permanent": true
+  },
+  {
+   "source": "/blog/nse-unlisted-share-price-2025",
+   "destination": "/blog",
+   "permanent": true
+  },
+  {
+   "source": "/blog/nse-unlisted-share-price-2025.html",
+   "destination": "/blog",
+   "permanent": true
+  },
+  {
+   "source": "/online-vs-local-unlisted-share-brokers-hyderabad",
+   "destination": "/blog",
+   "permanent": true
+  },
+  {
+   "source": "/online-vs-local-unlisted-share-brokers-hyderabad.html",
+   "destination": "/blog",
+   "permanent": true
+  },
+  {
+   "source": "/blog/online-vs-local-unlisted-share-brokers-hyderabad",
+   "destination": "/blog",
+   "permanent": true
+  },
+  {
+   "source": "/blog/online-vs-local-unlisted-share-brokers-hyderabad.html",
+   "destination": "/blog",
+   "permanent": true
+  },
+  {
+   "source": "/renewable-energy-unlisted-shares-india",
+   "destination": "/blog",
+   "permanent": true
+  },
+  {
+   "source": "/renewable-energy-unlisted-shares-india.html",
+   "destination": "/blog",
+   "permanent": true
+  },
+  {
+   "source": "/blog/renewable-energy-unlisted-shares-india",
+   "destination": "/blog",
+   "permanent": true
+  },
+  {
+   "source": "/blog/renewable-energy-unlisted-shares-india.html",
+   "destination": "/blog",
+   "permanent": true
+  },
+  {
+   "source": "/sterlite-electric-unlisted-shares-drhp-governance",
+   "destination": "/blog",
+   "permanent": true
+  },
+  {
+   "source": "/sterlite-electric-unlisted-shares-drhp-governance.html",
+   "destination": "/blog",
+   "permanent": true
+  },
+  {
+   "source": "/blog/sterlite-electric-unlisted-shares-drhp-governance",
+   "destination": "/blog",
+   "permanent": true
+  },
+  {
+   "source": "/blog/sterlite-electric-unlisted-shares-drhp-governance.html",
+   "destination": "/blog",
+   "permanent": true
+  },
+  {
+   "source": "/unlisted-share-brokers-hyderabad-how-to-choose",
+   "destination": "/blog",
+   "permanent": true
+  },
+  {
+   "source": "/unlisted-share-brokers-hyderabad-how-to-choose.html",
+   "destination": "/blog",
+   "permanent": true
+  },
+  {
+   "source": "/blog/unlisted-share-brokers-hyderabad-how-to-choose",
+   "destination": "/blog",
+   "permanent": true
+  },
+  {
+   "source": "/blog/unlisted-share-brokers-hyderabad-how-to-choose.html",
+   "destination": "/blog",
+   "permanent": true
+  },
+  {
+   "source": "/unlisted-shares-hyderabad-local-investor-interest",
+   "destination": "/blog",
+   "permanent": true
+  },
+  {
+   "source": "/unlisted-shares-hyderabad-local-investor-interest.html",
+   "destination": "/blog",
+   "permanent": true
+  },
+  {
+   "source": "/blog/unlisted-shares-hyderabad-local-investor-interest",
+   "destination": "/blog",
+   "permanent": true
+  },
+  {
+   "source": "/blog/unlisted-shares-hyderabad-local-investor-interest.html",
+   "destination": "/blog",
+   "permanent": true
+  },
+  {
+   "source": "/who-owns-msei-shareholding-after-groww-zerodha",
+   "destination": "/blog",
+   "permanent": true
+  },
+  {
+   "source": "/who-owns-msei-shareholding-after-groww-zerodha.html",
+   "destination": "/blog",
+   "permanent": true
+  },
+  {
+   "source": "/blog/who-owns-msei-shareholding-after-groww-zerodha",
+   "destination": "/blog",
+   "permanent": true
+  },
+  {
+   "source": "/blog/who-owns-msei-shareholding-after-groww-zerodha.html",
+   "destination": "/blog",
+   "permanent": true
+  },
+  {
+   "source": "/sbi-fund-management-unlisted-shares",
+   "destination": "/blog",
+   "permanent": true
+  },
+  {
+   "source": "/sbi-fund-management-unlisted-shares.html",
+   "destination": "/blog",
+   "permanent": true
+  },
+  {
+   "source": "/blog/sbi-fund-management-unlisted-shares",
+   "destination": "/blog",
+   "permanent": true
+  },
+  {
+   "source": "/blog/sbi-fund-management-unlisted-shares.html",
+   "destination": "/blog",
+   "permanent": true
+  },
+  {
+   "source": "/top-trending-unlisted-shares-2025",
+   "destination": "/blog",
+   "permanent": true
+  },
+  {
+   "source": "/top-trending-unlisted-shares-2025.html",
+   "destination": "/blog",
+   "permanent": true
+  },
+  {
+   "source": "/blog/top-trending-unlisted-shares-2025",
+   "destination": "/blog",
+   "permanent": true
+  },
+  {
+   "source": "/blog/top-trending-unlisted-shares-2025.html",
+   "destination": "/blog",
+   "permanent": true
+  },
+  {
+   "source": "/nse-ipo-2026-risk-reward-analysis",
+   "destination": "/blog",
+   "permanent": true
+  },
+  {
+   "source": "/nse-ipo-2026-risk-reward-analysis.html",
+   "destination": "/blog",
+   "permanent": true
+  },
+  {
+   "source": "/blog/nse-ipo-2026-risk-reward-analysis",
+   "destination": "/blog",
+   "permanent": true
+  },
+  {
+   "source": "/blog/nse-ipo-2026-risk-reward-analysis.html",
+   "destination": "/blog",
+   "permanent": true
+  },
+  {
+   "source": "/oyo-ipo-analysis-2025",
+   "destination": "/blog",
+   "permanent": true
+  },
+  {
+   "source": "/oyo-ipo-analysis-2025.html",
+   "destination": "/blog",
+   "permanent": true
+  },
+  {
+   "source": "/blog/oyo-ipo-analysis-2025",
+   "destination": "/blog",
+   "permanent": true
+  },
+  {
+   "source": "/blog/oyo-ipo-analysis-2025.html",
+   "destination": "/blog",
+   "permanent": true
+  },
+  {
+   "source": "/aif-category-explained",
+   "destination": "/blog/aif-category-1-2-3-explained",
+   "permanent": true
+  },
+  {
+   "source": "/aif-category-explained.html",
+   "destination": "/blog/aif-category-1-2-3-explained",
+   "permanent": true
+  },
+  {
+   "source": "/blog/aif-category-explained",
+   "destination": "/blog/aif-category-1-2-3-explained",
+   "permanent": true
+  },
+  {
+   "source": "/blog/aif-category-explained.html",
+   "destination": "/blog/aif-category-1-2-3-explained",
+   "permanent": true
+  },
+  {
+   "source": "/employer-employee-insurance",
+   "destination": "/blog/employer-employee-insurance-scheme-india",
+   "permanent": true
+  },
+  {
+   "source": "/employer-employee-insurance.html",
+   "destination": "/blog/employer-employee-insurance-scheme-india",
+   "permanent": true
+  },
+  {
+   "source": "/blog/employer-employee-insurance",
+   "destination": "/blog/employer-employee-insurance-scheme-india",
+   "permanent": true
+  },
+  {
+   "source": "/blog/employer-employee-insurance.html",
+   "destination": "/blog/employer-employee-insurance-scheme-india",
+   "permanent": true
+  },
+  {
+   "source": "/financial-planning-it-employees",
+   "destination": "/blog/financial-planning-for-it-employees-hyderabad",
+   "permanent": true
+  },
+  {
+   "source": "/financial-planning-it-employees.html",
+   "destination": "/blog/financial-planning-for-it-employees-hyderabad",
+   "permanent": true
+  },
+  {
+   "source": "/blog/financial-planning-it-employees",
+   "destination": "/blog/financial-planning-for-it-employees-hyderabad",
+   "permanent": true
+  },
+  {
+   "source": "/blog/financial-planning-it-employees.html",
+   "destination": "/blog/financial-planning-for-it-employees-hyderabad",
+   "permanent": true
+  },
+  {
+   "source": "/pms-vs-aif-for-hni-2026",
+   "destination": "/blog/pms-vs-aif-india",
+   "permanent": true
+  },
+  {
+   "source": "/pms-vs-aif-for-hni-2026.html",
+   "destination": "/blog/pms-vs-aif-india",
+   "permanent": true
+  },
+  {
+   "source": "/blog/pms-vs-aif-for-hni-2026",
+   "destination": "/blog/pms-vs-aif-india",
+   "permanent": true
+  },
+  {
+   "source": "/blog/pms-vs-aif-for-hni-2026.html",
+   "destination": "/blog/pms-vs-aif-india",
+   "permanent": true
+  },
+  {
+   "source": "/difference-pms-aif-mutual-funds",
+   "destination": "/blog/pms-vs-aif-vs-mutual-funds-hni-guide",
+   "permanent": true
+  },
+  {
+   "source": "/difference-pms-aif-mutual-funds.html",
+   "destination": "/blog/pms-vs-aif-vs-mutual-funds-hni-guide",
+   "permanent": true
+  },
+  {
+   "source": "/blog/difference-pms-aif-mutual-funds",
+   "destination": "/blog/pms-vs-aif-vs-mutual-funds-hni-guide",
+   "permanent": true
+  },
+  {
+   "source": "/blog/difference-pms-aif-mutual-funds.html",
+   "destination": "/blog/pms-vs-aif-vs-mutual-funds-hni-guide",
+   "permanent": true
+  },
+  {
+   "source": "/best-nri-investment-advisory-hyderabad",
+   "destination": "/blog/best-nri-investment-advisory-india",
+   "permanent": true
+  },
+  {
+   "source": "/best-nri-investment-advisory-hyderabad.html",
+   "destination": "/blog/best-nri-investment-advisory-india",
+   "permanent": true
+  },
+  {
+   "source": "/blog/best-nri-investment-advisory-hyderabad",
+   "destination": "/blog/best-nri-investment-advisory-india",
+   "permanent": true
+  },
+  {
+   "source": "/blog/best-nri-investment-advisory-hyderabad.html",
+   "destination": "/blog/best-nri-investment-advisory-india",
+   "permanent": true
+  },
+  {
+   "source": "/choosing-nri-specific-financial-advisor",
+   "destination": "/blog/best-nri-investment-advisory-india",
+   "permanent": true
+  },
+  {
+   "source": "/choosing-nri-specific-financial-advisor.html",
+   "destination": "/blog/best-nri-investment-advisory-india",
+   "permanent": true
+  },
+  {
+   "source": "/blog/choosing-nri-specific-financial-advisor",
+   "destination": "/blog/best-nri-investment-advisory-india",
+   "permanent": true
+  },
+  {
+   "source": "/blog/choosing-nri-specific-financial-advisor.html",
+   "destination": "/blog/best-nri-investment-advisory-india",
+   "permanent": true
+  },
+  {
+   "source": "/nri-investing-in-india-guide",
+   "destination": "/blog/nri-investment-in-india-complete-guide-2026",
+   "permanent": true
+  },
+  {
+   "source": "/nri-investing-in-india-guide.html",
+   "destination": "/blog/nri-investment-in-india-complete-guide-2026",
+   "permanent": true
+  },
+  {
+   "source": "/blog/nri-investing-in-india-guide",
+   "destination": "/blog/nri-investment-in-india-complete-guide-2026",
+   "permanent": true
+  },
+  {
+   "source": "/blog/nri-investing-in-india-guide.html",
+   "destination": "/blog/nri-investment-in-india-complete-guide-2026",
+   "permanent": true
+  },
+  {
+   "source": "/can-nris-invest-in-india-direct-answer",
+   "destination": "/blog/nri-investment-in-india-complete-guide-2026",
+   "permanent": true
+  },
+  {
+   "source": "/can-nris-invest-in-india-direct-answer.html",
+   "destination": "/blog/nri-investment-in-india-complete-guide-2026",
+   "permanent": true
+  },
+  {
+   "source": "/blog/can-nris-invest-in-india-direct-answer",
+   "destination": "/blog/nri-investment-in-india-complete-guide-2026",
+   "permanent": true
+  },
+  {
+   "source": "/blog/can-nris-invest-in-india-direct-answer.html",
+   "destination": "/blog/nri-investment-in-india-complete-guide-2026",
+   "permanent": true
+  },
+  {
+   "source": "/us-stock-broker-india-comparison-guide",
+   "destination": "/blog/best-platforms-indians-invest-us-stocks",
+   "permanent": true
+  },
+  {
+   "source": "/us-stock-broker-india-comparison-guide.html",
+   "destination": "/blog/best-platforms-indians-invest-us-stocks",
+   "permanent": true
+  },
+  {
+   "source": "/blog/us-stock-broker-india-comparison-guide",
+   "destination": "/blog/best-platforms-indians-invest-us-stocks",
+   "permanent": true
+  },
+  {
+   "source": "/blog/us-stock-broker-india-comparison-guide.html",
+   "destination": "/blog/best-platforms-indians-invest-us-stocks",
+   "permanent": true
+  },
+  {
+   "source": "/us-stocks-indian-tax-reporting-guide-2026",
+   "destination": "/blog/us-stock-reporting-itr-schedule-fa",
+   "permanent": true
+  },
+  {
+   "source": "/us-stocks-indian-tax-reporting-guide-2026.html",
+   "destination": "/blog/us-stock-reporting-itr-schedule-fa",
+   "permanent": true
+  },
+  {
+   "source": "/blog/us-stocks-indian-tax-reporting-guide-2026",
+   "destination": "/blog/us-stock-reporting-itr-schedule-fa",
+   "permanent": true
+  },
+  {
+   "source": "/blog/us-stocks-indian-tax-reporting-guide-2026.html",
+   "destination": "/blog/us-stock-reporting-itr-schedule-fa",
+   "permanent": true
+  },
+  {
+   "source": "/us-stocks-lrs-tcs-india-2026",
+   "destination": "/blog/lrs-limit-tcs-investing-us-stocks",
+   "permanent": true
+  },
+  {
+   "source": "/us-stocks-lrs-tcs-india-2026.html",
+   "destination": "/blog/lrs-limit-tcs-investing-us-stocks",
+   "permanent": true
+  },
+  {
+   "source": "/blog/us-stocks-lrs-tcs-india-2026",
+   "destination": "/blog/lrs-limit-tcs-investing-us-stocks",
+   "permanent": true
+  },
+  {
+   "source": "/blog/us-stocks-lrs-tcs-india-2026.html",
+   "destination": "/blog/lrs-limit-tcs-investing-us-stocks",
+   "permanent": true
+  },
+  {
+   "source": "/investment-advisors-near-me",
+   "destination": "/blog/investment-advisor-hyderabad",
+   "permanent": true
+  },
+  {
+   "source": "/investment-advisors-near-me.html",
+   "destination": "/blog/investment-advisor-hyderabad",
+   "permanent": true
+  },
+  {
+   "source": "/blog/investment-advisors-near-me",
+   "destination": "/blog/investment-advisor-hyderabad",
+   "permanent": true
+  },
+  {
+   "source": "/blog/investment-advisors-near-me.html",
+   "destination": "/blog/investment-advisor-hyderabad",
+   "permanent": true
+  },
+  {
+   "source": "/financial-advisor-vs-doing-it-yourself",
+   "destination": "/blog/do-you-actually-need-a-financial-advisor",
+   "permanent": true
+  },
+  {
+   "source": "/financial-advisor-vs-doing-it-yourself.html",
+   "destination": "/blog/do-you-actually-need-a-financial-advisor",
+   "permanent": true
+  },
+  {
+   "source": "/blog/financial-advisor-vs-doing-it-yourself",
+   "destination": "/blog/do-you-actually-need-a-financial-advisor",
+   "permanent": true
+  },
+  {
+   "source": "/blog/financial-advisor-vs-doing-it-yourself.html",
+   "destination": "/blog/do-you-actually-need-a-financial-advisor",
+   "permanent": true
+  },
+  {
+   "source": "/mutual-fund-vs-real-estate-calculator",
+   "destination": "/blog/real-estate-vs-mutual-funds-india",
+   "permanent": true
+  },
+  {
+   "source": "/mutual-fund-vs-real-estate-calculator.html",
+   "destination": "/blog/real-estate-vs-mutual-funds-india",
+   "permanent": true
+  },
+  {
+   "source": "/blog/mutual-fund-vs-real-estate-calculator",
+   "destination": "/blog/real-estate-vs-mutual-funds-india",
+   "permanent": true
+  },
+  {
+   "source": "/blog/mutual-fund-vs-real-estate-calculator.html",
+   "destination": "/blog/real-estate-vs-mutual-funds-india",
+   "permanent": true
+  },
+  {
+   "source": "/rent-vs-buy-calculator-real-numbers",
+   "destination": "/blog/renting-vs-buying-home-hyderabad",
+   "permanent": true
+  },
+  {
+   "source": "/rent-vs-buy-calculator-real-numbers.html",
+   "destination": "/blog/renting-vs-buying-home-hyderabad",
+   "permanent": true
+  },
+  {
+   "source": "/blog/rent-vs-buy-calculator-real-numbers",
+   "destination": "/blog/renting-vs-buying-home-hyderabad",
+   "permanent": true
+  },
+  {
+   "source": "/blog/rent-vs-buy-calculator-real-numbers.html",
+   "destination": "/blog/renting-vs-buying-home-hyderabad",
+   "permanent": true
+  },
+  {
+   "source": "/pure-term-vs-term-ulip",
+   "destination": "/blog/term-insurance-vs-ulip-which-is-best",
+   "permanent": true
+  },
+  {
+   "source": "/pure-term-vs-term-ulip.html",
+   "destination": "/blog/term-insurance-vs-ulip-which-is-best",
+   "permanent": true
+  },
+  {
+   "source": "/blog/pure-term-vs-term-ulip",
+   "destination": "/blog/term-insurance-vs-ulip-which-is-best",
+   "permanent": true
+  },
+  {
+   "source": "/blog/pure-term-vs-term-ulip.html",
+   "destination": "/blog/term-insurance-vs-ulip-which-is-best",
+   "permanent": true
+  },
+  {
+   "source": "/pension-vs-mutual-fund-swp-retirement-income",
+   "destination": "/blog/guaranteed-income-plan-vs-swp-retirement",
+   "permanent": true
+  },
+  {
+   "source": "/pension-vs-mutual-fund-swp-retirement-income.html",
+   "destination": "/blog/guaranteed-income-plan-vs-swp-retirement",
+   "permanent": true
+  },
+  {
+   "source": "/blog/pension-vs-mutual-fund-swp-retirement-income",
+   "destination": "/blog/guaranteed-income-plan-vs-swp-retirement",
+   "permanent": true
+  },
+  {
+   "source": "/blog/pension-vs-mutual-fund-swp-retirement-income.html",
+   "destination": "/blog/guaranteed-income-plan-vs-swp-retirement",
+   "permanent": true
+  },
+  {
+   "source": "/retirement-planning-for-parents-adult-children-help",
+   "destination": "/blog/how-to-retire-your-parents-guaranteed-income",
+   "permanent": true
+  },
+  {
+   "source": "/retirement-planning-for-parents-adult-children-help.html",
+   "destination": "/blog/how-to-retire-your-parents-guaranteed-income",
+   "permanent": true
+  },
+  {
+   "source": "/blog/retirement-planning-for-parents-adult-children-help",
+   "destination": "/blog/how-to-retire-your-parents-guaranteed-income",
+   "permanent": true
+  },
+  {
+   "source": "/blog/retirement-planning-for-parents-adult-children-help.html",
+   "destination": "/blog/how-to-retire-your-parents-guaranteed-income",
+   "permanent": true
+  },
+  {
+   "source": "/family-office-vs-wealth-manager-india-2026",
+   "destination": "/blog/family-office-india-2026",
+   "permanent": true
+  },
+  {
+   "source": "/family-office-vs-wealth-manager-india-2026.html",
+   "destination": "/blog/family-office-india-2026",
+   "permanent": true
+  },
+  {
+   "source": "/blog/family-office-vs-wealth-manager-india-2026",
+   "destination": "/blog/family-office-india-2026",
+   "permanent": true
+  },
+  {
+   "source": "/blog/family-office-vs-wealth-manager-india-2026.html",
+   "destination": "/blog/family-office-india-2026",
+   "permanent": true
+  },
+  {
+   "source": "/hni-portfolio-management-india-2026",
+   "destination": "/blog/hnuhni-wealth-management-hyderabad",
+   "permanent": true
+  },
+  {
+   "source": "/hni-portfolio-management-india-2026.html",
+   "destination": "/blog/hnuhni-wealth-management-hyderabad",
+   "permanent": true
+  },
+  {
+   "source": "/blog/hni-portfolio-management-india-2026",
+   "destination": "/blog/hnuhni-wealth-management-hyderabad",
+   "permanent": true
+  },
+  {
+   "source": "/blog/hni-portfolio-management-india-2026.html",
+   "destination": "/blog/hnuhni-wealth-management-hyderabad",
    "permanent": true
   }
  ],
