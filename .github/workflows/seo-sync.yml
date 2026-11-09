@@ -6,6 +6,7 @@ on:
       - 'blog/**'
       - 'te/**'
       - 'scripts/**'
+      - '.github/workflows/seo-sync.yml'
   workflow_dispatch:
 permissions:
   contents: write
@@ -30,9 +31,19 @@ jobs:
           git diff --cached --quiet && exit 0
           git commit -m 'Site sync: index, hubs, llms.txt, sitemap [skip ci]'
           git push
+      - name: Wait for Vercel to deploy the IndexNow key file
+        continue-on-error: true
+        run: |
+          for i in $(seq 1 30); do
+            body=$(curl -fsSL "https://www.ashvamedhaai.com/9988130551fac33655201e28196dfbaa.txt" || true)
+            [ "$body" = "9988130551fac33655201e28196dfbaa" ] && echo "key live" && exit 0
+            sleep 15
+          done
+          echo "key file not live yet"; exit 1
       - name: Ping IndexNow (Bing, Yandex, Seznam — feeds ChatGPT/Copilot search)
         continue-on-error: true
         run: |
+          sleep 60
           python3 - <<'PY'
           import json, subprocess, urllib.request
           SITE='https://www.ashvamedhaai.com'; KEY='9988130551fac33655201e28196dfbaa'
